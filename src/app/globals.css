@@ -115,43 +115,47 @@
   --container-max: 1200px;
 }
 
-/* ── Base ────────────────────────────────────────────── */
+/* ── Base ────────────────────────────────────────────────
+   Wrapped in @layer base so utility classes (text-white,
+   text-rhino-700, etc.) win when applied directly. Without
+   the layer, these unlayered rules would override every
+   Tailwind utility — that bit us on the rhino-bg hero. */
 
-:root {
-  color-scheme: light;
-}
+@layer base {
+  :root {
+    color-scheme: light;
+  }
 
-html,
-body {
-  background: var(--color-neutral-0);
-  color: var(--color-neutral-700);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+  html,
+  body {
+    background: var(--color-neutral-0);
+    color: var(--color-neutral-700);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 
-::selection {
-  background: var(--color-yellow-200);
-  color: var(--color-rhino-700);
-}
+  ::selection {
+    background: var(--color-yellow-200);
+    color: var(--color-rhino-700);
+  }
 
-/* Headings inherit display font + tighter tracking by default */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  color: var(--color-rhino-700);
-  letter-spacing: -0.02em;
-  font-feature-settings: "ss01", "ss02";
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-rhino-700);
+    letter-spacing: -0.02em;
+    font-feature-settings: "ss01", "ss02";
+  }
 
-/* Focus ring uses brand color */
-:focus-visible {
-  outline: 2px solid var(--color-denim-500);
-  outline-offset: 2px;
-  border-radius: var(--radius-xs);
+  :focus-visible {
+    outline: 2px solid var(--color-denim-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
 }
 
 /* ── Hero rotating-word animation ────────────────────

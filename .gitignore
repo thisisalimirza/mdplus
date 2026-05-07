@@ -42,4 +42,5 @@ next-env.d.ts
 
 # local visual checks (playwright + screenshots)
 .playwright-mcp/
-homepage-*.png
+*.png
+!public/**/*.png
