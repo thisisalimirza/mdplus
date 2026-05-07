@@ -272,7 +272,7 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,203,33,0.18),_transparent_55%)]"
         />
         <div className="relative mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl md:mx-auto md:text-center">
             <h2 className="font-display text-3xl font-bold leading-tight text-white md:text-5xl">
               You&apos;re a doctor. You want more.{" "}
               <span className="text-yellow-500">We&apos;re the bridge.</span>
@@ -281,7 +281,7 @@ export default function Home() {
               Free Slack membership. Take a look around. Stay if it&apos;s for
               you.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
               <Link
                 href="/join"
                 className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"

@@ -139,7 +139,7 @@ export default function CommunityPage() {
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="rounded-xl border border-rhino-100 bg-rhino-700 p-10 text-white md:p-16">
-            <h2 className="font-display text-2xl font-bold leading-tight md:text-4xl">
+            <h2 className="font-display text-2xl font-bold leading-tight text-white md:text-4xl">
               Ready to look inside?
             </h2>
             <p className="mt-4 max-w-xl text-rhino-100/90">
