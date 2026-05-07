@@ -4,7 +4,7 @@ import { MobileMenu } from "./MobileMenu";
 
 const NAV = [
   { href: "/community", label: "Community" },
-  { href: "https://skills.mdplus.community", label: "Skills", external: true },
+  { href: "/skills", label: "Skills" },
   { href: "/learn", label: "Learn" },
   { href: "/programs", label: "Programs" },
   { href: "/partners", label: "Partners" },

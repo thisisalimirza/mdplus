@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const POPULAR = [
   { href: "/community", label: "Community" },
-  { href: "https://skills.mdplus.community", label: "Skills", external: true },
+  { href: "/skills", label: "Skills" },
   { href: "/learn/podcast", label: "Podcast" },
   { href: "/programs/catalyst", label: "Catalyst" },
   { href: "/membership", label: "Premium membership" },

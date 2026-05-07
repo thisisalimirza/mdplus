@@ -51,9 +51,8 @@ const PILLARS = [
     title: "Skills",
     description:
       "A library of guides, courses, and expert mini-courses on the things you actually need to learn — from case prep to RAG to investor decks.",
-    href: "https://skills.mdplus.community",
+    href: "/skills",
     cta: "Browse Skills →",
-    external: true,
   },
   {
     title: "Programs",
