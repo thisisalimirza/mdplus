@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   MDplus Design Tokens
+
+   Brand: Lightning Yellow (#FFCB21), Denim (#1D7BBD), Rhino (#36366F).
+   Each brand color has a tonal scale (50–900). Neutrals are slightly
+   cool to harmonize with Denim/Rhino. Usage rules:
+
+     • Primary actions / links     → denim-500/600
+     • Body text                   → neutral-700 (not pure black)
+     • Headlines                   → rhino-700 (more brand saturation)
+     • Section backgrounds (dark)  → rhino-500 / rhino-900
+     • Yellow                      → accent only; never as text on white
+                                     (use yellow-700 if yellow text on
+                                     white is required for contrast)
+     • The "+" mark in "MD + word" → yellow-500 (the brand identity beat)
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  /* ── Primary: Denim ──────────────────────────────── */
+  --color-denim-50: #f0f7fb;
+  --color-denim-100: #dbebf5;
+  --color-denim-200: #b0d2e8;
+  --color-denim-300: #79b5d8;
+  --color-denim-400: #4596c7;
+  --color-denim-500: #1d7bbd;
+  --color-denim-600: #186a9f;
+  --color-denim-700: #155b89;
+  --color-denim-800: #104669;
+  --color-denim-900: #0b3047;
+
+  /* ── Anchor: Rhino ───────────────────────────────── */
+  --color-rhino-50: #f4f4f8;
+  --color-rhino-100: #e1e1ed;
+  --color-rhino-200: #bcbcd7;
+  --color-rhino-300: #9494bc;
+  --color-rhino-400: #5f5f9f;
+  --color-rhino-500: #36366f;
+  --color-rhino-600: #2d2d5c;
+  --color-rhino-700: #25254b;
+  --color-rhino-800: #181833;
+  --color-rhino-900: #0f0f22;
+
+  /* ── Accent: Lightning Yellow ────────────────────── */
+  --color-yellow-50: #fffaeb;
+  --color-yellow-100: #fff1c7;
+  --color-yellow-200: #ffe294;
+  --color-yellow-300: #ffd355;
+  --color-yellow-400: #ffcf38;
+  --color-yellow-500: #ffcb21;
+  --color-yellow-600: #e5b000;
+  --color-yellow-700: #b88b00;
+  --color-yellow-800: #936e00;
+  --color-yellow-900: #5c4500;
+
+  /* ── Neutrals (slightly cool) ────────────────────── */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f7f7fa;
+  --color-neutral-100: #efeff3;
+  --color-neutral-200: #dedee5;
+  --color-neutral-300: #bdbdc8;
+  --color-neutral-400: #95959f;
+  --color-neutral-500: #6a6a75;
+  --color-neutral-600: #494950;
+  --color-neutral-700: #2e2e33;
+  --color-neutral-800: #1b1b1f;
+  --color-neutral-900: #0e0e11;
+
+  /* ── Semantic ────────────────────────────────────── */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  /* ── Typography ──────────────────────────────────── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Modular type scale (1.250 / major third), with display sizes
+     pushed harder for hero impact. */
+  --text-xs: 0.75rem; /* 12 */
+  --text-sm: 0.875rem; /* 14 */
+  --text-base: 1rem; /* 16 */
+  --text-lg: 1.125rem; /* 18 */
+  --text-xl: 1.25rem; /* 20 */
+  --text-2xl: 1.5rem; /* 24 */
+  --text-3xl: 1.875rem; /* 30 */
+  --text-4xl: 2.25rem; /* 36 */
+  --text-5xl: 3rem; /* 48 */
+  --text-6xl: 3.75rem; /* 60 */
+  --text-7xl: 4.5rem; /* 72 */
+  --text-8xl: 6rem; /* 96 */
+
+  /* ── Radii ───────────────────────────────────────── */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 9999px;
+
+  /* ── Elevation (subtle, layered) ─────────────────── */
+  --shadow-xs: 0 1px 2px 0 rgb(15 15 34 / 0.04);
+  --shadow-sm: 0 2px 4px -1px rgb(15 15 34 / 0.06),
+    0 1px 2px -1px rgb(15 15 34 / 0.04);
+  --shadow-md: 0 8px 16px -4px rgb(15 15 34 / 0.08),
+    0 2px 4px -2px rgb(15 15 34 / 0.04);
+  --shadow-lg: 0 16px 32px -8px rgb(15 15 34 / 0.12),
+    0 4px 8px -2px rgb(15 15 34 / 0.06);
+
+  /* ── Container (consistent page width) ───────────── */
+  --container-max: 1200px;
+}
+
+/* ── Base ────────────────────────────────────────────── */
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-700);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-yellow-200);
+  color: var(--color-rhino-700);
+}
+
+/* Headings inherit display font + tighter tracking by default */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-rhino-700);
+  letter-spacing: -0.02em;
+  font-feature-settings: "ss01", "ss02";
+}
+
+/* Focus ring uses brand color */
+:focus-visible {
+  outline: 2px solid var(--color-denim-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* ── Hero rotating-word animation ────────────────────
+   The animated word in the headline fades + slides on
+   change. Component code triggers re-mount per word. */
+@keyframes word-in {
+  0% {
+    opacity: 0;
+    transform: translateY(0.25em);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.word-animate {
+  display: inline-block;
+  animation: word-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* The yellow underline that draws under the rotating word */
+@keyframes underline-draw {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.word-underline {
+  position: relative;
+}
+.word-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.05em;
+  height: 0.18em;
+  background: var(--color-yellow-500);
+  z-index: -1;
+  transform-origin: left center;
+  animation: underline-draw 0.6s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-animate,
+  .word-underline::after {
+    animation: none;
+  }
+}
