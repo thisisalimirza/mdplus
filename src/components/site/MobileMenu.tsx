@@ -3,12 +3,28 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  ChevronDown,
+  type LucideIcon,
+} from "lucide-react";
 
-type NavItem = {
+export type NavChild = {
+  href: string;
+  title: string;
+  icon?: LucideIcon;
+  badge?: string;
+  external?: boolean;
+};
+
+export type NavItem = {
   href: string;
   label: string;
   external?: boolean;
+  /** When present, the row gets a chevron that toggles a sub-list. */
+  children?: NavChild[];
 };
 
 type MobileMenuProps = {
@@ -17,15 +33,39 @@ type MobileMenuProps = {
 
 /**
  * Hamburger button + slide-in drawer for mobile navigation.
- * - Closes on: Esc, backdrop click, link click, route change.
+ *
+ * Behavior:
+ * - Closes on Esc, backdrop click, link click, route change.
  * - Locks body scroll while open.
  * - Returns focus to the trigger button on close.
+ * - Items with `children` get a chevron-toggle that expands an inline
+ *   accordion of sub-pages. The label itself is still a link (taps go to
+ *   the hub); the chevron is a separate tap target that only toggles
+ *   expansion.
+ * - On open, any nav item whose href is the current path's prefix is
+ *   auto-expanded — so a user on /community/biotech sees Community
+ *   already expanded.
  */
 export function MobileMenu({ nav }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  // Auto-expand the parent that matches the current route. Runs on
+  // pathname change so navigating in keeps the right section open.
+  useEffect(() => {
+    const matching = nav
+      .filter(
+        (item) =>
+          item.children &&
+          item.href !== "/" &&
+          pathname.startsWith(item.href),
+      )
+      .map((item) => item.href);
+    setExpanded(new Set(matching));
+  }, [pathname, nav]);
 
   // Close on route change.
   useEffect(() => {
@@ -44,16 +84,25 @@ export function MobileMenu({ nav }: MobileMenuProps) {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Move focus into the drawer for SR / keyboard users.
     closeRef.current?.focus();
 
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
-      // Return focus to the trigger when we close.
       triggerRef.current?.focus();
     };
   }, [open]);
+
+  const toggleExpand = (href: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(href)) next.delete(href);
+      else next.add(href);
+      return next;
+    });
+  };
+
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
@@ -72,15 +121,13 @@ export function MobileMenu({ nav }: MobileMenuProps) {
       {/* Backdrop */}
       <div
         aria-hidden
-        onClick={() => setOpen(false)}
+        onClick={closeMenu}
         className={`fixed inset-0 z-50 bg-rhino-900/40 backdrop-blur-sm transition-opacity duration-200 md:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
-      {/* Drawer — h-dvh so the height is explicit (some Tailwind v4 +
-          fixed-position combos don't auto-resolve height from inset-y-0
-          alone, leaving flex-1 children with no space to grow into). */}
+      {/* Drawer */}
       <div
         id="mobile-menu-drawer"
         role="dialog"
@@ -90,11 +137,11 @@ export function MobileMenu({ nav }: MobileMenuProps) {
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Drawer header */}
+        {/* Header */}
         <div className="flex h-16 items-center justify-between border-b border-white/10 px-6">
           <Link
             href="/"
-            onClick={() => setOpen(false)}
+            onClick={closeMenu}
             className="font-display text-xl font-bold"
             aria-label="MDplus home"
           >
@@ -106,55 +153,141 @@ export function MobileMenu({ nav }: MobileMenuProps) {
             ref={closeRef}
             type="button"
             aria-label="Close menu"
-            onClick={() => setOpen(false)}
+            onClick={closeMenu}
             className="inline-flex size-10 items-center justify-center rounded-md text-white transition-colors hover:bg-white/10"
           >
             <X className="size-5" aria-hidden />
           </button>
         </div>
 
-        {/* Drawer nav */}
+        {/* Nav */}
         <nav
           aria-label="Mobile primary"
-          className="flex-1 overflow-y-auto px-6 py-8"
+          className="flex-1 overflow-y-auto px-6 py-6"
         >
           <ul className="space-y-1">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  {...(item.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="flex items-center justify-between rounded-md px-3 py-3 font-display text-lg font-semibold text-white transition-colors hover:bg-white/10"
-                >
-                  <span>{item.label}</span>
-                  {item.external && (
-                    <ArrowUpRight
-                      className="size-4 text-rhino-200"
-                      aria-hidden
-                    />
+            {nav.map((item) => {
+              const hasChildren =
+                !!item.children && item.children.length > 0;
+              const isExpanded = expanded.has(item.href);
+              const childListId = `mobile-nav-${item.href.replace(/[/]/g, "-")}-children`;
+
+              return (
+                <li key={item.href}>
+                  <div className="flex items-center">
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      {...(item.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="flex flex-1 items-center justify-between rounded-md px-3 py-3 font-display text-lg font-semibold text-white transition-colors hover:bg-white/10"
+                    >
+                      <span>{item.label}</span>
+                      {item.external && (
+                        <ArrowUpRight
+                          className="size-4 text-rhino-200"
+                          aria-hidden
+                        />
+                      )}
+                    </Link>
+                    {hasChildren && (
+                      <button
+                        type="button"
+                        aria-label={`${isExpanded ? "Collapse" : "Expand"} ${item.label} sub-menu`}
+                        aria-expanded={isExpanded}
+                        aria-controls={childListId}
+                        onClick={() => toggleExpand(item.href)}
+                        className="ml-1 inline-flex size-11 shrink-0 items-center justify-center rounded-md text-rhino-200 transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        <ChevronDown
+                          className={`size-5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                          aria-hidden
+                        />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Children (accordion) */}
+                  {hasChildren && (
+                    <div
+                      id={childListId}
+                      className={`grid transition-all duration-200 ease-out ${
+                        isExpanded
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <ul className="overflow-hidden">
+                        <li className="pt-1">
+                          <div className="ml-3 border-l border-white/15 pl-3">
+                            <ul className="space-y-0.5">
+                              {item.children!.map((child) => {
+                                const ChildIcon = child.icon;
+                                return (
+                                  <li key={child.href}>
+                                    <Link
+                                      href={child.href}
+                                      onClick={closeMenu}
+                                      {...(child.external
+                                        ? {
+                                            target: "_blank",
+                                            rel: "noopener noreferrer",
+                                          }
+                                        : {})}
+                                      className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-rhino-100/90 transition-colors hover:bg-white/10 hover:text-white"
+                                    >
+                                      {ChildIcon && (
+                                        <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-md bg-white/10 text-white">
+                                          <ChildIcon
+                                            className="size-3.5"
+                                            aria-hidden
+                                          />
+                                        </span>
+                                      )}
+                                      <span className="flex-1">
+                                        {child.title}
+                                      </span>
+                                      {child.badge && (
+                                        <span className="rounded-pill bg-yellow-500/90 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-rhino-900">
+                                          {child.badge}
+                                        </span>
+                                      )}
+                                      {child.external && (
+                                        <ArrowUpRight
+                                          className="size-3.5 text-rhino-200"
+                                          aria-hidden
+                                        />
+                                      )}
+                                    </Link>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
                   )}
-                </Link>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
-        {/* Drawer footer CTAs */}
+        {/* Footer CTAs */}
         <div className="border-t border-white/10 px-6 py-6">
           <div className="grid gap-3">
             <Link
               href="/join"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-5 py-3 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
             >
               Join free →
             </Link>
             <Link
               href="/login"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className="inline-flex items-center justify-center rounded-md border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >
               Sign in

@@ -2,22 +2,41 @@
 
 import Link from "next/link";
 import { Wordmark } from "./Wordmark";
-import { MobileMenu } from "./MobileMenu";
+import { MobileMenu, type NavItem, type NavChild } from "./MobileMenu";
 import { NavDropdown, type DropdownItem } from "./NavDropdown";
 import { COMMUNITIES } from "@/data/communities";
 import { LEARN_SECTIONS } from "@/data/learn-sections";
 import { PROGRAMS_SECTIONS } from "@/data/programs-sections";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
 
-// Mobile drawer config — flat list, no dropdowns. The desktop nav has
-// richer dropdown menus; mobile keeps it simple.
-const MOBILE_NAV = [
-  { href: "/community", label: "Community" },
+// Mobile children — lighter than desktop dropdown items (no descriptions —
+// drawer is narrow). Same data sources, just mapped differently.
+const COMMUNITY_CHILDREN: NavChild[] = COMMUNITIES.map((c) => ({
+  href: `/community/${c.slug}`,
+  title: c.name,
+  icon: COMMUNITY_ICON[c.slug],
+}));
+
+const LEARN_CHILDREN: NavChild[] = LEARN_SECTIONS.map((s) => ({
+  href: s.href,
+  title: s.title,
+  icon: s.icon,
+}));
+
+const PROGRAMS_CHILDREN: NavChild[] = PROGRAMS_SECTIONS.map((p) => ({
+  href: p.href,
+  title: p.title,
+  icon: p.icon,
+  badge: p.status,
+}));
+
+const MOBILE_NAV: readonly NavItem[] = [
+  { href: "/community", label: "Community", children: COMMUNITY_CHILDREN },
   { href: "/skills", label: "Skills" },
-  { href: "/learn", label: "Learn" },
-  { href: "/programs", label: "Programs" },
+  { href: "/learn", label: "Learn", children: LEARN_CHILDREN },
+  { href: "/programs", label: "Programs", children: PROGRAMS_CHILDREN },
   { href: "/partners", label: "Partners" },
-] as const;
+];
 
 // Map each shared data source into the dropdown shape. The hub pages
 // import the same data, so adding a community / learn-section /
