@@ -42,8 +42,8 @@ const MOBILE_NAV: readonly NavItem[] = [
   { href: "/skills", label: "Skills" },
   { href: "/learn", label: "Learn", children: LEARN_CHILDREN },
   { href: "/programs", label: "Programs", children: PROGRAMS_CHILDREN },
-  { href: "/partners", label: "Partners" },
   { href: "/about", label: "About", children: ABOUT_CHILDREN },
+  { href: "/partners", label: "Partners" },
 ];
 
 // Map each shared data source into the dropdown shape. The hub pages
@@ -112,6 +112,11 @@ export function SiteHeader() {
               label="Programs"
               items={PROGRAMS_DROPDOWN}
             />
+            <NavDropdown
+              href="/about"
+              label="About"
+              items={ABOUT_DROPDOWN}
+            />
             <li>
               <Link
                 href="/partners"
@@ -120,12 +125,6 @@ export function SiteHeader() {
                 Partners
               </Link>
             </li>
-            <NavDropdown
-              href="/about"
-              label="About"
-              items={ABOUT_DROPDOWN}
-              align="right"
-            />
           </ul>
         </nav>
 

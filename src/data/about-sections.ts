@@ -37,6 +37,12 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     body: "From a NYC dinner in October 2019 to a 5,000+ member national community — six years, four leadership generations, full timeline inside.",
   },
   {
+    icon: Shield,
+    href: "/guidelines",
+    title: "Guidelines",
+    body: "How we behave in the Slack and across the community.",
+  },
+  {
     icon: HeartHandshake,
     href: "/about/donate",
     title: "Donate",
@@ -47,11 +53,5 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     href: "/contact",
     title: "Contact",
     body: "Get in touch with the team — partnerships, press, general inquiries.",
-  },
-  {
-    icon: Shield,
-    href: "/guidelines",
-    title: "Guidelines",
-    body: "How we behave in the Slack and across the community.",
   },
 ];
