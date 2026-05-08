@@ -1,39 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Zap, Trophy, BookMarked, type LucideIcon } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
+import { PROGRAMS_SECTIONS } from "@/data/programs-sections";
 
 export const metadata: Metadata = { title: "Programs" };
-
-const PROGRAMS: {
-  icon: LucideIcon;
-  href: string;
-  title: string;
-  body: string;
-  status: string;
-}[] = [
-  {
-    icon: Zap,
-    href: "/programs/catalyst",
-    title: "Catalyst",
-    body: "Our flagship program. A cohort-based experience for physicians and med students serious about taking on real work.",
-    status: "Live",
-  },
-  {
-    icon: Trophy,
-    href: "/programs/datathon",
-    title: "Datathon",
-    body: "Annual month-long AI competition on real clinical datasets. 4th edition in 2025 had ~300 participants. Model published in JMIR Medical Education.",
-    status: "Annual",
-  },
-  {
-    icon: BookMarked,
-    href: "/learn/journal-club",
-    title: "Journal Club",
-    body: "Structured paper deep-dives. Read together, discuss, publish.",
-    status: "Recurring",
-  },
-];
 
 export default function ProgramsPage() {
   return (
@@ -46,7 +16,7 @@ export default function ProgramsPage() {
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="grid gap-5 md:grid-cols-3">
-            {PROGRAMS.map((p) => {
+            {PROGRAMS_SECTIONS.map((p) => {
               const Icon = p.icon;
               return (
                 <Link
