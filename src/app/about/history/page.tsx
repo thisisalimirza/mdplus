@@ -97,16 +97,18 @@ export default function HistoryPage() {
                       key={`${era.label}-${idx}`}
                       className="relative grid gap-3 pl-8 md:grid-cols-[140px_1fr] md:gap-6 md:pl-0"
                     >
-                      {/* Vertical rail dot */}
+                      {/* Vertical rail dot — sits in the gap between the
+                          date column (ends at 140px) and the content column
+                          (starts at 164px) so it doesn't overlay date text. */}
                       <span
                         aria-hidden
-                        className="absolute left-2 top-2 size-2.5 rounded-full bg-yellow-500 ring-4 ring-yellow-100 md:left-[136px]"
+                        className="absolute left-2 top-2 size-2.5 rounded-full bg-yellow-500 ring-4 ring-yellow-100 md:left-[148px]"
                       />
-                      {/* Vertical rail line */}
+                      {/* Vertical rail line — aligned with dot center (at 153px). */}
                       {idx < era.milestones.length - 1 && (
                         <span
                           aria-hidden
-                          className="absolute left-3 top-5 h-full w-px bg-neutral-200 md:left-[140px]"
+                          className="absolute left-3 top-5 h-full w-px bg-neutral-200 md:left-[152px]"
                         />
                       )}
 
