@@ -124,6 +124,7 @@ export function SiteHeader() {
               href="/about"
               label="About"
               items={ABOUT_DROPDOWN}
+              align="right"
             />
           </ul>
         </nav>

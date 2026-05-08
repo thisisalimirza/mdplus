@@ -22,6 +22,14 @@ type NavDropdownProps = {
   items: DropdownItem[];
   /** Two-column layout when items count exceeds this. Default 5. */
   twoColAfter?: number;
+  /**
+   * Anchor edge of the dropdown panel. "left" (default) makes the panel
+   * grow rightward from the left edge of the trigger; "right" anchors
+   * the panel's right edge to the trigger's right edge so it grows
+   * leftward. Use "right" for rightmost nav items to avoid viewport
+   * overflow.
+   */
+  align?: "left" | "right";
 };
 
 /**
@@ -39,6 +47,7 @@ export function NavDropdown({
   label,
   items,
   twoColAfter = 5,
+  align = "left",
 }: NavDropdownProps) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -115,11 +124,13 @@ export function NavDropdown({
 
       {/* Dropdown panel — pt-2 leaves a hover-bridge so cursor moving
           from the trigger to the panel doesn't fall into a gap and
-          close the menu. */}
+          close the menu. align="right" anchors the panel's right edge
+          to the trigger's right edge (prevents overflow on rightmost
+          nav items). */}
       <div
-        className={`absolute left-0 top-full pt-2 transition-opacity duration-150 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`absolute top-full pt-2 transition-opacity duration-150 ${
+          align === "right" ? "right-0" : "left-0"
+        } ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
       >
         <div
           role="menu"

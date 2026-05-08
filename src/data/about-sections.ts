@@ -2,7 +2,6 @@ import {
   Users,
   History as HistoryIcon,
   HeartHandshake,
-  Building2,
   Mail,
   Shield,
   type LucideIcon,
@@ -42,12 +41,6 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     href: "/about/donate",
     title: "Donate",
     body: "We're a 501(c)3 non-profit. Donations help us run programs and stay free.",
-  },
-  {
-    icon: Building2,
-    href: "/partners",
-    title: "For Partners",
-    body: "Sponsor, hire, or partner — three audiences, three different pitches.",
   },
   {
     icon: Mail,
