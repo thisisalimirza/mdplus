@@ -21,10 +21,10 @@ const PROGRAMS: {
   },
   {
     icon: Trophy,
-    href: "/programs",
-    title: "Datathons",
-    body: "Multi-day team competitions on real clinical datasets. Best work gets published.",
-    status: "Recurring",
+    href: "/programs/datathon",
+    title: "Datathon",
+    body: "Annual month-long AI competition on real clinical datasets. 4th edition in 2025 had ~300 participants. Model published in JMIR Medical Education.",
+    status: "Annual",
   },
   {
     icon: BookMarked,
