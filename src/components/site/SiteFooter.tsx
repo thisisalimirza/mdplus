@@ -1,36 +1,35 @@
 import Link from "next/link";
 import { Wordmark } from "./Wordmark";
+import { COMMUNITIES } from "@/data/communities";
+import { LEARN_SECTIONS } from "@/data/learn-sections";
+import { PROGRAMS_SECTIONS } from "@/data/programs-sections";
+import { ABOUT_SECTIONS } from "@/data/about-sections";
+
+// Footer groups source from the same data files as the navbar
+// dropdowns + hub pages, so edits to a data file propagate to every
+// surface automatically. Hub-link entries (Overview / All programs /
+// About) are prepended; cross-section pages (For Partners) are
+// appended where they belong.
 
 const FOOTER_GROUPS = [
   {
     label: "Community",
     links: [
       { href: "/community", label: "Overview" },
-      { href: "/community/data", label: "AI & Data" },
-      { href: "/community/vc", label: "VC" },
-      { href: "/community/biotech", label: "Biotech" },
-      { href: "/community/consulting", label: "Consulting" },
-      { href: "/community/policy", label: "Health Policy" },
-      { href: "/community/devices", label: "Medical Devices" },
-      { href: "/community/research", label: "Research" },
-      { href: "/community/design", label: "Design" },
+      ...COMMUNITIES.map((c) => ({
+        href: `/community/${c.slug}`,
+        label: c.shortName ?? c.name,
+      })),
     ],
   },
   {
     label: "Learn",
-    links: [
-      { href: "/learn/blog", label: "Blog" },
-      { href: "/learn/podcast", label: "Podcast" },
-      { href: "/learn/newsletter", label: "Newsletter" },
-      { href: "/learn/journal-club", label: "Journal Club" },
-      { href: "/learn/publications", label: "Publications" },
-    ],
+    links: LEARN_SECTIONS.map((s) => ({ href: s.href, label: s.title })),
   },
   {
     label: "Programs",
     links: [
-      { href: "/programs/catalyst", label: "Catalyst" },
-      { href: "/programs/datathon", label: "Datathon" },
+      ...PROGRAMS_SECTIONS.map((p) => ({ href: p.href, label: p.title })),
       { href: "/programs", label: "All programs" },
       { href: "/membership", label: "Premium membership" },
     ],
@@ -39,12 +38,8 @@ const FOOTER_GROUPS = [
     label: "Org",
     links: [
       { href: "/about", label: "About" },
-      { href: "/about/team", label: "Team" },
-      { href: "/about/history", label: "History" },
+      ...ABOUT_SECTIONS.map((s) => ({ href: s.href, label: s.title })),
       { href: "/partners", label: "For Partners" },
-      { href: "/about/donate", label: "Donate" },
-      { href: "/guidelines", label: "Guidelines" },
-      { href: "/contact", label: "Contact" },
     ],
   },
 ] as const;
