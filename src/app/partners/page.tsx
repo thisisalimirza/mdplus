@@ -11,12 +11,19 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
+import { BookCallButton } from "@/components/marketing/BookCallButton";
 import {
   PARTNER_CATEGORIES,
   SPONSORSHIP_TRACKS,
   PARTNER_FAQ,
   type SponsorshipTrack,
 } from "@/data/partners";
+
+const PARTNER_CAL_LINK = "mdplus/partner-inquiry";
+const PARTNER_EMAIL = "partnerships@mdplus.community";
+
+const emailHref = (subject: string) =>
+  `mailto:${PARTNER_EMAIL}?subject=${encodeURIComponent(subject)}`;
 
 export const metadata: Metadata = {
   title: "For Partners",
@@ -72,19 +79,16 @@ export default function PartnersPage() {
         description="MDplus is a 501(c)(3) community of 5,000+ medical students, residents, and physicians at the cross-section of medicine and healthcare innovation. If your work touches that audience — for hiring, sponsorship, or co-built programs — this is the door."
       >
         <div className="flex flex-wrap gap-3">
-          <Link
-            href="/contact"
+          <a
+            href={emailHref("Partner inquiry")}
             className="inline-flex items-center justify-center gap-1.5 rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
           >
-            Tell us what you&apos;re trying to do
+            Email the team
             <ArrowRight className="size-4" aria-hidden />
-          </Link>
-          <a
-            href="#tracks"
-            className="inline-flex items-center justify-center rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
-          >
-            See three ways to work with us
           </a>
+          <BookCallButton link={PARTNER_CAL_LINK} variant="outline" size="lg">
+            Or book a 15-min call
+          </BookCallButton>
         </div>
       </PageHero>
 
@@ -223,13 +227,19 @@ export default function PartnersPage() {
                     <h3 className="mt-2 font-display text-2xl font-bold leading-tight text-rhino-700 md:text-3xl">
                       {track.headline}
                     </h3>
-                    <Link
-                      href="/contact"
-                      className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-denim-600 hover:text-denim-700"
-                    >
-                      {track.cta}
-                      <ArrowRight className="size-3.5" aria-hidden />
-                    </Link>
+                    <div className="mt-6 flex flex-col items-start gap-3">
+                      <a
+                        href={emailHref(`${track.eyebrow} inquiry`)}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                      >
+                        {track.cta}
+                        <ArrowRight className="size-3.5" aria-hidden />
+                      </a>
+                      <BookCallButton link={PARTNER_CAL_LINK} variant="ghost">
+                        or book a 15-min call
+                        <ArrowRight className="size-3.5" aria-hidden />
+                      </BookCallButton>
+                    </div>
                   </div>
 
                   <div className="md:col-span-2">
@@ -396,21 +406,27 @@ export default function PartnersPage() {
               short conversation.
             </p>
             <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
-              <Link
-                href="/contact"
+              <a
+                href={emailHref("Partner inquiry")}
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-rhino-700 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-rhino-600"
               >
-                Get in touch
+                Email the team
                 <ArrowRight className="size-4" aria-hidden />
-              </Link>
-              <a
-                href="https://mdplus.community"
-                className="inline-flex items-center justify-center gap-1 rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300"
-              >
-                See what members are doing
-                <ArrowUpRight className="size-4" aria-hidden />
               </a>
+              <BookCallButton
+                link={PARTNER_CAL_LINK}
+                variant="primary"
+                size="lg"
+              >
+                Or book a 15-min call
+                <ArrowRight className="size-4" aria-hidden />
+              </BookCallButton>
             </div>
+            <p className="mt-6 text-sm text-neutral-500 md:text-center">
+              Email goes to{" "}
+              <span className="font-mono text-rhino-700">{PARTNER_EMAIL}</span>
+              .
+            </p>
           </div>
         </div>
       </section>
