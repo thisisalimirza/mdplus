@@ -7,6 +7,7 @@ import { NavDropdown, type DropdownItem } from "./NavDropdown";
 import { COMMUNITIES } from "@/data/communities";
 import { LEARN_SECTIONS } from "@/data/learn-sections";
 import { PROGRAMS_SECTIONS } from "@/data/programs-sections";
+import { ABOUT_SECTIONS } from "@/data/about-sections";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
 
 // Mobile children — lighter than desktop dropdown items (no descriptions —
@@ -30,17 +31,24 @@ const PROGRAMS_CHILDREN: NavChild[] = PROGRAMS_SECTIONS.map((p) => ({
   badge: p.status,
 }));
 
+const ABOUT_CHILDREN: NavChild[] = ABOUT_SECTIONS.map((s) => ({
+  href: s.href,
+  title: s.title,
+  icon: s.icon,
+}));
+
 const MOBILE_NAV: readonly NavItem[] = [
   { href: "/community", label: "Community", children: COMMUNITY_CHILDREN },
   { href: "/skills", label: "Skills" },
   { href: "/learn", label: "Learn", children: LEARN_CHILDREN },
   { href: "/programs", label: "Programs", children: PROGRAMS_CHILDREN },
   { href: "/partners", label: "Partners" },
+  { href: "/about", label: "About", children: ABOUT_CHILDREN },
 ];
 
 // Map each shared data source into the dropdown shape. The hub pages
 // import the same data, so adding a community / learn-section /
-// program automatically flows through to both places.
+// program / about-section automatically flows through to both places.
 const COMMUNITY_DROPDOWN: DropdownItem[] = COMMUNITIES.map((c) => ({
   href: `/community/${c.slug}`,
   title: c.name,
@@ -61,6 +69,13 @@ const PROGRAMS_DROPDOWN: DropdownItem[] = PROGRAMS_SECTIONS.map((p) => ({
   description: p.body,
   icon: p.icon,
   badge: p.status,
+}));
+
+const ABOUT_DROPDOWN: DropdownItem[] = ABOUT_SECTIONS.map((s) => ({
+  href: s.href,
+  title: s.title,
+  description: s.body,
+  icon: s.icon,
 }));
 
 export function SiteHeader() {
@@ -105,6 +120,11 @@ export function SiteHeader() {
                 Partners
               </Link>
             </li>
+            <NavDropdown
+              href="/about"
+              label="About"
+              items={ABOUT_DROPDOWN}
+            />
           </ul>
         </nav>
 

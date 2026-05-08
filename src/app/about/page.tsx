@@ -1,63 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  Users,
-  History as HistoryIcon,
-  HeartHandshake,
-  Building2,
-  Mail,
-  Shield,
-  type LucideIcon,
-} from "lucide-react";
 import { PhotoHero } from "@/components/marketing/PhotoHero";
 import { EventPhotoStrip } from "@/components/marketing/EventPhotoStrip";
 import { HERO_COLLAGE, MEETUP_PHOTOS } from "@/data/event-photos";
+import { ABOUT_SECTIONS } from "@/data/about-sections";
 
 export const metadata: Metadata = { title: "About" };
-
-const SECTIONS: {
-  icon: LucideIcon;
-  href: string;
-  title: string;
-  body: string;
-}[] = [
-  {
-    icon: Users,
-    href: "/about/team",
-    title: "Team",
-    body: "The folks running the place — current leadership and past directors.",
-  },
-  {
-    icon: HistoryIcon,
-    href: "/about/history",
-    title: "History",
-    body: "From a NYC dinner in October 2019 to a 5,000+ member national community — six years, four leadership generations, full timeline inside.",
-  },
-  {
-    icon: HeartHandshake,
-    href: "/about/donate",
-    title: "Donate",
-    body: "We're a 501(c)3 non-profit. Donations help us run programs and stay free.",
-  },
-  {
-    icon: Building2,
-    href: "/partners",
-    title: "For Partners",
-    body: "Sponsor, hire, or partner — three audiences, three different pitches.",
-  },
-  {
-    icon: Mail,
-    href: "/contact",
-    title: "Contact",
-    body: "Get in touch with the team — partnerships, press, general inquiries.",
-  },
-  {
-    icon: Shield,
-    href: "/guidelines",
-    title: "Guidelines",
-    body: "How we behave in the Slack and across the community.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -108,7 +56,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SECTIONS.map((s) => {
+            {ABOUT_SECTIONS.map((s) => {
               const Icon = s.icon;
               return (
                 <Link
