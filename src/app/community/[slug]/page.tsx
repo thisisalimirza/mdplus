@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ArrowRight, Building2, Users } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { COMMUNITIES, getCommunity } from "@/data/communities";
+import { COMMUNITY_ICON } from "@/lib/community-icons";
 
 type Params = { slug: string };
 
@@ -73,7 +75,8 @@ export default async function CommunityDetailPage({
             <aside className="md:pt-9">
               {community.leaders && community.leaders.length > 0 && (
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-rhino-500">
+                  <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-rhino-500">
+                    <Users className="size-3.5" aria-hidden />
                     Leadership
                   </p>
                   <ul className="mt-4 space-y-3">
@@ -93,7 +96,8 @@ export default async function CommunityDetailPage({
               {community.representativeAt &&
                 community.representativeAt.length > 0 && (
                   <div className="mt-6 rounded-lg border border-neutral-200 bg-neutral-50 p-6">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-rhino-500">
+                    <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-rhino-500">
+                      <Building2 className="size-3.5" aria-hidden />
                       Members are at
                     </p>
                     <ul className="mt-4 flex flex-wrap gap-1.5">
@@ -180,27 +184,36 @@ export default async function CommunityDetailPage({
             </div>
             <Link
               href="/community"
-              className="text-sm font-semibold text-denim-600 hover:text-denim-700"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
             >
-              See all →
+              See all
+              <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {others.map((c) => (
-              <Link
-                key={c.slug}
-                href={`/community/${c.slug}`}
-                className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-5 transition-all hover:border-denim-300 hover:shadow-sm"
-              >
-                <h3 className="font-display text-base font-semibold text-rhino-700 group-hover:text-denim-700">
-                  {c.name}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-neutral-500">
-                  {c.tagline}
-                </p>
-              </Link>
-            ))}
+            {others.map((c) => {
+              const Icon = COMMUNITY_ICON[c.slug];
+              return (
+                <Link
+                  key={c.slug}
+                  href={`/community/${c.slug}`}
+                  className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-5 transition-all hover:border-denim-300 hover:shadow-sm"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex size-8 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 group-hover:bg-denim-50 group-hover:text-denim-600">
+                      {Icon && <Icon className="size-4" aria-hidden />}
+                    </span>
+                    <h3 className="font-display text-base font-semibold text-rhino-700 group-hover:text-denim-700">
+                      {c.name}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-neutral-500">
+                    {c.tagline}
+                  </p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

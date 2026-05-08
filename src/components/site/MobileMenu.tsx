@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 type NavItem = {
   href: string;
@@ -65,20 +66,7 @@ export function MobileMenu({ nav }: MobileMenuProps) {
         onClick={() => setOpen(true)}
         className="inline-flex size-10 items-center justify-center rounded-md text-rhino-700 transition-colors hover:bg-neutral-50 md:hidden"
       >
-        <svg
-          aria-hidden
-          width="22"
-          height="22"
-          viewBox="0 0 22 22"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.75"
-          strokeLinecap="round"
-        >
-          <line x1="3" y1="6" x2="19" y2="6" />
-          <line x1="3" y1="11" x2="19" y2="11" />
-          <line x1="3" y1="16" x2="19" y2="16" />
-        </svg>
+        <Menu className="size-5" aria-hidden />
       </button>
 
       {/* Backdrop */}
@@ -121,19 +109,7 @@ export function MobileMenu({ nav }: MobileMenuProps) {
             onClick={() => setOpen(false)}
             className="inline-flex size-10 items-center justify-center rounded-md text-white transition-colors hover:bg-white/10"
           >
-            <svg
-              aria-hidden
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <line x1="5" y1="5" x2="15" y2="15" />
-              <line x1="15" y1="5" x2="5" y2="15" />
-            </svg>
+            <X className="size-5" aria-hidden />
           </button>
         </div>
 
@@ -155,19 +131,10 @@ export function MobileMenu({ nav }: MobileMenuProps) {
                 >
                   <span>{item.label}</span>
                   {item.external && (
-                    <svg
+                    <ArrowUpRight
+                      className="size-4 text-rhino-200"
                       aria-hidden
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      className="text-rhino-200"
-                    >
-                      <path d="M5 11l6-6M11 5H6M11 5v5" />
-                    </svg>
+                    />
                   )}
                 </Link>
               </li>

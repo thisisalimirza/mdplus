@@ -1,5 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import {
+  Mic,
+  Brain,
+  Compass,
+  CircleDollarSign,
+  MessagesSquare,
+  Clock,
+  FileText,
+  Mail,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 
@@ -9,35 +21,40 @@ export const metadata: Metadata = {
     "A weekly briefing for physicians and med students building beyond the OR. Free, signal-only, every Sunday morning.",
 };
 
-const TOPICS = [
+const TOPICS: { icon: LucideIcon; title: string; body: string }[] = [
   {
+    icon: Mic,
     title: "Founder spotlights",
-    body: "Interviews with physician-founders — what they're building, where they got stuck, what they wish they'd known.",
+    body: "Interviews with physician-founders — what they're working on, where they got stuck, what they wish they'd known.",
   },
   {
+    icon: Brain,
     title: "AI in clinical practice",
-    body: "The tools that are actually shipping inside hospitals, not just the press releases. Vetted by clinicians.",
+    body: "The tools actually being used inside hospitals, not just the press releases. Vetted by clinicians.",
   },
   {
+    icon: Compass,
     title: "Career moves",
     body: "Notable people leaving clinical roles for industry — and the smaller, quieter moves that signal where the field is going.",
   },
   {
+    icon: CircleDollarSign,
     title: "Funding + deals",
     body: "Healthtech rounds, IPOs, and quiet acquisitions, with one-line takes on what they mean for clinicians.",
   },
   {
+    icon: MessagesSquare,
     title: "From the community",
     body: "Highlights from the MDplus Slack — best threads, member wins, and questions the community is wrestling with.",
   },
-] as const;
+];
 
-const PROMISES = [
-  { label: "Every Sunday morning", body: "On your phone before you reach for it." },
-  { label: "5-minute read", body: "Not a 40-paragraph essay. Sized to fit between cases." },
-  { label: "Signal only", body: "No fluff, no sponsored cross-promo, no LinkedIn-style takes." },
-  { label: "Always free", body: "And you can unsubscribe in one click. We'd rather lose you than spam you." },
-] as const;
+const PROMISES: { icon: LucideIcon; label: string; body: string }[] = [
+  { icon: Clock, label: "Every Sunday morning", body: "On your phone before you reach for it." },
+  { icon: FileText, label: "5-minute read", body: "Not a 40-paragraph essay. Sized to fit between cases." },
+  { icon: Sparkles, label: "Signal only", body: "No fluff, no sponsored cross-promo, no LinkedIn-style takes." },
+  { icon: Mail, label: "Always free", body: "And you can unsubscribe in one click. We'd rather lose you than spam you." },
+];
 
 const SAMPLE_ISSUES = [
   {
@@ -109,19 +126,25 @@ export default function NewsletterPage() {
           </div>
 
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {TOPICS.map((topic) => (
-              <article
-                key={topic.title}
-                className="rounded-lg border border-neutral-200 bg-neutral-0 p-6"
-              >
-                <h3 className="font-display text-lg font-bold text-rhino-700">
-                  {topic.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                  {topic.body}
-                </p>
-              </article>
-            ))}
+            {TOPICS.map((topic) => {
+              const Icon = topic.icon;
+              return (
+                <article
+                  key={topic.title}
+                  className="rounded-lg border border-neutral-200 bg-neutral-0 p-6"
+                >
+                  <span className="inline-flex size-10 items-center justify-center rounded-md bg-denim-50 text-denim-600">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-bold text-rhino-700">
+                    {topic.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                    {topic.body}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -182,38 +205,27 @@ export default function NewsletterPage() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {PROMISES.map((p) => (
-              <div
-                key={p.label}
-                className="flex gap-4 rounded-lg border border-neutral-200 bg-neutral-0 p-6"
-              >
-                <span
-                  aria-hidden
-                  className="mt-1 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-yellow-500 text-rhino-900"
+            {PROMISES.map((p) => {
+              const Icon = p.icon;
+              return (
+                <div
+                  key={p.label}
+                  className="flex gap-4 rounded-lg border border-neutral-200 bg-neutral-0 p-6"
                 >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M2.5 7.5l3 3 6-7" />
-                  </svg>
-                </span>
-                <div>
-                  <h3 className="font-display text-base font-bold text-rhino-700">
-                    {p.label}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-neutral-600">
-                    {p.body}
-                  </p>
+                  <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-yellow-500 text-rhino-900">
+                    <Icon className="size-4" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-base font-bold text-rhino-700">
+                      {p.label}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-neutral-600">
+                      {p.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Check, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import {
   PREMIUM_PRICE,
@@ -69,7 +70,11 @@ export default function MembershipPage() {
                     key={item}
                     className="flex items-start gap-2.5 text-sm text-neutral-600"
                   >
-                    <Check />
+                    <Check
+                      className="mt-0.5 size-4 shrink-0 text-denim-600"
+                      strokeWidth={2.5}
+                      aria-hidden
+                    />
                     {item}
                   </li>
                 ))}
@@ -116,7 +121,11 @@ export default function MembershipPage() {
               <ul className="mt-8 space-y-4">
                 {PREMIUM_INCLUDES.map((item) => (
                   <li key={item.title} className="flex items-start gap-2.5">
-                    <Check />
+                    <Check
+                      className="mt-0.5 size-4 shrink-0 text-denim-600"
+                      strokeWidth={2.5}
+                      aria-hidden
+                    />
                     <div>
                       <p className="text-sm font-semibold text-rhino-700">
                         {item.title}
@@ -195,19 +204,3 @@ export default function MembershipPage() {
   );
 }
 
-function Check() {
-  return (
-    <svg
-      aria-hidden
-      className="mt-0.5 size-4 shrink-0 text-denim-600"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fillRule="evenodd"
-        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
