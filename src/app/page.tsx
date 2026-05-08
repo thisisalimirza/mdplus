@@ -5,6 +5,9 @@ import {
   GraduationCap,
   Calendar,
   ArrowRight,
+  ArrowUpRight,
+  Zap,
+  Trophy,
   type LucideIcon,
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
@@ -219,6 +222,138 @@ export default function Home() {
                 </article>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Flagship programs ────────────────────────────────── */}
+      <section className="bg-yellow-50 py-24 md:py-32">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-700">
+              Flagship programs
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-5xl">
+              Where the work actually happens.
+            </h2>
+            <p className="mt-6 text-lg text-neutral-600">
+              Two programs that turn lurking into doing. One a cohort, one a
+              competition. Both are how members go from interested to
+              involved.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {/* Catalyst */}
+            <article className="flex flex-col rounded-xl border border-rhino-100 bg-neutral-0 p-8 transition-shadow hover:shadow-md md:p-10">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex size-12 items-center justify-center rounded-md bg-yellow-500 text-rhino-900">
+                  <Zap className="size-6" aria-hidden />
+                </span>
+                <span className="rounded-pill bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
+                  Live · cohort
+                </span>
+              </div>
+              <h3 className="mt-6 font-display text-2xl font-bold text-rhino-700 md:text-3xl">
+                Catalyst
+              </h3>
+              <p className="mt-3 flex-1 text-base leading-relaxed text-neutral-600">
+                Our flagship cohort program for physician-innovators. Built
+                with mentors and structured deadlines so the work actually
+                ships.
+              </p>
+              <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-neutral-100 pt-5 text-sm">
+                <li>
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                    Sponsors
+                  </span>
+                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                    8 named partners
+                  </span>
+                </li>
+                <li>
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                    Format
+                  </span>
+                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                    Cohort + mentors
+                  </span>
+                </li>
+              </ul>
+              <div className="mt-7 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/programs/catalyst"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                >
+                  See Catalyst
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+                <a
+                  href="https://catalyst.mdplus.community"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
+                >
+                  catalyst.mdplus.community
+                  <ArrowUpRight className="size-3.5" aria-hidden />
+                </a>
+              </div>
+            </article>
+
+            {/* Datathon */}
+            <article className="flex flex-col rounded-xl border border-rhino-100 bg-neutral-0 p-8 transition-shadow hover:shadow-md md:p-10">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex size-12 items-center justify-center rounded-md bg-yellow-500 text-rhino-900">
+                  <Trophy className="size-6" aria-hidden />
+                </span>
+                <span className="rounded-pill bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
+                  Annual
+                </span>
+              </div>
+              <h3 className="mt-6 font-display text-2xl font-bold text-rhino-700 md:text-3xl">
+                The MD+ Datathon
+              </h3>
+              <p className="mt-3 flex-1 text-base leading-relaxed text-neutral-600">
+                A month-long competition on real clinical datasets, now in
+                its 4th year. The model is published in JMIR Medical
+                Education.
+              </p>
+              <ul className="mt-6 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-neutral-100 pt-5 text-sm">
+                <li>
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                    Editions
+                  </span>
+                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                    4
+                  </span>
+                </li>
+                <li>
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                    2025 size
+                  </span>
+                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                    ~300
+                  </span>
+                </li>
+                <li>
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                    Published
+                  </span>
+                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                    JMIR
+                  </span>
+                </li>
+              </ul>
+              <div className="mt-7">
+                <Link
+                  href="/programs/datathon"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                >
+                  See the Datathon
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </div>
+            </article>
           </div>
         </div>
       </section>

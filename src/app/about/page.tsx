@@ -31,7 +31,7 @@ const SECTIONS: {
     icon: HistoryIcon,
     href: "/about/history",
     title: "History",
-    body: "Where MDplus came from and how it became a 5,000+ member community.",
+    body: "From a NYC dinner in October 2019 to a 5,000+ member national community — six years, four leadership generations, full timeline inside.",
   },
   {
     icon: HeartHandshake,
