@@ -6,7 +6,7 @@ import { PageHero } from "@/components/marketing/PageHero";
 export const metadata: Metadata = {
   title: "For Partners",
   description:
-    "Reach 2,500+ physicians and med students before they become healthcare's decision-makers.",
+    "Reach 5,000+ physicians and med students before they become healthcare's decision-makers.",
 };
 
 const TRACKS: {
@@ -47,7 +47,7 @@ export default function PartnersPage() {
         eyebrow="For partners"
         title={
           <>
-            2,500+ physicians and med students.{" "}
+            5,000+ physicians and med students.{" "}
             <span className="text-yellow-500">One front door.</span>
           </>
         }

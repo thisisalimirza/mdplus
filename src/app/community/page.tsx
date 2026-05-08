@@ -16,13 +16,13 @@ import { HERO_COLLAGE, MEETUP_PHOTOS } from "@/data/event-photos";
 export const metadata: Metadata = {
   title: "Community",
   description:
-    "Inside MDplus: a 2,500+ member Slack of physicians and med students with sub-communities for every domain.",
+    "Inside MDplus: a 5,000+ member Slack of physicians and med students with sub-communities for every domain.",
 };
 
 const HIGHLIGHTS = [
   {
     icon: MessagesSquare,
-    title: "2,500+ member Slack",
+    title: "5,000+ member Slack",
     body: "The center of gravity. One place for chat, mentorship, peer reviews, and warm introductions.",
   },
   {
@@ -57,7 +57,7 @@ export default function CommunityPage() {
         }
         description={
           <>
-            The MDplus Slack is the gravitational center: 2,500+ physicians
+            The MDplus Slack is the gravitational center: 5,000+ physicians
             and med students at the cross-section of medicine and innovation.
             Inside, sub-communities give you a home for whichever lane is
             yours — most members are in more than one.

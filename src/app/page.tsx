@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
+import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
 
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
@@ -18,43 +19,15 @@ const LOGOS = [
   { src: "/logos/A16z-Emblem.png", alt: "Andreessen Horowitz" },
 ] as const;
 
-const COMMUNITIES = [
-  {
-    slug: "consulting",
-    name: "Consulting",
-    blurb:
-      "Mentorship and case prep for med students, residents, and physicians moving into management consulting.",
-    members: "200+",
-  },
-  {
-    slug: "data",
-    name: "Data + AI",
-    blurb:
-      "Hands-on tutorials in ML, RAG, and CNNs through a clinical lens. Plus the Journal Club.",
-    members: "Active",
-  },
-  {
-    slug: "vc",
-    name: "Venture Capital",
-    blurb:
-      "Fellowship pipelines, investor introductions, and the resources to actually break into healthtech VC.",
-    members: "Active",
-  },
-  {
-    slug: "policy",
-    name: "Health Policy",
-    blurb:
-      "Op-ed writing groups, expert speakers, and a podcast segment translating policy into plain English.",
-    members: "Active",
-  },
-  {
-    slug: "blockchain",
-    name: "Blockchain / DeSci",
-    blurb:
-      "Decentralized science applied to medicine — from data ownership to publishing reform.",
-    members: "Active",
-  },
-] as const;
+// Pull homepage cards directly from the canonical communities data so we
+// don't have to maintain two lists. Show the top 6 (by appearance order
+// in the data file) so the grid stays balanced as the org grows.
+const COMMUNITIES = ALL_COMMUNITIES.slice(0, 6).map((c) => ({
+  slug: c.slug,
+  name: c.name,
+  blurb: c.tagline,
+  members: c.memberCount ?? "Active",
+}));
 
 const PILLARS: {
   icon: LucideIcon;
@@ -67,7 +40,7 @@ const PILLARS: {
     icon: Users,
     title: "Community",
     description:
-      "A 2,500+ member Slack of physicians and med students. Sub-channels for every domain. Real conversations, not feeds.",
+      "A 5,000+ member Slack of physicians and med students. Sub-channels for every domain. Real conversations, not feeds.",
     href: "/community",
     cta: "See what's inside",
   },
@@ -130,7 +103,7 @@ export default function Home() {
           </div>
 
           <p className="mt-6 text-sm text-neutral-500">
-            Free forever. We&apos;ll never spam you. 2,500+ members already in.
+            Free forever. We&apos;ll never spam you. 5,000+ members already in.
           </p>
         </div>
       </section>
@@ -155,6 +128,15 @@ export default function Home() {
               </li>
             ))}
           </ul>
+          <p className="mt-10 text-center text-sm text-neutral-500">
+            Backed by{" "}
+            <span className="font-semibold text-rhino-700">Anthropic</span>,{" "}
+            <span className="font-semibold text-rhino-700">a16z Bio+Health</span>,{" "}
+            <span className="font-semibold text-rhino-700">OpenEvidence</span>,{" "}
+            <span className="font-semibold text-rhino-700">Thalamus</span>,{" "}
+            <span className="font-semibold text-rhino-700">Doximity</span>,{" "}
+            <span className="font-semibold text-rhino-700">AMSA</span>, and others.
+          </p>
         </div>
       </section>
 
@@ -187,7 +169,7 @@ export default function Home() {
                 MDplus is that place to start.
               </span>{" "}
               We&apos;re the easiest, most accessible, fun, and seamless way to
-              get involved — alongside 2,500+ peers and mentors who&apos;ve
+              get involved — alongside 5,000+ peers and mentors who&apos;ve
               already done it.
             </p>
           </div>

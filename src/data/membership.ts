@@ -53,7 +53,7 @@ export const PREMIUM_INCLUDES = [
 ] as const;
 
 export const FREE_INCLUDES = [
-  "MDplus Slack community (2,500+ members)",
+  "MDplus Slack community (5,000+ members)",
   "All sub-community channels",
   "Newsletter",
   "Blog and podcast",

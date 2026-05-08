@@ -3,12 +3,17 @@ import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { Avatar } from "@/components/marketing/Avatar";
-import { CURRENT_TEAM, PAST_TEAM, type TeamMember } from "@/data/team";
+import {
+  CURRENT_TEAM,
+  FOUNDERS,
+  PAST_TEAM,
+  type TeamMember,
+} from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "The folks running MDplus — current leadership and past directors who built the community.",
+    "The folks running MDplus — current 2025-26 leadership, the four co-founders who started it in 2019, and past directors who built it.",
 };
 
 function TeamCard({ member }: { member: TeamMember }) {
@@ -20,9 +25,11 @@ function TeamCard({ member }: { member: TeamMember }) {
           {member.name}
         </h3>
         <p className="text-sm font-medium text-denim-600">{member.role}</p>
-        <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-          {member.bio}
-        </p>
+        {member.bio && (
+          <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+            {member.bio}
+          </p>
+        )}
       </div>
     </article>
   );
@@ -48,11 +55,16 @@ export default function TeamPage() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-                Current leadership
+                Current leadership · 2025–26
               </p>
               <h2 className="mt-4 font-display text-3xl font-bold text-rhino-700 md:text-4xl">
                 Who&apos;s steering MDplus today.
               </h2>
+              <p className="mt-6 text-lg text-neutral-600">
+                Two co-chairs, six VPs across Community / Finance / Operations
+                / External Relations / Growth, and 17 directors covering every
+                vertical, region, and program.
+              </p>
             </div>
             <p className="text-sm text-neutral-500">
               {CURRENT_TEAM.length} members
@@ -66,11 +78,38 @@ export default function TeamPage() {
           </div>
 
           <p className="mt-10 max-w-2xl text-sm text-neutral-500">
-            Bios above are placeholder demo content while real bios and
-            headshots are being gathered from the team.
+            Some bios are brief — we&apos;ll add more detail and headshots as
+            the team contributes them.
           </p>
         </div>
       </section>
+
+      {/* ── Founders ───────────────────────────────────────── */}
+      {FOUNDERS.length > 0 && (
+        <section className="border-t border-neutral-100 bg-yellow-50 py-20 md:py-28">
+          <div className="mx-auto max-w-(--container-max) px-6">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-widest text-yellow-700">
+                Founders · 2019
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold text-rhino-700 md:text-4xl">
+                The four who started it.
+              </h2>
+              <p className="mt-6 text-lg text-neutral-600">
+                MDplus began with a Slack workspace created on August 27, 2019
+                and a first meetup of about 20–30 non-traditional medical
+                students in New York City on October 2, 2019.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {FOUNDERS.map((member) => (
+                <TeamCard key={member.name} member={member} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Past leadership ────────────────────────────────── */}
       {PAST_TEAM.length > 0 && (
@@ -84,8 +123,8 @@ export default function TeamPage() {
                 The folks who built it.
               </h2>
               <p className="mt-6 text-lg text-neutral-600">
-                Past directors who shaped what MDplus is today. Many remain
-                active members and informal advisors.
+                Past directors and co-chairs who shaped what MDplus is today.
+                Many remain active members and informal advisors.
               </p>
             </div>
 
@@ -113,8 +152,8 @@ export default function TeamPage() {
                 </h2>
                 <p className="mt-3 text-base text-neutral-600">
                   If you&apos;re an MDplus member who wants to lead a
-                  sub-community, run a program, or own a piece of the
-                  publication — say hi.
+                  vertical, run a program, or own a piece of the publication —
+                  say hi.
                 </p>
               </div>
               <Link

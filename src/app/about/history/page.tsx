@@ -8,7 +8,7 @@ export default function HistoryPage() {
     <ComingSoon
       eyebrow="History · Coming soon"
       title="Where MDplus came from."
-      description="The origin story, key milestones, and how we became a 2,500+ member community of physicians and med students."
+      description="The origin story, key milestones, and how we became a 5,000+ member community of physicians and med students."
     />
   );
 }

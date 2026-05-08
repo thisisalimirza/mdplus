@@ -31,7 +31,7 @@ const SECTIONS: {
     icon: HistoryIcon,
     href: "/about/history",
     title: "History",
-    body: "Where MDplus came from and how it became a 2,500+ member community.",
+    body: "Where MDplus came from and how it became a 5,000+ member community.",
   },
   {
     icon: HeartHandshake,
@@ -80,10 +80,10 @@ export default function AboutPage() {
         <div className="mx-auto max-w-(--container-max) px-6">
           <dl className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { stat: "2,500+", label: "members" },
-              { stat: "5", label: "sub-communities" },
-              { stat: "50+", label: "schools represented" },
-              { stat: "100%", label: "non-profit" },
+              { stat: "5,000+", label: "members" },
+              { stat: "120+", label: "medical schools" },
+              { stat: "8", label: "active verticals" },
+              { stat: "14", label: "regional chapters" },
             ].map((item) => (
               <div key={item.label}>
                 <dt className="font-display text-3xl font-bold text-rhino-700 md:text-4xl">

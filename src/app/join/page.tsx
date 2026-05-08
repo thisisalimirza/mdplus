@@ -5,7 +5,7 @@ import { PageHero } from "@/components/marketing/PageHero";
 export const metadata: Metadata = {
   title: "Join free",
   description:
-    "Join 2,500+ physicians and med students building in tech, data, AI, and entrepreneurship.",
+    "Join 5,000+ physicians and med students building in tech, data, AI, and entrepreneurship.",
 };
 
 const STEPS = [
@@ -17,7 +17,7 @@ const STEPS = [
   {
     n: "2",
     title: "Get your Slack invite",
-    body: "Instant invite to the MDplus Slack with 2,500+ members. We'll auto-join you to the sub-community channels you picked.",
+    body: "Instant invite to the MDplus Slack with 5,000+ members. We'll auto-join you to the sub-community channels you picked.",
   },
   {
     n: "3",
