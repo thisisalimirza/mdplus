@@ -16,8 +16,23 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+// Resolve metadataBase to whatever environment is actually rendering, so
+// `og:image` and favicon URLs point at the *current* deploy — not always
+// production. Without this, Vercel preview deploys emit
+// `og:image=https://mdplus.community/opengraph.png`, which makes social
+// previews look broken (or at least misleading) when sharing a preview URL.
+//   - Production builds → canonical apex domain
+//   - Vercel previews   → unique preview URL via VERCEL_URL
+//   - `next dev`        → http://localhost:3000
+const siteUrl =
+  process.env.VERCEL_ENV === "production"
+    ? "https://mdplus.community"
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mdplus.community"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "MDplus — MD + tech. MD + AI. MD + everything else.",
     template: "%s · MDplus",
