@@ -24,6 +24,20 @@ export const metadata: Metadata = {
   },
   description:
     "The community for physicians and med students building in tech, data, AI, and entrepreneurship — without figuring it out alone.",
+  icons: {
+    // `src/app/favicon.ico` is auto-served at `/favicon.ico` by Next.js
+    // (file-based metadata convention) and covers 16x16 and 32x32.
+    // We layer PNGs from /public/favicons for higher-DPI displays.
+    icon: [
+      { url: "/favicons/favicon_mdplus_community_64x64.png", type: "image/png", sizes: "64x64" },
+      { url: "/favicons/favicon_mdplus_community_128x128.png", type: "image/png", sizes: "100x100" },
+      { url: "/favicons/favicon_mdplus_community_256x256.png", type: "image/png", sizes: "100x100" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/favicons/favicon_mdplus_community_256x256.png", sizes: "100x100", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "MDplus",
     description:
@@ -31,12 +45,21 @@ export const metadata: Metadata = {
     url: "https://mdplus.community",
     siteName: "MDplus",
     type: "website",
+    images: [
+      {
+        url: "/opengraph.png",
+        width: 2192,
+        height: 1054,
+        alt: "MDplus — MD + tech. MD + AI. MD + everything else.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "MDplus",
     description:
       "The community for physicians and med students building in tech, data, AI, and entrepreneurship.",
+    images: ["/opengraph.png"],
   },
 };
 
