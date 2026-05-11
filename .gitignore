@@ -44,3 +44,6 @@ next-env.d.ts
 .playwright-mcp/
 *.png
 !public/**/*.png
+# Next.js metadata file conventions: icon.png, apple-icon.png,
+# opengraph-image.png, twitter-image.png live alongside route segments.
+!src/app/**/*.png
