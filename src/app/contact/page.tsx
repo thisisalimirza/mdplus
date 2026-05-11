@@ -14,7 +14,7 @@ import { BookCallButton } from "@/components/marketing/BookCallButton";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Three ways to get in touch with MDplus — email, a 15-minute call, or just join the Slack community.",
+    "Three ways to get in touch with MDplus: email, a 15-minute call, or just join the Slack community.",
 };
 
 // Single source of truth for outbound contact info. Update here if
@@ -80,7 +80,7 @@ const OPTIONS: ContactOption[] = [
     iconText: "text-white",
     eyebrow: "If you're trying to join MDplus",
     title: "Join the Slack",
-    body: "Most member-related questions — about programs, communities, opportunities, or local events — answer themselves once you're in the Slack. It's free to join and that's where the community actually lives.",
+    body: "Most member-related questions (about programs, communities, opportunities, or local events) answer themselves once you're in the Slack. It's free to join and that's where the community actually lives.",
     bestFor: [
       "\"Is MDplus right for me?\" → just look around",
       "Specific community questions (Biotech, VC, etc.)",
@@ -182,7 +182,7 @@ export default function ContactPage() {
             <span className="text-denim-600">depending on what you need.</span>
           </>
         }
-        description="MDplus is a small volunteer-led 501(c)(3). Picking the right path here saves everyone time — including you. Most inquiries are best by email; some are faster on a call; member-side questions usually answer themselves in the Slack."
+        description="MDplus is a small volunteer-led 501(c)(3). Picking the right path here saves everyone time, including you. Most inquiries are best by email; some are faster on a call; member-side questions usually answer themselves in the Slack."
       />
 
       {/* ── Three options ──────────────────────────────────── */}
@@ -195,8 +195,8 @@ export default function ContactPage() {
           </div>
 
           <p className="mt-12 max-w-2xl text-sm text-neutral-500">
-            For partnership-specific questions — sponsorship pricing, hiring,
-            or co-program proposals — the{" "}
+            For partnership-specific questions (sponsorship pricing, hiring,
+            or co-program proposals), the{" "}
             <Link
               href="/partners"
               className="font-medium text-denim-600 hover:text-denim-700"
@@ -225,7 +225,7 @@ export default function ContactPage() {
               </h2>
               <p className="mt-6 text-lg text-neutral-600">
                 MDplus runs on volunteer time. The clearer your first message,
-                the faster you get a useful response — usually same-day for
+                the faster you get a useful response, usually same-day for
                 well-scoped inquiries.
               </p>
             </div>

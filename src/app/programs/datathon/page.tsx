@@ -16,7 +16,7 @@ import { PageHero } from "@/components/marketing/PageHero";
 export const metadata: Metadata = {
   title: "Datathon",
   description:
-    "The annual MDplus Datathon — a month-long competition for medical trainees to work on healthcare AI challenges. Now in its 4th year, with research published in JMIR Medical Education.",
+    "The annual MDplus Datathon: a month-long competition for medical trainees to work on healthcare AI challenges. Now in its 4th year, with research published in JMIR Medical Education.",
 };
 
 const PAST_EDITIONS: {
@@ -65,7 +65,7 @@ const FORMAT: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: BookOpen,
     title: "Workshops",
-    body: "Recorded technical sessions cover the dataset, tooling, and clinical context — designed for clinicians without deep ML backgrounds.",
+    body: "Recorded technical sessions cover the dataset, tooling, and clinical context, designed for clinicians without deep ML backgrounds.",
   },
   {
     icon: Database,

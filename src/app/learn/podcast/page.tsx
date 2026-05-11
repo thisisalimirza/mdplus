@@ -13,7 +13,7 @@ import { PageHero } from "@/components/marketing/PageHero";
 export const metadata: Metadata = {
   title: "Podcast",
   description:
-    "The MD+ Podcast — conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD.",
+    "The MD+ Podcast: conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD.",
 };
 
 // Replace with the real Spotify show ID once we have it.
@@ -97,7 +97,7 @@ export default function PodcastPage() {
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
               The show rotates between three formats so it stays useful at any
-              career stage — whether you&apos;re curious, building, or already
+              career stage, whether you&apos;re curious, building, or already
               shipping.
             </p>
           </div>
@@ -140,9 +140,9 @@ export default function PodcastPage() {
               <p className="mt-4 text-base leading-relaxed text-neutral-700 md:text-lg">
                 Geoff has been the podcast&apos;s host since launch in June
                 2023. Previously Director of Medical Devices at MDplus during
-                the org&apos;s 2021–2023 era — the long view on what&apos;s
-                changed in healthcare innovation, and a deep network of
-                physician-builders to draw on for guests.
+                the org&apos;s 2021–2023 era. That brings the long view on
+                what&apos;s changed in healthcare innovation, and a deep
+                network of physician-builders to draw on for guests.
               </p>
             </div>
             <div className="md:justify-self-end">

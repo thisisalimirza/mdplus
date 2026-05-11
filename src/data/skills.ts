@@ -37,7 +37,7 @@ export const CATEGORIES: { slug: SkillCategory; name: string; blurb: string }[] 
   {
     slug: "data-ai",
     name: "Data + AI",
-    blurb: "Hands-on machine learning, RAG, and clinical AI — built for clinicians, not engineers.",
+    blurb: "Hands-on machine learning, RAG, and clinical AI, built for clinicians, not engineers.",
   },
   {
     slug: "consulting",
@@ -57,7 +57,7 @@ export const CATEGORIES: { slug: SkillCategory; name: string; blurb: string }[] 
   {
     slug: "career",
     name: "Career",
-    blurb: "Building your medical career outside the OR — from personal brand to first founder pitch.",
+    blurb: "Building your medical career outside the OR, from personal brand to first founder pitch.",
   },
 ];
 
@@ -120,7 +120,7 @@ export const SKILLS: Skill[] = [
     slug: "case-prep-workshop",
     title: "Case Prep Workshop",
     description:
-      "Recorded workshop on case interviews — frameworks, common pitfalls, and live walkthroughs of MBB cases.",
+      "Recorded workshop on case interviews: frameworks, common pitfalls, and live walkthroughs of MBB cases.",
     category: "consulting",
     tier: "email-gated",
     format: "workshop",
@@ -172,7 +172,7 @@ export const SKILLS: Skill[] = [
     slug: "summer-research-database",
     title: "Summer Research Opportunities Database",
     description:
-      "A regularly-updated list of summer research positions — funded, structured, and open to med students.",
+      "A regularly-updated list of summer research positions: funded, structured, and open to med students.",
     category: "research",
     tier: "free",
     format: "database",
@@ -192,7 +192,7 @@ export const SKILLS: Skill[] = [
     slug: "your-medtech-brand",
     title: "Building Your Med-Tech Brand",
     description:
-      "How to build a public-facing identity as a physician moving into industry — without it feeling cringe.",
+      "How to build a public-facing identity as a physician moving into industry, without it feeling cringe.",
     category: "career",
     tier: "paid",
     format: "course",

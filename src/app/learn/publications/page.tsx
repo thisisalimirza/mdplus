@@ -6,7 +6,7 @@ import { PageHero } from "@/components/marketing/PageHero";
 export const metadata: Metadata = {
   title: "Publications",
   description:
-    "Peer-reviewed and academic work from MDplus members and Datathon participants — including the JMIR Medical Education paper on the MDplus Datathon model.",
+    "Peer-reviewed and academic work from MDplus members and Datathon participants, including the JMIR Medical Education paper on the MDplus Datathon model.",
 };
 
 type Publication = {
@@ -35,7 +35,7 @@ const FUTURE_DIRECTIONS = [
   {
     icon: FileText,
     title: "Datathon papers",
-    body: "Each annual Datathon produces team submissions on real clinical datasets. Best work gets supported through publication — venues TBD per project.",
+    body: "Each annual Datathon produces team submissions on real clinical datasets. Best work gets supported through publication; venues TBD per project.",
   },
   {
     icon: Users,
@@ -135,7 +135,7 @@ export default function PublicationsPage() {
               What we expect to publish next.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              The MDplus publication queue draws from two main sources —
+              The MDplus publication queue draws from two main sources:
               competition outputs and member-authored op-eds. Both are
               actively in motion.
             </p>

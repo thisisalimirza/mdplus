@@ -28,7 +28,7 @@ export function ComingSoon({
           description ?? (
             <>
               We&apos;re building this page. In the meantime, the easiest way
-              in is the Slack community — that&apos;s where everything
+              in is the Slack community. That&apos;s where everything
               actually happens anyway.
             </>
           )
@@ -53,7 +53,7 @@ export function ComingSoon({
       <section className="border-t border-neutral-100 bg-neutral-0 py-16 md:py-20">
         <div className="mx-auto max-w-(--container-max) px-6">
           <p className="text-sm text-neutral-500">
-            Want a heads-up when this launches? Join the Slack — we announce
+            Want a heads-up when this launches? Join the Slack. We announce
             everything there first.
           </p>
         </div>

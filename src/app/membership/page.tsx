@@ -11,7 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Premium membership",
-  description: `Premium MDplus membership — every Skills Library course included, priority Catalyst admission, members-only events. $${PREMIUM_PRICE.standard.amount}/year.`,
+  description: `Premium MDplus membership. Every Skills Library course included, priority Catalyst admission, members-only events. $${PREMIUM_PRICE.standard.amount}/year.`,
 };
 
 export default function MembershipPage() {
@@ -29,7 +29,7 @@ export default function MembershipPage() {
           <>
             Premium turns the à-la-carte version of MDplus into all-you-can-eat.
             Every Skills Library course, priority Catalyst admission, and
-            members-only events — for one annual price.
+            members-only events, all for one annual price.
           </>
         }
       />
@@ -158,7 +158,7 @@ export default function MembershipPage() {
                 permanent ${PREMIUM_PRICE.founding.amount}/{
                   PREMIUM_PRICE.founding.cadence
                 }{" "}
-                rate that never goes up — even when we raise prices on new
+                rate that never goes up, even when we raise prices on new
                 signups. A thank-you for trusting us early.
               </p>
             </div>

@@ -59,7 +59,7 @@ const WE_DO = [
 
 const WE_DONT = [
   "Sell or transfer member contact lists to anyone, ever",
-  "Allow unsolicited outreach — members opt in to every event, AMA, or hiring conversation",
+  "Allow unsolicited outreach; members opt in to every event, AMA, or hiring conversation",
   "Run promotional spam in our channels; the Slack moderates self-promotion strictly",
   "Take a sponsor whose product or pitch doesn't actually serve the community",
 ];
@@ -76,7 +76,7 @@ export default function PartnersPage() {
             <span className="text-yellow-500">actually pay attention.</span>
           </>
         }
-        description="MDplus is a 501(c)(3) community of 5,000+ medical students, residents, and physicians at the cross-section of medicine and healthcare innovation. If your work touches that audience — for hiring, sponsorship, or co-built programs — this is the door."
+        description="MDplus is a 501(c)(3) community of 5,000+ medical students, residents, and physicians at the cross-section of medicine and healthcare innovation. If your work touches that audience (for hiring, sponsorship, or co-built programs), this is the door."
       >
         <div className="flex flex-wrap gap-3">
           <a
@@ -304,7 +304,7 @@ export default function PartnersPage() {
               Where we draw the line
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
-              What sponsorship is — and what it isn&apos;t.
+              What sponsorship is, and what it isn&apos;t.
             </h2>
             <p className="mt-6 text-lg text-rhino-100/90">
               MDplus is a community first. That changes the deal we offer
@@ -356,7 +356,7 @@ export default function PartnersPage() {
 
           <p className="mt-12 max-w-2xl text-base leading-relaxed text-rhino-100/80">
             We protect the community&apos;s attention because that&apos;s the
-            asset we&apos;re actually selling — to ourselves, to members, and
+            asset we&apos;re actually selling: to ourselves, to members, and
             to partners. A partner who&apos;d rather we didn&apos;t protect it
             isn&apos;t the partner we&apos;re looking for.
           </p>
@@ -401,7 +401,7 @@ export default function PartnersPage() {
               Tell us what you&apos;re trying to do.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              We&apos;ll point you at the right surface — sponsorship, hiring,
+              We&apos;ll point you at the right surface: sponsorship, hiring,
               co-program, or a custom mix. No deck, no pitch funnel, just a
               short conversation.
             </p>

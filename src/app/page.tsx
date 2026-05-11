@@ -20,7 +20,14 @@ import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
   { src: "/logos/Stanford_Cardinal_logo.svg", alt: "Stanford" },
-  { src: "/logos/McKinsey_&_Company-Logo.wine.png", alt: "McKinsey & Company" },
+  {
+    src: "/logos/McKinsey_&_Company-Logo.wine.png",
+    alt: "McKinsey & Company",
+    // The .wine.png file has heavy transparent padding around the mark,
+    // so it renders visually smaller than peer logos at the same box size.
+    // Scale it up so it carries the same visual weight as Harvard/Bain/etc.
+    scale: "scale-150",
+  },
   { src: "/logos/Bain-logo-1.webp", alt: "Bain & Company" },
   { src: "/logos/A16z-Emblem.png", alt: "Andreessen Horowitz" },
 ] as const;
@@ -32,7 +39,6 @@ const COMMUNITIES = ALL_COMMUNITIES.slice(0, 6).map((c) => ({
   slug: c.slug,
   name: c.name,
   blurb: c.tagline,
-  members: c.memberCount ?? "Active",
 }));
 
 const PILLARS: {
@@ -54,7 +60,7 @@ const PILLARS: {
     icon: GraduationCap,
     title: "Skills",
     description:
-      "A library of guides, courses, and expert mini-courses on the things you actually need to learn — from case prep to RAG to investor decks.",
+      "A library of guides, courses, and expert mini-courses on the things you actually need to learn, from case prep to RAG to investor decks.",
     href: "/skills",
     cta: "Browse Skills",
   },
@@ -87,7 +93,7 @@ export default function Home() {
 
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
             The community for physicians and med students building in tech,
-            data, AI, and entrepreneurship —{" "}
+            data, AI, and entrepreneurship,{" "}
             <span className="font-semibold text-rhino-700">
               without figuring it out alone.
             </span>
@@ -121,18 +127,24 @@ export default function Home() {
             Members at top medical schools, residencies, and firms
           </p>
           <ul className="mt-8 grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-5">
-            {LOGOS.map((logo) => (
-              <li key={logo.alt} className="relative h-10 w-full max-w-[140px]">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  fill
-                  sizes="140px"
-                  className="object-contain opacity-60 transition-opacity duration-200 hover:opacity-100"
-                  style={{ objectPosition: "center" }}
-                />
-              </li>
-            ))}
+            {LOGOS.map((logo) => {
+              const scale = "scale" in logo ? logo.scale : undefined;
+              return (
+                <li
+                  key={logo.alt}
+                  className="relative h-10 w-full max-w-[140px]"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    sizes="140px"
+                    className={`object-contain opacity-60 transition-opacity duration-200 hover:opacity-100 ${scale ?? ""}`}
+                    style={{ objectPosition: "center" }}
+                  />
+                </li>
+              );
+            })}
           </ul>
           <p className="mt-10 text-center text-sm text-neutral-500">
             Backed by{" "}
@@ -175,7 +187,7 @@ export default function Home() {
                 MDplus is that place to start.
               </span>{" "}
               We&apos;re the easiest, most accessible, fun, and seamless way to
-              get involved — alongside 5,000+ peers and mentors who&apos;ve
+              get involved, alongside 5,000+ peers and mentors who&apos;ve
               already done it.
             </p>
           </div>
@@ -193,7 +205,7 @@ export default function Home() {
               Three layers, one community.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              Whether you&apos;re here to learn, connect, or build — there&apos;s
+              Whether you&apos;re here to learn, connect, or build, there&apos;s
               a starting point for you.
             </p>
           </div>
@@ -394,18 +406,13 @@ export default function Home() {
                   href={`/community/${c.slug}`}
                   className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 group-hover:bg-denim-50 group-hover:text-denim-600">
-                        {Icon && <Icon className="size-5" aria-hidden />}
-                      </span>
-                      <h3 className="font-display text-xl font-bold text-rhino-700 group-hover:text-denim-700">
-                        {c.name}
-                      </h3>
-                    </div>
-                    <span className="shrink-0 rounded-pill bg-yellow-50 px-2.5 py-0.5 text-xs font-semibold text-yellow-700">
-                      {c.members}
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 group-hover:bg-denim-50 group-hover:text-denim-600">
+                      {Icon && <Icon className="size-5" aria-hidden />}
                     </span>
+                    <h3 className="font-display text-xl font-bold text-rhino-700 group-hover:text-denim-700">
+                      {c.name}
+                    </h3>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                     {c.blurb}
@@ -477,8 +484,8 @@ export default function Home() {
                 The MDplus Newsletter
               </h3>
               <p className="mt-3 text-base leading-relaxed text-neutral-600">
-                A signal-only Sunday briefing for physician-innovators —
-                founder spotlights, AI in clinical practice, career moves,
+                A signal-only Sunday briefing for physician-innovators.
+                Founder spotlights, AI in clinical practice, career moves,
                 healthtech deals. Five minutes. Zero spam.
               </p>
               <div className="mt-6">

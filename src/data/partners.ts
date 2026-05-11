@@ -53,7 +53,7 @@ export const PARTNER_CATEGORIES: PartnerCategory[] = [
   {
     label: "Medical education + training",
     blurb:
-      "Organizations whose missions overlap ours — co-programs, content partnerships, audience swaps.",
+      "Organizations whose missions overlap ours: co-programs, content partnerships, audience swaps.",
     partners: [
       "AMSA",
       "Nucleate",
@@ -86,7 +86,7 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
     eyebrow: "Sponsor",
     headline:
       "Get in front of clinicians-to-decision-makers, before they become decision-makers.",
-    body: "MDplus members aren't reach you can buy on LinkedIn. They're physicians, residents, and senior medical students who've actively self-selected into healthcare innovation — and who, in five to ten years, will be the clinical leads, founders, advisors, and operators making decisions about which products clinicians actually use. Sponsorships put your work in front of that audience while it's forming.",
+    body: "MDplus members aren't reach you can buy on LinkedIn. They're physicians, residents, and senior medical students who've actively self-selected into healthcare innovation. In five to ten years, they'll be the clinical leads, founders, advisors, and operators making decisions about which products clinicians actually use. Sponsorships put your work in front of that audience while it's forming.",
     bestFitFor: [
       "Healthtech companies looking for clinical advisors, design partners, or early credibility",
       "AI / data tooling companies building for clinical use cases",
@@ -97,7 +97,7 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
       {
         title: "Datathon Gold sponsorship",
         description:
-          "Named placement on our signature annual event — ~300 participants in 2025, peer-reviewed publication in JMIR Medical Education. Past Gold sponsors include Doximity and Inflo Health.",
+          "Named placement on our signature annual event: ~300 participants in 2025, peer-reviewed publication in JMIR Medical Education. Past Gold sponsors include Doximity and Inflo Health.",
       },
       {
         title: "Catalyst cohort sponsorship",
@@ -117,7 +117,7 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
       {
         title: "Newsletter placement",
         description:
-          "Recurring or one-off placement in the MDplus newsletter (~3,000 subscribers, weekly). Used sparingly — usually one sponsor mention per issue, related to that week's content.",
+          "Recurring or one-off placement in the MDplus newsletter (~3,000 subscribers, weekly). Used sparingly: usually one sponsor mention per issue, related to that week's content.",
       },
       {
         title: "Vertical-specific sponsorship",
@@ -132,7 +132,7 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
     eyebrow: "Hire",
     headline:
       "Hire physicians who already speak product, data, and clinical.",
-    body: "Healthcare is hiring more clinicians than ever for non-clinical roles — clinical product, clinical informatics, MSL, advisor, founding team. The hard part isn't the search; it's finding clinicians with cross-domain literacy and credibility on both sides. MDplus members spend years inside our verticals learning those second languages. By the time they're ready for the role you're filling, they've usually already done the equivalent of an internal residency in it.",
+    body: "Healthcare is hiring more clinicians than ever for non-clinical roles: clinical product, clinical informatics, MSL, advisor, founding team. The hard part isn't the search; it's finding clinicians with cross-domain literacy and credibility on both sides. MDplus members spend years inside our verticals learning those second languages. By the time they're ready for the role you're filling, they've usually already done the equivalent of an internal residency in it.",
     bestFitFor: [
       "Healthtech startups hiring clinical product, clinical advisors, or founding-team clinicians",
       "Health systems and academic centers hiring innovation, informatics, or industry-track roles",
@@ -163,7 +163,7 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
       {
         title: "Recurring internship pipeline",
         description:
-          "Formalize a yearly intern source — annual cohort posting, scheduled coffee chats, structured application path through MDplus.",
+          "Formalize a yearly intern source: annual cohort posting, scheduled coffee chats, structured application path through MDplus.",
       },
     ],
     cta: "Talk to us about hiring",
@@ -184,12 +184,12 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
       {
         title: "Embedded curriculum",
         description:
-          "Your educational content built into MDplus programming. Pillar VC's VC 101 is the model — a partner-built course now run as a recurring MDplus offering.",
+          "Your educational content built into MDplus programming. Pillar VC's VC 101 is the model: a partner-built course now run as a recurring MDplus offering.",
       },
       {
         title: "Joint research initiatives",
         description:
-          "Survey-based studies, white papers, datathon partnerships — leveraging member-generated data for peer-reviewed work. The 2025 JMIR Medical Education paper is one example.",
+          "Survey-based studies, white papers, datathon partnerships, leveraging member-generated data for peer-reviewed work. The 2025 JMIR Medical Education paper is one example.",
       },
       {
         title: "Co-branded content",
@@ -199,12 +199,12 @@ export const SPONSORSHIP_TRACKS: SponsorshipTrack[] = [
       {
         title: "Cross-promotional partnerships",
         description:
-          "For orgs with overlapping audiences — mutual newsletter mentions, shared events, member-discount programs. Examples: AMSA, Sketchy, Simply Neuroscience.",
+          "For orgs with overlapping audiences: mutual newsletter mentions, shared events, member-discount programs. Examples: AMSA, Sketchy, Simply Neuroscience.",
       },
       {
         title: "Residency + institutional partnerships",
         description:
-          "Formal partnerships with residency programs, medical schools, and academic centers — joint chapters, curated resource sharing, recurring speaker exchanges.",
+          "Formal partnerships with residency programs, medical schools, and academic centers: joint chapters, curated resource sharing, recurring speaker exchanges.",
       },
     ],
     cta: "Talk to us about a partnership",
@@ -219,7 +219,7 @@ export type PartnerFaq = {
 export const PARTNER_FAQ: PartnerFaq[] = [
   {
     q: "How do you measure ROI on a sponsorship?",
-    a: "Depends on the goal. For events, we share attendee counts, completion rates, and post-event survey data. For hiring, fill rates and time-to-hire. For brand sponsorships, newsletter open rates, podcast listens, and social-media reach. We're a small org so we keep this honest and proportional — no inflated dashboards.",
+    a: "Depends on the goal. For events, we share attendee counts, completion rates, and post-event survey data. For hiring, fill rates and time-to-hire. For brand sponsorships, newsletter open rates, podcast listens, and social-media reach. We're a small org so we keep this honest and proportional. No inflated dashboards.",
   },
   {
     q: "We're an early-stage startup, not an established company. Can we still partner?",
@@ -227,18 +227,18 @@ export const PARTNER_FAQ: PartnerFaq[] = [
   },
   {
     q: "Can we sponsor a specific vertical instead of the whole community?",
-    a: "Yes — and we usually recommend it. Each of our eight verticals (AI & Data, VC, Biotech, Consulting, Health Policy, Medical Devices, Research, Design) has its own programming, leadership, and engagement patterns. Vertical-specific sponsorships are tighter, cheaper, and usually outperform community-wide placements for targeted audiences.",
+    a: "Yes, and we usually recommend it. Each of our eight verticals (AI & Data, VC, Biotech, Consulting, Health Policy, Medical Devices, Research, Design) has its own programming, leadership, and engagement patterns. Vertical-specific sponsorships are tighter, cheaper, and usually outperform community-wide placements for targeted audiences.",
   },
   {
     q: "What's your process for evaluating potential sponsors?",
-    a: "We screen for alignment with what the community actually needs. We've turned down sponsors whose products didn't serve our members, even when the budget was generous. The community's trust is the asset — protecting it isn't just principled, it's commercial.",
+    a: "We screen for alignment with what the community actually needs. We've turned down sponsors whose products didn't serve our members, even when the budget was generous. The community's trust is the asset. Protecting it isn't just principled, it's commercial.",
   },
   {
     q: "What's the price range?",
-    a: "Newsletter placements start in the low four figures. Vertical sponsorships sit in the low-to-mid five figures. Datathon Gold and full Catalyst cohort sponsorships are in the mid-to-high five figures. We're a 501(c)(3) so pricing is transparent and proportional to scope — happy to share specific numbers on a call.",
+    a: "Newsletter placements start in the low four figures. Vertical sponsorships sit in the low-to-mid five figures. Datathon Gold and full Catalyst cohort sponsorships are in the mid-to-high five figures. We're a 501(c)(3) so pricing is transparent and proportional to scope. Happy to share specific numbers on a call.",
   },
   {
     q: "Do members know when a program is sponsored?",
-    a: "Yes, always and explicitly. Sponsorship is disclosed at every event, named in every cohort, and credited in every co-branded piece of content. We don't run hidden placements — both because we shouldn't and because the community would notice.",
+    a: "Yes, always and explicitly. Sponsorship is disclosed at every event, named in every cohort, and credited in every co-branded piece of content. We don't run hidden placements, both because we shouldn't and because the community would notice.",
   },
 ];

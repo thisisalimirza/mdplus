@@ -36,7 +36,7 @@ export const PREMIUM_INCLUDES = [
   },
   {
     title: "Members-only AMAs and events.",
-    body: "Recurring sessions with operators, founders, and investors — closed to free members.",
+    body: "Recurring sessions with operators, founders, and investors. Closed to free members.",
   },
   {
     title: "Premium badge in Slack.",
@@ -48,7 +48,7 @@ export const PREMIUM_INCLUDES = [
   },
   {
     title: "Free entry to future programs.",
-    body: "Datathons, competitions, and special workshops — included.",
+    body: "Datathons, competitions, and special workshops, all included.",
   },
 ] as const;
 
@@ -56,7 +56,7 @@ export const FREE_INCLUDES = [
   "MDplus Slack community (5,000+ members)",
   "All sub-community channels",
   "Newsletter",
-  "Blog and podcast",
+  "Articles and podcast",
   "Free Skills Library resources",
   "Member directory",
   "Regional meetups",
@@ -65,7 +65,7 @@ export const FREE_INCLUDES = [
 export const FAQ = [
   {
     q: "Can I just buy individual courses without subscribing?",
-    a: "Yes. Every course on skills.mdplus.community has its own price and you can buy them one by one. Premium just bundles everything for one annual fee — usually cheaper if you'd take more than one course a year.",
+    a: "Yes. Every course on skills.mdplus.community has its own price and you can buy them one by one. Premium just bundles everything for one annual fee, usually cheaper if you'd take more than one course a year.",
   },
   {
     q: "How do I get the med-student rate?",
@@ -73,14 +73,14 @@ export const FAQ = [
   },
   {
     q: "Is the Slack community really free forever?",
-    a: "Yes — and that's not changing. Premium is for paid programs and content. The community itself is and will remain free.",
+    a: "Yes, and that's not changing. Premium is for paid programs and content. The community itself is and will remain free.",
   },
   {
     q: "Can I cancel?",
     a: "Yes, anytime. Annual plans don't auto-renew unless you opt in.",
   },
   {
-    q: "We're a 501(c)3 — is this tax-deductible?",
-    a: "Donations are tax-deductible. Premium membership is a paid subscription for goods and services, so it's not deductible the same way — talk to your accountant for your specific situation.",
+    q: "We're a 501(c)3. Is this tax-deductible?",
+    a: "Donations are tax-deductible. Premium membership is a paid subscription for goods and services, so it's not deductible the same way. Talk to your accountant for your specific situation.",
   },
 ] as const;

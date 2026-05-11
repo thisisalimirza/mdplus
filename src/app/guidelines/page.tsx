@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Community guidelines" };
 const RULES = [
   {
     title: "DMs are welcomed.",
-    body: "We're a community where one-on-one outreach is encouraged — whether it's mentorship, advice, or a project pitch. Be respectful, but don't be afraid to reach out.",
+    body: "We're a community where one-on-one outreach is encouraged, whether it's mentorship, advice, or a project pitch. Be respectful, but don't be afraid to reach out.",
   },
   {
     title: "Self-promotion is discouraged.",
@@ -46,7 +46,7 @@ export default function GuidelinesPage() {
           <p className="mt-12 max-w-2xl text-sm text-neutral-500">
             Violations are handled by the moderator team. If you see something
             that doesn&apos;t fit these guidelines, ping any moderator in
-            Slack — we appreciate the heads-up.
+            Slack. We appreciate the heads-up.
           </p>
         </div>
       </section>

@@ -12,7 +12,7 @@ const STEPS = [
   {
     n: "1",
     title: "Tell us a little about you",
-    body: "30-second profile — role, where you are in training, what you're curious about. We use it to route you into the right channels.",
+    body: "30-second profile: role, where you are in training, what you're curious about. We use it to route you into the right channels.",
   },
   {
     n: "2",
@@ -22,7 +22,7 @@ const STEPS = [
   {
     n: "3",
     title: "Lurk, then introduce yourself",
-    body: "Take a few days to read. When you're ready, post in #intros — that's how most lasting connections start here.",
+    body: "Take a few days to read. When you're ready, post in #intros. That's how most lasting connections start here.",
   },
 ] as const;
 
@@ -37,7 +37,7 @@ export default function JoinPage() {
             <span className="text-denim-600">Take a look around.</span>
           </>
         }
-        description="No payment, no commitment. The Slack is where everything actually happens — programs, mentorship, hiring, deals, friendships."
+        description="No payment, no commitment. The Slack is where everything actually happens: programs, mentorship, hiring, deals, friendships."
       >
         <div className="flex flex-wrap gap-3">
           <a

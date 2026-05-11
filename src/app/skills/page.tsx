@@ -75,7 +75,7 @@ const HOW_IT_WORKS = [
   {
     icon: Sparkles,
     title: "Free, forever",
-    body: "Most foundational guides, the Colab modules, and the core databases stay free for everyone — community member or not.",
+    body: "Most foundational guides, the Colab modules, and the core databases stay free for everyone, community member or not.",
   },
   {
     icon: Mail,
@@ -85,7 +85,7 @@ const HOW_IT_WORKS = [
   {
     icon: Lock,
     title: "Paid for the courses",
-    body: "Expert-built mini-courses are paid à la carte — or included free with a Premium MDplus membership ($99/year).",
+    body: "Expert-built mini-courses are paid à la carte, or included free with a Premium MDplus membership ($99/year).",
   },
 ] as const;
 
@@ -107,7 +107,7 @@ export default function SkillsPage() {
         description={
           <>
             Hands-on courses, guides, databases, and expert mini-courses on
-            the things you actually need to learn — from RAG to case prep to
+            the things you actually need to learn, from RAG to case prep to
             investor decks. Built by physicians and med students for
             physicians and med students.
           </>
@@ -132,8 +132,8 @@ export default function SkillsPage() {
         </div>
         <p className="mt-6 text-sm text-neutral-500">
           The library lives at{" "}
-          <span className="font-mono text-rhino-700">skills.mdplus.community</span>{" "}
-          — a separate platform we run alongside the main site.
+          <span className="font-mono text-rhino-700">skills.mdplus.community</span>
+          , a separate platform we run alongside the main site.
         </p>
       </PageHero>
 
@@ -258,7 +258,7 @@ export default function SkillsPage() {
               Everything we&apos;ve put together so far.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              A snapshot. The library updates continuously — new modules,
+              A snapshot. The library updates continuously, with new modules,
               workshops, and expert-led courses added every month.
             </p>
           </div>
