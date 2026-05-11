@@ -25,7 +25,7 @@ const TOPICS: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Mic,
     title: "Founder spotlights",
-    body: "Interviews with physician-founders — what they're working on, where they got stuck, what they wish they'd known.",
+    body: "Interviews with physician-founders: what they're working on, where they got stuck, what they wish they'd known.",
   },
   {
     icon: Brain,
@@ -35,7 +35,7 @@ const TOPICS: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Compass,
     title: "Career moves",
-    body: "Notable people leaving clinical roles for industry — and the smaller, quieter moves that signal where the field is going.",
+    body: "Notable people leaving clinical roles for industry, and the smaller, quieter moves that signal where the field is going.",
   },
   {
     icon: CircleDollarSign,
@@ -45,7 +45,7 @@ const TOPICS: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: MessagesSquare,
     title: "From the community",
-    body: "Highlights from the MDplus Slack — best threads, member wins, and questions the community is wrestling with.",
+    body: "Highlights from the MDplus Slack: best threads, member wins, and questions the community is wrestling with.",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function NewsletterPage() {
           <>
             A short, signal-only Sunday read for physicians and med students
             building beyond the OR. Founder spotlights, AI in clinical
-            practice, career moves, healthtech deals — and what they all mean
+            practice, career moves, healthtech deals, and what they all mean
             for you.
           </>
         }
@@ -120,7 +120,7 @@ export default function NewsletterPage() {
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
               Every issue covers a rotating mix from these five threads. Some
-              weeks lean heavier on one — depends on what&apos;s actually
+              weeks lean heavier on one, depending on what&apos;s actually
               happening.
             </p>
           </div>
@@ -250,7 +250,7 @@ export default function NewsletterPage() {
               </p>
               <p>
                 The newsletter is curated by working physicians and senior med
-                students inside the MDplus community — people who can tell
+                students inside the MDplus community. People who can tell
                 whether a tool actually helps at the bedside, whether a deal
                 signals a real shift, and whether a career move is worth
                 paying attention to.

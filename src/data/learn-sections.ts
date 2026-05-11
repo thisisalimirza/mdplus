@@ -21,8 +21,8 @@ export type LearnSection = {
 
 export const LEARN_SECTIONS: LearnSection[] = [
   {
-    href: "/learn/blog",
-    title: "Blog",
+    href: "/learn/articles",
+    title: "Articles",
     body: "Member-authored essays on the cross-section of medicine and innovation.",
     icon: FileText,
   },
@@ -35,7 +35,7 @@ export const LEARN_SECTIONS: LearnSection[] = [
   {
     href: "/learn/newsletter",
     title: "Newsletter",
-    body: "Weekly insights — designed for people who aren't (yet) in the Slack.",
+    body: "Weekly insights for people who aren't (yet) in the Slack.",
     icon: Mail,
   },
   {

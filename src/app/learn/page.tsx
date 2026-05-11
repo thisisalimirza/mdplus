@@ -11,7 +11,7 @@ export default function LearnPage() {
       <PageHero
         eyebrow="Learn"
         title="Read, listen, and learn."
-        description="Everything we publish — long-form, audio, weekly briefings, and the journal club — in one place."
+        description="Everything we publish in one place: long-form, audio, weekly briefings, and the journal club."
       />
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">

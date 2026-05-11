@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "The folks running MDplus — current 2025-26 leadership, the four co-founders who started it in 2019, and past directors who built it.",
+    "The folks running MDplus: current 2025-26 leadership, the four co-founders who started it in 2019, and past directors who built it.",
 };
 
 function TeamCard({ member }: { member: TeamMember }) {
@@ -46,7 +46,7 @@ export default function TeamPage() {
             <span className="text-denim-600">running the place.</span>
           </>
         }
-        description="MDplus is run by a volunteer team of physicians, residents, and senior med students — most of them members first. The work is unpaid; the impact is real."
+        description="MDplus is run by a volunteer team of physicians, residents, and senior med students, most of them members first. The work is unpaid; the impact is real."
       />
 
       {/* ── Current team ───────────────────────────────────── */}
@@ -78,7 +78,7 @@ export default function TeamPage() {
           </div>
 
           <p className="mt-10 max-w-2xl text-sm text-neutral-500">
-            Some bios are brief — we&apos;ll add more detail and headshots as
+            Some bios are brief; we&apos;ll add more detail and headshots as
             the team contributes them.
           </p>
         </div>
@@ -152,7 +152,7 @@ export default function TeamPage() {
                 </h2>
                 <p className="mt-3 text-base text-neutral-600">
                   If you&apos;re an MDplus member who wants to lead a
-                  vertical, run a program, or own a piece of the publication —
+                  vertical, run a program, or own a piece of the publication,
                   say hi.
                 </p>
               </div>

@@ -36,7 +36,7 @@ export function NewsletterSignup({ variant = "light" }: NewsletterSignupProps) {
             : "border-yellow-300 bg-yellow-50 text-rhino-700"
         }`}
       >
-        <p className="font-semibold">Got it — we&apos;ll add you.</p>
+        <p className="font-semibold">Got it. We&apos;ll add you.</p>
         <p className="mt-1 opacity-80">
           The first issue ships once we finalize launch. We&apos;ll send it to{" "}
           <span className="font-mono">{email}</span> the moment it&apos;s ready.

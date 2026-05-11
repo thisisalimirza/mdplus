@@ -8,7 +8,7 @@ import { HISTORY, LEADERSHIP_ERAS, GROWTH_NUMBERS } from "@/data/history";
 export const metadata: Metadata = {
   title: "History",
   description:
-    "From a Slack workspace and a NYC dinner in 2019 to a 5,000+ member community — the MDplus story, year by year.",
+    "From a Slack workspace and a NYC dinner in 2019 to a 5,000+ member community: the MDplus story, year by year.",
 };
 
 export default function HistoryPage() {
@@ -39,24 +39,24 @@ export default function HistoryPage() {
             </h2>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-neutral-600">
               <p>
-                In 2019, Sherman Leung — then a medical student at Mount Sinai
-                with a Stanford CS background — started organizing informal
+                In 2019, Sherman Leung (then a medical student at Mount Sinai
+                with a Stanford CS background) started organizing informal
                 meetups in New York City for medical students who didn&apos;t
                 fit the traditional clinical-research mold. People interested
                 in tech, business, biotech, policy. People who wanted more.
               </p>
               <p>
                 On October 2, 2019, the first MDplus meetup happened in NYC.
-                About 20–30 people showed up. The four co-founders — Sherman
-                Leung, Sarah Zweifach (NYU MD/MBA), Omar Njie (Mount Sinai),
-                and Walter Hsiang (Yale MD/MBA) — were all in the room.
+                About 20–30 people showed up. All four co-founders were in
+                the room: Sherman Leung, Sarah Zweifach (NYU MD/MBA), Omar
+                Njie (Mount Sinai), and Walter Hsiang (Yale MD/MBA).
               </p>
               <p>
                 In May 2020, MDplus (then called MD++) launched publicly with
                 ten founding members and a single Slack workspace. Six years
                 and four leadership generations later, that Slack has grown
                 into a community of about 5,000 medical students, residents,
-                and physicians from 120+ medical schools across the country —
+                and physicians from 120+ medical schools across the country,
                 with eight active verticals, 14 regional chapters, and a
                 Datathon model that&apos;s been published in peer-reviewed
                 research.
@@ -97,14 +97,14 @@ export default function HistoryPage() {
                       key={`${era.label}-${idx}`}
                       className="relative grid gap-3 pl-8 md:grid-cols-[140px_1fr] md:gap-6 md:pl-0"
                     >
-                      {/* Vertical rail dot — sits in the gap between the
+                      {/* Vertical rail dot: sits in the gap between the
                           date column (ends at 140px) and the content column
                           (starts at 164px) so it doesn't overlay date text. */}
                       <span
                         aria-hidden
                         className="absolute left-2 top-2 size-2.5 rounded-full bg-yellow-500 ring-4 ring-yellow-100 md:left-[148px]"
                       />
-                      {/* Vertical rail line — aligned with dot center (at 153px). */}
+                      {/* Vertical rail line: aligned with dot center (at 153px). */}
                       {idx < era.milestones.length - 1 && (
                         <span
                           aria-hidden
@@ -196,7 +196,7 @@ export default function HistoryPage() {
             </h2>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+          <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
             {GROWTH_NUMBERS.map((g) => (
               <div
                 key={g.year}

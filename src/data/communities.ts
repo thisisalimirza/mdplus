@@ -51,9 +51,9 @@ export const COMMUNITIES: Community[] = [
     name: "AI & Data Science",
     shortName: "Data + AI",
     tagline:
-      "Hands-on tutorials in ML, RAG, and CNNs through a clinical lens — plus the annual Datathon.",
+      "Hands-on tutorials in ML, RAG, and CNNs through a clinical lens, plus the annual Datathon.",
     description:
-      "The largest and most active vertical. We maintain an AI/ML tutorial library with end-to-end Google Colab modules taught through a clinical lens, run a recurring Journal Club on the latest data and AI papers in medicine, and host the annual MD+ Datathon — a month-long competition that has run four years and produced peer-reviewed research published in JMIR Medical Education.",
+      "The largest and most active vertical. We maintain an AI/ML tutorial library with end-to-end Google Colab modules taught through a clinical lens, run a recurring Journal Club on the latest data and AI papers in medicine, and host the annual MD+ Datathon: a month-long competition that has run four years and produced peer-reviewed research published in JMIR Medical Education.",
     slackChannel: "ai-med",
     memberCount: "Most active",
     leaders: [
@@ -103,7 +103,7 @@ export const COMMUNITIES: Community[] = [
     tagline:
       "Fellowship pipelines, investor introductions, and the resources to actually break into healthtech VC.",
     description:
-      "The longest-running vertical at MDplus — the #md-vcs channel has been active since December 2019. The community runs a weekly News, Funds, and Deals recap, partners with Pillar VC on a 2-day VC 101 course, hosts panels with biotech, medtech, and digital-health investors, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, and Goldman Sachs healthcare.",
+      "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community runs a weekly News, Funds, and Deals recap, partners with Pillar VC on a 2-day VC 101 course, hosts panels with biotech, medtech, and digital-health investors, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, and Goldman Sachs healthcare.",
     slackChannel: "md-vcs",
     memberCount: "Most active",
     leaders: [
@@ -204,7 +204,7 @@ export const COMMUNITIES: Community[] = [
         items: [
           {
             label: "RocketBlocks",
-            note: "Case interview prep — member discounts and raffle prizes",
+            note: "Case interview prep; member discounts and raffle prizes",
           },
         ],
       },
@@ -259,7 +259,7 @@ export const COMMUNITIES: Community[] = [
         items: [
           {
             label: "Intro to Medical Device Development",
-            note: "Workshop — educational segment + breakout rooms",
+            note: "Workshop: educational segment + breakout rooms",
           },
           {
             label: "Collaboration with MD+ Design",
@@ -274,7 +274,7 @@ export const COMMUNITIES: Community[] = [
     name: "Research (MD+ Labs)",
     shortName: "Research",
     tagline:
-      "A research collaboration platform — post a project, find collaborators, ship a paper.",
+      "A research collaboration platform: post a project, find collaborators, ship a paper.",
     description:
       "MD+ Labs is the newest active vertical (launched in 2025). It's a Notion-based dashboard where members post research projects and find collaborators across the community. The team also supports conference submissions for innovation and biotech projects, and runs internal research on MD+ programming itself.",
     slackChannel: "research",
@@ -298,7 +298,7 @@ export const COMMUNITIES: Community[] = [
     tagline:
       "Healthcare design thinking, user experience, and human-centered clinical innovation.",
     description:
-      "The design vertical, launched in 2024-25, focuses on design thinking applied to healthcare — UX for clinical tools, service design for care delivery, and visual communication for medical education. The team partners with Medical Devices on hardware UX and contributes to MDplus's own brand and communication work.",
+      "The design vertical, launched in 2024-25, focuses on design thinking applied to healthcare: UX for clinical tools, service design for care delivery, and visual communication for medical education. The team partners with Medical Devices on hardware UX and contributes to MDplus's own brand and communication work.",
     slackChannel: "innovative-design",
     leaders: [{ name: "Devika Patel", role: "Director of Design" }],
   },

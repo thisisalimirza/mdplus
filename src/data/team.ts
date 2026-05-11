@@ -26,7 +26,7 @@ export const TEAM: TeamMember[] = [
   {
     name: "Steve Stephen",
     role: "Co-Chair",
-    bio: "MD/MBA candidate at University of Rochester. Third consecutive year in senior leadership — VP of External Relations (2023-24) → Co-Chair (2024-present). Medical student representative for Thalamus.",
+    bio: "MD/MBA candidate at University of Rochester. Third consecutive year in senior leadership: VP of External Relations (2023-24) → Co-Chair (2024-present). Medical student representative for Thalamus.",
   },
   {
     name: "Arvind Rajan",
@@ -46,7 +46,7 @@ export const TEAM: TeamMember[] = [
   {
     name: "Lathan Liou",
     role: "VP of Finance",
-    bio: "The longest-serving leader in MD+ history — 5 consecutive years. Director of Data Science (2021-22) → Co-Chair (2022-24) → VP of Finance (2024-present). Launched the MD+ Datathon, now in its 4th year. Mount Sinai MS4 (FlexMed).",
+    bio: "The longest-serving leader in MD+ history: 5 consecutive years. Director of Data Science (2021-22) → Co-Chair (2022-24) → VP of Finance (2024-present). Launched the MD+ Datathon, now in its 4th year. Mount Sinai MS4 (FlexMed).",
   },
   {
     name: "Kaden Bunch",
@@ -171,7 +171,7 @@ export const TEAM: TeamMember[] = [
   {
     name: "Kylie Long",
     role: "Past VP of Growth (2022-2026)",
-    bio: "Four consecutive years as VP of Growth — longest-serving Growth lead. Provided continuity through three different co-chair pairings.",
+    bio: "Four consecutive years as VP of Growth, the longest-serving Growth lead. Provided continuity through three different co-chair pairings.",
     past: true,
   },
 ];

@@ -34,12 +34,12 @@ const PILLARS: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Users,
     title: "Cohort, not a course",
-    body: "You go through Catalyst with peers, not alone. The people in your cohort are part of the value — many MDplus alumni cite their Catalyst cohort as the most generative cohort of their career.",
+    body: "You go through Catalyst with peers, not alone. The people in your cohort are part of the value; many MDplus alumni cite their Catalyst cohort as the most generative cohort of their career.",
   },
   {
     icon: Compass,
     title: "Mentorship from people who've done it",
-    body: "Mentors are physicians and operators inside the partner organizations — companies actively building in healthcare innovation, not industry analysts.",
+    body: "Mentors are physicians and operators inside the partner organizations: companies actively building in healthcare innovation, not industry analysts.",
   },
   {
     icon: Hammer,
@@ -49,7 +49,7 @@ const PILLARS: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Trophy,
     title: "Backed by the field",
-    body: "Sponsored by leading firms across AI, biotech, healthcare-AI, and venture — the same partners that shape what's actually getting built in the field today.",
+    body: "Sponsored by leading firms across AI, biotech, healthcare-AI, and venture: the same partners that shape what's actually getting built in the field today.",
   },
 ];
 
@@ -57,17 +57,17 @@ const WHO: { eyebrow: string; title: string; body: string }[] = [
   {
     eyebrow: "Med students",
     title: "Curious about non-clinical paths.",
-    body: "If you've been wondering whether tech, AI, biotech, or VC is for you — Catalyst is the structured first step that doesn't require leaving medicine to find out.",
+    body: "If you've been wondering whether tech, AI, biotech, or VC is for you, Catalyst is the structured first step that doesn't require leaving medicine to find out.",
   },
   {
     eyebrow: "Residents",
     title: "Building on the side.",
-    body: "If you're already working on a side project — a startup idea, a research direction, a tool — Catalyst gives you a cohort of peers and mentors to make it real instead of theoretical.",
+    body: "If you're already working on a side project (a startup idea, a research direction, a tool), Catalyst gives you a cohort of peers and mentors to make it real instead of theoretical.",
   },
   {
     eyebrow: "Physicians",
     title: "Crossing into industry.",
-    body: "If you're considering a transition from clinical to industry, Catalyst is the cohort to do that thinking with — alongside people on the same path and people who've already crossed.",
+    body: "If you're considering a transition from clinical to industry, Catalyst is the cohort to do that thinking with, alongside people on the same path and people who've already crossed.",
   },
 ];
 
@@ -86,7 +86,7 @@ export default function CatalystPage() {
           <>
             Catalyst is a structured cohort experience for medical students,
             residents, and physicians serious about taking on real work in
-            healthcare innovation — backed by leading partners and led by
+            healthcare innovation, backed by leading partners and led by
             operators who&apos;ve done it.
           </>
         }
@@ -112,8 +112,8 @@ export default function CatalystPage() {
           The full program lives at{" "}
           <span className="font-mono text-rhino-700">
             catalyst.mdplus.community
-          </span>{" "}
-          — a separate platform we run for cohort members.
+          </span>
+          , a separate platform we run for cohort members.
         </p>
       </PageHero>
 
@@ -130,7 +130,7 @@ export default function CatalystPage() {
             <p className="mt-6 text-lg text-neutral-600">
               Most physicians and med students who want to do something
               outside clinical work get stuck in research mode for years.
-              Catalyst is the structured alternative — a cohort, mentors, and
+              Catalyst is the structured alternative: a cohort, mentors, and
               a deadline.
             </p>
           </div>
@@ -171,7 +171,7 @@ export default function CatalystPage() {
             </h2>
             <p className="mt-6 text-lg text-rhino-100/90">
               Catalyst is sponsored by leading firms across AI, biotech,
-              healthcare AI, and venture — the same names that show up in
+              healthcare AI, and venture: the same names that show up in
               MDplus members&apos; trajectories.
             </p>
           </div>
@@ -231,8 +231,8 @@ export default function CatalystPage() {
               <span className="text-denim-600">Apply when ready.</span>
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              The full Catalyst experience — application, cohort schedule,
-              mentor list — lives on the dedicated subdomain.
+              The full Catalyst experience (application, cohort schedule,
+              mentor list) lives on the dedicated subdomain.
             </p>
             <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
               <a

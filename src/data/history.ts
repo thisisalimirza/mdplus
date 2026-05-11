@@ -31,7 +31,7 @@ export const HISTORY: HistoryEra[] = [
       {
         date: "Aug 27, 2019",
         title: "Slack workspace created",
-        body: "Sherman Leung sets up the original MD++ Slack — the workspace that's still the gravitational center of the community five years later.",
+        body: "Sherman Leung sets up the original MD++ Slack: the workspace that's still the gravitational center of the community five years later.",
       },
       {
         date: "Oct 2, 2019",
@@ -59,12 +59,12 @@ export const HISTORY: HistoryEra[] = [
       {
         date: "Oct–Nov 2021",
         title: "Roivant Sciences Innovation Challenge",
-        body: "70+ participants. Winners — Annovate, Food Farmacy, EyeWonder — get follow-up partnerships with Roivant.",
+        body: "70+ participants. Winners (Annovate, Food Farmacy, EyeWonder) get follow-up partnerships with Roivant.",
       },
       {
         date: "January 2022",
         title: "Inaugural Datathon",
-        body: "200+ medical students compete on the National Inpatient Sample dataset. The Datathon — now MDplus's flagship event — is born under data-science director Lathan Liou and AI director Katie Link.",
+        body: "200+ medical students compete on the National Inpatient Sample dataset. The Datathon (now MDplus's flagship event) is born under data-science director Lathan Liou and AI director Katie Link.",
       },
       {
         date: "2022",
@@ -77,7 +77,7 @@ export const HISTORY: HistoryEra[] = [
     label: "Maturation",
     range: "2023–2024",
     intro:
-      "Membership crosses 4,000. The Podcast launches. The Datathon model gets peer-reviewed. Leadership transitions twice — from founder era to institutional era.",
+      "Membership crosses 4,000. The Podcast launches. The Datathon model gets peer-reviewed. Leadership transitions twice, from founder era to institutional era.",
     milestones: [
       {
         date: "June 2023",
@@ -92,7 +92,7 @@ export const HISTORY: HistoryEra[] = [
       {
         date: "March 2024",
         title: "Leadership transitions",
-        body: "Clara Sun + Steve Stephen become co-chairs, succeeding Lathan + Clara. Lathan moves to VP of Finance — the first non-founder leadership generation is fully in place.",
+        body: "Clara Sun + Steve Stephen become co-chairs, succeeding Lathan + Clara. Lathan moves to VP of Finance. The first non-founder leadership generation is fully in place.",
       },
       {
         date: "Oct 24, 2024",
@@ -115,7 +115,7 @@ export const HISTORY: HistoryEra[] = [
       {
         date: "March 2025",
         title: "Datathon model published in JMIR Medical Education",
-        body: "\"Leveraging Datathons to Teach AI in Undergraduate Medical Education\" lands in a peer-reviewed journal — formal academic validation of the Datathon as a model for medical education.",
+        body: "\"Leveraging Datathons to Teach AI in Undergraduate Medical Education\" lands in a peer-reviewed journal: formal academic validation of the Datathon as a model for medical education.",
       },
       {
         date: "April 2025",
@@ -171,7 +171,6 @@ export const LEADERSHIP_ERAS = [
 
 export const GROWTH_NUMBERS = [
   { year: "2019", count: "20–50", note: "Pre-launch meetups" },
-  { year: "2020", count: "10", note: "Public launch" },
   { year: "2021", count: "1,400+", note: "Explosive growth year" },
   { year: "2022", count: "2,500", note: "Geographic expansion begins" },
   { year: "2023", count: "4,200+", note: "Podcast + regional footprint" },

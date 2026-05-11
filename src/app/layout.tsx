@@ -43,15 +43,15 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "MDplus — MD + tech. MD + AI. MD + everything else.",
+    default: "MDplus: MD + tech. MD + AI. MD + everything else.",
     template: "%s · MDplus",
   },
   description:
-    "The community for physicians and med students building in tech, data, AI, and entrepreneurship — without figuring it out alone.",
+    "The community for physicians and med students building in tech, data, AI, and entrepreneurship, without figuring it out alone.",
   openGraph: {
     title: "MDplus",
     description:
-      "The community for physicians and med students building in tech, data, AI, and entrepreneurship — without figuring it out alone.",
+      "The community for physicians and med students building in tech, data, AI, and entrepreneurship, without figuring it out alone.",
     // Don't hardcode `url: "https://mdplus.community"` until DNS points there.
     // Next.js falls back to `metadataBase + pathname` for og:url, which is what
     // we want — scrapers won't recanonicalize back to the Squarespace site.

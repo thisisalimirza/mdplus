@@ -24,7 +24,7 @@ export default function NotFound() {
           This page didn&apos;t make it through the match.
         </h1>
         <p className="mt-6 max-w-xl text-lg text-neutral-600">
-          We may have moved it, retired it, or — most likely — never built it
+          We may have moved it, retired it, or (most likely) never built it
           in the first place. The site is being redesigned; if you came here
           from an old link, that&apos;s why.
         </p>

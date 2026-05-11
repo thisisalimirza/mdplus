@@ -28,13 +28,13 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     icon: Users,
     href: "/about/team",
     title: "Team",
-    body: "The folks running the place — current leadership and past directors.",
+    body: "The folks running the place: current leadership and past directors.",
   },
   {
     icon: HistoryIcon,
     href: "/about/history",
     title: "History",
-    body: "From a NYC dinner in October 2019 to a 5,000+ member national community — six years, four leadership generations, full timeline inside.",
+    body: "From a NYC dinner in October 2019 to a 5,000+ member national community. Six years, four leadership generations, full timeline inside.",
   },
   {
     icon: Shield,
@@ -52,6 +52,6 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     icon: Mail,
     href: "/contact",
     title: "Contact",
-    body: "Get in touch with the team — partnerships, press, general inquiries.",
+    body: "Get in touch with the team: partnerships, press, general inquiries.",
   },
 ];

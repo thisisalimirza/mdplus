@@ -28,7 +28,7 @@ const HIGHLIGHTS = [
   {
     icon: Layers,
     title: "Sub-communities for every domain",
-    body: "Consulting, Data + AI, VC, Policy, Blockchain — each with their own channel, leaders, and resources.",
+    body: "Consulting, Data + AI, VC, Policy, Blockchain. Each has its own channel, leaders, and resources.",
   },
   {
     icon: UserSearch,
@@ -60,7 +60,7 @@ export default function CommunityPage() {
             The MDplus Slack is the gravitational center: 5,000+ physicians
             and med students at the cross-section of medicine and innovation.
             Inside, sub-communities give you a home for whichever lane is
-            yours — most members are in more than one.
+            yours. Most members are in more than one.
           </>
         }
       >
@@ -199,7 +199,7 @@ export default function CommunityPage() {
             </h2>
             <p className="mt-4 max-w-xl text-rhino-100/90">
               Free Slack membership. Stay if it&apos;s for you. We don&apos;t
-              charge for the community itself — never have, never will.
+              charge for the community itself. Never have, never will.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
