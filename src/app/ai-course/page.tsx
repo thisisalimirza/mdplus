@@ -1,212 +1,194 @@
 import type { Metadata } from "next";
 import {
-  Cpu,
-  FlaskConical,
-  Activity,
-  Shield,
-  Code2,
-  Building2,
-  TrendingUp,
-  Compass,
+  Brain,
+  Zap,
+  ClipboardCheck,
+  Layers,
+  Rocket,
   ArrowDown,
-  FileText,
+  Users,
+  Mic,
+  LayoutGrid,
+  Shield,
   type LucideIcon,
 } from "lucide-react";
 import { WaitlistForm } from "./WaitlistForm";
 
 export const metadata: Metadata = {
-  title: "AI Leadership for Physicians",
+  title: "The AI-Native Physician",
   description:
-    "Stop watching AI reshape medicine from the back seat. This course turns doctors and residents into the people leading that conversation.",
+    "A professional transformation for physicians who want to shape how AI changes healthcare — not be shaped by it.",
   robots: { index: false, follow: false },
 };
 
 /* ── Data ──────────────────────────────────────────────────────── */
 
-const PROBLEMS: { title: string; body: string }[] = [
-  {
-    title: "The tasks are being automated.",
-    body: "Reading imaging. Predicting deterioration. Drafting notes. The skills that took years to develop are being encoded into models — and deployed without your input.",
-  },
-  {
-    title: "The algorithms don't know your patients.",
-    body: "But hospital systems are starting to treat them like they do. When an AI recommendation conflicts with your clinical judgment, who wins? Right now, that question has no good answer.",
-  },
-  {
-    title: "The conversation is happening without you.",
-    body: "Health systems, payers, and tech companies are making decisions about AI in medicine every day. Most physicians are not in the room. The ones who are, are changing everything.",
-  },
-];
-
-const SCENARIOS: {
-  situation: string;
-  before: string;
-  after: string;
-}[] = [
-  {
-    situation: "Your hospital announces it's piloting an AI sepsis predictor.",
-    before:
-      "You get an email about it. You don't know how to evaluate whether it's safe for your patient population, so you sign off or stay quiet.",
-    after:
-      "You request the validation dataset. You check whether the model was trained on patients who look like yours. You write a two-page evaluation memo. Your department chair forwards it to the CMO.",
-  },
-  {
-    situation: "A vendor is demoing their clinical AI tool to your department.",
-    before:
-      "You watch and don't know what to ask beyond whether the interface looks good.",
-    after:
-      "You ask about training data provenance, external validation cohort, subgroup performance by demographic, FDA pathway status, and EHR integration approach. The founder takes notes.",
-  },
-  {
-    situation:
-      'Your CMO asks you to "weigh in" on the AI strategy for your division.',
-    before:
-      "You give a thoughtful clinical perspective, but feel out of your depth on the technical and regulatory dimensions.",
-    after:
-      "You come with a framework. You lead the vendor evaluation process. You write the governance policy. You become the person the system builds around.",
-  },
-  {
-    situation: "A resident asks you how to prepare for an AI-transformed specialty.",
-    before: 'You give a vague answer about "staying curious" and "keeping up with the literature."',
-    after:
-      "You have a concrete answer: the skills to build, the career paths opening up, and the playbook for getting there. You forward them this course.",
-  },
+const IDENTITY_MARKERS: string[] = [
+  "You're the first person your department calls when an AI vendor wants to demo their tool.",
+  "You've saved yourself 3–5 hours a week with AI — and you can show exactly how, step by step.",
+  "You've built something that runs without you: an automation, a workflow, a clinical AI system.",
+  "You can brief a startup team, a hospital board, or an investment committee on AI in medicine — and they listen.",
+  "You're advising a company, serving on an AI committee, or running an innovation initiative.",
+  "Your residents ask you what to do about AI. You have a real answer.",
 ];
 
 const MODULES: {
   icon: LucideIcon;
   num: string;
   title: string;
+  summary: string;
   learns: string[];
   deliverable: string;
+  deliverableDetail: string;
 }[] = [
   {
-    icon: Cpu,
+    icon: Brain,
     num: "01",
-    title: "AI Foundations for Clinicians",
+    title: "Mental Models for AI in Medicine",
+    summary: "Strategic clarity. Cuts the hype. Ends the anxiety.",
     learns: [
-      "Explain what LLMs, computer vision models, and predictive algorithms actually do — and reliably don't do — in clinical settings",
-      "Distinguish marketing claims from technical reality when a vendor says their model is '97% accurate'",
+      "What LLMs, computer vision models, and predictive systems actually do — and where they fail in ways that matter clinically",
+      "Which parts of medicine AI will change first, which are defensible, and where physicians become more valuable, not less",
+      "How to read the AI landscape in your specialty and identify the moves worth making now",
     ],
-    deliverable: "A one-page AI explainer for your department colleagues",
+    deliverable: "Your specialty's AI landscape map",
+    deliverableDetail:
+      "A structured analysis of where AI is already here in your field, where it's arriving in the next 3 years, and where human judgment stays irreplaceable. Something you can present to colleagues, administrators, or a board.",
   },
   {
-    icon: FlaskConical,
+    icon: Zap,
     num: "02",
-    title: "Evaluating AI Research",
+    title: "Physician Productivity Systems",
+    summary: "Immediate ROI. This module pays for itself in week one.",
     learns: [
-      "Read an AI study the way you read an RCT: identify the population, endpoints, and validity threats",
-      "Spot overfitted models, misleading AUROCs, and retrospective benchmarks that don't predict bedside performance",
+      "Build AI-enhanced workflows for your highest-volume tasks: notes, inbox, research synthesis, patient education, referral summaries, prior auth",
+      "Design a personal productivity stack tailored to your specialty and workflow — not generic advice, but your specific setup",
+      "Identify which 20% of your administrative load AI can absorb immediately, and implement the first system before the module ends",
     ],
-    deliverable:
-      "A written critique of a real published AI study using the course framework",
+    deliverable: "Your personal AI productivity stack",
+    deliverableDetail:
+      "A documented, running set of AI workflows that save you 3–5 hours per week. Not a list of tools — a working system integrated into how you actually practice.",
   },
   {
-    icon: Activity,
+    icon: ClipboardCheck,
     num: "03",
-    title: "Clinical Decision Support: Opportunities & Risks",
+    title: "Clinical AI Evaluation",
+    summary:
+      "Become a sophisticated operator, not a passive consumer.",
     learns: [
-      "Identify where AI genuinely reduces cognitive load vs. where it introduces new failure modes physicians haven't encountered before",
-      "Document your clinical reasoning when you override an algorithmic recommendation — and why that documentation matters legally",
+      "Evaluate AI tools and vendors with clinical rigor: validation methodology, subgroup performance, implementation failure points, FDA classification, EMR integration realities",
+      "Identify the difference between a tool that performs well on a benchmark and one that will actually work in your patient population",
+      "Write an evaluation memo that holds up in a procurement meeting, a committee review, or a malpractice inquiry",
     ],
-    deliverable:
-      "A 10-point clinical evaluation checklist for any AI tool entering your workflow",
+    deliverable: "A reusable clinical AI evaluation protocol",
+    deliverableDetail:
+      "A structured process — criteria, red flags, scoring framework — your department or institution can use for every AI tool it considers. The protocol that makes you the go-to evaluator.",
   },
   {
-    icon: Shield,
+    icon: Layers,
     num: "04",
-    title: "The Regulatory & Policy Landscape",
+    title: "Building Lightweight AI Systems",
+    summary:
+      "The module that separates this from every other course.",
     learns: [
-      "Explain the FDA's Software as Medical Device (SaMD) pathway — and what it means when a tool isn't cleared",
-      "Understand where liability sits when an AI-assisted decision leads to patient harm",
+      "Build no-code clinical AI systems: patient education pipelines, referral triage automations, research assistants, clinical knowledge bases, onboarding tools",
+      "Work with GPTs, agents, retrieval systems, and workflow orchestration tools — without writing code",
+      "Understand APIs, data flows, and system design conceptually: enough to direct engineers, evaluate technical proposals, and co-found a company",
     ],
-    deliverable:
-      "A regulatory classification matrix for AI tools relevant to your specialty",
+    deliverable: "A working clinical AI system",
+    deliverableDetail:
+      "An automation, custom GPT, or clinical workflow tool that does real work — something you can demo, deploy, and show as proof that you build, not just talk.",
   },
   {
-    icon: Code2,
+    icon: Rocket,
     num: "05",
-    title: "Working with Engineers & Product Teams",
+    title: "Career & Business Leverage",
+    summary:
+      "The income streams, titles, and pathways most physicians don't know are available.",
     learns: [
-      "Translate a clinical need into a product requirement an engineering team can actually execute on",
-      "Run a productive 60-minute requirements session with a technical team — without a translation layer in between",
+      "Map the roles being created right now: AI medical officer, clinical advisor, innovation fellow, startup co-founder, CMIO, medical director at a digital health company",
+      "Build your positioning as the AI physician in your department, specialty, and field — including how to develop a visible presence others will reach out to",
+      "Identify your first concrete opportunity: the consulting engagement, the committee seat, the advising role, the product you're going to build",
     ],
-    deliverable:
-      "A clinical requirements document for a tool you'd want to build or improve",
-  },
-  {
-    icon: Building2,
-    num: "06",
-    title: "Leading AI Adoption Inside Health Systems",
-    learns: [
-      "Build the business case for — or against — an AI rollout, in the language your CMO and CFO respond to",
-      "Design a structured pilot evaluation protocol your institution can replicate for every new AI vendor",
-    ],
-    deliverable:
-      "An AI governance proposal ready to bring to your department chief or committee",
-  },
-  {
-    icon: TrendingUp,
-    num: "07",
-    title: "New Careers in Physician-AI Leadership",
-    learns: [
-      "Map the career paths being created right now: CMIO, AI medical officer, clinical advisor, startup co-founder",
-      "Identify which of your existing credentials and clinical experience are direct competitive advantages in each path",
-    ],
-    deliverable:
-      "A repositioned professional profile: updated bio, LinkedIn summary, and elevator pitch for physician-AI roles",
-  },
-  {
-    icon: Compass,
-    num: "08",
-    title: "Your Personal AI Strategy",
-    learns: [
-      "Assess your current position relative to where the field is heading, and identify your highest-leverage first moves",
-      "Build a 90-day action plan specific to your role, specialty, and institution — not a generic template",
-    ],
-    deliverable:
-      "Your completed 90-day plan with specific milestones, target roles or projects, and accountability checkpoints",
+    deliverable: "Your physician-AI positioning strategy + 90-day action plan",
+    deliverableDetail:
+      "A specific plan for your next move — with named target roles, companies, or projects; a positioning statement; and a week-by-week roadmap for the next 90 days.",
   },
 ];
 
-const SKILLS: string[] = [
-  "Read an AI research paper and identify the three most common ways results are overstated before they reach the bedside",
-  "Run a vendor evaluation meeting and ask the questions that expose an overfit or poorly validated model",
-  "Write a clinical requirements brief that an engineering team can execute on without a translator in the room",
-  "Draft an AI adoption policy — or a pushback memo — for your department or governance committee",
-  "Explain the FDA SaMD pathway and its implications to hospital administration, confidently and accurately",
-  "Know when to override an AI recommendation, how to document your reasoning, and why that paper trail matters",
-  "Build a structured AI pilot protocol your institution can reuse for every new vendor evaluation",
-  "Position yourself for physician-AI leadership roles — including ones your institution doesn't have a title for yet",
+const FORMAT_ITEMS: {
+  icon: LucideIcon;
+  title: string;
+  body: string;
+}[] = [
+  {
+    icon: LayoutGrid,
+    title: "5 core modules, built for busy physicians",
+    body: "Self-paced content designed to be completed in focused 45-minute sessions. No 3-hour lecture blocks. Each module ends with a deliverable you build, not just a quiz you take.",
+  },
+  {
+    icon: Users,
+    title: "A cohort of ambitious physicians",
+    body: "You move through the program with a group. Small working pods organized by specialty and career stage. The people you meet here will be the ones you build with later.",
+  },
+  {
+    icon: Mic,
+    title: "Live office hours and physician founder talks",
+    body: "Regular sessions with MDplus instructors, practicing AI physicians, and doctors who've already made the transition — into startups, advisory roles, innovation leadership, and clinical informatics.",
+  },
+  {
+    icon: Shield,
+    title: "Project showcases and proof-of-work",
+    body: "Cohort demo days where you show what you built. Public artifacts you can share with employers, collaborators, and the MDplus network. The credential that actually opens doors.",
+  },
+];
+
+const UPSIDE_ITEMS: {
+  category: string;
+  examples: string[];
+}[] = [
+  {
+    category: "Inside your institution",
+    examples: [
+      "Lead the AI oversight committee or governance process",
+      "Become the department's clinical AI evaluator — the person procurement can't move without",
+      "Take on an innovation fellowship or initiative that accelerates your promotion track",
+    ],
+  },
+  {
+    category: "In the industry",
+    examples: [
+      "Advise AI startups building clinical tools — paid engagements, equity, or both",
+      "Serve as a medical director or chief medical officer at a digital health company",
+      "Join a VC firm's clinical advisory network as a physician expert",
+    ],
+  },
+  {
+    category: "On your own",
+    examples: [
+      "Build a clinical AI tool, workflow, or product — and bring it to patients or sell it to institutions",
+      "Build a content or consulting presence as 'the AI physician' in your specialty",
+      "Co-found a health AI company from the inside track, with MDplus as your network",
+    ],
+  },
 ];
 
 const WHO: { eyebrow: string; title: string; body: string }[] = [
   {
     eyebrow: "Residents",
-    title: "You feel it before anyone talks about it.",
-    body: "The tools are being piloted in your program. You wonder what your specialty looks like in ten years. This course gives you the language, the framework, and the career playbook — before you hit the attending track, while the window is widest.",
+    title: "The window is widest right now.",
+    body: "You're still building your identity. Adding 'AI-native' to how you practice — before you hit the attending track — gives you a compounding advantage your classmates won't have. The physicians who lead the next decade built this fluency in training.",
   },
   {
     eyebrow: "Attendings",
-    title: "You're already navigating it.",
-    body: "Your health system is evaluating AI tools. Your department chair wants a physician voice in the room. You've been asked to \"weigh in\" on something you've never been formally trained to evaluate. This course changes that.",
+    title: "You're already being asked.",
+    body: "Your health system is evaluating AI tools. Your department chair wants physician input. A startup founder cold-emailed you. This program gives you the framework to turn those moments from uncomfortable to career-defining.",
   },
   {
     eyebrow: "Academic & administrative physicians",
-    title: "You're in the room. Now lead it.",
-    body: "You have institutional influence. What you need is the technical fluency to match it — so when AI policy decisions land on your desk, your position is defensible, your evaluation is credible, and your voice carries.",
+    title: "You have the standing. Now get the vocabulary.",
+    body: "You're in the room. What you need is the technical fluency to back your institutional authority — so your position on AI is defensible, your vendor evaluations are credible, and your leadership is genuine.",
   },
-];
-
-const DELIVERABLES: { icon: LucideIcon; label: string }[] = [
-  { icon: FileText, label: "AI explainer for your department" },
-  { icon: FlaskConical, label: "Published AI study critique" },
-  { icon: Activity, label: "Clinical evaluation checklist" },
-  { icon: Shield, label: "Regulatory classification matrix" },
-  { icon: Code2, label: "Clinical requirements document" },
-  { icon: Building2, label: "AI governance proposal" },
-  { icon: TrendingUp, label: "Repositioned professional profile" },
-  { icon: Compass, label: "Your 90-day action plan" },
 ];
 
 /* ── Page ──────────────────────────────────────────────────────── */
@@ -227,29 +209,38 @@ export default function AiCoursePage() {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(29,123,189,0.18),_transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(29,123,189,0.15),_transparent_60%)]"
         />
 
         <div className="relative mx-auto max-w-(--container-max) px-6 pt-24 pb-20 md:pt-36 md:pb-28">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-yellow-400">
               <span aria-hidden className="size-1.5 rounded-full bg-yellow-400" />
-              MDplus · Private Preview
+              MDplus · Private Preview · Founding Cohort
             </span>
 
             <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight text-white md:text-7xl">
-              Get in the{" "}
-              <span className="text-yellow-400">front seat.</span>
+              Become the{" "}
+              <span className="text-yellow-400">AI-native</span>
               <br />
-              Grab the wheel.
+              physician.
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-rhino-200 md:text-xl">
-              AI is reshaping medicine. The doctors who define what comes next
-              are the ones who understand the technology well enough to lead it
-              — not just survive it. This is an 8-module course that takes you
-              from clinician-observer to physician-AI leader, with a concrete
-              deliverable from every module.
+              Not the doctor who tried ChatGPT. The one who understands AI
+              deeply enough to{" "}
+              <strong className="font-semibold text-white">implement</strong> it,{" "}
+              <strong className="font-semibold text-white">evaluate</strong> it,{" "}
+              <strong className="font-semibold text-white">build</strong> with
+              it, and{" "}
+              <strong className="font-semibold text-white">lead</strong> teams
+              through it.
+            </p>
+
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-rhino-300">
+              This is not an AI course. It&apos;s a professional
+              transformation — an applied, cohort-based program for physicians
+              who want to be the ones shaping how AI changes healthcare.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
@@ -269,265 +260,288 @@ export default function AiCoursePage() {
             </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-rhino-400">
-              <span>8 modules</span>
+              <span>5 modules</span>
               <span aria-hidden className="hidden sm:inline">·</span>
-              <span>8 tangible deliverables</span>
+              <span>5 concrete deliverables</span>
               <span aria-hidden className="hidden sm:inline">·</span>
-              <span>Self-paced + live sessions</span>
+              <span>Cohort-based · Live sessions</span>
               <span aria-hidden className="hidden sm:inline">·</span>
-              <span>Founding cohort: limited seats</span>
+              <span>Physicians only</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── The Problem ──────────────────────────────────────── */}
-      <section className="bg-neutral-50 py-20 md:py-28">
+      {/* ── What "AI-native" actually means ──────────────────── */}
+      <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-              The conversation you&apos;re not having
+              The transformation
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
-              AI isn&apos;t coming for the easy parts of medicine.
+              You&apos;ll know you&apos;ve made the transition when…
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              The algorithms are getting better at reading imaging, predicting
-              sepsis, and drafting notes. The question isn&apos;t whether AI
-              will change your practice — it already is. The question is{" "}
-              <strong className="font-semibold text-rhino-700">
-                who decides how.
-              </strong>
+              Not when you finish the course. When these things are actually
+              true of your practice and your career.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {PROBLEMS.map((p, i) => (
-              <article
-                key={p.title}
-                className="relative rounded-xl border border-neutral-200 bg-neutral-0 p-7"
+          <ul className="mt-12 grid gap-4 md:grid-cols-2">
+            {IDENTITY_MARKERS.map((marker) => (
+              <li
+                key={marker}
+                className="flex items-start gap-4 rounded-xl border border-neutral-200 bg-neutral-50 px-6 py-5"
               >
-                <span className="font-display text-4xl font-bold text-neutral-100 select-none">
-                  {String(i + 1).padStart(2, "0")}
+                <span
+                  aria-hidden
+                  className="mt-0.5 size-6 shrink-0 rounded-full bg-yellow-500 text-rhino-900 flex items-center justify-center text-xs font-bold"
+                >
+                  ✓
                 </span>
-                <h3 className="mt-3 font-display text-lg font-bold leading-snug text-rhino-700">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                  {p.body}
-                </p>
-              </article>
+                <span className="text-base leading-relaxed text-rhino-700">
+                  {marker}
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <div className="mt-12 max-w-2xl rounded-xl border-l-4 border-denim-500 bg-denim-50 px-7 py-5">
-            <p className="text-base font-medium leading-relaxed text-denim-800">
-              The answer isn&apos;t to ignore it. It&apos;s to become the
-              doctor who knows enough — and has the standing — to lead.
+          {/* What this is NOT */}
+          <div className="mt-12 rounded-xl border border-neutral-200 bg-neutral-0 px-7 py-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+              What this is not
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── What Changes: Scenarios ──────────────────────────── */}
-      <section className="bg-rhino-800 py-20 md:py-28">
-        <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
-              What changes
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
-              Here&apos;s what Monday looks like after this course.
-            </h2>
-            <p className="mt-6 text-lg text-rhino-200">
-              Not hypothetical. These are the exact situations physicians in
-              every specialty are already navigating — with or without the
-              training to handle them.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {SCENARIOS.map((s) => (
-              <article
-                key={s.situation}
-                className="rounded-xl border border-white/10 bg-white/5 p-7"
-              >
-                <p className="font-display text-base font-semibold leading-snug text-white">
-                  {s.situation}
-                </p>
-
-                <div className="mt-5 space-y-3">
-                  <div className="flex gap-3">
-                    <span className="mt-0.5 shrink-0 rounded-md bg-rhino-600 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-rhino-300">
-                      Before
-                    </span>
-                    <p className="text-sm leading-relaxed text-rhino-300">
-                      {s.before}
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="mt-0.5 shrink-0 rounded-md bg-yellow-500/20 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-yellow-400">
-                      After
-                    </span>
-                    <p className="text-sm leading-relaxed text-rhino-100">
-                      {s.after}
-                    </p>
-                  </div>
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              {[
+                {
+                  label: "Not prompt engineering for doctors",
+                  sub: "Anyone can teach you to write a better ChatGPT prompt. That's not a career.",
+                },
+                {
+                  label: "Not “the future of AI in medicine”",
+                  sub: "No one needs another lecture on how AI will transform healthcare. We're building what comes after that conversation.",
+                },
+                {
+                  label: "Not a productivity hack collection",
+                  sub: "Some tools will save you time. But the real output is professional leverage — which creates time, income, and optionality.",
+                },
+              ].map((item) => (
+                <div key={item.label}>
+                  <p className="font-display text-sm font-bold text-rhino-700">
+                    {item.label}
+                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-neutral-500">
+                    {item.sub}
+                  </p>
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Curriculum ───────────────────────────────────────── */}
-      <section id="curriculum" className="bg-neutral-0 py-20 md:py-28">
+      <section id="curriculum" className="bg-neutral-50 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
               The curriculum
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
-              Eight modules. Eight deliverables.
+              Five modules. Each one changes something real.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              Every module ends with something you can use — not just
-              something you know. Built for clinicians, not engineers or MBA
-              students.
+              Built for clinicians, not engineers. Every module ends with a
+              deliverable you build and keep — not a quiz you pass and forget.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="mt-12 space-y-6">
             {MODULES.map((mod) => {
               const Icon = mod.icon;
               return (
                 <article
                   key={mod.num}
-                  className="flex flex-col rounded-xl border border-neutral-200 bg-neutral-0 overflow-hidden transition-shadow hover:shadow-md"
+                  className="rounded-xl border border-neutral-200 bg-neutral-0 overflow-hidden"
                 >
-                  {/* Card body */}
-                  <div className="flex gap-5 p-6 pb-5">
-                    <div className="mt-0.5 shrink-0">
-                      <span className="inline-flex size-11 items-center justify-center rounded-lg bg-yellow-500 text-rhino-900">
-                        <Icon className="size-5" aria-hidden />
-                      </span>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
-                        Module {mod.num}
-                      </p>
-                      <h3 className="mt-1 font-display text-base font-bold text-rhino-700">
-                        {mod.title}
-                      </h3>
-                      <ul className="mt-3 space-y-1.5">
-                        {mod.learns.map((l) => (
-                          <li
-                            key={l}
-                            className="flex items-start gap-2 text-sm leading-relaxed text-neutral-600"
-                          >
-                            <span
-                              aria-hidden
-                              className="mt-1.5 size-1.5 shrink-0 rounded-full bg-denim-400"
-                            />
-                            {l}
-                          </li>
-                        ))}
-                      </ul>
+                  <div className="p-7 md:p-8">
+                    <div className="flex flex-col gap-6 md:flex-row md:gap-10">
+                      {/* Left: icon + number */}
+                      <div className="flex shrink-0 items-start gap-4 md:flex-col md:items-center md:gap-3 md:w-20 md:text-center">
+                        <span className="inline-flex size-12 items-center justify-center rounded-xl bg-yellow-500 text-rhino-900">
+                          <Icon className="size-6" aria-hidden />
+                        </span>
+                        <span className="font-display text-2xl font-bold text-neutral-200 md:text-3xl">
+                          {mod.num}
+                        </span>
+                      </div>
+
+                      {/* Right: content */}
+                      <div className="flex-1">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-denim-600">
+                          {mod.summary}
+                        </p>
+                        <h3 className="mt-2 font-display text-xl font-bold text-rhino-700 md:text-2xl">
+                          {mod.title}
+                        </h3>
+                        <ul className="mt-5 space-y-2.5">
+                          {mod.learns.map((l) => (
+                            <li
+                              key={l}
+                              className="flex items-start gap-3 text-sm leading-relaxed text-neutral-600"
+                            >
+                              <span
+                                aria-hidden
+                                className="mt-1.5 size-1.5 shrink-0 rounded-full bg-denim-400"
+                              />
+                              {l}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
+
                   {/* Deliverable footer */}
-                  <div className="mt-auto flex items-start gap-2.5 border-t border-neutral-100 bg-yellow-50 px-6 py-3.5">
-                    <FileText
-                      className="mt-0.5 size-3.5 shrink-0 text-yellow-700"
-                      aria-hidden
-                    />
-                    <p className="text-xs font-semibold text-yellow-800">
-                      <span className="text-yellow-700 font-normal">
-                        You&apos;ll produce:{" "}
-                      </span>
+                  <div className="border-t border-yellow-100 bg-yellow-50 px-7 py-4 md:px-8">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-yellow-700">
+                      You&apos;ll build
+                    </p>
+                    <p className="mt-1 font-display text-base font-bold text-rhino-700">
                       {mod.deliverable}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-neutral-600">
+                      {mod.deliverableDetail}
                     </p>
                   </div>
                 </article>
               );
             })}
           </div>
+        </div>
+      </section>
 
-          {/* Deliverables summary strip */}
-          <div className="mt-12 rounded-xl border border-neutral-200 bg-neutral-50 px-7 py-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
-              You walk away with all 8 deliverables
+      {/* ── The Format ───────────────────────────────────────── */}
+      <section className="bg-denim-800 py-20 md:py-28">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
+              The format
             </p>
-            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-              {DELIVERABLES.map((d) => {
-                const Icon = d.icon;
-                return (
-                  <div
-                    key={d.label}
-                    className="flex items-center gap-2.5 rounded-lg border border-neutral-200 bg-neutral-0 px-4 py-3"
-                  >
-                    <Icon
-                      className="size-4 shrink-0 text-denim-500"
-                      aria-hidden
-                    />
-                    <span className="text-xs font-medium leading-tight text-neutral-700">
-                      {d.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
+              A guild. Not a MOOC.
+            </h2>
+            <p className="mt-6 text-lg text-denim-100/90">
+              Most online courses are designed to be consumed. This one is
+              designed to be completed — by a cohort of physicians who are
+              serious about the transformation, not just curious about AI.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {FORMAT_ITEMS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article
+                  key={item.title}
+                  className="rounded-xl border border-white/10 bg-white/5 p-7"
+                >
+                  <span className="inline-flex size-11 items-center justify-center rounded-lg bg-yellow-500/20 text-yellow-400">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <h3 className="mt-5 font-display text-base font-bold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-denim-100/80">
+                    {item.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 rounded-xl border border-white/10 bg-white/5 px-7 py-5">
+            <p className="text-sm leading-relaxed text-denim-100">
+              <strong className="font-semibold text-white">
+                The MDplus network is the moat.
+              </strong>{" "}
+              5,000+ physicians and med students building at the intersection
+              of medicine and technology. Founding cohort members get permanent
+              access to the AI-Native Physician alumni community — the group
+              chats, the deal flow, the job posts, and the founder
+              introductions that don&apos;t happen anywhere else.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── Skills You'll Have ───────────────────────────────── */}
-      <section className="bg-denim-900 py-20 md:py-28">
+      {/* ── Career & Business Upside ─────────────────────────── */}
+      <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
-              The specific skills
+            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+              Career & income upside
             </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
-              What you&apos;ll be able to do that you can&apos;t do now.
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
+              What this actually opens up.
             </h2>
-            <p className="mt-6 text-lg text-denim-200">
-              Not vague competencies. Specific capabilities — the kind a
-              colleague with ten years in health tech would recognize
-              immediately.
+            <p className="mt-6 text-lg text-neutral-600">
+              Physicians don&apos;t buy information. They buy leverage — the
+              ability to do things they couldn&apos;t do before, access rooms
+              they couldn&apos;t get into, and build things they couldn&apos;t
+              build. Here&apos;s what that looks like concretely.
             </p>
           </div>
 
-          <ul className="mt-12 grid gap-3 md:grid-cols-2">
-            {SKILLS.map((skill) => (
-              <li
-                key={skill}
-                className="flex items-start gap-4 rounded-xl border border-white/8 bg-white/4 px-5 py-4"
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {UPSIDE_ITEMS.map((group) => (
+              <div
+                key={group.category}
+                className="rounded-xl border border-neutral-200 bg-neutral-0 p-6"
               >
-                <span
-                  aria-hidden
-                  className="mt-1 size-5 shrink-0 rounded-full bg-yellow-500 text-rhino-900 flex items-center justify-center text-xs font-bold"
-                >
-                  ✓
-                </span>
-                <span className="text-sm leading-relaxed text-denim-100">
-                  {skill}
-                </span>
-              </li>
+                <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                  {group.category}
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {group.examples.map((ex) => (
+                    <li
+                      key={ex}
+                      className="flex items-start gap-3 text-sm leading-relaxed text-neutral-700"
+                    >
+                      <span
+                        aria-hidden
+                        className="mt-1 size-5 shrink-0 rounded-full bg-yellow-500 text-rhino-900 flex items-center justify-center text-xs font-bold"
+                      >
+                        →
+                      </span>
+                      {ex}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          <div className="mt-10 max-w-2xl rounded-xl border-l-4 border-denim-500 bg-denim-50 px-7 py-5">
+            <p className="text-base font-medium leading-relaxed text-denim-800">
+              The physicians who are capturing these opportunities right now are
+              not smarter than you. They just built the fluency earlier. That
+              gap is still closeable — but it won&apos;t be forever.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ── Who It's For ─────────────────────────────────────── */}
-      <section className="bg-yellow-50 py-20 md:py-28">
+      <section className="bg-neutral-50 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-700">
+            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
               Who this is for
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
-              If you&apos;ve felt the ground shifting, this is for you.
+              Physicians who want to operate on the frontier.
             </h2>
           </div>
 
@@ -535,9 +549,9 @@ export default function AiCoursePage() {
             {WHO.map((w) => (
               <article
                 key={w.eyebrow}
-                className="rounded-xl border border-yellow-200 bg-neutral-0 p-7"
+                className="rounded-xl border border-neutral-200 bg-neutral-0 p-7"
               >
-                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-700">
+                <p className="text-xs font-semibold uppercase tracking-widest text-denim-600">
                   {w.eyebrow}
                 </p>
                 <h3 className="mt-2 font-display text-lg font-bold leading-snug text-rhino-700">
@@ -555,10 +569,11 @@ export default function AiCoursePage() {
               <strong className="font-semibold text-rhino-700">
                 Not right for you if:
               </strong>{" "}
-              You&apos;re a non-physician working in health tech. This course is
-              built around the clinical perspective — the training, the
-              institutional dynamics, and the career calculus of physicians.
-              We&apos;ll build offerings for adjacent roles soon.
+              You want a passive learning experience, a list of AI tools to
+              try, or a certificate to hang on the wall. This program is
+              structured around doing — building real systems, producing real
+              deliverables, and making concrete career moves. If you&apos;re
+              not ready to put in the work, this isn&apos;t the right fit yet.
             </p>
           </div>
         </div>
@@ -570,21 +585,49 @@ export default function AiCoursePage() {
           <div className="mx-auto max-w-2xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-yellow-400">
               <span aria-hidden className="size-1.5 rounded-full bg-yellow-400" />
-              Early access · Founding cohort
+              Founding cohort · Limited seats
             </span>
 
             <h2 className="mt-6 font-display text-4xl font-bold leading-tight text-white md:text-5xl">
-              Stop watching. <br />
-              <span className="text-yellow-400">Start leading.</span>
+              The physicians shaping this
+              <br />
+              <span className="text-yellow-400">
+                started exactly where you are.
+              </span>
             </h2>
 
             <p className="mt-6 text-lg text-rhino-200">
-              The founding cohort is limited. Early access members get the
-              lowest price this program will ever be offered at — and direct
-              access to the MDplus physician network that built it.
+              The gap between the physicians leading AI in medicine and
+              everyone else isn&apos;t talent. It&apos;s fluency — and the
+              network to act on it. The founding cohort builds both. Get in
+              early while the price and access are at their best.
             </p>
 
-            <div className="my-8 flex flex-wrap items-baseline gap-3">
+            {/* What's included */}
+            <ul className="my-8 space-y-2.5">
+              {[
+                "5 applied modules with a deliverable from each",
+                "Live cohort sessions, office hours, and project showcases",
+                "Physician founder talks from doctors who've already made the transition",
+                "Permanent access to the MDplus AI-Native Physician alumni community",
+                "MDplus founding member credential, recognized across our partner network",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-sm text-rhino-200"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-0.5 size-5 shrink-0 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-xs font-bold"
+                  >
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mb-6 flex flex-wrap items-baseline gap-3">
               <span className="font-display text-4xl font-bold text-white">
                 $249
               </span>
@@ -592,7 +635,7 @@ export default function AiCoursePage() {
                 $499
               </span>
               <span className="rounded-full bg-yellow-500/15 px-3 py-0.5 text-xs font-semibold text-yellow-400">
-                Founding member price
+                Founding cohort price — will not be offered again
               </span>
             </div>
 
@@ -600,8 +643,7 @@ export default function AiCoursePage() {
 
             <p className="mt-5 text-xs text-rhino-500">
               No payment required to join the waitlist. We&apos;ll reach out
-              with early access details when enrollment opens. Unsubscribe
-              anytime.
+              with enrollment details and early access. Unsubscribe anytime.
             </p>
 
             <div className="mt-10 border-t border-white/10 pt-8">
@@ -609,10 +651,10 @@ export default function AiCoursePage() {
                 Built by MDplus
               </p>
               <p className="mt-2 text-sm text-rhino-400">
-                MDplus is a 501(c)(3) non-profit community of 5,000+ physicians
-                and medical students building at the intersection of medicine and
-                technology. Partners include Anthropic, a16z Bio+Health,
-                McKinsey, and Bain.
+                MDplus is a 501(c)(3) non-profit and the leading community for
+                physicians building in technology — 5,000+ members, backed by
+                Anthropic, a16z Bio+Health, McKinsey, and Bain. The AI-Native
+                Physician program is the next step in that mission.
               </p>
             </div>
           </div>
