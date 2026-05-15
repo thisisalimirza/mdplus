@@ -26,5 +26,52 @@ export type PostDetail = PostListItem & {
     bio: string | null;
     photo: { asset: unknown } | null;
   } | null;
-  body: unknown[] | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any[] | null;
+};
+
+export type SanityPublication = {
+  _id: string;
+  title: string | null;
+  authors: string | null;
+  venue: string | null;
+  publishedAt: string | null;
+  category: string | null;
+  abstract: string | null;
+  externalUrl: string | null;
+  doi: string | null;
+};
+
+export type JournalClubListItem = {
+  _id: string;
+  title: string | null;
+  slug: { current: string | null } | null;
+  discussionDate: string | null;
+  paperTitle: string | null;
+  paperAuthors: string | null;
+  paperUrl: string | null;
+  coverImage: {
+    asset: unknown;
+    alt: string | null;
+    hotspot: unknown;
+    crop: unknown;
+  } | null;
+  summary: string | null;
+  keyTakeaways: string[] | null;
+  facilitator: {
+    name: string | null;
+    credentials: string | null;
+    photo: { asset: unknown } | null;
+  } | null;
+};
+
+export type JournalClubDetail = JournalClubListItem & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any[] | null;
+  facilitator: {
+    name: string | null;
+    credentials: string | null;
+    role: string | null;
+    photo: { asset: unknown } | null;
+  } | null;
 };

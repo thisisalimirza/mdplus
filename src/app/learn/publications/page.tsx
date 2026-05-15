@@ -2,6 +2,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, ArrowRight, FileText, Users } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { publicationsQuery } from "@/sanity/lib/queries";
+import type { SanityPublication } from "@/sanity/lib/types";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Publications",
@@ -44,7 +49,16 @@ const FUTURE_DIRECTIONS = [
   },
 ];
 
-export default function PublicationsPage() {
+const CATEGORY_LABELS: Record<string, string> = {
+  featured: "Featured",
+  datathon: "Datathon",
+  member: "Member-authored",
+};
+
+export default async function PublicationsPage() {
+  const cmsPublications: SanityPublication[] = isSanityConfigured
+    ? await client.fetch(publicationsQuery)
+    : [];
   return (
     <>
       <PageHero
@@ -123,6 +137,72 @@ export default function PublicationsPage() {
           </div>
         </div>
       </section>
+
+      {/* ── CMS Publications ───────────────────────────────── */}
+      {cmsPublications.length > 0 && (
+        <section className="bg-neutral-50 py-20 md:py-28">
+          <div className="mx-auto max-w-(--container-max) px-6">
+            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+              All publications
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
+              More from MDplus.
+            </h2>
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {cmsPublications.map((pub) => (
+                <article
+                  key={pub._id}
+                  className="flex flex-col rounded-lg border border-neutral-200 bg-neutral-0 p-6"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    {pub.category && (
+                      <span className="rounded-full bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
+                        {CATEGORY_LABELS[pub.category] ?? pub.category}
+                      </span>
+                    )}
+                    {pub.venue && (
+                      <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+                        {pub.venue}
+                      </span>
+                    )}
+                    {pub.publishedAt && (
+                      <span className="text-xs text-neutral-400">
+                        ·{" "}
+                        {new Date(pub.publishedAt).toLocaleDateString("en-US", {
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-bold leading-snug text-rhino-700">
+                    {pub.title}
+                  </h3>
+                  {pub.authors && (
+                    <p className="mt-1 text-sm text-neutral-500">{pub.authors}</p>
+                  )}
+                  {pub.abstract && (
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-3">
+                      {pub.abstract}
+                    </p>
+                  )}
+                  {pub.externalUrl && (
+                    <a
+                      href={pub.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-800"
+                    >
+                      Read paper
+                      <ArrowUpRight className="size-3.5" aria-hidden />
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Coming next ────────────────────────────────────── */}
       <section className="bg-neutral-50 py-20 md:py-28">
