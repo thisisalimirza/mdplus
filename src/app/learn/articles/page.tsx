@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PageHero } from "@/components/marketing/PageHero";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
-import { postsQuery } from "@/sanity/lib/queries";
+import { postsQuery, postsByCategoryQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import type { PostListItem } from "@/sanity/lib/types";
 
@@ -11,18 +11,32 @@ export const metadata: Metadata = { title: "Articles" };
 
 export const revalidate = 60;
 
-const CATEGORY_LABELS: Record<string, string> = {
-  "medicine-ai": "Medicine & AI",
-  career: "Career",
-  technology: "Technology",
-  research: "Research",
-  community: "Community",
-  opinion: "Opinion",
-};
+const CATEGORIES: { value: string; label: string }[] = [
+  { value: "medicine-ai", label: "Medicine & AI" },
+  { value: "career", label: "Career" },
+  { value: "technology", label: "Technology" },
+  { value: "research", label: "Research" },
+  { value: "community", label: "Community" },
+  { value: "opinion", label: "Opinion" },
+];
 
-export default async function ArticlesPage() {
+const CATEGORY_LABEL: Record<string, string> = Object.fromEntries(
+  CATEGORIES.map((c) => [c.value, c.label])
+);
+
+export default async function ArticlesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const { category } = await searchParams;
+  const activeCategory = CATEGORIES.find((c) => c.value === category)?.value ?? null;
+
   const posts: PostListItem[] = isSanityConfigured
-    ? await client.fetch(postsQuery)
+    ? await client.fetch(
+        activeCategory ? postsByCategoryQuery : postsQuery,
+        activeCategory ? { category: activeCategory } : {}
+      )
     : [];
 
   return (
@@ -35,9 +49,49 @@ export default async function ArticlesPage() {
 
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
+
+          {/* Category filters */}
+          <div className="mb-10 flex flex-wrap gap-2">
+            <Link
+              href="/learn/articles"
+              className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
+                !activeCategory
+                  ? "bg-rhino-700 text-white"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+              }`}
+            >
+              All
+            </Link>
+            {CATEGORIES.map((cat) => (
+              <Link
+                key={cat.value}
+                href={`/learn/articles?category=${cat.value}`}
+                className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
+                  activeCategory === cat.value
+                    ? "bg-rhino-700 text-white"
+                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                }`}
+              >
+                {cat.label}
+              </Link>
+            ))}
+          </div>
+
           {posts.length === 0 ? (
             <div className="py-20 text-center">
-              <p className="text-neutral-500">No articles published yet. Check back soon.</p>
+              <p className="text-neutral-500">
+                {activeCategory
+                  ? `No articles in ${CATEGORY_LABEL[activeCategory]} yet.`
+                  : "No articles published yet. Check back soon."}
+              </p>
+              {activeCategory && (
+                <Link
+                  href="/learn/articles"
+                  className="mt-4 inline-block text-sm font-semibold text-denim-600 hover:text-denim-800"
+                >
+                  View all articles
+                </Link>
+              )}
             </div>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -64,7 +118,7 @@ export default async function ArticlesPage() {
                     <div className="flex items-center gap-3">
                       {post.category && (
                         <span className="rounded-full bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
-                          {CATEGORY_LABELS[post.category] ?? post.category}
+                          {CATEGORY_LABEL[post.category] ?? post.category}
                         </span>
                       )}
                       {post.publishedAt && (

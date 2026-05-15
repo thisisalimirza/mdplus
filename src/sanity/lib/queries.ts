@@ -13,6 +13,19 @@ export const postsQuery = defineQuery(`
   }
 `);
 
+export const postsByCategoryQuery = defineQuery(`
+  *[_type == "post" && defined(slug.current) && category == $category] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    category,
+    coverImage { asset, alt, hotspot, crop },
+    author-> { name, credentials, photo }
+  }
+`);
+
 export const postBySlugQuery = defineQuery(`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
