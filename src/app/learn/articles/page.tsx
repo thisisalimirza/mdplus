@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { PageHero } from "@/components/marketing/PageHero";
-import { client } from "@/sanity/lib/client";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import type { PostListItem } from "@/sanity/lib/types";
@@ -21,7 +21,9 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 export default async function ArticlesPage() {
-  const posts: PostListItem[] = await client.fetch(postsQuery);
+  const posts: PostListItem[] = isSanityConfigured
+    ? await client.fetch(postsQuery)
+    : [];
 
   return (
     <>

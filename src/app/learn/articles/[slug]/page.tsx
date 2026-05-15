@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { client } from "@/sanity/lib/client";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { postBySlugQuery, postSlugsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
@@ -11,6 +11,7 @@ import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 export const revalidate = 60;
 
 export async function generateStaticParams() {
+  if (!isSanityConfigured) return [];
   const slugs = await client.fetch(postSlugsQuery);
   return slugs.map((s: { slug: string | null }) => ({ slug: s.slug }));
 }
@@ -21,6 +22,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  if (!isSanityConfigured) return {};
   const post = await client.fetch(postBySlugQuery, { slug });
   if (!post) return {};
   return {
@@ -38,6 +40,7 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (!isSanityConfigured) notFound();
   const post = await client.fetch(postBySlugQuery, { slug });
 
   if (!post) notFound();
