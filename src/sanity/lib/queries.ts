@@ -195,19 +195,22 @@ export const eventSlugsQuery = defineQuery(`
 export const homepageRecentPostsQuery = defineQuery(`
   *[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...4] {
     _id, title, "slug": slug.current, publishedAt, excerpt, category,
-    "authorName": author->name
+    "authorName": author->name,
+    coverImage { asset, alt, hotspot, crop }
   }
 `);
 
 export const homepageRecentPodcastQuery = defineQuery(`
   *[_type == "podcastEpisode" && defined(slug.current)] | order(publishedAt desc) [0...3] {
-    _id, title, "slug": slug.current, publishedAt, guest, guestTitle, summary, episodeNumber
+    _id, title, "slug": slug.current, publishedAt, guest, guestTitle, summary, episodeNumber,
+    coverImage { asset, alt, hotspot, crop }
   }
 `);
 
 export const homepageRecentEventQuery = defineQuery(`
   *[_type == "event" && defined(slug.current) && status == "past"] | order(startDate desc) [0...3] {
-    _id, title, "slug": slug.current, startDate, location, eventType, summary
+    _id, title, "slug": slug.current, startDate, location, eventType, summary,
+    coverImage { asset, alt, hotspot, crop }
   }
 `);
 

@@ -19,6 +19,7 @@ import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
 import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import {
   homepageRecentPostsQuery,
   homepageRecentPodcastQuery,
@@ -513,67 +514,88 @@ export default async function Home() {
                   ? new Date(item._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
                   : null;
 
+                const imgUrl = item.coverImage?.asset
+                  ? urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
+                  : null;
+
                 return (
                   <Link
                     key={item._id}
                     href={href}
-                    className="group mb-3 block break-inside-avoid rounded-xl border border-white/8 bg-white/[0.04] p-4 transition-all hover:border-white/15 hover:bg-white/[0.07]"
+                    className="group mb-3 block break-inside-avoid overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] transition-all hover:border-white/15 hover:bg-white/[0.07]"
                   >
-                    {/* Type badge */}
-                    <div className="flex items-center gap-1.5">
-                      {isArticle && (
-                        <>
-                          <FileText className="size-3 text-denim-400" aria-hidden />
-                          <span className="text-[10px] font-semibold uppercase tracking-widest text-denim-400">Article</span>
-                          {item.category && (
-                            <span className="ml-1 text-[10px] text-white/30">{CATEGORY_LABELS[item.category] ?? item.category}</span>
-                          )}
-                        </>
-                      )}
-                      {isPodcast && (
-                        <>
-                          <Mic className="size-3 text-sky-400" aria-hidden />
-                          <span className="text-[10px] font-semibold uppercase tracking-widest text-sky-400">Podcast</span>
-                          {item.episodeNumber && (
-                            <span className="ml-1 text-[10px] text-white/30">Ep. {item.episodeNumber}</span>
-                          )}
-                        </>
-                      )}
-                      {isEvent && (
-                        <>
-                          <Calendar className="size-3 text-yellow-400" aria-hidden />
-                          <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Event</span>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="mt-2 text-sm font-semibold leading-snug text-white/90 line-clamp-3 group-hover:text-white">
-                      {item.title}
-                    </h3>
-
-                    {/* Meta line */}
-                    {isArticle && item.authorName && (
-                      <p className="mt-1.5 text-xs text-white/40">{item.authorName}</p>
-                    )}
-                    {isPodcast && item.guest && (
-                      <p className="mt-1.5 text-xs text-white/40 line-clamp-1">
-                        {item.guest}{item.guestTitle ? ` · ${item.guestTitle}` : ""}
-                      </p>
-                    )}
-                    {isEvent && item.location && (
-                      <p className="mt-1.5 flex items-center gap-1 text-xs text-white/40">
-                        <MapPin className="size-3 shrink-0" aria-hidden />
-                        {item.location}
-                      </p>
+                    {/* Cover image */}
+                    {imgUrl && (
+                      <div className="relative h-40 w-full overflow-hidden">
+                        <Image
+                          src={imgUrl}
+                          alt={item.coverImage?.alt ?? item.title ?? ""}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                        {/* gradient so badge stays readable over any photo */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" aria-hidden />
+                      </div>
                     )}
 
-                    {/* Date + arrow */}
-                    <div className="mt-3 flex items-center justify-between">
-                      {dateStr && (
-                        <time className="text-[10px] text-white/25" dateTime={item._date}>{dateStr}</time>
+                    <div className="p-4">
+                      {/* Type badge */}
+                      <div className="flex items-center gap-1.5">
+                        {isArticle && (
+                          <>
+                            <FileText className="size-3 text-denim-400" aria-hidden />
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-denim-400">Article</span>
+                            {item.category && (
+                              <span className="ml-1 text-[10px] text-white/30">{CATEGORY_LABELS[item.category] ?? item.category}</span>
+                            )}
+                          </>
+                        )}
+                        {isPodcast && (
+                          <>
+                            <Mic className="size-3 text-sky-400" aria-hidden />
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-sky-400">Podcast</span>
+                            {item.episodeNumber && (
+                              <span className="ml-1 text-[10px] text-white/30">Ep. {item.episodeNumber}</span>
+                            )}
+                          </>
+                        )}
+                        {isEvent && (
+                          <>
+                            <Calendar className="size-3 text-yellow-400" aria-hidden />
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Event</span>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="mt-2 text-sm font-semibold leading-snug text-white/90 line-clamp-3 group-hover:text-white">
+                        {item.title}
+                      </h3>
+
+                      {/* Meta line */}
+                      {isArticle && item.authorName && (
+                        <p className="mt-1.5 text-xs text-white/40">{item.authorName}</p>
                       )}
-                      <ArrowRight className="size-3 text-white/20 transition-all group-hover:translate-x-0.5 group-hover:text-white/50 ml-auto" aria-hidden />
+                      {isPodcast && item.guest && (
+                        <p className="mt-1.5 text-xs text-white/40 line-clamp-1">
+                          {item.guest}{item.guestTitle ? ` · ${item.guestTitle}` : ""}
+                        </p>
+                      )}
+                      {isEvent && item.location && (
+                        <p className="mt-1.5 flex items-center gap-1 text-xs text-white/40">
+                          <MapPin className="size-3 shrink-0" aria-hidden />
+                          {item.location}
+                        </p>
+                      )}
+
+                      {/* Date + arrow */}
+                      <div className="mt-3 flex items-center justify-between">
+                        {dateStr && (
+                          <time className="text-[10px] text-white/25" dateTime={item._date}>{dateStr}</time>
+                        )}
+                        <ArrowRight className="size-3 text-white/20 transition-all group-hover:translate-x-0.5 group-hover:text-white/50 ml-auto" aria-hidden />
+                      </div>
                     </div>
                   </Link>
                 );
