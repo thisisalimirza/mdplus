@@ -39,6 +39,7 @@ const ABOUT_CHILDREN: NavChild[] = ABOUT_SECTIONS.map((s) => ({
 
 const MOBILE_NAV: readonly NavItem[] = [
   { href: "/community", label: "Community", children: COMMUNITY_CHILDREN },
+  { href: "/events", label: "Events" },
   { href: "/skills", label: "Skills" },
   { href: "/learn", label: "Learn", children: LEARN_CHILDREN },
   { href: "/programs", label: "Programs", children: PROGRAMS_CHILDREN },
@@ -94,6 +95,14 @@ export function SiteHeader() {
               label="Community"
               items={COMMUNITY_DROPDOWN}
             />
+            <li>
+              <Link
+                href="/events"
+                className="inline-flex rounded-md px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-rhino-700"
+              >
+                Events
+              </Link>
+            </li>
             <li>
               <Link
                 href="/skills"
