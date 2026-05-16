@@ -192,6 +192,25 @@ export const eventSlugsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current)] { "slug": slug.current }
 `);
 
+export const homepageRecentPostsQuery = defineQuery(`
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...2] {
+    _id, title, "slug": slug.current, publishedAt, excerpt, category,
+    "authorName": author->name
+  }
+`);
+
+export const homepageRecentPodcastQuery = defineQuery(`
+  *[_type == "podcastEpisode" && defined(slug.current)] | order(publishedAt desc) [0...2] {
+    _id, title, "slug": slug.current, publishedAt, guest, summary, episodeNumber
+  }
+`);
+
+export const homepageUpcomingEventQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current) && status == "upcoming"] | order(startDate asc) [0...2] {
+    _id, title, "slug": slug.current, startDate, location, eventType, summary
+  }
+`);
+
 export const archivePostsQuery = defineQuery(`
   *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     _id, title, "slug": slug.current, publishedAt, excerpt, category,

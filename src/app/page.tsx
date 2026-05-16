@@ -10,12 +10,20 @@ import {
   Trophy,
   Mail,
   Mic,
+  FileText,
+  MapPin,
   type LucideIcon,
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
 import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import {
+  homepageRecentPostsQuery,
+  homepageRecentPodcastQuery,
+  homepageUpcomingEventQuery,
+} from "@/sanity/lib/queries";
 
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
@@ -74,7 +82,31 @@ const PILLARS: {
   },
 ];
 
-export default function Home() {
+export const revalidate = 60;
+
+const CATEGORY_LABELS: Record<string, string> = {
+  "medicine-ai": "Medicine & AI",
+  career: "Career",
+  technology: "Technology",
+  research: "Research",
+  community: "Community",
+  opinion: "Opinion",
+};
+
+const EVENT_TYPE_STYLES: Record<string, string> = {
+  "in-person": "bg-yellow-50 text-yellow-700",
+  virtual: "bg-denim-50 text-denim-700",
+  hybrid: "bg-rhino-50 text-rhino-700",
+};
+
+export default async function Home() {
+  const [recentPosts, recentPodcast, upcomingEvents] = isSanityConfigured
+    ? await Promise.all([
+        client.fetch(homepageRecentPostsQuery),
+        client.fetch(homepageRecentPodcastQuery),
+        client.fetch(homepageUpcomingEventQuery),
+      ])
+    : [[], [], []];
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -423,6 +455,149 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Recent content ───────────────────────────────────── */}
+      {(recentPosts.length > 0 || recentPodcast.length > 0 || upcomingEvents.length > 0) && (
+        <section className="bg-neutral-50 py-24 md:py-32">
+          <div className="mx-auto max-w-(--container-max) px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+                  From MDplus recently
+                </p>
+                <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
+                  Always something happening.
+                </h2>
+              </div>
+              <Link
+                href="/archive"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
+              >
+                Browse the full archive
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {recentPosts.map((post: any) => (
+                <Link
+                  key={post._id}
+                  href={`/learn/articles/${post.slug}`}
+                  className="group flex flex-col rounded-xl border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex size-7 items-center justify-center rounded-md bg-denim-50 text-denim-600">
+                      <FileText className="size-3.5" aria-hidden />
+                    </span>
+                    <span className="text-xs font-semibold text-denim-600">Article</span>
+                    {post.category && (
+                      <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-500">
+                        {CATEGORY_LABELS[post.category] ?? post.category}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
+                    {post.title}
+                  </h3>
+                  {post.excerpt && (
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                  )}
+                  <div className="mt-4 flex items-center justify-between">
+                    {post.authorName && (
+                      <span className="text-xs text-neutral-500">{post.authorName}</span>
+                    )}
+                    {post.publishedAt && (
+                      <time className="text-xs text-neutral-400" dateTime={post.publishedAt}>
+                        {new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                      </time>
+                    )}
+                  </div>
+                </Link>
+              ))}
+
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {recentPodcast.map((ep: any) => (
+                <Link
+                  key={ep._id}
+                  href={`/learn/podcast/${ep.slug}`}
+                  className="group flex flex-col rounded-xl border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex size-7 items-center justify-center rounded-md bg-rhino-50 text-rhino-700">
+                      <Mic className="size-3.5" aria-hidden />
+                    </span>
+                    <span className="text-xs font-semibold text-rhino-700">Podcast</span>
+                    {ep.episodeNumber && (
+                      <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-500">
+                        Ep. {ep.episodeNumber}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
+                    {ep.title}
+                  </h3>
+                  {ep.guest && (
+                    <p className="mt-1 text-sm font-medium text-neutral-500">{ep.guest}</p>
+                  )}
+                  {ep.summary && (
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-2">
+                      {ep.summary}
+                    </p>
+                  )}
+                  {ep.publishedAt && (
+                    <time className="mt-4 block text-xs text-neutral-400" dateTime={ep.publishedAt}>
+                      {new Date(ep.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                    </time>
+                  )}
+                </Link>
+              ))}
+
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {upcomingEvents.map((event: any) => (
+                <Link
+                  key={event._id}
+                  href={`/events/${event.slug}`}
+                  className="group flex flex-col rounded-xl border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex size-7 items-center justify-center rounded-md bg-yellow-50 text-yellow-700">
+                      <Calendar className="size-3.5" aria-hidden />
+                    </span>
+                    <span className="text-xs font-semibold text-yellow-700">Event</span>
+                    {event.eventType && (
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${EVENT_TYPE_STYLES[event.eventType] ?? "bg-neutral-100 text-neutral-500"}`}>
+                        {event.eventType === "in-person" ? "In-person" : event.eventType === "virtual" ? "Virtual" : "Hybrid"}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
+                    {event.title}
+                  </h3>
+                  {event.startDate && (
+                    <time className="mt-1 text-sm font-medium text-denim-600" dateTime={event.startDate}>
+                      {new Date(event.startDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
+                    </time>
+                  )}
+                  {event.location && (
+                    <p className="mt-1 flex items-center gap-1 text-sm text-neutral-500">
+                      <MapPin className="size-3.5 shrink-0" aria-hidden />
+                      {event.location}
+                    </p>
+                  )}
+                  {event.summary && (
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-2">
+                      {event.summary}
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Closing CTA ──────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-rhino-700 py-24 md:py-28">
