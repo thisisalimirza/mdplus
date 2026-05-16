@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { X } from "lucide-react";
 import { Avatar } from "@/components/marketing/Avatar";
 import type { CurrentMember, DirectorVertical } from "@/data/team";
+import { DIRECTOR_VERTICALS } from "@/data/team";
 
 // ── Filter config ─────────────────────────────────────────────────────────────
 
@@ -53,6 +54,43 @@ function getModalHeaderBg(tier: string): string {
   return "bg-neutral-50";
 }
 
+// ── Grouping ──────────────────────────────────────────────────────────────────
+
+type Section = { label: string; members: CurrentMember[] };
+
+/**
+ * Returns grouped sections for "all" and "leadership" filters.
+ * Returns null for vertical filters — those render as a flat grid.
+ */
+function buildSections(members: CurrentMember[], filter: FilterValue): Section[] | null {
+  if (filter !== "all" && filter !== "leadership") return null;
+
+  const sections: Section[] = [];
+
+  // Co-Chairs first
+  const chairs = members.filter((m) => m.tier === "co-chair");
+  if (chairs.length) sections.push({ label: "Co-Chairs", members: chairs });
+
+  // VPs grouped by their exact role — Set preserves insertion order (data order)
+  const vpRoles = [
+    ...new Set(members.filter((m) => m.tier === "vp").map((m) => m.role)),
+  ];
+  for (const role of vpRoles) {
+    const group = members.filter((m) => m.role === role);
+    if (group.length) sections.push({ label: role, members: group });
+  }
+
+  // Directors by vertical — only when showing all
+  if (filter === "all") {
+    for (const vertical of DIRECTOR_VERTICALS) {
+      const group = members.filter((m) => m.vertical === vertical);
+      if (group.length) sections.push({ label: vertical, members: group });
+    }
+  }
+
+  return sections;
+}
+
 // ── Card ──────────────────────────────────────────────────────────────────────
 
 function MemberCard({
@@ -75,9 +113,7 @@ function MemberCard({
         className={`flex flex-col items-center gap-3 px-6 py-8 transition-colors duration-200 ${accent}`}
       >
         <Avatar name={member.name} src={member.imageSrc} size="xl" />
-        <span
-          className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}
-        >
+        <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}>
           {badge.label}
         </span>
       </div>
@@ -88,9 +124,7 @@ function MemberCard({
           {member.name}
         </h3>
         {member.school && (
-          <p className="mt-0.5 text-xs leading-snug text-neutral-400">
-            {member.school}
-          </p>
+          <p className="mt-0.5 text-xs leading-snug text-neutral-400">{member.school}</p>
         )}
         {member.bio && (
           <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-600">
@@ -102,6 +136,37 @@ function MemberCard({
         </p>
       </div>
     </button>
+  );
+}
+
+// ── Grouped grid ──────────────────────────────────────────────────────────────
+
+function GroupedGrid({
+  sections,
+  onSelect,
+}: {
+  sections: Section[];
+  onSelect: (m: CurrentMember) => void;
+}) {
+  return (
+    <div className="mt-8 space-y-10">
+      {sections.map((section) => (
+        <div key={section.label}>
+          <div className="mb-5 flex items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              {section.label}
+            </span>
+            <div className="h-px flex-1 bg-neutral-100" />
+            <span className="text-xs text-neutral-300">{section.members.length}</span>
+          </div>
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {section.members.map((m) => (
+              <MemberCard key={m.name} member={m} onClick={() => onSelect(m)} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -135,14 +200,11 @@ function MemberModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-rhino-900/70 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden
       />
-
-      {/* Dialog */}
       <div
         ref={panelRef}
         role="dialog"
@@ -151,7 +213,6 @@ function MemberModal({
         tabIndex={-1}
         className="relative z-10 flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-neutral-0 shadow-2xl outline-none"
       >
-        {/* Close button */}
         <button
           onClick={onClose}
           aria-label="Close profile"
@@ -160,29 +221,18 @@ function MemberModal({
           <X className="size-4" />
         </button>
 
-        {/* Scrollable body */}
         <div className="overflow-y-auto">
-          {/* Header */}
           <div className={`px-8 py-8 ${headerBg}`}>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-              <Avatar
-                name={member.name}
-                src={member.imageSrc}
-                size="xl"
-                className="shrink-0"
-              />
+              <Avatar name={member.name} src={member.imageSrc} size="xl" className="shrink-0" />
               <div className="min-w-0 pt-1">
-                <span
-                  className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}
-                >
+                <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}>
                   {badge.label}
                 </span>
                 <h2 className="mt-2 font-display text-2xl font-bold text-rhino-700">
                   {member.name}
                 </h2>
-                <p className="mt-0.5 text-sm font-medium text-denim-600">
-                  {member.role}
-                </p>
+                <p className="mt-0.5 text-sm font-medium text-denim-600">{member.role}</p>
                 {member.school && (
                   <p className="mt-0.5 text-xs text-neutral-500">{member.school}</p>
                 )}
@@ -190,7 +240,6 @@ function MemberModal({
             </div>
           </div>
 
-          {/* Content sections */}
           <div className="divide-y divide-neutral-100">
             {member.bio && (
               <div className="px-8 py-6">
@@ -200,7 +249,6 @@ function MemberModal({
                 <p className="text-sm leading-relaxed text-neutral-700">{member.bio}</p>
               </div>
             )}
-
             {member.plus && (
               <div className="px-8 py-6">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-yellow-700">
@@ -211,18 +259,14 @@ function MemberModal({
                 </blockquote>
               </div>
             )}
-
             {member.whyJoined && (
               <div className="px-8 py-6">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
                   Why I Joined MD+
                 </p>
-                <p className="text-sm italic leading-relaxed text-neutral-600">
-                  {member.whyJoined}
-                </p>
+                <p className="text-sm italic leading-relaxed text-neutral-600">{member.whyJoined}</p>
               </div>
             )}
-
             {member.funFact && (
               <div className="px-8 py-6">
                 <div className="rounded-xl border border-yellow-100 bg-yellow-50 px-5 py-4">
@@ -252,6 +296,7 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
     return m.vertical === filter;
   });
 
+  const sections = buildSections(filtered, filter);
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
@@ -276,12 +321,16 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
         </span>
       </div>
 
-      {/* Card grid */}
-      <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-        {filtered.map((m) => (
-          <MemberCard key={m.name} member={m} onClick={() => setSelected(m)} />
-        ))}
-      </div>
+      {/* Grouped or flat grid */}
+      {sections ? (
+        <GroupedGrid sections={sections} onSelect={setSelected} />
+      ) : (
+        <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          {filtered.map((m) => (
+            <MemberCard key={m.name} member={m} onClick={() => setSelected(m)} />
+          ))}
+        </div>
+      )}
 
       {/* Profile modal */}
       {selected && <MemberModal member={selected} onClose={handleClose} />}
