@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -13,7 +14,6 @@ import {
 import { PageHero } from "@/components/marketing/PageHero";
 import { BookCallButton } from "@/components/marketing/BookCallButton";
 import {
-  PARTNER_CATEGORIES,
   SPONSORSHIP_TRACKS,
   PARTNER_FAQ,
   type SponsorshipTrack,
@@ -164,30 +164,14 @@ export default function PartnersPage() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
-            {PARTNER_CATEGORIES.map((cat) => (
-              <article
-                key={cat.label}
-                className="rounded-xl border border-yellow-200 bg-neutral-0 p-6 md:p-7"
-              >
-                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-700">
-                  {cat.label}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                  {cat.blurb}
-                </p>
-                <ul className="mt-5 flex flex-wrap gap-1.5">
-                  {cat.partners.map((p) => (
-                    <li
-                      key={p}
-                      className="rounded-pill bg-yellow-50 px-3 py-1 text-sm font-medium text-rhino-700 ring-1 ring-yellow-200"
-                    >
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+          <div className="mt-14">
+            <Image
+              src="/past-partners.webp"
+              alt="Past MDplus partners including Roivant Sciences, Flatiron, One Medical, Google, McKinsey & Company, a16z, Bessemer Venture Partners, AlleyCorp, Scale, Verily, and many more"
+              width={1617}
+              height={938}
+              className="w-full rounded-2xl border border-yellow-200"
+            />
           </div>
         </div>
       </section>

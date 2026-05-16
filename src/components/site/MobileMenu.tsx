@@ -142,12 +142,21 @@ export function MobileMenu({ nav }: MobileMenuProps) {
           <Link
             href="/"
             onClick={closeMenu}
-            className="font-display text-xl font-bold"
+            className="group inline-flex items-center gap-1.5 font-display text-xl font-bold text-white"
             aria-label="MDplus home"
           >
-            <span>MD</span>
-            <span className="text-yellow-500">+</span>
-            <span>plus</span>
+            {/* Dark-background variant: blue plus uses white */}
+            <svg viewBox="0 0 44 44" className="h-6 w-6 shrink-0" aria-hidden>
+              <g className="transition-transform duration-300 [transform-origin:13px_31px] group-hover:[transform:rotate(-90deg)]">
+                <rect x="1" y="27" width="24" height="8" rx="2" fill="rgba(255,255,255,0.75)" />
+                <rect x="9" y="19" width="8" height="24" rx="2" fill="rgba(255,255,255,0.75)" />
+              </g>
+              <g className="transition-transform duration-300 [transform-origin:31px_13px] group-hover:[transform:rotate(90deg)]">
+                <rect x="19" y="9" width="24" height="8" rx="2" fill="#FFCB21" />
+                <rect x="27" y="1" width="8" height="24" rx="2" fill="#FFCB21" />
+              </g>
+            </svg>
+            MDplus
           </Link>
           <button
             ref={closeRef}
