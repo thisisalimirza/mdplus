@@ -227,16 +227,25 @@ export default async function Home() {
       </section>
 
       {/* ── 3 Pillars ─────────────────────────────────────────── */}
-      <section className="bg-neutral-50 py-24 md:py-32">
-        <div className="mx-auto max-w-(--container-max) px-6">
+      <section className="relative overflow-hidden py-24 md:py-32">
+        {/* Member collage background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/event-photos/mdpluscollage.jpg')" }}
+          aria-hidden
+        />
+        {/* Dark overlay so text stays readable */}
+        <div className="absolute inset-0 bg-rhino-900/80" aria-hidden />
+
+        <div className="relative mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
               What&apos;s inside
             </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
               Three layers, one community.
             </h2>
-            <p className="mt-6 text-lg text-neutral-600">
+            <p className="mt-6 text-lg text-white/70">
               Whether you&apos;re here to learn, connect, or build, there&apos;s
               a starting point for you.
             </p>
@@ -248,20 +257,20 @@ export default async function Home() {
               return (
                 <article
                   key={pillar.title}
-                  className="group flex flex-col rounded-lg border border-neutral-200 bg-neutral-0 p-8 transition-all hover:border-denim-200 hover:shadow-md"
+                  className="group flex flex-col rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
                 >
-                  <span className="inline-flex size-12 items-center justify-center rounded-lg bg-denim-50 text-denim-600">
+                  <span className="inline-flex size-12 items-center justify-center rounded-lg bg-yellow-400/20 text-yellow-400">
                     <Icon className="size-6" aria-hidden />
                   </span>
-                  <h3 className="mt-5 font-display text-2xl font-bold text-rhino-700">
+                  <h3 className="mt-5 font-display text-2xl font-bold text-white">
                     {pillar.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-base leading-relaxed text-neutral-600">
+                  <p className="mt-3 flex-1 text-base leading-relaxed text-white/65">
                     {pillar.description}
                   </p>
                   <Link
                     href={pillar.href}
-                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-denim-600 transition-all group-hover:gap-2 hover:text-denim-700"
+                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-yellow-400 transition-all group-hover:gap-2 hover:text-yellow-300"
                   >
                     {pillar.cta}
                     <ArrowRight className="size-4" aria-hidden />
