@@ -236,7 +236,7 @@ export default async function Home() {
       </section>
 
       {/* ── 3 Pillars ─────────────────────────────────────────── */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative overflow-hidden py-14 md:py-16">
         {/* Member collage background */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
