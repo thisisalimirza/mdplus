@@ -94,3 +94,48 @@ export const journalClubBySlugQuery = defineQuery(`
 export const journalClubSlugsQuery = defineQuery(`
   *[_type == "journalClub" && defined(slug.current)] { "slug": slug.current }
 `);
+
+export const podcastEpisodesQuery = defineQuery(`
+  *[_type == "podcastEpisode" && defined(slug.current)] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    episodeNumber,
+    series,
+    guest,
+    guestTitle,
+    guestPhoto,
+    publishedAt,
+    duration,
+    coverImage { asset, alt, hotspot, crop },
+    summary,
+    spotifyUrl,
+    buzzsproutUrl,
+    applePodcastsUrl
+  }
+`);
+
+export const podcastEpisodeBySlugQuery = defineQuery(`
+  *[_type == "podcastEpisode" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    episodeNumber,
+    series,
+    guest,
+    guestTitle,
+    guestPhoto,
+    publishedAt,
+    duration,
+    coverImage { asset, alt, hotspot, crop },
+    summary,
+    spotifyUrl,
+    buzzsproutUrl,
+    applePodcastsUrl,
+    body
+  }
+`);
+
+export const podcastEpisodeSlugsQuery = defineQuery(`
+  *[_type == "podcastEpisode" && defined(slug.current)] { "slug": slug.current }
+`);

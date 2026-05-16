@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import {
   Mic,
@@ -9,6 +10,10 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { podcastEpisodesQuery } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
+import type { PodcastEpisodeListItem } from "@/sanity/lib/types";
 
 export const metadata: Metadata = {
   title: "Podcast",
@@ -40,7 +45,18 @@ const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
   },
 ];
 
-export default function PodcastPage() {
+export const revalidate = 60;
+
+const SERIES_LABELS: Record<string, string> = {
+  "founder-stories": "Founder Stories",
+  "fireside-chats": "Fireside Chats",
+  "trainee-decision-points": "Trainee Decision Points",
+};
+
+export default async function PodcastPage() {
+  const episodes: PodcastEpisodeListItem[] = isSanityConfigured
+    ? await client.fetch(podcastEpisodesQuery)
+    : [];
   return (
     <>
       <PageHero
@@ -125,6 +141,88 @@ export default function PodcastPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Episodes ───────────────────────────────────────── */}
+      {episodes.length > 0 && (
+        <section className="bg-neutral-50 py-20 md:py-28">
+          <div className="mx-auto max-w-(--container-max) px-6">
+            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+              Episodes
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
+              Latest conversations.
+            </h2>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {episodes.map((ep) => (
+                <Link
+                  key={ep._id}
+                  href={`/learn/podcast/${ep.slug?.current}`}
+                  className="group flex gap-5 rounded-xl border border-neutral-200 bg-neutral-0 p-5 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                >
+                  {/* Thumbnail */}
+                  <div className="relative size-20 shrink-0 overflow-hidden rounded-lg bg-denim-50">
+                    {!!ep.coverImage?.asset ? (
+                      <Image
+                        src={urlFor(ep.coverImage).width(160).height(160).url()}
+                        alt={ep.coverImage.alt ?? ep.title ?? ""}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : !!ep.guestPhoto?.asset ? (
+                      <Image
+                        src={urlFor(ep.guestPhoto).width(160).height(160).url()}
+                        alt={ep.guest ?? ""}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span className="flex h-full items-center justify-center">
+                        <Mic className="size-8 text-denim-300" aria-hidden />
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Text */}
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {ep.episodeNumber && (
+                        <span className="text-xs font-semibold text-neutral-400">
+                          Ep. {ep.episodeNumber}
+                        </span>
+                      )}
+                      {ep.series && (
+                        <span className="rounded-full bg-denim-50 px-2 py-0.5 text-xs font-semibold text-denim-700">
+                          {SERIES_LABELS[ep.series] ?? ep.series}
+                        </span>
+                      )}
+                      {ep.duration && (
+                        <span className="text-xs text-neutral-400">{ep.duration}</span>
+                      )}
+                    </div>
+                    <h3 className="mt-1.5 font-display text-base font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
+                      {ep.title}
+                    </h3>
+                    {ep.guest && (
+                      <p className="mt-1 text-sm text-neutral-500">
+                        {ep.guest}
+                        {ep.guestTitle && (
+                          <span className="text-neutral-400"> · {ep.guestTitle}</span>
+                        )}
+                      </p>
+                    )}
+                    {ep.summary && (
+                      <p className="mt-2 text-sm leading-relaxed text-neutral-600 line-clamp-2">
+                        {ep.summary}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Host card ──────────────────────────────────────── */}
       <section className="bg-yellow-50 py-20 md:py-24">

@@ -65,6 +65,29 @@ export type JournalClubListItem = {
   } | null;
 };
 
+export type PodcastEpisodeListItem = {
+  _id: string;
+  title: string | null;
+  slug: { current: string | null } | null;
+  episodeNumber: number | null;
+  series: string | null;
+  guest: string | null;
+  guestTitle: string | null;
+  guestPhoto: { asset: unknown } | null;
+  publishedAt: string | null;
+  duration: string | null;
+  coverImage: { asset: unknown; alt: string | null; hotspot: unknown; crop: unknown } | null;
+  summary: string | null;
+  spotifyUrl: string | null;
+  buzzsproutUrl: string | null;
+  applePodcastsUrl: string | null;
+};
+
+export type PodcastEpisodeDetail = PodcastEpisodeListItem & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any[] | null;
+};
+
 export type JournalClubDetail = JournalClubListItem & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body: any[] | null;
