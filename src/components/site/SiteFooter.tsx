@@ -40,6 +40,7 @@ const FOOTER_GROUPS = [
     links: [
       { href: "/about", label: "About" },
       ...ABOUT_SECTIONS.map((s) => ({ href: s.href, label: s.title })),
+      { href: "/archive", label: "Archive" },
       { href: "/partners", label: "For Partners" },
     ],
   },

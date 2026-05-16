@@ -10,12 +10,21 @@ import {
   Trophy,
   Mail,
   Mic,
+  FileText,
+  MapPin,
   type LucideIcon,
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
 import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import {
+  homepageRecentPostsQuery,
+  homepageRecentPodcastQuery,
+  homepageRecentEventQuery,
+} from "@/sanity/lib/queries";
 
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
@@ -74,7 +83,39 @@ const PILLARS: {
   },
 ];
 
-export default function Home() {
+export const revalidate = 60;
+
+const CATEGORY_LABELS: Record<string, string> = {
+  "medicine-ai": "Medicine & AI",
+  career: "Career",
+  technology: "Technology",
+  research: "Research",
+  community: "Community",
+  opinion: "Opinion",
+};
+
+export default async function Home() {
+  const [recentPosts, recentPodcast, recentEvents] = isSanityConfigured
+    ? await Promise.all([
+        client.fetch(homepageRecentPostsQuery),
+        client.fetch(homepageRecentPodcastQuery),
+        client.fetch(homepageRecentEventQuery),
+      ])
+    : [[], [], []];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const contentWall: any[] = [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...recentPosts.map((p: any) => ({ ...p, _kind: "article", _date: p.publishedAt })),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...recentPodcast.map((e: any) => ({ ...e, _kind: "podcast", _date: e.publishedAt })),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...recentEvents.map((e: any) => ({ ...e, _kind: "event", _date: e.startDate })),
+  ].sort((a, b) => {
+    if (!a._date) return 1;
+    if (!b._date) return -1;
+    return new Date(b._date).getTime() - new Date(a._date).getTime();
+  });
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -195,16 +236,25 @@ export default function Home() {
       </section>
 
       {/* ── 3 Pillars ─────────────────────────────────────────── */}
-      <section className="bg-neutral-50 py-24 md:py-32">
-        <div className="mx-auto max-w-(--container-max) px-6">
+      <section className="relative overflow-hidden py-14 md:py-16">
+        {/* Member collage background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/event-photos/mdpluscollage.jpg')" }}
+          aria-hidden
+        />
+        {/* Dark overlay so text stays readable */}
+        <div className="absolute inset-0 bg-rhino-900/80" aria-hidden />
+
+        <div className="relative mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
               What&apos;s inside
             </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
               Three layers, one community.
             </h2>
-            <p className="mt-6 text-lg text-neutral-600">
+            <p className="mt-6 text-lg text-white/70">
               Whether you&apos;re here to learn, connect, or build, there&apos;s
               a starting point for you.
             </p>
@@ -216,20 +266,20 @@ export default function Home() {
               return (
                 <article
                   key={pillar.title}
-                  className="group flex flex-col rounded-lg border border-neutral-200 bg-neutral-0 p-8 transition-all hover:border-denim-200 hover:shadow-md"
+                  className="group flex flex-col rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
                 >
-                  <span className="inline-flex size-12 items-center justify-center rounded-lg bg-denim-50 text-denim-600">
+                  <span className="inline-flex size-12 items-center justify-center rounded-lg bg-yellow-400/20 text-yellow-400">
                     <Icon className="size-6" aria-hidden />
                   </span>
-                  <h3 className="mt-5 font-display text-2xl font-bold text-rhino-700">
+                  <h3 className="mt-5 font-display text-2xl font-bold text-white">
                     {pillar.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-base leading-relaxed text-neutral-600">
+                  <p className="mt-3 flex-1 text-base leading-relaxed text-white/65">
                     {pillar.description}
                   </p>
                   <Link
                     href={pillar.href}
-                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-denim-600 transition-all group-hover:gap-2 hover:text-denim-700"
+                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-yellow-400 transition-all group-hover:gap-2 hover:text-yellow-300"
                   >
                     {pillar.cta}
                     <ArrowRight className="size-4" aria-hidden />
@@ -423,6 +473,138 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Recent content wall ──────────────────────────────── */}
+      {contentWall.length > 0 && (
+        <section className="bg-rhino-900 py-16 md:py-20">
+          <div className="mx-auto max-w-(--container-max) px-6">
+
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
+                  Recently from MDplus
+                </p>
+                <h2 className="mt-1.5 font-display text-2xl font-bold text-white md:text-3xl">
+                  Always something happening.
+                </h2>
+              </div>
+              <Link
+                href="/archive"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-white/40 transition-colors hover:text-white"
+              >
+                Full archive
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+
+            {/* Masonry wall */}
+            <div className="mt-8 columns-1 gap-3 sm:columns-2 lg:columns-3">
+              {contentWall.map((item) => {
+                const isArticle = item._kind === "article";
+                const isPodcast = item._kind === "podcast";
+                const isEvent   = item._kind === "event";
+
+                const href = isArticle
+                  ? `/learn/articles/${item.slug}`
+                  : isPodcast
+                  ? `/learn/podcast/${item.slug}`
+                  : `/events/${item.slug}`;
+
+                const dateStr = item._date
+                  ? new Date(item._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+                  : null;
+
+                const imgUrl = item.coverImage?.asset
+                  ? urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
+                  : null;
+
+                return (
+                  <Link
+                    key={item._id}
+                    href={href}
+                    className="group mb-3 block break-inside-avoid overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] transition-all hover:border-white/15 hover:bg-white/[0.07]"
+                  >
+                    {/* Cover image */}
+                    {imgUrl && (
+                      <div className="relative h-40 w-full overflow-hidden">
+                        <Image
+                          src={imgUrl}
+                          alt={item.coverImage?.alt ?? item.title ?? ""}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                        {/* gradient so badge stays readable over any photo */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" aria-hidden />
+                      </div>
+                    )}
+
+                    <div className="p-4">
+                      {/* Type badge */}
+                      <div className="flex items-center gap-1.5">
+                        {isArticle && (
+                          <>
+                            <FileText className="size-3 text-denim-400" aria-hidden />
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-denim-400">Article</span>
+                            {item.category && (
+                              <span className="ml-1 text-[10px] text-white/30">{CATEGORY_LABELS[item.category] ?? item.category}</span>
+                            )}
+                          </>
+                        )}
+                        {isPodcast && (
+                          <>
+                            <Mic className="size-3 text-sky-400" aria-hidden />
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-sky-400">Podcast</span>
+                            {item.episodeNumber && (
+                              <span className="ml-1 text-[10px] text-white/30">Ep. {item.episodeNumber}</span>
+                            )}
+                          </>
+                        )}
+                        {isEvent && (
+                          <>
+                            <Calendar className="size-3 text-yellow-400" aria-hidden />
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Event</span>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="mt-2 text-sm font-semibold leading-snug text-white/90 line-clamp-3 group-hover:text-white">
+                        {item.title}
+                      </h3>
+
+                      {/* Meta line */}
+                      {isArticle && item.authorName && (
+                        <p className="mt-1.5 text-xs text-white/40">{item.authorName}</p>
+                      )}
+                      {isPodcast && item.guest && (
+                        <p className="mt-1.5 text-xs text-white/40 line-clamp-1">
+                          {item.guest}{item.guestTitle ? ` · ${item.guestTitle}` : ""}
+                        </p>
+                      )}
+                      {isEvent && item.location && (
+                        <p className="mt-1.5 flex items-center gap-1 text-xs text-white/40">
+                          <MapPin className="size-3 shrink-0" aria-hidden />
+                          {item.location}
+                        </p>
+                      )}
+
+                      {/* Date + arrow */}
+                      <div className="mt-3 flex items-center justify-between">
+                        {dateStr && (
+                          <time className="text-[10px] text-white/25" dateTime={item._date}>{dateStr}</time>
+                        )}
+                        <ArrowRight className="size-3 text-white/20 transition-all group-hover:translate-x-0.5 group-hover:text-white/50 ml-auto" aria-hidden />
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+          </div>
+        </section>
+      )}
 
       {/* ── Closing CTA ──────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-rhino-700 py-24 md:py-28">
