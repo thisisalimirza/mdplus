@@ -93,12 +93,6 @@ const CATEGORY_LABELS: Record<string, string> = {
   opinion: "Opinion",
 };
 
-const EVENT_TYPE_STYLES: Record<string, string> = {
-  "in-person": "bg-yellow-50 text-yellow-700",
-  virtual: "bg-denim-50 text-denim-700",
-  hybrid: "bg-rhino-50 text-rhino-700",
-};
-
 export default async function Home() {
   const [recentPosts, recentPodcast, recentEvents] = isSanityConfigured
     ? await Promise.all([
@@ -107,6 +101,20 @@ export default async function Home() {
         client.fetch(homepageRecentEventQuery),
       ])
     : [[], [], []];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const contentWall: any[] = [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...recentPosts.map((p: any) => ({ ...p, _kind: "article", _date: p.publishedAt })),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...recentPodcast.map((e: any) => ({ ...e, _kind: "podcast", _date: e.publishedAt })),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...recentEvents.map((e: any) => ({ ...e, _kind: "event", _date: e.startDate })),
+  ].sort((a, b) => {
+    if (!a._date) return 1;
+    if (!b._date) return -1;
+    return new Date(b._date).getTime() - new Date(a._date).getTime();
+  });
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -465,198 +473,113 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── Recent content ───────────────────────────────────── */}
-      {(recentPosts.length > 0 || recentPodcast.length > 0 || recentEvents.length > 0) && (
-        <section className="bg-neutral-0 py-24 md:py-32">
+      {/* ── Recent content wall ──────────────────────────────── */}
+      {contentWall.length > 0 && (
+        <section className="bg-rhino-900 py-16 md:py-20">
           <div className="mx-auto max-w-(--container-max) px-6">
 
-            {/* Header */}
-            <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                   Recently from MDplus
                 </p>
-                <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
+                <h2 className="mt-1.5 font-display text-2xl font-bold text-white md:text-3xl">
                   Always something happening.
                 </h2>
               </div>
               <Link
                 href="/archive"
-                className="inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-white/40 transition-colors hover:text-white"
               >
                 Full archive
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
 
-            {/* Bento grid */}
-            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
+            {/* Masonry wall */}
+            <div className="mt-8 columns-1 gap-3 sm:columns-2 lg:columns-3">
+              {contentWall.map((item) => {
+                const isArticle = item._kind === "article";
+                const isPodcast = item._kind === "podcast";
+                const isEvent   = item._kind === "event";
 
-              {/* ── Featured article — dark, spans left 2 cols and both rows ── */}
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {recentPosts.map((post: any) => (
-                <Link
-                  key={post._id}
-                  href={`/learn/articles/${post.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-rhino-900 p-8 transition-all hover:-translate-y-0.5 hover:shadow-xl md:col-span-2 md:row-span-2 md:p-10"
-                >
-                  {/* Radial glow */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(29,123,189,0.25),_transparent_60%)]"
-                  />
-                  {/* Yellow accent line */}
-                  <div aria-hidden className="absolute top-0 left-0 h-1 w-16 rounded-full bg-yellow-500" />
+                const href = isArticle
+                  ? `/learn/articles/${item.slug}`
+                  : isPodcast
+                  ? `/learn/podcast/${item.slug}`
+                  : `/events/${item.slug}`;
 
-                  <div className="relative flex flex-col flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex size-7 items-center justify-center rounded-md bg-denim-500/30 text-denim-300">
-                        <FileText className="size-3.5" aria-hidden />
-                      </span>
-                      <span className="text-xs font-semibold uppercase tracking-widest text-denim-400">
-                        Article
-                      </span>
-                      {post.category && (
-                        <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/60">
-                          {CATEGORY_LABELS[post.category] ?? post.category}
-                        </span>
+                const dateStr = item._date
+                  ? new Date(item._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+                  : null;
+
+                return (
+                  <Link
+                    key={item._id}
+                    href={href}
+                    className="group mb-3 block break-inside-avoid rounded-xl border border-white/8 bg-white/[0.04] p-4 transition-all hover:border-white/15 hover:bg-white/[0.07]"
+                  >
+                    {/* Type badge */}
+                    <div className="flex items-center gap-1.5">
+                      {isArticle && (
+                        <>
+                          <FileText className="size-3 text-denim-400" aria-hidden />
+                          <span className="text-[10px] font-semibold uppercase tracking-widest text-denim-400">Article</span>
+                          {item.category && (
+                            <span className="ml-1 text-[10px] text-white/30">{CATEGORY_LABELS[item.category] ?? item.category}</span>
+                          )}
+                        </>
+                      )}
+                      {isPodcast && (
+                        <>
+                          <Mic className="size-3 text-sky-400" aria-hidden />
+                          <span className="text-[10px] font-semibold uppercase tracking-widest text-sky-400">Podcast</span>
+                          {item.episodeNumber && (
+                            <span className="ml-1 text-[10px] text-white/30">Ep. {item.episodeNumber}</span>
+                          )}
+                        </>
+                      )}
+                      {isEvent && (
+                        <>
+                          <Calendar className="size-3 text-yellow-400" aria-hidden />
+                          <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Event</span>
+                        </>
                       )}
                     </div>
 
-                    <h3 className="mt-6 font-display text-2xl font-bold leading-snug text-white group-hover:text-denim-200 md:text-3xl">
-                      {post.title}
+                    {/* Title */}
+                    <h3 className="mt-2 text-sm font-semibold leading-snug text-white/90 line-clamp-3 group-hover:text-white">
+                      {item.title}
                     </h3>
 
-                    {post.excerpt && (
-                      <p className="mt-4 flex-1 text-base leading-relaxed text-rhino-200/80 line-clamp-4">
-                        {post.excerpt}
+                    {/* Meta line */}
+                    {isArticle && item.authorName && (
+                      <p className="mt-1.5 text-xs text-white/40">{item.authorName}</p>
+                    )}
+                    {isPodcast && item.guest && (
+                      <p className="mt-1.5 text-xs text-white/40 line-clamp-1">
+                        {item.guest}{item.guestTitle ? ` · ${item.guestTitle}` : ""}
+                      </p>
+                    )}
+                    {isEvent && item.location && (
+                      <p className="mt-1.5 flex items-center gap-1 text-xs text-white/40">
+                        <MapPin className="size-3 shrink-0" aria-hidden />
+                        {item.location}
                       </p>
                     )}
 
-                    <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
-                      <div>
-                        {post.authorName && (
-                          <p className="text-sm font-semibold text-white/80">{post.authorName}</p>
-                        )}
-                        {post.publishedAt && (
-                          <time className="text-xs text-white/40" dateTime={post.publishedAt}>
-                            {new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-                          </time>
-                        )}
-                      </div>
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-denim-400 transition-all group-hover:gap-2">
-                        Read
-                        <ArrowRight className="size-4" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-
-              {/* ── Podcast — denim, compact ── */}
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {recentPodcast.map((ep: any) => (
-                <Link
-                  key={ep._id}
-                  href={`/learn/podcast/${ep.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-denim-600 p-7 transition-all hover:-translate-y-0.5 hover:shadow-xl"
-                >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(255,255,255,0.06),_transparent_60%)]"
-                  />
-                  <div className="relative flex flex-col flex-1">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex size-7 items-center justify-center rounded-md bg-white/15 text-white">
-                          <Mic className="size-3.5" aria-hidden />
-                        </span>
-                        <span className="text-xs font-semibold uppercase tracking-widest text-denim-200">
-                          Podcast
-                        </span>
-                      </div>
-                      {ep.episodeNumber && (
-                        <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold text-white/70">
-                          Ep. {ep.episodeNumber}
-                        </span>
+                    {/* Date + arrow */}
+                    <div className="mt-3 flex items-center justify-between">
+                      {dateStr && (
+                        <time className="text-[10px] text-white/25" dateTime={item._date}>{dateStr}</time>
                       )}
+                      <ArrowRight className="size-3 text-white/20 transition-all group-hover:translate-x-0.5 group-hover:text-white/50 ml-auto" aria-hidden />
                     </div>
-
-                    <h3 className="mt-4 font-display text-lg font-bold leading-snug text-white group-hover:text-denim-100">
-                      {ep.title}
-                    </h3>
-
-                    {ep.guest && (
-                      <p className="mt-2 text-sm font-semibold text-denim-200">
-                        {ep.guest}
-                        {ep.guestTitle && (
-                          <span className="block font-normal text-denim-300/70 text-xs mt-0.5 line-clamp-1">{ep.guestTitle}</span>
-                        )}
-                      </p>
-                    )}
-
-                    <div className="mt-auto pt-5 flex items-center justify-between border-t border-white/10">
-                      {ep.publishedAt && (
-                        <time className="text-xs text-white/40" dateTime={ep.publishedAt}>
-                          {new Date(ep.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                        </time>
-                      )}
-                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-white/60 transition-all group-hover:gap-2 group-hover:text-white">
-                        Listen <ArrowRight className="size-3.5" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-
-              {/* ── Event — yellow accent, compact ── */}
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {recentEvents.map((event: any) => (
-                <Link
-                  key={event._id}
-                  href={`/events/${event.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-yellow-200 bg-yellow-50 p-7 transition-all hover:-translate-y-0.5 hover:border-yellow-300 hover:shadow-xl"
-                >
-                  <div className="flex flex-col flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex size-7 items-center justify-center rounded-md bg-yellow-400/30 text-yellow-700">
-                        <Calendar className="size-3.5" aria-hidden />
-                      </span>
-                      <span className="text-xs font-semibold uppercase tracking-widest text-yellow-700">
-                        Event recap
-                      </span>
-                    </div>
-
-                    {event.startDate && (
-                      <p className="mt-4 font-display text-4xl font-bold leading-none text-rhino-700">
-                        {new Date(event.startDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                        <span className="block text-sm font-normal text-neutral-500 mt-1">
-                          {new Date(event.startDate).getFullYear()}
-                        </span>
-                      </p>
-                    )}
-
-                    <h3 className="mt-3 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
-                      {event.title}
-                    </h3>
-
-                    {event.location && (
-                      <p className="mt-2 flex items-center gap-1 text-sm text-neutral-500">
-                        <MapPin className="size-3.5 shrink-0" aria-hidden />
-                        {event.location}
-                      </p>
-                    )}
-
-                    <div className="mt-auto pt-5 border-t border-yellow-200">
-                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-yellow-700 transition-all group-hover:gap-2">
-                        Read recap <ArrowRight className="size-3.5" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-
+                  </Link>
+                );
+              })}
             </div>
+
           </div>
         </section>
       )}
