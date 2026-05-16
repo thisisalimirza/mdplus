@@ -146,14 +146,14 @@ export function MobileMenu({ nav }: MobileMenuProps) {
             aria-label="MDplus home"
           >
             {/* Dark-background variant: blue plus uses white */}
-            <svg viewBox="0 0 36 36" className="h-6 w-6 shrink-0" aria-hidden>
-              <g className="transition-transform duration-300 [transform-origin:12px_23px] group-hover:[transform:rotate(-90deg)]">
-                <rect x="0" y="19" width="24" height="8" rx="1.5" fill="rgba(255,255,255,0.75)" />
-                <rect x="8" y="11" width="8" height="24" rx="1.5" fill="rgba(255,255,255,0.75)" />
+            <svg viewBox="0 0 46 46" className="h-6 w-6 shrink-0" aria-hidden>
+              <g className="transition-transform duration-300 [transform-origin:13px_33px] group-hover:[transform:rotate(-90deg)]">
+                <rect x="1" y="29" width="24" height="8" rx="2" fill="rgba(255,255,255,0.75)" />
+                <rect x="9" y="21" width="8" height="24" rx="2" fill="rgba(255,255,255,0.75)" />
               </g>
-              <g className="transition-transform duration-300 [transform-origin:24px_13px] group-hover:[transform:rotate(90deg)]">
-                <rect x="12" y="9" width="24" height="8" rx="1.5" fill="#FFCB21" />
-                <rect x="20" y="1" width="8" height="24" rx="1.5" fill="#FFCB21" />
+              <g className="transition-transform duration-300 [transform-origin:33px_13px] group-hover:[transform:rotate(90deg)]">
+                <rect x="21" y="9" width="24" height="8" rx="2" fill="#FFCB21" />
+                <rect x="29" y="1" width="8" height="24" rx="2" fill="#FFCB21" />
               </g>
             </svg>
             MDplus
