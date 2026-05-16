@@ -193,20 +193,20 @@ export const eventSlugsQuery = defineQuery(`
 `);
 
 export const homepageRecentPostsQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...2] {
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...1] {
     _id, title, "slug": slug.current, publishedAt, excerpt, category,
     "authorName": author->name
   }
 `);
 
 export const homepageRecentPodcastQuery = defineQuery(`
-  *[_type == "podcastEpisode" && defined(slug.current)] | order(publishedAt desc) [0...2] {
-    _id, title, "slug": slug.current, publishedAt, guest, summary, episodeNumber
+  *[_type == "podcastEpisode" && defined(slug.current)] | order(publishedAt desc) [0...1] {
+    _id, title, "slug": slug.current, publishedAt, guest, guestTitle, summary, episodeNumber
   }
 `);
 
-export const homepageUpcomingEventQuery = defineQuery(`
-  *[_type == "event" && defined(slug.current) && status == "upcoming"] | order(startDate asc) [0...2] {
+export const homepageRecentEventQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current) && status == "past"] | order(startDate desc) [0...1] {
     _id, title, "slug": slug.current, startDate, location, eventType, summary
   }
 `);
