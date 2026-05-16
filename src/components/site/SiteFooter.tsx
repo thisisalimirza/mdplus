@@ -16,6 +16,7 @@ const FOOTER_GROUPS = [
     label: "Community",
     links: [
       { href: "/community", label: "Overview" },
+      { href: "/events", label: "Events" },
       ...COMMUNITIES.map((c) => ({
         href: `/community/${c.slug}`,
         label: c.shortName ?? c.name,
