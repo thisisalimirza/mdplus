@@ -191,3 +191,34 @@ export const eventBySlugQuery = defineQuery(`
 export const eventSlugsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current)] { "slug": slug.current }
 `);
+
+export const archivePostsQuery = defineQuery(`
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+    _id, title, "slug": slug.current, publishedAt, excerpt, category,
+    "author": author->name
+  }
+`);
+
+export const archivePublicationsQuery = defineQuery(`
+  *[_type == "publication"] | order(publishedAt desc) {
+    _id, title, publishedAt, abstract, venue, authors, category, externalUrl
+  }
+`);
+
+export const archiveJournalClubQuery = defineQuery(`
+  *[_type == "journalClub" && defined(slug.current)] | order(discussionDate desc) {
+    _id, title, "slug": slug.current, discussionDate, paperTitle, summary
+  }
+`);
+
+export const archivePodcastQuery = defineQuery(`
+  *[_type == "podcastEpisode" && defined(slug.current)] | order(publishedAt desc) {
+    _id, title, "slug": slug.current, publishedAt, guest, guestTitle, summary, episodeNumber
+  }
+`);
+
+export const archiveEventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current)] | order(startDate desc) {
+    _id, title, "slug": slug.current, startDate, location, summary, eventType, status
+  }
+`);
