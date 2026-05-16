@@ -7,6 +7,7 @@ import { authorSchema } from "@/sanity/schemas/author";
 import { publicationSchema } from "@/sanity/schemas/publication";
 import { journalClubSchema } from "@/sanity/schemas/journalClub";
 import { podcastEpisodeSchema } from "@/sanity/schemas/podcastEpisode";
+import { eventSchema } from "@/sanity/schemas/event";
 
 export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
@@ -19,6 +20,6 @@ export default defineConfig({
     media(),
   ],
   schema: {
-    types: [postSchema, authorSchema, publicationSchema, journalClubSchema, podcastEpisodeSchema],
+    types: [postSchema, authorSchema, publicationSchema, journalClubSchema, podcastEpisodeSchema, eventSchema],
   },
 });

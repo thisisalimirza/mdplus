@@ -65,6 +65,25 @@ export type JournalClubListItem = {
   } | null;
 };
 
+export type EventListItem = {
+  _id: string;
+  title: string | null;
+  slug: { current: string | null } | null;
+  eventType: string | null;
+  status: string | null;
+  startDate: string | null;
+  endDate?: string | null;
+  location: string | null;
+  coverImage: { asset: unknown; alt: string | null; hotspot: unknown; crop: unknown } | null;
+  summary: string | null;
+  registrationUrl: string | null;
+};
+
+export type EventDetail = EventListItem & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any[] | null;
+};
+
 export type PodcastEpisodeListItem = {
   _id: string;
   title: string | null;

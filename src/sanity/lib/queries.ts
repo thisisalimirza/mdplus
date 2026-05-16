@@ -139,3 +139,55 @@ export const podcastEpisodeBySlugQuery = defineQuery(`
 export const podcastEpisodeSlugsQuery = defineQuery(`
   *[_type == "podcastEpisode" && defined(slug.current)] { "slug": slug.current }
 `);
+
+export const eventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current)] | order(startDate desc) {
+    _id,
+    title,
+    slug,
+    eventType,
+    status,
+    startDate,
+    endDate,
+    location,
+    coverImage { asset, alt, hotspot, crop },
+    summary,
+    registrationUrl
+  }
+`);
+
+export const recentEventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current)] | order(startDate desc) [0...3] {
+    _id,
+    title,
+    slug,
+    eventType,
+    status,
+    startDate,
+    location,
+    coverImage { asset, alt, hotspot, crop },
+    summary,
+    registrationUrl
+  }
+`);
+
+export const eventBySlugQuery = defineQuery(`
+  *[_type == "event" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    eventType,
+    status,
+    startDate,
+    endDate,
+    location,
+    coverImage { asset, alt, hotspot, crop },
+    summary,
+    registrationUrl,
+    body
+  }
+`);
+
+export const eventSlugsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current)] { "slug": slug.current }
+`);

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import {
   MessagesSquare,
@@ -6,12 +7,17 @@ import {
   UserSearch,
   MapPin,
   ArrowRight,
+  Calendar,
 } from "lucide-react";
 import { PhotoHero } from "@/components/marketing/PhotoHero";
 import { EventPhotoStrip } from "@/components/marketing/EventPhotoStrip";
 import { COMMUNITIES } from "@/data/communities";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
 import { HERO_COLLAGE, MEETUP_PHOTOS } from "@/data/event-photos";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { recentEventsQuery } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
+import type { EventListItem } from "@/sanity/lib/types";
 
 export const metadata: Metadata = {
   title: "Community",
@@ -42,7 +48,12 @@ const HIGHLIGHTS = [
   },
 ] as const;
 
-export default function CommunityPage() {
+export const revalidate = 60;
+
+export default async function CommunityPage() {
+  const recentEvents: EventListItem[] = isSanityConfigured
+    ? await client.fetch(recentEventsQuery)
+    : [];
   return (
     <>
       <PhotoHero
@@ -168,25 +179,78 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* ── Event photo strip ───────────────────────────────── */}
+      {/* ── Events ─────────────────────────────────────────── */}
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-              In real life, too
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold text-rhino-700 md:text-4xl">
-              We actually meet up.
-            </h2>
-            <p className="mt-6 text-lg text-neutral-600">
-              Slack is the always-on layer. Regional dinners, conference
-              meetups, and city chapters are how members find each other in
-              person. Hosted by Regional Community Directors.
-            </p>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+                In real life, too
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold text-rhino-700 md:text-4xl">
+                We actually meet up.
+              </h2>
+              <p className="mt-6 text-lg text-neutral-600">
+                Slack is the always-on layer. Regional dinners, conference
+                meetups, and city chapters are how members find each other in
+                person. Hosted by Regional Community Directors.
+              </p>
+            </div>
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-denim-600 hover:text-denim-800"
+            >
+              See all events
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
           </div>
-          <div className="mt-12">
-            <EventPhotoStrip photos={MEETUP_PHOTOS.slice(0, 4)} />
-          </div>
+
+          {recentEvents.length > 0 ? (
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {recentEvents.map((event) => (
+                <Link
+                  key={event._id}
+                  href={`/events/${event.slug?.current}`}
+                  className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-neutral-0 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                >
+                  {!!event.coverImage?.asset ? (
+                    <div className="relative h-40 overflow-hidden bg-neutral-100">
+                      <Image
+                        src={urlFor(event.coverImage).width(600).height(320).url()}
+                        alt={event.coverImage.alt ?? event.title ?? ""}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-40 items-center justify-center bg-denim-50">
+                      <Calendar className="size-7 text-denim-300" aria-hidden />
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-5">
+                    {event.startDate && (
+                      <time className="text-xs font-semibold uppercase tracking-widest text-denim-600" dateTime={event.startDate}>
+                        {new Date(event.startDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                      </time>
+                    )}
+                    <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
+                      {event.title}
+                    </h3>
+                    {event.location && (
+                      <p className="mt-1 flex items-center gap-1 text-sm text-neutral-500">
+                        <MapPin className="size-3.5 shrink-0" aria-hidden />
+                        {event.location}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12">
+              <EventPhotoStrip photos={MEETUP_PHOTOS.slice(0, 4)} />
+            </div>
+          )}
         </div>
       </section>
 
