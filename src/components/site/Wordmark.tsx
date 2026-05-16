@@ -13,24 +13,25 @@ export function Wordmark({ className = "" }: { className?: string }) {
       aria-label="MDplus home"
       className={`group inline-flex items-center gap-1.5 ${className}`}
     >
-      {/* Dual-plus mark — recreates the brand icon in SVG so each plus
-          can be animated independently. viewBox matches the mark's bounding
-          box: blue plus (bottom-left) center at (10,20), yellow (top-right)
-          center at (20,10), arm width 7. */}
+      {/* Dual-plus mark. viewBox 36×36, arm width 8.
+          Centers match the actual logo proportions:
+          blue (bottom-left) at (12,23), yellow (top-right) at (24,13).
+          Each plus occupies 24×24 of the 36×36 canvas; they share only
+          a small corner-arm overlap — matching the real brand mark. */}
       <svg
-        viewBox="0 0 30 30"
+        viewBox="0 0 36 36"
         className="h-7 w-7 shrink-0"
         aria-hidden
       >
         {/* Blue plus (denim-500) — counter-rotates on hover */}
-        <g className="transition-transform duration-300 [transform-origin:10px_20px] group-hover:[transform:rotate(-90deg)]">
-          <rect x="0" y="16" width="21" height="7" rx="1.5" fill="#1D7BBD" />
-          <rect x="7" y="9" width="7" height="21" rx="1.5" fill="#1D7BBD" />
+        <g className="transition-transform duration-300 [transform-origin:12px_23px] group-hover:[transform:rotate(-90deg)]">
+          <rect x="0" y="19" width="24" height="8" rx="1.5" fill="#1D7BBD" />
+          <rect x="8" y="11" width="8" height="24" rx="1.5" fill="#1D7BBD" />
         </g>
         {/* Yellow plus (yellow-500) — rotates on hover */}
-        <g className="transition-transform duration-300 [transform-origin:20px_10px] group-hover:[transform:rotate(90deg)]">
-          <rect x="9" y="7" width="21" height="7" rx="1.5" fill="#FFCB21" />
-          <rect x="17" y="0" width="7" height="21" rx="1.5" fill="#FFCB21" />
+        <g className="transition-transform duration-300 [transform-origin:24px_13px] group-hover:[transform:rotate(90deg)]">
+          <rect x="12" y="9" width="24" height="8" rx="1.5" fill="#FFCB21" />
+          <rect x="20" y="1" width="8" height="24" rx="1.5" fill="#FFCB21" />
         </g>
       </svg>
 
