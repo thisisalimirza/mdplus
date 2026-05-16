@@ -13,24 +13,23 @@ export function Wordmark({ className = "" }: { className?: string }) {
       aria-label="MDplus home"
       className={`group inline-flex items-center gap-1.5 ${className}`}
     >
-      {/* Dual-plus mark. Two completely separate plus signs — no overlap.
-          arm=8, centers at (13,33) [blue, bottom-left] and (33,13) [yellow,
-          top-right], separated by 2.5 arm-widths in both axes on a 46×46
-          canvas so the nearest arm tips are ~3px apart and never touch. */}
+      {/* Dual-plus mark. arm=8, 44×44 canvas.
+          Blue center (13,31), yellow center (31,13) — 2px gap between
+          nearest arm tips, no overlap. */}
       <svg
-        viewBox="0 0 46 46"
+        viewBox="0 0 44 44"
         className="h-7 w-7 shrink-0"
         aria-hidden
       >
         {/* Blue plus (denim-500) — counter-rotates on hover */}
-        <g className="transition-transform duration-300 [transform-origin:13px_33px] group-hover:[transform:rotate(-90deg)]">
-          <rect x="1" y="29" width="24" height="8" rx="2" fill="#1D7BBD" />
-          <rect x="9" y="21" width="8" height="24" rx="2" fill="#1D7BBD" />
+        <g className="transition-transform duration-300 [transform-origin:13px_31px] group-hover:[transform:rotate(-90deg)]">
+          <rect x="1" y="27" width="24" height="8" rx="2" fill="#1D7BBD" />
+          <rect x="9" y="19" width="8" height="24" rx="2" fill="#1D7BBD" />
         </g>
         {/* Yellow plus (yellow-500) — rotates on hover */}
-        <g className="transition-transform duration-300 [transform-origin:33px_13px] group-hover:[transform:rotate(90deg)]">
-          <rect x="21" y="9" width="24" height="8" rx="2" fill="#FFCB21" />
-          <rect x="29" y="1" width="8" height="24" rx="2" fill="#FFCB21" />
+        <g className="transition-transform duration-300 [transform-origin:31px_13px] group-hover:[transform:rotate(90deg)]">
+          <rect x="19" y="9" width="24" height="8" rx="2" fill="#FFCB21" />
+          <rect x="27" y="1" width="8" height="24" rx="2" fill="#FFCB21" />
         </g>
       </svg>
 
