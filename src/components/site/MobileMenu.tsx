@@ -288,14 +288,14 @@ export function MobileMenu({ nav }: MobileMenuProps) {
         <div className="border-t border-white/10 px-6 py-6">
           <div className="grid gap-3">
             <Link
-              href="/join"
+              href="https://app.mdplus.community/apply"
               onClick={closeMenu}
               className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-5 py-3 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
             >
               Join free →
             </Link>
             <Link
-              href="/login"
+              href="https://app.mdplus.community/login"
               onClick={closeMenu}
               className="inline-flex items-center justify-center rounded-md border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >

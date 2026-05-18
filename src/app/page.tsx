@@ -142,7 +142,7 @@ export default async function Home() {
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Link
-              href="/join"
+              href="https://app.mdplus.community/apply"
               className="inline-flex items-center justify-center rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all hover:bg-denim-600 active:bg-denim-700"
             >
               Join free →
@@ -624,7 +624,7 @@ export default async function Home() {
             </p>
             <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
               >
                 Join free →
@@ -727,7 +727,7 @@ export default async function Home() {
           <p className="mt-10 text-center text-sm text-neutral-500">
             Changed your mind?{" "}
             <Link
-              href="/join"
+              href="https://app.mdplus.community/apply"
               className="font-semibold text-denim-600 hover:text-denim-700"
             >
               The Slack is right here.

@@ -265,7 +265,7 @@ export default async function PublicationsPage() {
                 </p>
               </div>
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-rhino-700 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-rhino-600"
               >
                 Join free

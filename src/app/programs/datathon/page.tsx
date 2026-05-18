@@ -123,7 +123,7 @@ export default function DatathonPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/join"
+            href="https://app.mdplus.community/apply"
             className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
           >
             Get notified for the 5th
@@ -397,7 +397,7 @@ export default function DatathonPage() {
             </p>
             <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
               >
                 Join free

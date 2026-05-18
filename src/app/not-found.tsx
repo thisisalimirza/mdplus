@@ -37,7 +37,7 @@ export default function NotFound() {
             Back to home
           </Link>
           <Link
-            href="/join"
+            href="https://app.mdplus.community/apply"
             className="inline-flex items-center justify-center rounded-md border border-rhino-200 bg-neutral-0 px-5 py-3 text-sm font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
           >
             Join the community
