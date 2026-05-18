@@ -365,8 +365,8 @@ export default async function Home() {
               </div>
             </article>
 
-            {/* Datathon — light yellow card */}
-            <article className="flex flex-col rounded-xl border border-yellow-200 bg-yellow-50 p-8 transition-shadow hover:shadow-md md:p-10">
+            {/* Datathon — white card */}
+            <article className="flex flex-col rounded-xl border-2 border-yellow-400 bg-neutral-0 p-8 transition-shadow hover:shadow-md md:p-10">
               <div className="flex items-center justify-between">
                 <span className="inline-flex size-12 items-center justify-center rounded-md bg-rhino-900 text-yellow-400">
                   <Trophy className="size-6" aria-hidden />
