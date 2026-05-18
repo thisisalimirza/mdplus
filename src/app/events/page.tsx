@@ -47,19 +47,22 @@ export default async function EventsPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Events"
-        title="We actually meet up."
-        description="In-person dinners, conference meetups, city chapters, and virtual sessions. Find what's next — or browse what you missed."
-      >
-        <Link
-          href="https://app.mdplus.community/apply"
-          className="inline-flex items-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+      {/* Hero hidden — page now opens directly with the events grid */}
+      <div className="hidden">
+        <PageHero
+          eyebrow="Events"
+          title="We actually meet up."
+          description="In-person dinners, conference meetups, city chapters, and virtual sessions. Find what's next — or browse what you missed."
         >
-          Join to get invited
-          <ArrowRight className="size-4" aria-hidden />
-        </Link>
-      </PageHero>
+          <Link
+            href="https://app.mdplus.community/apply"
+            className="inline-flex items-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+          >
+            Join to get invited
+            <ArrowRight className="size-4" aria-hidden />
+          </Link>
+        </PageHero>
+      </div>
 
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6 space-y-20">
