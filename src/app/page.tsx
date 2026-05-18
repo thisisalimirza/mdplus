@@ -309,38 +309,38 @@ export default async function Home() {
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2">
-            {/* Catalyst */}
-            <article className="flex flex-col rounded-xl border border-rhino-100 bg-neutral-0 p-8 transition-shadow hover:shadow-md md:p-10">
+            {/* Catalyst — dark card */}
+            <article className="flex flex-col rounded-xl bg-rhino-900 p-8 transition-shadow hover:shadow-xl md:p-10">
               <div className="flex items-center justify-between">
                 <span className="inline-flex size-12 items-center justify-center rounded-md bg-yellow-500 text-rhino-900">
                   <Zap className="size-6" aria-hidden />
                 </span>
-                <span className="rounded-pill bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
+                <span className="rounded-pill bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-yellow-400">
                   Live · cohort
                 </span>
               </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-rhino-700 md:text-3xl">
+              <h3 className="mt-6 font-display text-2xl font-bold text-white md:text-3xl">
                 Catalyst
               </h3>
-              <p className="mt-3 flex-1 text-base leading-relaxed text-neutral-600">
+              <p className="mt-3 flex-1 text-base leading-relaxed text-white/65">
                 Our flagship cohort program for physician-innovators. Built
                 with mentors and structured deadlines so the work actually
                 ships.
               </p>
-              <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-neutral-100 pt-5 text-sm">
+              <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-white/10 pt-5 text-sm">
                 <li>
-                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-white/40">
                     Sponsors
                   </span>
-                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                  <span className="mt-0.5 block font-display font-bold text-white">
                     8 named partners
                   </span>
                 </li>
                 <li>
-                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-white/40">
                     Format
                   </span>
-                  <span className="mt-0.5 block font-display font-bold text-rhino-700">
+                  <span className="mt-0.5 block font-display font-bold text-white">
                     Cohort + mentors
                   </span>
                 </li>
@@ -348,7 +348,7 @@ export default async function Home() {
               <div className="mt-7 flex flex-wrap items-center gap-4">
                 <Link
                   href="/programs/catalyst"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-yellow-500 px-5 py-3 text-sm font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
                 >
                   See Catalyst
                   <ArrowRight className="size-4" aria-hidden />
@@ -357,7 +357,7 @@ export default async function Home() {
                   href="https://catalyst.mdplus.community"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-white/50 transition-colors hover:text-white"
                 >
                   catalyst.mdplus.community
                   <ArrowUpRight className="size-3.5" aria-hidden />
@@ -365,13 +365,13 @@ export default async function Home() {
               </div>
             </article>
 
-            {/* Datathon */}
-            <article className="flex flex-col rounded-xl border border-rhino-100 bg-neutral-0 p-8 transition-shadow hover:shadow-md md:p-10">
+            {/* Datathon — white card */}
+            <article className="flex flex-col rounded-xl border-2 border-yellow-400 bg-neutral-0 p-8 transition-shadow hover:shadow-md md:p-10">
               <div className="flex items-center justify-between">
-                <span className="inline-flex size-12 items-center justify-center rounded-md bg-yellow-500 text-rhino-900">
+                <span className="inline-flex size-12 items-center justify-center rounded-md bg-rhino-900 text-yellow-400">
                   <Trophy className="size-6" aria-hidden />
                 </span>
-                <span className="rounded-pill bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
+                <span className="rounded-pill bg-rhino-900/10 px-2.5 py-0.5 text-xs font-semibold text-rhino-700">
                   Annual
                 </span>
               </div>
@@ -383,9 +383,9 @@ export default async function Home() {
                 its 4th year. The model is published in JMIR Medical
                 Education.
               </p>
-              <ul className="mt-6 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-neutral-100 pt-5 text-sm">
+              <ul className="mt-6 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-yellow-200 pt-5 text-sm">
                 <li>
-                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-400">
                     Editions
                   </span>
                   <span className="mt-0.5 block font-display font-bold text-rhino-700">
@@ -393,7 +393,7 @@ export default async function Home() {
                   </span>
                 </li>
                 <li>
-                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-400">
                     2025 size
                   </span>
                   <span className="mt-0.5 block font-display font-bold text-rhino-700">
@@ -401,7 +401,7 @@ export default async function Home() {
                   </span>
                 </li>
                 <li>
-                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-500">
+                  <span className="block text-xs font-semibold uppercase tracking-wider text-rhino-400">
                     Published
                   </span>
                   <span className="mt-0.5 block font-display font-bold text-rhino-700">
@@ -412,7 +412,7 @@ export default async function Home() {
               <div className="mt-7">
                 <Link
                   href="/programs/datathon"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-rhino-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-rhino-700"
                 >
                   See the Datathon
                   <ArrowRight className="size-4" aria-hidden />
@@ -448,19 +448,37 @@ export default async function Home() {
           </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {COMMUNITIES.map((c) => {
+            {COMMUNITIES.map((c, i) => {
               const Icon = COMMUNITY_ICON[c.slug];
+              // Rotate across 3 brand colors so no two adjacent cards match
+              const theme = [
+                {
+                  card: "hover:border-denim-400 hover:bg-denim-50 hover:shadow-denim-100/60",
+                  icon: "group-hover:bg-denim-100 group-hover:text-denim-600",
+                  title: "group-hover:text-denim-700",
+                },
+                {
+                  card: "hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-yellow-100/60",
+                  icon: "group-hover:bg-yellow-100 group-hover:text-yellow-700",
+                  title: "group-hover:text-yellow-700",
+                },
+                {
+                  card: "hover:border-rhino-400 hover:bg-rhino-50 hover:shadow-rhino-100/60",
+                  icon: "group-hover:bg-rhino-100 group-hover:text-rhino-600",
+                  title: "group-hover:text-rhino-600",
+                },
+              ][i % 3];
               return (
                 <Link
                   key={c.slug}
                   href={`/community/${c.slug}`}
-                  className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                  className={`group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${theme.card}`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 group-hover:bg-denim-50 group-hover:text-denim-600">
+                    <span className={`inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 transition-colors duration-200 ${theme.icon}`}>
                       {Icon && <Icon className="size-5" aria-hidden />}
                     </span>
-                    <h3 className="font-display text-xl font-bold text-rhino-700 group-hover:text-denim-700">
+                    <h3 className={`font-display text-xl font-bold text-rhino-700 transition-colors duration-200 ${theme.title}`}>
                       {c.name}
                     </h3>
                   </div>
@@ -607,29 +625,27 @@ export default async function Home() {
       )}
 
       {/* ── Closing CTA ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-rhino-700 py-24 md:py-28">
+      <section className="relative overflow-hidden bg-rhino-700 py-32 md:py-44">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,203,33,0.18),_transparent_55%)]"
         />
-        <div className="relative mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl md:mx-auto md:text-center">
-            <h2 className="font-display text-3xl font-bold leading-tight text-white md:text-5xl">
-              You&apos;re a doctor. You want more.{" "}
-              <span className="text-yellow-500">We&apos;re the bridge.</span>
-            </h2>
-            <p className="mt-6 text-lg text-rhino-100/90">
-              Free Slack membership. Take a look around. Stay if it&apos;s for
-              you.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
-              <Link
-                href="https://app.mdplus.community/apply"
-                className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
-              >
-                Join free →
-              </Link>
-            </div>
+        <div className="relative mx-auto max-w-(--container-max) px-6 text-center">
+          <h2 className="font-display text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl">
+            <span className="block">You&apos;re a doctor.</span>
+            <span className="block">You want more.</span>
+            <span className="block text-yellow-500">We&apos;re the bridge.</span>
+          </h2>
+          <p className="mt-8 text-lg text-rhino-100/80 md:text-xl">
+            Free Slack membership. Take a look around. Stay if it&apos;s for you.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="https://app.mdplus.community/apply"
+              className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-8 py-4 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
+            >
+              Join free →
+            </Link>
           </div>
         </div>
       </section>
