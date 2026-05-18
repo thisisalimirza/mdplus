@@ -53,7 +53,7 @@ export default async function EventsPage() {
         description="In-person dinners, conference meetups, city chapters, and virtual sessions. Find what's next — or browse what you missed."
       >
         <Link
-          href="/join"
+          href="https://app.mdplus.community/apply"
           className="inline-flex items-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
         >
           Join to get invited

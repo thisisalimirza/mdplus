@@ -102,7 +102,7 @@ export default function CatalystPage() {
             <ArrowUpRight className="size-4" aria-hidden />
           </a>
           <Link
-            href="/join"
+            href="https://app.mdplus.community/apply"
             className="inline-flex items-center justify-center rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
           >
             Join MDplus first

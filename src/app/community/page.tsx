@@ -77,7 +77,7 @@ export default async function CommunityPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/join"
+            href="https://app.mdplus.community/apply"
             className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
           >
             Join free →
@@ -267,7 +267,7 @@ export default async function CommunityPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
               >
                 Join free →

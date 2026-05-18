@@ -238,7 +238,7 @@ export default function HistoryPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
               >
                 Join free

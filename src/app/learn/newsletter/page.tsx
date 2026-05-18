@@ -286,7 +286,7 @@ export default function NewsletterPage() {
             <p className="mt-6 text-sm text-rhino-100/70">
               Want the real-time version too?{" "}
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="text-yellow-500 underline-offset-4 hover:underline"
               >
                 Join the Slack community

@@ -58,7 +58,7 @@ export default function MembershipPage() {
               </p>
 
               <Link
-                href="/join"
+                href="https://app.mdplus.community/apply"
                 className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-rhino-200 bg-neutral-0 px-5 py-3 text-sm font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
               >
                 Join free →
@@ -112,7 +112,7 @@ export default function MembershipPage() {
               </p>
 
               <Link
-                href="/join?intent=premium"
+                href="https://app.mdplus.community/apply"
                 className="mt-8 inline-flex w-full items-center justify-center rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
               >
                 Become a Premium member →
@@ -163,7 +163,7 @@ export default function MembershipPage() {
               </p>
             </div>
             <Link
-              href="/join?intent=founding"
+              href="https://app.mdplus.community/apply"
               className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
             >
               Claim founding rate

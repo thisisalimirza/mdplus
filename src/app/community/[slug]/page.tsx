@@ -46,7 +46,7 @@ export default async function CommunityDetailPage({
       >
         <div className="flex flex-wrap items-center gap-3">
           <Link
-            href="/join"
+            href="https://app.mdplus.community/apply"
             className="inline-flex items-center justify-center rounded-md bg-denim-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
           >
             Join MDplus →
