@@ -448,19 +448,37 @@ export default async function Home() {
           </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {COMMUNITIES.map((c) => {
+            {COMMUNITIES.map((c, i) => {
               const Icon = COMMUNITY_ICON[c.slug];
+              // Rotate across 3 brand colors so no two adjacent cards match
+              const theme = [
+                {
+                  card: "hover:border-denim-400 hover:bg-denim-50 hover:shadow-denim-100/60",
+                  icon: "group-hover:bg-denim-100 group-hover:text-denim-600",
+                  title: "group-hover:text-denim-700",
+                },
+                {
+                  card: "hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-yellow-100/60",
+                  icon: "group-hover:bg-yellow-100 group-hover:text-yellow-700",
+                  title: "group-hover:text-yellow-700",
+                },
+                {
+                  card: "hover:border-rhino-400 hover:bg-rhino-50 hover:shadow-rhino-100/60",
+                  icon: "group-hover:bg-rhino-100 group-hover:text-rhino-600",
+                  title: "group-hover:text-rhino-600",
+                },
+              ][i % 3];
               return (
                 <Link
                   key={c.slug}
                   href={`/community/${c.slug}`}
-                  className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
+                  className={`group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${theme.card}`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 group-hover:bg-denim-50 group-hover:text-denim-600">
+                    <span className={`inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 transition-colors duration-200 ${theme.icon}`}>
                       {Icon && <Icon className="size-5" aria-hidden />}
                     </span>
-                    <h3 className="font-display text-xl font-bold text-rhino-700 group-hover:text-denim-700">
+                    <h3 className={`font-display text-xl font-bold text-rhino-700 transition-colors duration-200 ${theme.title}`}>
                       {c.name}
                     </h3>
                   </div>
