@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/login",
+        destination: "https://app.mdplus.community/login",
+        permanent: false,
+      },
+      {
+        source: "/join",
+        destination: "https://app.mdplus.community/apply",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
