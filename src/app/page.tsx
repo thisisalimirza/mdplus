@@ -607,29 +607,27 @@ export default async function Home() {
       )}
 
       {/* ── Closing CTA ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-rhino-700 py-24 md:py-28">
+      <section className="relative overflow-hidden bg-rhino-700 py-32 md:py-44">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,203,33,0.18),_transparent_55%)]"
         />
-        <div className="relative mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl md:mx-auto md:text-center">
-            <h2 className="font-display text-3xl font-bold leading-tight text-white md:text-5xl">
-              You&apos;re a doctor. You want more.{" "}
-              <span className="text-yellow-500">We&apos;re the bridge.</span>
-            </h2>
-            <p className="mt-6 text-lg text-rhino-100/90">
-              Free Slack membership. Take a look around. Stay if it&apos;s for
-              you.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
-              <Link
-                href="https://app.mdplus.community/apply"
-                className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
-              >
-                Join free →
-              </Link>
-            </div>
+        <div className="relative mx-auto max-w-(--container-max) px-6 text-center">
+          <h2 className="font-display text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl">
+            <span className="block">You&apos;re a doctor.</span>
+            <span className="block">You want more.</span>
+            <span className="block text-yellow-500">We&apos;re the bridge.</span>
+          </h2>
+          <p className="mt-8 text-lg text-rhino-100/80 md:text-xl">
+            Free Slack membership. Take a look around. Stay if it&apos;s for you.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="https://app.mdplus.community/apply"
+              className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-8 py-4 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
+            >
+              Join free →
+            </Link>
           </div>
         </div>
       </section>
