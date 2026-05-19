@@ -1,10 +1,29 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import { X } from "lucide-react";
 import { Avatar } from "@/components/marketing/Avatar";
 import type { CurrentMember, DirectorVertical } from "@/data/team";
 import { DIRECTOR_VERTICALS } from "@/data/team";
+
+// ── Fallback avatar helpers (for no-photo cards) ──────────────────────────────
+
+const FALLBACK_COLORS = [
+  { bg: "bg-denim-200", text: "text-denim-800" },
+  { bg: "bg-yellow-200", text: "text-yellow-900" },
+  { bg: "bg-rhino-200", text: "text-rhino-800" },
+  { bg: "bg-denim-100", text: "text-denim-700" },
+] as const;
+
+function initialsFor(name: string) {
+  return name.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase() ?? "").join("");
+}
+
+function fallbackColor(name: string) {
+  const hash = [...name].reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  return FALLBACK_COLORS[hash % FALLBACK_COLORS.length];
+}
 
 // ── Filter config ─────────────────────────────────────────────────────────────
 
@@ -40,12 +59,6 @@ function getBadge(m: CurrentMember): { label: string; className: string } {
     .replace(" Engagement", "")
     .replace("Medical ", "");
   return { label, className: "bg-neutral-100 text-neutral-600" };
-}
-
-function getCardAccent(tier: string): string {
-  if (tier === "co-chair") return "bg-yellow-50 group-hover:bg-yellow-100";
-  if (tier === "vp") return "bg-denim-50/50 group-hover:bg-denim-50";
-  return "bg-neutral-50 group-hover:bg-neutral-100";
 }
 
 function getModalHeaderBg(tier: string): string {
@@ -101,37 +114,49 @@ function MemberCard({
   onClick: () => void;
 }) {
   const badge = getBadge(member);
-  const accent = getCardAccent(member.tier);
+  const fallback = fallbackColor(member.name);
 
   return (
     <button
       onClick={onClick}
-      className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-xl border border-neutral-200 bg-neutral-0 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-denim-500"
+      className="group relative aspect-[3/4] w-full overflow-hidden rounded-xl text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-denim-500"
     >
-      {/* Avatar area */}
-      <div
-        className={`flex flex-col items-center gap-3 px-6 py-8 transition-colors duration-200 ${accent}`}
-      >
-        <Avatar name={member.name} src={member.imageSrc} size="xl" />
-        <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}>
+      {/* Background: photo or colored initials */}
+      {member.imageSrc ? (
+        <Image
+          src={member.imageSrc}
+          alt={member.name}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <div className={`absolute inset-0 flex items-center justify-center ${fallback.bg}`}>
+          <span className={`font-display text-5xl font-bold ${fallback.text}`}>
+            {initialsFor(member.name)}
+          </span>
+        </div>
+      )}
+
+      {/* Persistent gradient — stronger at bottom for legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/20" />
+
+      {/* Role badge — top left */}
+      <div className="absolute left-3 top-3">
+        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.className}`}>
           {badge.label}
         </span>
       </div>
 
-      {/* Text area */}
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-base font-bold text-rhino-700 group-hover:text-denim-700">
+      {/* Name + school — bottom */}
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <h3 className="font-display text-sm font-bold leading-tight text-white">
           {member.name}
         </h3>
         {member.school && (
-          <p className="mt-0.5 text-xs leading-snug text-neutral-400">{member.school}</p>
+          <p className="mt-0.5 text-xs leading-snug text-white/65">{member.school}</p>
         )}
-        {member.bio && (
-          <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-600">
-            {member.bio}
-          </p>
-        )}
-        <p className="mt-4 text-xs font-semibold text-denim-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <p className="mt-2 text-xs font-semibold text-white/0 transition-colors duration-200 group-hover:text-white/80">
           View profile →
         </p>
       </div>
