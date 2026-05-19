@@ -94,6 +94,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of External Relations",
     tier: "vp",
     school: "UConn School of Medicine",
+    imageSrc: "/ExecHeadshots/Ali_Mirza.png",
     bio: "Ali is an MD Candidate at UConn School of Medicine. A Foote Fellow and Da Vinci Scholar at the University of Miami, he studied Biochemistry and Classics while pursuing broad interests in computer science, game theory, economics, and international relations, supported by a fifth-year scholarship in Healthcare Economics, Management, and Policy. Prior to medical school, he worked as a Project Manager at Epic in Madison, WI, and founded Janus, a marketing agency he grew to $250K ARR. In medical school, he has published two machine learning papers, writes on his Substack Side Effects, and built Rounds (100 DAU) and Sitr (1,000+ peak users). He is pursuing Cardiology with a focus on technology-enabled innovation in patient care.",
     plus: "My 'plus' is treating medicine, entrepreneurship, and philosophy as parts of the same problem: how do we enable world-improving innovations? Whether it's building software to streamline clinical work or practicing cardiology to extend a patient's life, the goal is the same: providing people the time and tools to realize their own potential.",
     whyJoined:
@@ -106,6 +107,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of External Relations",
     tier: "vp",
     school: "University of Miami Miller School of Medicine",
+    imageSrc: "/ExecHeadshots/Kush Patel Headshot.jpeg",
     bio: "Kush Patel is an MD/MBA candidate at the University of Miami Miller School of Medicine and the Herbert Business School. Before medical school, he received his Associate's and Bachelor's degrees from Emory University, where he spent much of his time organizing university-wide events and working in the Department of Cell Biology studying inflammatory pathways in cutaneous carcinomas. He is currently interested in interventional oncology and emerging technologies that enable localized chemotherapy delivery and improved tumor management. Outside of academics, Kush enjoys staying active and spending time outdoors, whether that's playing basketball, climbing, or trying new outdoor activities.",
     plus: "Since starting medical school, I've connected with alumni and leaders across healthcare to better understand where the field is heading. Through mentorship and guidance, I became interested in healthcare innovation and venture capital and currently serve as a Deal Analyst with the Cane Angel Network, where I help evaluate early-stage companies. I'm particularly interested in how physicians can play a role in shaping healthcare startups and ensuring new technologies and companies are built with a real understanding of clinical medicine and patient care.",
     whyJoined:
@@ -117,6 +119,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of External Relations",
     tier: "vp",
     school: "Rush Medical College",
+    imageSrc: "/ExecHeadshots/Jivan_Rishma.jpg",
     bio: "Rishma Jivan is an MD candidate at Rush Medical College and Community Champion for MD+ Chicago. Before medical school, she spent five years at San Francisco health tech startups Augmedix and Lyra Health, where she built revenue cycle management platforms and led EHR implementation projects. She also served as Clinic Coordinator for Ashland Free Medical Clinic, developing their hybrid telehealth platform during COVID-19. At Rush, Rishma founded three community service organizations focused on refugee health, transplant awareness, and cardiovascular wellness. As M4 Chair of Rush AI in Medicine, she is developing a four-year longitudinal AI curriculum and organizing workshops on AI applications in clinical practice. She has organized national medical conferences and advises early-stage health tech startups on clinical validation, AI workflows, and strategy. Outside of medicine, she dances, trains/boxes, and reads voraciously.",
     plus: "From advising early stage startups, doing clinical AI research, to understanding the business of healthcare, I love all of it! I feel strongly about having physicians at the forefront of driving the tech solutions we're building, what we are investing in, and the direction our medical care is taking while maintaining patients at the center of these decisions.",
     whyJoined:
@@ -134,6 +137,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     name: "Sathiyaa Balachandran",
     role: "VP of Growth",
     tier: "vp",
+    imageSrc: "/ExecHeadshots/Sathiyaa_Balachandran.jpg",
   },
 
   // ── VPs — Community ───────────────────────────────────────────────────────
@@ -142,6 +146,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of Community",
     tier: "vp",
     school: "Loyola University Chicago / Stritch School of Medicine",
+    imageSrc: "/ExecHeadshots/MayaRoytman - Headshot.jpg",
     bio: "Maya is a MD/MA in Bioethics and Health Policy candidate at Loyola University Chicago Stritch School of Medicine. She is passionate about combining her interests in clinical medicine, entrepreneurship, ethics, and public health in her future career. Before medical school, she was a summer biomedical ethics research intern at Mayo Clinic, an intern at the AMA in the Council on Ethical and Judicial Affairs, and a Dana Neuroscience and Society Planning Grant Next Generation Leader at Harvard Medical School Center for Bioethics. She was previously an AI Clinical Fellow and Deputy Safety, Ethics, and Alignment Lead at Glass Health. In her free time, she loves watching movies, reading, and playing tennis.",
     funFact: "I did competitive Latin/ballroom dancing for six years!",
   },
@@ -150,6 +155,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of Community",
     tier: "vp",
     school: "Icahn School of Medicine at Mount Sinai",
+    imageSrc: "/ExecHeadshots/Ishani Bansal.jpeg",
   },
 
   // ── Directors — AI & Data Science ─────────────────────────────────────────
@@ -159,6 +165,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "AI & Data Science",
     school: "Texas A&M / EnMed",
+    imageSrc: "/ExecHeadshots/JoshuaRobert-AI_Data.png",
     bio: "Joshua Robert is an MD/MEng candidate in Engineering Medicine (EnMed) at Texas A&M and the Editor-in-Chief of the Journal for Artificial Intelligence in Medicine (JAIM). His work sits at the intersection of clinical medicine, artificial intelligence, and biomedical innovation. Joshua has led and contributed to multiple AI-driven research projects spanning neuromodulation, cardiovascular risk modeling, and surgical safety systems. Beyond research, he is active in the startup and innovation ecosystem through the Texas Medical Center Innovation Factory, NASA, and national accelerators. In his free time he enjoys thrifting, flying his drone, videography, working out, and traveling.",
     plus: "My \"plus\" is artificial intelligence and data-driven systems in healthcare. I'm particularly interested in how AI can move beyond research and become practical infrastructure for medicine — tools that help physicians interpret complex information, reduce cognitive burden, and improve patient care. I'm especially excited about building systems that augment physicians rather than replace them, helping clinicians make better decisions while navigating the growing complexity of modern medicine.",
     whyJoined:
@@ -172,6 +179,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "AI & Data Science",
     school: "Johns Hopkins University School of Medicine",
+    imageSrc: "/ExecHeadshots/BrandonYe.png",
     bio: "Brandon Ye is a first year medical student at the Johns Hopkins University School of Medicine. Previously, he graduated with a bachelor's and master's degree in computational biology from the University of Southern California, where he developed tools to predict cancer patient outcomes using large single-cell liquid biopsy datasets. Brandon is passionate about using technology to advance medicine. At Hopkins, he conducts research in surgical outcomes, brain-computer interfaces, and AI-enabled medical devices. He enjoys spending his free time exploring the outdoors through backpacking, hiking, and trail-running.",
     plus: "Learning and working at the intersection of AI and medicine has made two things clear to me. First, AI is destined to change how we approach healthcare administration and patient care; but second, much work remains to be done to ensure it can perform ethically and safely at the bedside. I hope to combine my medical training and technical background to sustain dialogues between physicians, scientists, and policymakers regarding the ethical deployment of these new technologies in the service of our patients.",
     whyJoined:
@@ -185,6 +193,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "AI & Data Science",
     school: "Carle Illinois College of Medicine / UIUC",
+    imageSrc: "/ExecHeadshots/Alice Yu.jpeg",
     bio: "Alice Yu is a first-year medical student at the Carle Illinois College of Medicine at the University of Illinois Urbana-Champaign. Before medical school, she worked as a software engineer at Amazon, where she developed a mindset rooted in engineering at scale, systems thinking, and business. With a background in bioinformatics and big data, she is now applying that foundation to projects in clinical informatics and health tech. Outside of school, Alice immerses herself in the startup and hackathon community, building and advising solutions to optimize healthcare delivery. In her free time, she reviews restaurants on Beli, hikes, and travels in search of new places and experiences.",
     plus: "My plus is tech and healthcare innovation. I'm deeply interested in applying that to improve clinical workflows and healthcare delivery. Since joining MD+, I've been excited to discover new roles and pathways for physicians fusing tech and medicine to build at scale.",
     whyJoined:
@@ -221,6 +230,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Venture Capital",
     school: "UNC School of Medicine",
+    imageSrc: "/ExecHeadshots/Aneri Kothari.jpg",
     bio: "Aneri Kothari is an MD/MBA candidate at the UNC School of Medicine. Prior to medical school, she worked in healthcare venture capital, where she evaluated digital health and clinical based startups, and developed a strong interest in the intersection of innovation, business, and clinical care. During medical school, she has continued to build on this interest through her work in women's health, medical education, and healthcare innovation, with a particular focus on how medical devices and emerging technologies can improve outcomes and expand access to care in obstetrics and gynecology, especially in underserved populations. Outside of medicine, Aneri enjoys traveling, staying active, spending time with friends, and exploring creative outlets including baking and painting.",
     plus: "My pluses are healthcare innovation and entrepreneurship and venture capital. I am equally motivated to take what I learn at the bedside and translate it into solutions that can improve care at scale — whether through building new tools, supporting early-stage companies, or helping shape how innovations enter clinical practice.",
     whyJoined:
@@ -300,6 +310,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Alumni Engagement",
     school: "Washington University School of Medicine",
+    imageSrc: "/ExecHeadshots/Connor Alder - Cropped 1.JPG",
     bio: "Connor Alder is an M2 at Washington University School of Medicine in St. Louis with interests in global health, entrepreneurship, and healthcare innovation. Before and during medical school, he has built and led multiple ventures at the intersection of medicine and technology, including a marketing agency for mental health clinics and Brivy, an AI-powered clinical scribe for therapists. He also leads research in global ophthalmology, with publications about the cost-effectiveness of addressing ROP in Rwanda, and authorship representation in sub-Saharan Africa. Outside of medicine, Connor loves watching and playing basketball and going on backpacking trips with friends.",
     plus: "My plus is exploring healthcare startups. For now, I'm particularly interested in AI as a means to improve access and equity in global ophthalmology. I'm especially interested in understanding which interventions are scalable even in low-resource settings.",
     whyJoined:
@@ -312,6 +323,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Alumni Engagement",
     school: "Drexel University College of Medicine",
+    imageSrc: "/ExecHeadshots/Rohan_Chandraghatgi_Headshot.jpg",
     bio: "Rohan Chandraghatgi is an MS1 in Drexel University College of Medicine's BS/MD program. Before medical school, he conducted research in computational drug discovery and developed image registration algorithms for digital pathology workflows at Mayo Clinic. He is now working with a team at Penn Medicine focused on data drift detection in digital pathology, and this summer he will be joining MD Anderson Cancer Center to pursue deep learning research in radiation oncology. His work is guided by a broader interest in healthcare AI and digital transformation, and the challenge of building intelligent systems that perform reliably in real clinical environments. Outside of research, he enjoys exploring Philadelphia's food scene and traveling as much as possible.",
     plus: "My plus is in the development of robust AI technologies to improve healthcare delivery. Currently, I investigate data drift in longitudinal pathology datasets and its implications for deploying deep learning models in diagnostic support systems. In the future, I hope to help health systems deploy diagnostic support tools safely and effectively.",
     whyJoined:
