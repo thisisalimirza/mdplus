@@ -208,6 +208,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Health Policy",
     school: "Drexel University College of Medicine",
+    imageSrc: "/ExecHeadshots/Ankith_Alluri_Headshot.jpeg",
     bio: "Ankith Alluri is an M1 in the B.S./M.D. program at Drexel University College of Medicine. He is involved with UN Shot@Life, where he organizes advocacy workshops and helps coordinate meetings between trained advocates and members of Congress to advance equitable global vaccine access. He also founded The Full Picture, a student-led curricular initiative involving more than 30 medical students that aims to teach the practical, policy, and systems-level aspects of medicine often missing from traditional medical education. Ankith is broadly interested in the intersection of medicine, health policy, and health systems. Outside of school, he enjoys reading widely—especially about healthcare policy and systems reform—thrifting, and exploring Philadelphia.",
     plus: "My curricular initiative is a way for me to help expand both my own and other medical students' understanding of health systems and topics not typically covered in medical school.",
     whyJoined:
