@@ -227,11 +227,11 @@ export default function PartnersPage() {
                   </div>
 
                   <div className="md:col-span-2">
-                    <p className="text-base leading-relaxed text-neutral-600 md:text-lg">
+                    {/* <p className="text-base leading-relaxed text-neutral-600 md:text-lg">
                       {track.body}
-                    </p>
+                    </p> */}
 
-                    <div className="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 p-5 md:p-6">
+                    <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-5 md:p-6">
                       <p className="text-xs font-semibold uppercase tracking-widest text-rhino-500">
                         Best fit for
                       </p>
