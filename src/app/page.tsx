@@ -12,6 +12,9 @@ import {
   Mic,
   FileText,
   MapPin,
+  Lightbulb,
+  Rocket,
+  Globe,
   type LucideIcon,
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
@@ -79,6 +82,29 @@ const PILLARS: {
   },
 ];
 
+const WHY_FEATURES: { icon: LucideIcon; title: string; description: string }[] = [
+  {
+    icon: Users,
+    title: "Curated Community",
+    description: "Connect with driven physicians across disciplines and career stages.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Share & Learn",
+    description: "Exchange ideas, resources, and insights in a safe, high-signal space.",
+  },
+  {
+    icon: Rocket,
+    title: "Build & Create",
+    description: "Collaborate on projects that solve real problems in healthcare.",
+  },
+  {
+    icon: Globe,
+    title: "Make an Impact",
+    description: "Advance the future of medicine through technology, leadership, and policy.",
+  },
+];
+
 export const revalidate = 60;
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -115,52 +141,119 @@ export default async function Home() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-yellow-50">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(29,123,189,0.08),_transparent_60%)]"
-        />
-        <div className="relative mx-auto max-w-(--container-max) px-6 pt-24 pb-20 md:pt-32 md:pb-28">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-pill border border-rhino-100 bg-neutral-0 px-3 py-1 text-xs font-medium text-rhino-600 shadow-xs">
+      <section className="relative flex min-h-screen items-center overflow-hidden bg-rhino-900">
+        {/* Background photo with dark overlay */}
+        <div className="absolute inset-0" aria-hidden>
+          <Image
+            src="/event-photos/mdpluscollage.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center opacity-[0.18]"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-rhino-900 via-rhino-900/90 to-rhino-900/50" />
+        </div>
+
+        <div className="relative w-full mx-auto max-w-(--container-max) px-6 py-32 md:py-40">
+          <p className="mb-8 inline-flex items-center gap-2 rounded-pill border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60">
             <span className="size-1.5 rounded-full bg-yellow-500" />
             For physicians and med students who want more
           </p>
 
-          <RotatingHeadline />
+          <h1 className="font-display text-6xl font-bold leading-[1.05] tracking-tight text-white md:text-[5.5rem] lg:text-[7rem]">
+            Physicians.<br />
+            Builders.<br />
+            <span className="text-rhino-300">Impact at Scale.</span>
+          </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
-            The community for physicians and med students building in tech,
-            data, AI, and entrepreneurship,{" "}
-            <span className="font-semibold text-rhino-700">
-              without figuring it out alone.
-            </span>
+          <p className="mt-8 max-w-[380px] text-lg leading-relaxed text-white/55">
+            MD+ is a community of ambitious physician-builders creating the
+            future of healthcare.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
+          <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="https://app.mdplus.community/apply"
-              className="inline-flex items-center justify-center rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all hover:bg-denim-600 active:bg-denim-700"
+              className="inline-flex items-center gap-2 rounded-lg bg-rhino-500 px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-rhino-400"
             >
-              Join free →
+              Join the Community <ArrowRight className="size-4" aria-hidden />
             </Link>
             <Link
               href="/community"
-              className="inline-flex items-center justify-center rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3.5 text-base font-semibold text-white/80 transition-colors hover:border-white/40 hover:bg-white/5 hover:text-white"
             >
-              See what's inside
+              Learn More
             </Link>
           </div>
 
-          <p className="mt-6 text-sm text-neutral-500">
-            Free forever. We&apos;ll never spam you. 5,000+ members already in.
+          <p className="mt-6 text-sm text-white/30">
+            Free forever · 5,000+ members already in
           </p>
         </div>
       </section>
 
-      {/* ── Social proof bar ─────────────────────────────────── */}
-      <section className="border-y border-neutral-100 bg-neutral-0 py-12">
+      {/* ── Photo collage — "Building together" ──────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-500">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            {/* Text */}
+            <div>
+              <h2 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
+                Building together.<br />
+                Learning together.<br />
+                <span className="relative inline-block">
+                  Leading together.
+                  <span
+                    className="absolute -bottom-2 left-0 h-0.5 w-3/4 bg-rhino-500"
+                    aria-hidden
+                  />
+                </span>
+              </h2>
+            </div>
+
+            {/* Photo mosaic */}
+            <div className="grid h-72 grid-cols-3 grid-rows-2 gap-2 md:h-96">
+              {/* Large — left 2 cols, full height */}
+              <div className="col-span-2 row-span-2 relative overflow-hidden rounded-xl">
+                <Image
+                  src="/event-photos/IMG_7167.jpg"
+                  alt="MDplus members at a community event"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(min-width: 1024px) 35vw, 55vw"
+                />
+              </div>
+              {/* Top-right — with denim overlay */}
+              <div className="relative overflow-hidden rounded-xl">
+                <Image
+                  src="/event-photos/IMG_7168.jpg"
+                  alt="MDplus members"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(min-width: 1024px) 18vw, 30vw"
+                />
+                <div className="absolute inset-0 bg-denim-700/55" aria-hidden />
+              </div>
+              {/* Bottom-right */}
+              <div className="relative overflow-hidden rounded-xl">
+                <Image
+                  src="/event-photos/IMG_7170.jpg"
+                  alt="MDplus community gathering"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(min-width: 1024px) 18vw, 30vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Social proof bar ─────────────────────────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-12">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-white/30">
             Members at top medical schools, residencies, and firms
           </p>
           <ul className="mt-8 grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-5">
@@ -176,113 +269,142 @@ export default async function Home() {
                     alt={logo.alt}
                     fill
                     sizes="140px"
-                    className={`object-contain opacity-60 transition-opacity duration-200 hover:opacity-100 ${scale ?? ""}`}
+                    className={`object-contain brightness-0 invert opacity-25 transition-opacity duration-200 hover:opacity-60 ${scale ?? ""}`}
                     style={{ objectPosition: "center" }}
                   />
                 </li>
               );
             })}
           </ul>
-          <p className="mt-10 text-center text-sm text-neutral-500">
+          <p className="mt-10 text-center text-sm text-white/30">
             Backed by{" "}
-            <span className="font-semibold text-rhino-700">Anthropic</span>,{" "}
-            <span className="font-semibold text-rhino-700">a16z Bio+Health</span>,{" "}
-            <span className="font-semibold text-rhino-700">OpenEvidence</span>,{" "}
-            <span className="font-semibold text-rhino-700">Thalamus</span>,{" "}
-            <span className="font-semibold text-rhino-700">Doximity</span>,{" "}
-            <span className="font-semibold text-rhino-700">AMSA</span>, and others.
+            <span className="font-semibold text-white/60">Anthropic</span>,{" "}
+            <span className="font-semibold text-white/60">a16z Bio+Health</span>,{" "}
+            <span className="font-semibold text-white/60">OpenEvidence</span>,{" "}
+            <span className="font-semibold text-white/60">Thalamus</span>,{" "}
+            <span className="font-semibold text-white/60">Doximity</span>,{" "}
+            <span className="font-semibold text-white/60">AMSA</span>, and others.
           </p>
         </div>
       </section>
 
-      {/* ── The problem (the framing) ────────────────────────── */}
-      <section className="bg-neutral-0 py-24 md:py-32">
+      {/* ── Why MD+? — 4 feature cards ───────────────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-              The problem
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-5xl">
-              Tech, data, AI, entrepreneurship in medicine is{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">overwhelming</span>
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-yellow-300/70 md:h-4"
-                />
-              </span>
-              .
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600 md:text-xl">
-              There&apos;s no obvious place to start. The advice is scattered,
-              the people are siloed, and the path looks intimidating from the
-              outside. So most physicians and med students who are curious
-              never start at all.
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-neutral-600 md:text-xl">
-              <span className="font-semibold text-rhino-700">
-                MDplus is that place to start.
-              </span>{" "}
-              We&apos;re the easiest, most accessible, fun, and seamless way to
-              get involved, alongside 5,000+ peers and mentors who&apos;ve
-              already done it.
-            </p>
+          <div className="mb-16 grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
+                Why MD+?
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
+                A community designed for physician builders.
+              </h2>
+            </div>
+            <div className="md:pt-14">
+              <p className="text-lg text-white/50">
+                We bring together curious minds to share knowledge, build
+                meaningful projects, and create lasting impact in healthcare.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {WHY_FEATURES.map((feat, i) => {
+              const Icon = feat.icon;
+              return (
+                <div
+                  key={feat.title}
+                  className="relative overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] p-7"
+                >
+                  <div className="inline-flex size-12 items-center justify-center rounded-full bg-rhino-600/60">
+                    <Icon className="size-5 text-rhino-200" aria-hidden />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold text-white">
+                    {feat.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/50">
+                    {feat.description}
+                  </p>
+                  <span
+                    aria-hidden
+                    className="absolute right-5 bottom-4 font-display text-5xl font-bold text-white/[0.05]"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── 3 Pillars ─────────────────────────────────────────── */}
-      <section className="relative overflow-hidden py-14 md:py-16">
-        {/* Member collage background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/event-photos/mdpluscollage.jpg')" }}
-          aria-hidden
-        />
-        {/* Dark overlay so text stays readable */}
-        <div className="absolute inset-0 bg-rhino-900/80" aria-hidden />
+      {/* ── Testimonial + offsite strip ───────────────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Quote */}
+            <div>
+              <p
+                aria-hidden
+                className="font-display text-8xl font-bold leading-none text-rhino-700/80"
+              >
+                &ldquo;
+              </p>
+              <blockquote className="-mt-6 text-xl font-medium leading-relaxed text-white md:text-2xl">
+                The energy, humility, and drive in this community is unlike
+                anything I&apos;ve experienced in medicine.
+              </blockquote>
+              <div className="mt-6 flex items-center gap-3">
+                <div className="size-10 rounded-full bg-rhino-700" />
+                <div>
+                  <p className="font-semibold text-white">Arjun P.</p>
+                  <p className="text-sm text-white/40">MD+ Member</p>
+                </div>
+              </div>
+            </div>
 
-        <div className="relative mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
-              What&apos;s inside
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
-              Three layers, one community.
-            </h2>
-            <p className="mt-6 text-lg text-white/70">
-              Whether you&apos;re here to learn, connect, or build, there&apos;s
-              a starting point for you.
-            </p>
+            {/* Photo */}
+            <div className="relative h-72 overflow-hidden rounded-2xl md:h-80">
+              <Image
+                src="/event-photos/IMG_7171.jpg"
+                alt="MDplus members at an event"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-rhino-900/20" aria-hidden />
+            </div>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {PILLARS.map((pillar) => {
-              const Icon = pillar.icon;
-              return (
-                <article
-                  key={pillar.title}
-                  className="group flex flex-col rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
+          {/* Offsite photo strip */}
+          <div className="mt-20">
+            <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
+              Moments from our offsite
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {[
+                "/event-photos/IMG_7172.jpg",
+                "/event-photos/IMG_7173.jpg",
+                "/event-photos/IMG_4221.JPG",
+                "/event-photos/IMG_7169.jpg",
+              ].map((src) => (
+                <div
+                  key={src}
+                  className="relative aspect-square overflow-hidden rounded-xl"
                 >
-                  <span className="inline-flex size-12 items-center justify-center rounded-lg bg-yellow-400/20 text-yellow-400">
-                    <Icon className="size-6" aria-hidden />
-                  </span>
-                  <h3 className="mt-5 font-display text-2xl font-bold text-white">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-base leading-relaxed text-white/65">
-                    {pillar.description}
-                  </p>
-                  <Link
-                    href={pillar.href}
-                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-yellow-400 transition-all group-hover:gap-2 hover:text-yellow-300"
-                  >
-                    {pillar.cta}
-                    <ArrowRight className="size-4" aria-hidden />
-                  </Link>
-                </article>
-              );
-            })}
+                  <Image
+                    src={src}
+                    alt="MDplus offsite moment"
+                    fill
+                    className="object-cover grayscale"
+                    sizes="(min-width: 640px) 25vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 text-center font-script text-3xl text-white/60">
+              Real conversations. Real connections. Real impact.
+            </p>
           </div>
         </div>
       </section>
