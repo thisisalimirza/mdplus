@@ -299,9 +299,6 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
             {f.label}
           </button>
         ))}
-        <span className="ml-auto text-sm text-neutral-400">
-          {filtered.length} member{filtered.length !== 1 ? "s" : ""}
-        </span>
       </div>
 
       {/* Flat grid */}

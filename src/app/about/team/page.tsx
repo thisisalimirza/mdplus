@@ -63,9 +63,6 @@ export default function TeamPage() {
                 Filter by role or vertical. Click any card to read their full profile.
               </p>
             </div>
-            <p className="text-sm text-neutral-400">
-              {CURRENT_TEAM.length} members
-            </p>
           </div>
 
           <TeamGrid members={CURRENT_TEAM} />
