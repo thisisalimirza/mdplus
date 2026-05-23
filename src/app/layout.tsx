@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -12,6 +12,12 @@ const inter = Inter({
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
   subsets: ["latin"],
   display: "swap",
 });
@@ -74,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${dancingScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-neutral-0 text-neutral-700">
         <SiteHeader />

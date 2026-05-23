@@ -77,6 +77,7 @@
   --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif,
     system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-script: var(--font-dancing-script), cursive;
 
   /* Modular type scale (1.250 / major third), with display sizes
      pushed harder for hero impact. */

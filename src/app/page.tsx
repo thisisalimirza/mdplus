@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Users,
-  GraduationCap,
   Calendar,
   ArrowRight,
   ArrowUpRight,
@@ -12,6 +11,9 @@ import {
   Mic,
   FileText,
   MapPin,
+  Lightbulb,
+  Rocket,
+  Globe,
   type LucideIcon,
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
@@ -46,36 +48,27 @@ const LOGOS = [
 // in the data file) so the grid stays balanced as the org grows.
 const COMMUNITIES = ALL_COMMUNITIES.slice(0, 6);
 
-const PILLARS: {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  href: string;
-  cta: string;
-}[] = [
+
+const WHY_FEATURES: { icon: LucideIcon; title: string; description: string }[] = [
   {
     icon: Users,
-    title: "Community",
-    description:
-      "A 5,000+ member Slack of physicians and med students. Sub-channels for every domain. Real conversations, not feeds.",
-    href: "/community",
-    cta: "See what's inside",
+    title: "Curated Community",
+    description: "Connect with driven physicians across disciplines and career stages.",
   },
   {
-    icon: GraduationCap,
-    title: "Skills",
-    description:
-      "A library of guides, courses, and expert mini-courses on the things you actually need to learn, from case prep to RAG to investor decks.",
-    href: "/skills",
-    cta: "Browse Skills",
+    icon: Lightbulb,
+    title: "Share & Learn",
+    description: "Exchange ideas, resources, and insights in a safe, high-signal space.",
   },
   {
-    icon: Calendar,
-    title: "Programs",
-    description:
-      "Catalyst, datathons, and Journal Club. Built so you can learn by shipping alongside peers, not just reading about it.",
-    href: "/programs",
-    cta: "Explore programs",
+    icon: Rocket,
+    title: "Build & Create",
+    description: "Collaborate on projects that solve real problems in healthcare.",
+  },
+  {
+    icon: Globe,
+    title: "Make an Impact",
+    description: "Advance the future of medicine through technology, leadership, and policy.",
   },
 ];
 
@@ -195,94 +188,180 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── The problem (the framing) ────────────────────────── */}
-      <section className="bg-neutral-0 py-24 md:py-32">
+      {/* ── Photo collage — "Building together" ──────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-              The problem
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-5xl">
-              Tech, data, AI, entrepreneurship in medicine is{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">overwhelming</span>
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-yellow-300/70 md:h-4"
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            {/* Text */}
+            <div>
+              <h2 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
+                Building together.<br />
+                Learning together.<br />
+                <span className="relative inline-block">
+                  Leading together.
+                  <span
+                    className="absolute -bottom-2 left-0 h-0.5 w-3/4 bg-rhino-500"
+                    aria-hidden
+                  />
+                </span>
+              </h2>
+            </div>
+
+            {/* Photo mosaic */}
+            <div className="grid h-72 grid-cols-3 grid-rows-2 gap-2 md:h-96">
+              {/* Large — left 2 cols, full height */}
+              <div className="col-span-2 row-span-2 relative overflow-hidden rounded-xl">
+                <Image
+                  src="/event-photos/IMG_7167.jpg"
+                  alt="MDplus members at a community event"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(min-width: 1024px) 35vw, 55vw"
                 />
-              </span>
-              .
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600 md:text-xl">
-              There&apos;s no obvious place to start. The advice is scattered,
-              the people are siloed, and the path looks intimidating from the
-              outside. So most physicians and med students who are curious
-              never start at all.
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-neutral-600 md:text-xl">
-              <span className="font-semibold text-rhino-700">
-                MDplus is that place to start.
-              </span>{" "}
-              We&apos;re the easiest, most accessible, fun, and seamless way to
-              get involved, alongside 5,000+ peers and mentors who&apos;ve
-              already done it.
-            </p>
+              </div>
+              {/* Top-right — with denim overlay */}
+              <div className="relative overflow-hidden rounded-xl">
+                <Image
+                  src="/event-photos/IMG_7168.jpg"
+                  alt="MDplus members"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(min-width: 1024px) 18vw, 30vw"
+                />
+                <div className="absolute inset-0 bg-denim-700/55" aria-hidden />
+              </div>
+              {/* Bottom-right */}
+              <div className="relative overflow-hidden rounded-xl">
+                <Image
+                  src="/event-photos/IMG_7170.jpg"
+                  alt="MDplus community gathering"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(min-width: 1024px) 18vw, 30vw"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 3 Pillars ─────────────────────────────────────────── */}
-      <section className="relative overflow-hidden py-14 md:py-16">
-        {/* Member collage background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/event-photos/mdpluscollage.jpg')" }}
-          aria-hidden
-        />
-        {/* Dark overlay so text stays readable */}
-        <div className="absolute inset-0 bg-rhino-900/80" aria-hidden />
-
-        <div className="relative mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-400">
-              What&apos;s inside
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
-              Three layers, one community.
-            </h2>
-            <p className="mt-6 text-lg text-white/70">
-              Whether you&apos;re here to learn, connect, or build, there&apos;s
-              a starting point for you.
-            </p>
+      {/* ── Why MD+? — 4 feature cards ───────────────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="mb-16 grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
+                Why MD+?
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
+                A community designed for physician builders.
+              </h2>
+            </div>
+            <div className="md:pt-14">
+              <p className="text-lg text-white/50">
+                We bring together curious minds to share knowledge, build
+                meaningful projects, and create lasting impact in healthcare.
+              </p>
+            </div>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {PILLARS.map((pillar) => {
-              const Icon = pillar.icon;
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {WHY_FEATURES.map((feat, i) => {
+              const Icon = feat.icon;
               return (
-                <article
-                  key={pillar.title}
-                  className="group flex flex-col rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
+                <div
+                  key={feat.title}
+                  className="relative overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] p-7"
                 >
-                  <span className="inline-flex size-12 items-center justify-center rounded-lg bg-yellow-400/20 text-yellow-400">
-                    <Icon className="size-6" aria-hidden />
-                  </span>
-                  <h3 className="mt-5 font-display text-2xl font-bold text-white">
-                    {pillar.title}
+                  <div className="inline-flex size-12 items-center justify-center rounded-full bg-rhino-600/60">
+                    <Icon className="size-5 text-rhino-200" aria-hidden />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold text-white">
+                    {feat.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-base leading-relaxed text-white/65">
-                    {pillar.description}
+                  <p className="mt-2 text-sm leading-relaxed text-white/50">
+                    {feat.description}
                   </p>
-                  <Link
-                    href={pillar.href}
-                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-yellow-400 transition-all group-hover:gap-2 hover:text-yellow-300"
+                  <span
+                    aria-hidden
+                    className="absolute right-5 bottom-4 font-display text-5xl font-bold text-white/[0.05]"
                   >
-                    {pillar.cta}
-                    <ArrowRight className="size-4" aria-hidden />
-                  </Link>
-                </article>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonial + offsite strip ───────────────────────── */}
+      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Quote */}
+            <div>
+              <p
+                aria-hidden
+                className="font-display text-8xl font-bold leading-none text-rhino-700/80"
+              >
+                &ldquo;
+              </p>
+              <blockquote className="-mt-6 text-xl font-medium leading-relaxed text-white md:text-2xl">
+                The energy, humility, and drive in this community is unlike
+                anything I&apos;ve experienced in medicine.
+              </blockquote>
+              <div className="mt-6 flex items-center gap-3">
+                <div className="size-10 rounded-full bg-rhino-700" />
+                <div>
+                  <p className="font-semibold text-white">Arjun P.</p>
+                  <p className="text-sm text-white/40">MD+ Member</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Photo */}
+            <div className="relative h-72 overflow-hidden rounded-2xl md:h-80">
+              <Image
+                src="/event-photos/IMG_7171.jpg"
+                alt="MDplus members at an event"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-rhino-900/20" aria-hidden />
+            </div>
+          </div>
+
+          {/* Offsite photo strip */}
+          <div className="mt-20">
+            <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
+              Moments from our offsite
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {[
+                "/event-photos/IMG_7172.jpg",
+                "/event-photos/IMG_7173.jpg",
+                "/event-photos/IMG_4221.JPG",
+                "/event-photos/IMG_7169.jpg",
+              ].map((src) => (
+                <div
+                  key={src}
+                  className="relative aspect-square overflow-hidden rounded-xl"
+                >
+                  <Image
+                    src={src}
+                    alt="MDplus offsite moment"
+                    fill
+                    className="object-cover grayscale"
+                    sizes="(min-width: 640px) 25vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 text-center font-script text-3xl text-white/60">
+              Real conversations. Real connections. Real impact.
+            </p>
           </div>
         </div>
       </section>
