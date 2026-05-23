@@ -715,28 +715,50 @@ export default async function Home() {
       )}
 
       {/* ── Closing CTA ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-rhino-700 py-32 md:py-44">
+      <section className="relative overflow-hidden bg-rhino-900 py-28 md:py-40">
+        {/* Photo background at low opacity for texture */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <Image
+            src="/event-photos/mdpluscollage.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-[0.10]"
+            sizes="100vw"
+          />
+          {/* Dark overlay to keep contrast */}
+          <div className="absolute inset-0 bg-rhino-900/60" />
+        </div>
+        {/* Centered golden glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,203,33,0.18),_transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,203,33,0.14),_transparent_60%)]"
         />
         <div className="relative mx-auto max-w-(--container-max) px-6 text-center">
-          <h2 className="font-display text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl">
-            <span className="block">You&apos;re a doctor.</span>
-            <span className="block">You want more.</span>
-            <span className="block text-yellow-500">We&apos;re the bridge.</span>
-          </h2>
-          <p className="mt-8 text-lg text-rhino-100/80 md:text-xl">
-            Free Slack membership. Take a look around. Stay if it&apos;s for you.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <Link
-              href="https://app.mdplus.community/apply"
-              className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-8 py-4 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
-            >
-              Join free →
-            </Link>
-          </div>
+          <Reveal>
+            <h2 className="font-display text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl">
+              <span className="block">You&apos;re a doctor.</span>
+              <span className="block">You want more.</span>
+              <span className="block text-yellow-400">We&apos;re the bridge.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="mt-8 text-lg text-rhino-100/75 md:text-xl">
+              Free Slack membership. Take a look around. Stay if it&apos;s for you.
+            </p>
+          </Reveal>
+          <Reveal delay={220}>
+            <div className="mt-10 flex flex-col items-center gap-4">
+              <Link
+                href="https://app.mdplus.community/apply"
+                className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-10 py-4 text-base font-semibold text-rhino-900 shadow-lg transition hover:bg-yellow-400 hover:scale-[1.03] active:scale-[0.98]"
+              >
+                Join free →
+              </Link>
+              <p className="text-sm text-rhino-300/70">
+                5,000+ physicians &amp; med students already in
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
