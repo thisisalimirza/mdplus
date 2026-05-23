@@ -166,6 +166,10 @@ function MemberCard({
 
 // ── Grouped grid ──────────────────────────────────────────────────────────────
 
+type GridItem =
+  | { kind: "label"; label: string; idx: number }
+  | { kind: "card"; member: CurrentMember };
+
 function GroupedGrid({
   sections,
   onSelect,
@@ -173,24 +177,32 @@ function GroupedGrid({
   sections: Section[];
   onSelect: (m: CurrentMember) => void;
 }) {
+  const items: GridItem[] = sections.flatMap((s, i) => [
+    { kind: "label" as const, label: s.label, idx: i },
+    ...s.members.map((m) => ({ kind: "card" as const, member: m })),
+  ]);
+
   return (
-    <div className="mt-8 space-y-10">
-      {sections.map((section) => (
-        <div key={section.label}>
-          <div className="mb-5 flex items-center gap-3">
+    <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+      {items.map((item) =>
+        item.kind === "label" ? (
+          <div
+            key={`label-${item.label}`}
+            className={`col-span-full flex items-center gap-3${item.idx > 0 ? " mt-2" : ""}`}
+          >
             <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
-              {section.label}
+              {item.label}
             </span>
             <div className="h-px flex-1 bg-neutral-100" />
-            <span className="text-xs text-neutral-300">{section.members.length}</span>
           </div>
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {section.members.map((m) => (
-              <MemberCard key={m.name} member={m} onClick={() => onSelect(m)} />
-            ))}
-          </div>
-        </div>
-      ))}
+        ) : (
+          <MemberCard
+            key={item.member.name}
+            member={item.member}
+            onClick={() => onSelect(item.member)}
+          />
+        )
+      )}
     </div>
   );
 }

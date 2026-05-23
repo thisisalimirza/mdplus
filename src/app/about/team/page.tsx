@@ -5,10 +5,12 @@ import { PageHero } from "@/components/marketing/PageHero";
 import { Avatar } from "@/components/marketing/Avatar";
 import { TeamGrid } from "@/components/marketing/TeamGrid";
 import { PastYearsSection } from "@/components/marketing/PastYearsSection";
+import { AdvisorsSection } from "@/components/marketing/AdvisorsSection";
 import {
   CURRENT_TEAM,
   FOUNDERS,
   PAST_YEARS,
+  ADVISORS,
   CURRENT_YEAR,
   type Founder,
 } from "@/data/team";
@@ -69,6 +71,9 @@ export default function TeamPage() {
           <TeamGrid members={CURRENT_TEAM} />
         </div>
       </section>
+
+      {/* ── Advisors ────────────────────────────────────────────── */}
+      <AdvisorsSection advisors={ADVISORS} />
 
       {/* ── Past leadership ─────────────────────────────────────── */}
       <PastYearsSection years={PAST_YEARS} />
