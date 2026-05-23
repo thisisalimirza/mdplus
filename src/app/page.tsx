@@ -188,8 +188,11 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Gradient bridge: light → dark */}
+      <div aria-hidden className="h-20 bg-gradient-to-b from-neutral-0 to-rhino-900" />
+
       {/* ── Photo collage — "Building together" ──────────────── */}
-      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
+      <section className="bg-rhino-900 py-16 md:py-24">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             {/* Text */}
@@ -205,6 +208,10 @@ export default async function Home() {
                   />
                 </span>
               </h2>
+              <p className="mt-10 text-lg text-white/50 max-w-sm">
+                5,000+ physicians and med students — residents, attendings, and
+                researchers — building the future of healthcare together.
+              </p>
             </div>
 
             {/* Photo mosaic */}
@@ -246,7 +253,7 @@ export default async function Home() {
       </section>
 
       {/* ── Why MD+? — 4 feature cards ───────────────────────── */}
-      <section className="border-t border-white/5 bg-rhino-900 py-20 md:py-28">
+      <section className="border-t border-white/10 bg-rhino-800 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="mb-16 grid gap-8 md:grid-cols-2">
             <div>
@@ -312,7 +319,9 @@ export default async function Home() {
                 anything I&apos;ve experienced in medicine.
               </blockquote>
               <div className="mt-6 flex items-center gap-3">
-                <div className="size-10 rounded-full bg-rhino-700" />
+                <div className="inline-flex size-10 items-center justify-center rounded-full bg-rhino-600 text-sm font-semibold text-rhino-200">
+                  AP
+                </div>
                 <div>
                   <p className="font-semibold text-white">Arjun P.</p>
                   <p className="text-sm text-white/40">MD+ Member</p>
@@ -366,8 +375,11 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Gradient bridge: dark → light */}
+      <div aria-hidden className="h-20 bg-gradient-to-b from-rhino-900 to-neutral-0" />
+
       {/* ── Flagship programs ────────────────────────────────── */}
-      <section className="bg-yellow-50 py-24 md:py-32">
+      <section className="bg-neutral-0 pt-12 pb-24 md:pt-16 md:pb-32">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-yellow-700">
