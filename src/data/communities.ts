@@ -55,7 +55,6 @@ export const COMMUNITIES: Community[] = [
     description:
       "The largest and most active vertical. We maintain an AI/ML tutorial library with end-to-end Google Colab modules taught through a clinical lens, run a recurring Journal Club on the latest data and AI papers in medicine, and host the annual MD+ Datathon: a month-long competition that has run four years and produced peer-reviewed research published in JMIR Medical Education.",
     slackChannel: "ai-med",
-    memberCount: "Most active",
     leaders: [
       { name: "Bhavana Kunisetty", role: "Director of AI & Data Science" },
       { name: "Sahil Suresh", role: "Director of AI & Data Science" },
@@ -105,7 +104,6 @@ export const COMMUNITIES: Community[] = [
     description:
       "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community runs a weekly News, Funds, and Deals recap, partners with Pillar VC on a 2-day VC 101 course, hosts panels with biotech, medtech, and digital-health investors, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, and Goldman Sachs healthcare.",
     slackChannel: "md-vcs",
-    memberCount: "Most active",
     leaders: [
       { name: "Jessika Baral", role: "Director of Venture Capital" },
       { name: "Sam Youkilis", role: "Director of Venture Capital" },

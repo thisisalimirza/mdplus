@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 
 type NewsletterSignupProps = {
   variant?: "light" | "dark";
+  compact?: boolean;
 };
 
 /**
@@ -12,7 +13,7 @@ type NewsletterSignupProps = {
  * message. Wire to Beehiiv / Ghost / ConvertKit by replacing the
  * onSubmit handler with a fetch to your provider's API endpoint.
  */
-export function NewsletterSignup({ variant = "light" }: NewsletterSignupProps) {
+export function NewsletterSignup({ variant = "light", compact = false }: NewsletterSignupProps) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -64,16 +65,16 @@ export function NewsletterSignup({ variant = "light" }: NewsletterSignupProps) {
         onChange={(e) => setEmail(e.target.value)}
         className={
           isDark
-            ? "flex-1 rounded-md border border-white/20 bg-white/5 px-4 py-3 text-base text-white placeholder:text-rhino-200 focus:border-yellow-500 focus:bg-white/10"
-            : "flex-1 rounded-md border border-neutral-300 bg-neutral-0 px-4 py-3 text-base text-rhino-700 placeholder:text-neutral-400 focus:border-denim-500"
+            ? `flex-1 rounded-md border border-white/20 bg-white/5 text-white placeholder:text-rhino-200 focus:border-yellow-500 focus:bg-white/10 ${compact ? "px-3 py-1.5 text-xs" : "px-4 py-3 text-base"}`
+            : `flex-1 rounded-md border border-neutral-300 bg-neutral-0 text-rhino-700 placeholder:text-neutral-400 focus:border-denim-500 ${compact ? "px-3 py-1.5 text-xs" : "px-4 py-3 text-base"}`
         }
       />
       <button
         type="submit"
         className={
           isDark
-            ? "inline-flex items-center justify-center rounded-md bg-yellow-500 px-5 py-3 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
-            : "inline-flex items-center justify-center rounded-md bg-denim-500 px-5 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+            ? `inline-flex items-center justify-center rounded-md bg-yellow-500 font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400 ${compact ? "px-3 py-1.5 text-xs" : "px-5 py-3 text-base"}`
+            : `inline-flex items-center justify-center rounded-md bg-denim-500 font-semibold text-white shadow-sm transition-colors hover:bg-denim-600 ${compact ? "px-3 py-1.5 text-xs" : "px-5 py-3 text-base"}`
         }
       >
         Subscribe
