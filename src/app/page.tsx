@@ -188,8 +188,17 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Gradient bridge: light → dark */}
-      <div aria-hidden className="h-20 bg-gradient-to-b from-neutral-0 to-rhino-900" />
+      {/* Diagonal cut: light → dark */}
+      <div aria-hidden className="bg-rhino-900">
+        <svg
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="block w-full"
+          style={{ height: "80px" }}
+        >
+          <polygon points="0,0 1440,0 0,80" style={{ fill: "var(--color-neutral-0)" }} />
+        </svg>
+      </div>
 
       {/* ── Photo collage — "Building together" ──────────────── */}
       <section className="bg-rhino-900 py-16 md:py-24">
@@ -375,8 +384,17 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Gradient bridge: dark → light */}
-      <div aria-hidden className="h-20 bg-gradient-to-b from-rhino-900 to-neutral-0" />
+      {/* Diagonal cut: dark → light */}
+      <div aria-hidden className="bg-neutral-0">
+        <svg
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="block w-full"
+          style={{ height: "80px" }}
+        >
+          <polygon points="0,0 1440,0 1440,80" style={{ fill: "var(--color-rhino-900)" }} />
+        </svg>
+      </div>
 
       {/* ── Flagship programs ────────────────────────────────── */}
       <section className="bg-neutral-0 pt-12 pb-24 md:pt-16 md:pb-32">
