@@ -12,7 +12,7 @@ import {
 import { PhotoHero } from "@/components/marketing/PhotoHero";
 import { EventPhotoStrip } from "@/components/marketing/EventPhotoStrip";
 import { COMMUNITIES } from "@/data/communities";
-import { COMMUNITY_ICON } from "@/lib/community-icons";
+import { CommunityCard } from "@/components/site/CommunityCard";
 import { HERO_COLLAGE, MEETUP_PHOTOS } from "@/data/event-photos";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { recentEventsQuery } from "@/sanity/lib/queries";
@@ -142,39 +142,9 @@ export default async function CommunityPage() {
           </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {COMMUNITIES.map((c) => {
-              const Icon = COMMUNITY_ICON[c.slug];
-              return (
-                <Link
-                  key={c.slug}
-                  href={`/community/${c.slug}`}
-                  className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 group-hover:bg-denim-50 group-hover:text-denim-600">
-                        {Icon && <Icon className="size-5" aria-hidden />}
-                      </span>
-                      <h3 className="font-display text-xl font-bold text-rhino-700 group-hover:text-denim-700">
-                        {c.name}
-                      </h3>
-                    </div>
-                    {c.memberCount && (
-                      <span className="shrink-0 rounded-pill bg-yellow-50 px-2.5 py-0.5 text-xs font-semibold text-yellow-700">
-                        {c.memberCount}
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                    {c.tagline}
-                  </p>
-                  <p className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-neutral-500">
-                    <span className="text-neutral-400">#</span>
-                    {c.slackChannel}
-                  </p>
-                </Link>
-              );
-            })}
+            {COMMUNITIES.map((c, i) => (
+              <CommunityCard key={c.slug} community={c} index={i} showMeta />
+            ))}
           </div>
         </div>
       </section>

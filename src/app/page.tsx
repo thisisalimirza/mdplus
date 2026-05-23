@@ -16,8 +16,8 @@ import {
 } from "lucide-react";
 import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
-import { COMMUNITY_ICON } from "@/lib/community-icons";
 import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
+import { CommunityCard } from "@/components/site/CommunityCard";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -44,11 +44,7 @@ const LOGOS = [
 // Pull homepage cards directly from the canonical communities data so we
 // don't have to maintain two lists. Show the top 6 (by appearance order
 // in the data file) so the grid stays balanced as the org grows.
-const COMMUNITIES = ALL_COMMUNITIES.slice(0, 6).map((c) => ({
-  slug: c.slug,
-  name: c.name,
-  blurb: c.tagline,
-}));
+const COMMUNITIES = ALL_COMMUNITIES.slice(0, 6);
 
 const PILLARS: {
   icon: LucideIcon;
@@ -448,46 +444,9 @@ export default async function Home() {
           </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {COMMUNITIES.map((c, i) => {
-              const Icon = COMMUNITY_ICON[c.slug];
-              // Rotate across 3 brand colors so no two adjacent cards match
-              const theme = [
-                {
-                  card: "hover:border-denim-400 hover:bg-denim-50 hover:shadow-denim-100/60",
-                  icon: "group-hover:bg-denim-100 group-hover:text-denim-600",
-                  title: "group-hover:text-denim-700",
-                },
-                {
-                  card: "hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-yellow-100/60",
-                  icon: "group-hover:bg-yellow-100 group-hover:text-yellow-700",
-                  title: "group-hover:text-yellow-700",
-                },
-                {
-                  card: "hover:border-rhino-400 hover:bg-rhino-50 hover:shadow-rhino-100/60",
-                  icon: "group-hover:bg-rhino-100 group-hover:text-rhino-600",
-                  title: "group-hover:text-rhino-600",
-                },
-              ][i % 3];
-              return (
-                <Link
-                  key={c.slug}
-                  href={`/community/${c.slug}`}
-                  className={`group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${theme.card}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className={`inline-flex size-10 items-center justify-center rounded-md bg-rhino-50 text-rhino-700 transition-colors duration-200 ${theme.icon}`}>
-                      {Icon && <Icon className="size-5" aria-hidden />}
-                    </span>
-                    <h3 className={`font-display text-xl font-bold text-rhino-700 transition-colors duration-200 ${theme.title}`}>
-                      {c.name}
-                    </h3>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                    {c.blurb}
-                  </p>
-                </Link>
-              );
-            })}
+            {COMMUNITIES.map((c, i) => (
+              <CommunityCard key={c.slug} community={c} index={i} />
+            ))}
           </div>
         </div>
       </section>
