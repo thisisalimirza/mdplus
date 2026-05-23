@@ -86,45 +86,50 @@ function MemberCard({
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-denim-500"
+      className="group relative aspect-[3/4] w-full overflow-hidden rounded-xl text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-denim-500"
     >
-      {/* Circular photo */}
-      <div className="relative size-32 overflow-hidden rounded-full shadow-md ring-2 ring-white transition-all duration-300 group-hover:shadow-xl group-hover:ring-denim-200 sm:size-36 lg:size-40">
-        {member.imageSrc ? (
-          <Image
-            src={member.imageSrc}
-            alt={member.name}
-            fill
-            sizes="(max-width: 640px) 128px, (max-width: 1024px) 144px, 160px"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        ) : (
-          <div
-            className={`absolute inset-0 flex items-center justify-center ${fallback.bg}`}
-          >
-            <span className={`font-display text-4xl font-bold ${fallback.text}`}>
-              {initialsFor(member.name)}
-            </span>
-          </div>
-        )}
-      </div>
+      {/* Background: photo or colored initials */}
+      {member.imageSrc ? (
+        <Image
+          src={member.imageSrc}
+          alt={member.name}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <div
+          className={`absolute inset-0 flex items-center justify-center ${fallback.bg}`}
+        >
+          <span className={`font-display text-5xl font-bold ${fallback.text}`}>
+            {initialsFor(member.name)}
+          </span>
+        </div>
+      )}
 
-      {/* Info */}
-      <div className="mt-4 px-1">
+      {/* Gradient for legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/20" />
+
+      {/* Role badge — top left */}
+      <div className="absolute left-3 top-3">
         <span
           className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.className}`}
         >
           {badge.label}
         </span>
-        <h3 className="mt-2 font-display text-sm font-bold leading-snug text-rhino-700">
+      </div>
+
+      {/* Name + school — bottom */}
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <h3 className="font-display text-sm font-bold leading-tight text-white">
           {member.name}
         </h3>
         {member.school && (
-          <p className="mt-0.5 text-xs leading-snug text-neutral-500">
+          <p className="mt-0.5 text-xs leading-snug text-white/65">
             {member.school}
           </p>
         )}
-        <p className="mt-2 text-xs font-semibold text-denim-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <p className="mt-2 text-xs font-semibold text-white/0 transition-colors duration-200 group-hover:text-white/80">
           View profile →
         </p>
       </div>
@@ -300,7 +305,7 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
       </div>
 
       {/* Flat grid */}
-      <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
         {filtered.map((m) => (
           <MemberCard key={m.name} member={m} onClick={() => setSelected(m)} />
         ))}
