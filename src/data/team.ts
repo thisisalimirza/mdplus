@@ -31,6 +31,7 @@ export type Founder = {
   name: string;
   role: "Co-Founder";
   bio: string;
+  imageSrc?: string;
 };
 
 export type HistoricalMember = {
@@ -340,6 +341,7 @@ export const FOUNDERS: Founder[] = [
     name: "Sherman Leung",
     role: "Co-Founder",
     bio: "Founded MD+ in 2019 at Mount Sinai. Stanford CS → MS in Management Science → vaccine researcher at NIH → PM at PatientPing → healthcare investor at AlleyCorp. Now an Emergency Medicine resident at Stanford and Venture Fellow at a16z bio+health.",
+    imageSrc: "/Advisors/sherman-leung.webp",
   },
   {
     name: "Sarah Zweifach",
@@ -496,6 +498,92 @@ export const PAST_YEARS: PastYear[] = [
       { name: "Gary Wang", role: "Director, Health Policy" },
       { name: "William Wulftange", role: "Committee Chair, Crypto" },
     ],
+  },
+];
+
+// ── Advisors ──────────────────────────────────────────────────────────────────
+
+export type Advisor = {
+  name: string;
+  role: string;
+  funFact?: string;
+  imageSrc: string;
+};
+
+export const ADVISORS: Advisor[] = [
+  {
+    name: "Sherman Leung",
+    role: "Founder",
+    funFact: "I sang tenor with an R&B/Hip Hop acapella group in college",
+    imageSrc: "/Advisors/sherman-leung.webp",
+  },
+  {
+    name: "Daniel Friedman",
+    role: "Graduate",
+    funFact: "I can type the alphabet in under 2.5 seconds.",
+    imageSrc: "/Advisors/daniel-friedman.webp",
+  },
+  {
+    name: "Jon Wang",
+    role: "Entrepreneurship",
+    funFact: "I've eaten two Chipotle burritos in one sitting before.",
+    imageSrc: "/Advisors/jon-wang.webp",
+  },
+  {
+    name: "Shaq Junaid",
+    role: "Healthcare Consulting",
+    funFact: "I have the same nickname and birthday as Shaquille O'Neal",
+    imageSrc: "/Advisors/shaq-junaid.webp",
+  },
+  {
+    name: "Katie Link",
+    role: "AI",
+    imageSrc: "/Advisors/katie-link.webp",
+  },
+  {
+    name: "Jun Jeon",
+    role: "Life Sciences",
+    imageSrc: "/Advisors/jun-jeon.webp",
+  },
+  {
+    name: "David Mui",
+    role: "Curriculum",
+    imageSrc: "/Advisors/david-mui.webp",
+  },
+  {
+    name: "Kylie Long",
+    role: "Growth",
+    funFact: "I'm in a slack group with Patrick Schwarzenegger.",
+    imageSrc: "/Advisors/kylie-long.webp",
+  },
+  {
+    name: "Dhuru Patel",
+    role: "Consulting",
+    funFact: "I visited 14 countries solo in 2 months.",
+    imageSrc: "/Advisors/dhuru-patel.webp",
+  },
+  {
+    name: "Clara Sun",
+    role: "Community",
+    funFact: "I love collecting matchboxes!",
+    imageSrc: "/Advisors/clara-sun.webp",
+  },
+  {
+    name: "Michael Yao",
+    role: "AI/Data",
+    funFact: "Gwyneth Paltrow watched me run a lab experiment (and spill a flask) in college.",
+    imageSrc: "/Advisors/michael-yao.webp",
+  },
+  {
+    name: "Lawrence Huang",
+    role: "AI/Data",
+    funFact: "I biked a 10,000 ft volcano in Hawaii and started hallucinating at altitude while singing the Moulin Rouge theme to a group of confused tourists.",
+    imageSrc: "/Advisors/laurence-huang.webp",
+  },
+  {
+    name: "Pranav Sanghvi",
+    role: "Advisor",
+    imageSrc: "/Advisors/pranav-sanghvi.webp",
   },
 ];
 

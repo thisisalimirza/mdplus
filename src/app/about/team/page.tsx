@@ -5,10 +5,12 @@ import { PageHero } from "@/components/marketing/PageHero";
 import { Avatar } from "@/components/marketing/Avatar";
 import { TeamGrid } from "@/components/marketing/TeamGrid";
 import { PastYearsSection } from "@/components/marketing/PastYearsSection";
+import { AdvisorsSection } from "@/components/marketing/AdvisorsSection";
 import {
   CURRENT_TEAM,
   FOUNDERS,
   PAST_YEARS,
+  ADVISORS,
   CURRENT_YEAR,
   type Founder,
 } from "@/data/team";
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
 function FounderCard({ member }: { member: Founder }) {
   return (
     <article className="flex gap-5 rounded-xl border border-neutral-200 bg-neutral-0 p-6 transition-shadow hover:shadow-sm">
-      <Avatar name={member.name} size="lg" className="shrink-0" />
+      <Avatar name={member.name} src={member.imageSrc} size="lg" className="shrink-0" />
       <div className="min-w-0 flex-1">
         <h3 className="font-display text-base font-bold text-rhino-700">{member.name}</h3>
         <p className="mt-0.5 text-sm font-medium text-denim-600">{member.role}</p>
@@ -61,17 +63,11 @@ export default function TeamPage() {
                 Filter by role or vertical. Click any card to read their full profile.
               </p>
             </div>
-            <p className="text-sm text-neutral-400">
-              {CURRENT_TEAM.length} members
-            </p>
           </div>
 
           <TeamGrid members={CURRENT_TEAM} />
         </div>
       </section>
-
-      {/* ── Past leadership ─────────────────────────────────────── */}
-      <PastYearsSection years={PAST_YEARS} />
 
       {/* ── Founders ────────────────────────────────────────────── */}
       <section className="border-t border-neutral-100 bg-yellow-50 py-20 md:py-28">
@@ -96,6 +92,12 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Advisors ────────────────────────────────────────────── */}
+      <AdvisorsSection advisors={ADVISORS} />
+
+      {/* ── Past leadership ─────────────────────────────────────── */}
+      <PastYearsSection years={PAST_YEARS} />
 
       {/* ── Join CTA ─────────────────────────────────────────────── */}
       <section className="bg-neutral-0 py-20 md:py-28">

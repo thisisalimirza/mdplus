@@ -5,7 +5,6 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { Avatar } from "@/components/marketing/Avatar";
 import type { CurrentMember, DirectorVertical } from "@/data/team";
-import { DIRECTOR_VERTICALS } from "@/data/team";
 
 // ── Fallback avatar helpers (for no-photo cards) ──────────────────────────────
 
@@ -17,7 +16,12 @@ const FALLBACK_COLORS = [
 ] as const;
 
 function initialsFor(name: string) {
-  return name.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase() ?? "").join("");
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? "")
+    .join("");
 }
 
 function fallbackColor(name: string) {
@@ -67,43 +71,6 @@ function getModalHeaderBg(tier: string): string {
   return "bg-neutral-50";
 }
 
-// ── Grouping ──────────────────────────────────────────────────────────────────
-
-type Section = { label: string; members: CurrentMember[] };
-
-/**
- * Returns grouped sections for "all" and "leadership" filters.
- * Returns null for vertical filters — those render as a flat grid.
- */
-function buildSections(members: CurrentMember[], filter: FilterValue): Section[] | null {
-  if (filter !== "all" && filter !== "leadership") return null;
-
-  const sections: Section[] = [];
-
-  // Co-Chairs first
-  const chairs = members.filter((m) => m.tier === "co-chair");
-  if (chairs.length) sections.push({ label: "Co-Chairs", members: chairs });
-
-  // VPs grouped by their exact role — Set preserves insertion order (data order)
-  const vpRoles = [
-    ...new Set(members.filter((m) => m.tier === "vp").map((m) => m.role)),
-  ];
-  for (const role of vpRoles) {
-    const group = members.filter((m) => m.role === role);
-    if (group.length) sections.push({ label: role, members: group });
-  }
-
-  // Directors by vertical — only when showing all
-  if (filter === "all") {
-    for (const vertical of DIRECTOR_VERTICALS) {
-      const group = members.filter((m) => m.vertical === vertical);
-      if (group.length) sections.push({ label: vertical, members: group });
-    }
-  }
-
-  return sections;
-}
-
 // ── Card ──────────────────────────────────────────────────────────────────────
 
 function MemberCard({
@@ -131,19 +98,23 @@ function MemberCard({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
-        <div className={`absolute inset-0 flex items-center justify-center ${fallback.bg}`}>
+        <div
+          className={`absolute inset-0 flex items-center justify-center ${fallback.bg}`}
+        >
           <span className={`font-display text-5xl font-bold ${fallback.text}`}>
             {initialsFor(member.name)}
           </span>
         </div>
       )}
 
-      {/* Persistent gradient — stronger at bottom for legibility */}
+      {/* Gradient for legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/20" />
 
       {/* Role badge — top left */}
       <div className="absolute left-3 top-3">
-        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.className}`}>
+        <span
+          className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.className}`}
+        >
           {badge.label}
         </span>
       </div>
@@ -154,44 +125,15 @@ function MemberCard({
           {member.name}
         </h3>
         {member.school && (
-          <p className="mt-0.5 text-xs leading-snug text-white/65">{member.school}</p>
+          <p className="mt-0.5 text-xs leading-snug text-white/65">
+            {member.school}
+          </p>
         )}
         <p className="mt-2 text-xs font-semibold text-white/0 transition-colors duration-200 group-hover:text-white/80">
           View profile →
         </p>
       </div>
     </button>
-  );
-}
-
-// ── Grouped grid ──────────────────────────────────────────────────────────────
-
-function GroupedGrid({
-  sections,
-  onSelect,
-}: {
-  sections: Section[];
-  onSelect: (m: CurrentMember) => void;
-}) {
-  return (
-    <div className="mt-8 space-y-10">
-      {sections.map((section) => (
-        <div key={section.label}>
-          <div className="mb-5 flex items-center gap-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
-              {section.label}
-            </span>
-            <div className="h-px flex-1 bg-neutral-100" />
-            <span className="text-xs text-neutral-300">{section.members.length}</span>
-          </div>
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {section.members.map((m) => (
-              <MemberCard key={m.name} member={m} onClick={() => onSelect(m)} />
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -249,17 +191,28 @@ function MemberModal({
         <div className="overflow-y-auto">
           <div className={`px-8 py-8 ${headerBg}`}>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-              <Avatar name={member.name} src={member.imageSrc} size="xl" className="shrink-0" />
+              <Avatar
+                name={member.name}
+                src={member.imageSrc}
+                size="xl"
+                className="shrink-0"
+              />
               <div className="min-w-0 pt-1">
-                <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}>
+                <span
+                  className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}
+                >
                   {badge.label}
                 </span>
                 <h2 className="mt-2 font-display text-2xl font-bold text-rhino-700">
                   {member.name}
                 </h2>
-                <p className="mt-0.5 text-sm font-medium text-denim-600">{member.role}</p>
+                <p className="mt-0.5 text-sm font-medium text-denim-600">
+                  {member.role}
+                </p>
                 {member.school && (
-                  <p className="mt-0.5 text-xs text-neutral-500">{member.school}</p>
+                  <p className="mt-0.5 text-xs text-neutral-500">
+                    {member.school}
+                  </p>
                 )}
               </div>
             </div>
@@ -271,7 +224,9 @@ function MemberModal({
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
                   About
                 </p>
-                <p className="text-sm leading-relaxed text-neutral-700">{member.bio}</p>
+                <p className="text-sm leading-relaxed text-neutral-700">
+                  {member.bio}
+                </p>
               </div>
             )}
             {member.plus && (
@@ -280,7 +235,9 @@ function MemberModal({
                   My Plus
                 </p>
                 <blockquote className="border-l-2 border-yellow-400 pl-4">
-                  <p className="text-sm leading-relaxed text-neutral-700">{member.plus}</p>
+                  <p className="text-sm leading-relaxed text-neutral-700">
+                    {member.plus}
+                  </p>
                 </blockquote>
               </div>
             )}
@@ -289,7 +246,9 @@ function MemberModal({
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
                   Why I Joined MD+
                 </p>
-                <p className="text-sm italic leading-relaxed text-neutral-600">{member.whyJoined}</p>
+                <p className="text-sm italic leading-relaxed text-neutral-600">
+                  {member.whyJoined}
+                </p>
               </div>
             )}
             {member.funFact && (
@@ -321,7 +280,6 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
     return m.vertical === filter;
   });
 
-  const sections = buildSections(filtered, filter);
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
@@ -341,21 +299,14 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
             {f.label}
           </button>
         ))}
-        <span className="ml-auto text-sm text-neutral-400">
-          {filtered.length} member{filtered.length !== 1 ? "s" : ""}
-        </span>
       </div>
 
-      {/* Grouped or flat grid */}
-      {sections ? (
-        <GroupedGrid sections={sections} onSelect={setSelected} />
-      ) : (
-        <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-          {filtered.map((m) => (
-            <MemberCard key={m.name} member={m} onClick={() => setSelected(m)} />
-          ))}
-        </div>
-      )}
+      {/* Flat grid */}
+      <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+        {filtered.map((m) => (
+          <MemberCard key={m.name} member={m} onClick={() => setSelected(m)} />
+        ))}
+      </div>
 
       {/* Profile modal */}
       {selected && <MemberModal member={selected} onClose={handleClose} />}

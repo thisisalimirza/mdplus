@@ -152,6 +152,11 @@
     font-feature-settings: "ss01", "ss02";
   }
 
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-denim-500);
     outline-offset: 2px;
