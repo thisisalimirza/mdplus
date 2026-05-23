@@ -25,6 +25,7 @@ export type CurrentMember = {
   /** Verbatim "Interesting/Weird Fact or Talent" */
   funFact?: string;
   imageSrc?: string;
+  linkedIn?: string;
 };
 
 export type Founder = {
@@ -32,6 +33,7 @@ export type Founder = {
   role: "Co-Founder";
   bio: string;
   imageSrc?: string;
+  linkedIn?: string;
 };
 
 export type HistoricalMember = {
@@ -54,6 +56,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Co-Chair",
     tier: "co-chair",
     school: "UNC School of Medicine",
+    linkedIn: "https://www.linkedin.com/in/arvind-rajan-8380b2143",
     bio: "Arvind is an MD candidate at the UNC School of Medicine currently on a leave of absence working in healthcare AI at Doximity. Before medical school he pursued an MPH where he researched racial disparities in cancer care, which developed his interest in oncology as a field. In medical school, he's further explored that interest through research and has deepened his focus on clinical AI, particularly in medical education. In his free time, he enjoys Carolina basketball, traveling, and videography.",
     plus: "My plus is healthcare AI - specifically how it can transform both medical education and clinical workflows. I'm currently on a leave of absence working at Doximity, where I focus on building AI tools that reduce physician burnout and help clinicians deliver better care on their own terms. I'm equally drawn to the medical education side - how AI can improve how we train the next generation of clinicians.",
     whyJoined:
@@ -66,6 +69,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Co-Chair",
     tier: "co-chair",
     school: "Icahn School of Medicine at Mount Sinai",
+    linkedIn: "https://www.linkedin.com/in/emily-l-leventhal",
     bio: "Emily is an MD-PhD student in her first year of the PhD at the Icahn School of Medicine at Mount Sinai. Her research leverages genetics, clinical data, and AI to better understand women's health and mental health conditions. Before and during medical school, she has worked on a mobile health intervention for anxiety, at an e-consult platform startup, and at a biotech startup focused on precision medicine. Through MD+, she has led two national datathons and spearheaded an initiative in which trainees authored white papers on the role of AI across clinical specialties. At Sinai, she co-directed courses on ethical AI and modern medical ethics. Beyond medicine and academics, Emily loves to run in Central Park, do yoga, listen to music, and spend time with friends in NY!",
     plus: "My pluses are AI and ethics. I love the prospect of building models with new technology that will meaningfully advance the future of women's health. In undergrad, I also minored in bioethics and have always loved exploring ethics topics in medicine.",
     whyJoined:
@@ -78,6 +82,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of Operations",
     tier: "vp",
     school: "Warren Alpert Medical School of Brown University",
+    linkedIn: "https://www.linkedin.com/in/kadenbunch",
     bio: "Kaden Bunch is a second-year medical student at the Warren Alpert Medical School of Brown University with a background in biology, business, and entrepreneurship. He earned an MBA focused on operations and start-ups before medical school and applies this expertise to healthcare innovation. His research explores machine learning and large language models for predicting mental health conditions and disease outcomes, as well as leadership competencies in medical education. He has led initiatives in vision screening for underserved populations and curriculum innovation while also supporting students in data science through MD+. Outside of medicine, Kaden enjoys spending time at the beach with his wife and caring for their two Sphynx cats.",
     funFact:
       "As a child, I once flew from Utah to Minnesota with a scorpion in my shorts pocket after everyone told me not to. It went on to live for another three years with me afterward.",
@@ -87,6 +92,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of Operations",
     tier: "vp",
     school: "Icahn School of Medicine at Mount Sinai",
+    linkedIn: "https://www.linkedin.com/in/shah-veer",
   },
 
   // ── VPs — External Relations ──────────────────────────────────────────────
@@ -96,6 +102,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "vp",
     school: "UConn School of Medicine",
     imageSrc: "/ExecHeadshots/Ali_Mirza.png",
+    linkedIn: "https://www.linkedin.com/in/thisisalimirza",
     bio: "Ali is an MD Candidate at UConn School of Medicine. A Foote Fellow and Da Vinci Scholar at the University of Miami, he studied Biochemistry and Classics while pursuing broad interests in computer science, game theory, economics, and international relations, supported by a fifth-year scholarship in Healthcare Economics, Management, and Policy. Prior to medical school, he worked as a Project Manager at Epic in Madison, WI, and founded Janus, a marketing agency he grew to $250K ARR. In medical school, he has published two machine learning papers, writes on his Substack Side Effects, and built Rounds (100 DAU) and Sitr (1,000+ peak users). He is pursuing Cardiology with a focus on technology-enabled innovation in patient care.",
     plus: "My 'plus' is treating medicine, entrepreneurship, and philosophy as parts of the same problem: how do we enable world-improving innovations? Whether it's building software to streamline clinical work or practicing cardiology to extend a patient's life, the goal is the same: providing people the time and tools to realize their own potential.",
     whyJoined:
@@ -109,6 +116,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "vp",
     school: "University of Miami Miller School of Medicine",
     imageSrc: "/ExecHeadshots/Kush Patel Headshot.jpeg",
+    linkedIn: "https://www.linkedin.com/in/kush1028",
     bio: "Kush Patel is an MD/MBA candidate at the University of Miami Miller School of Medicine and the Herbert Business School. Before medical school, he received his Associate's and Bachelor's degrees from Emory University, where he spent much of his time organizing university-wide events and working in the Department of Cell Biology studying inflammatory pathways in cutaneous carcinomas. He is currently interested in interventional oncology and emerging technologies that enable localized chemotherapy delivery and improved tumor management. Outside of academics, Kush enjoys staying active and spending time outdoors, whether that's playing basketball, climbing, or trying new outdoor activities.",
     plus: "Since starting medical school, I've connected with alumni and leaders across healthcare to better understand where the field is heading. Through mentorship and guidance, I became interested in healthcare innovation and venture capital and currently serve as a Deal Analyst with the Cane Angel Network, where I help evaluate early-stage companies. I'm particularly interested in how physicians can play a role in shaping healthcare startups and ensuring new technologies and companies are built with a real understanding of clinical medicine and patient care.",
     whyJoined:
@@ -121,6 +129,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "vp",
     school: "Rush Medical College",
     imageSrc: "/ExecHeadshots/Jivan_Rishma.jpg",
+    linkedIn: "https://www.linkedin.com/in/rishma-jivan",
     bio: "Rishma Jivan is an MD candidate at Rush Medical College and Community Champion for MD+ Chicago. Before medical school, she spent five years at San Francisco health tech startups Augmedix and Lyra Health, where she built revenue cycle management platforms and led EHR implementation projects. She also served as Clinic Coordinator for Ashland Free Medical Clinic, developing their hybrid telehealth platform during COVID-19. At Rush, Rishma founded three community service organizations focused on refugee health, transplant awareness, and cardiovascular wellness. As M4 Chair of Rush AI in Medicine, she is developing a four-year longitudinal AI curriculum and organizing workshops on AI applications in clinical practice. She has organized national medical conferences and advises early-stage health tech startups on clinical validation, AI workflows, and strategy. Outside of medicine, she dances, trains/boxes, and reads voraciously.",
     plus: "From advising early stage startups, doing clinical AI research, to understanding the business of healthcare, I love all of it! I feel strongly about having physicians at the forefront of driving the tech solutions we're building, what we are investing in, and the direction our medical care is taking while maintaining patients at the center of these decisions.",
     whyJoined:
@@ -133,12 +142,14 @@ export const CURRENT_TEAM: CurrentMember[] = [
     name: "Jennifer Ipe",
     role: "VP of Growth",
     tier: "vp",
+    linkedIn: "https://www.linkedin.com/in/jennifer-ipe-81b03a210",
   },
   {
     name: "Sathiyaa Balachandran",
     role: "VP of Growth",
     tier: "vp",
     imageSrc: "/ExecHeadshots/Sathiyaa_Balachandran.jpg",
+    linkedIn: "https://www.linkedin.com/in/sathiyaa",
   },
 
   // ── VPs — Community ───────────────────────────────────────────────────────
@@ -148,6 +159,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "vp",
     school: "Loyola University Chicago / Stritch School of Medicine",
     imageSrc: "/ExecHeadshots/MayaRoytman - Headshot.jpg",
+    linkedIn: "https://www.linkedin.com/in/maya-roytman-60a13014a",
     bio: "Maya is a MD/MA in Bioethics and Health Policy candidate at Loyola University Chicago Stritch School of Medicine. She is passionate about combining her interests in clinical medicine, entrepreneurship, ethics, and public health in her future career. Before medical school, she was a summer biomedical ethics research intern at Mayo Clinic, an intern at the AMA in the Council on Ethical and Judicial Affairs, and a Dana Neuroscience and Society Planning Grant Next Generation Leader at Harvard Medical School Center for Bioethics. She was previously an AI Clinical Fellow and Deputy Safety, Ethics, and Alignment Lead at Glass Health. In her free time, she loves watching movies, reading, and playing tennis.",
     funFact: "I did competitive Latin/ballroom dancing for six years!",
   },
@@ -157,6 +169,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "vp",
     school: "Icahn School of Medicine at Mount Sinai",
     imageSrc: "/ExecHeadshots/Ishani Bansal.jpeg",
+    linkedIn: "https://www.linkedin.com/in/ishani-bansal-4464441aa",
   },
 
   // ── Directors — AI & Data Science ─────────────────────────────────────────
@@ -167,6 +180,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     vertical: "AI & Data Science",
     school: "Texas A&M / EnMed",
     imageSrc: "/ExecHeadshots/JoshuaRobert-AI_Data.png",
+    linkedIn: "https://www.linkedin.com/in/joshua-robert",
     bio: "Joshua Robert is an MD/MEng candidate in Engineering Medicine (EnMed) at Texas A&M and the Editor-in-Chief of the Journal for Artificial Intelligence in Medicine (JAIM). His work sits at the intersection of clinical medicine, artificial intelligence, and biomedical innovation. Joshua has led and contributed to multiple AI-driven research projects spanning neuromodulation, cardiovascular risk modeling, and surgical safety systems. Beyond research, he is active in the startup and innovation ecosystem through the Texas Medical Center Innovation Factory, NASA, and national accelerators. In his free time he enjoys thrifting, flying his drone, videography, working out, and traveling.",
     plus: "My \"plus\" is artificial intelligence and data-driven systems in healthcare. I'm particularly interested in how AI can move beyond research and become practical infrastructure for medicine — tools that help physicians interpret complex information, reduce cognitive burden, and improve patient care. I'm especially excited about building systems that augment physicians rather than replace them, helping clinicians make better decisions while navigating the growing complexity of modern medicine.",
     whyJoined:
@@ -181,6 +195,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     vertical: "AI & Data Science",
     school: "Johns Hopkins University School of Medicine",
     imageSrc: "/ExecHeadshots/BrandonYe.png",
+    linkedIn: "https://www.linkedin.com/in/brandonye",
     bio: "Brandon Ye is a first year medical student at the Johns Hopkins University School of Medicine. Previously, he graduated with a bachelor's and master's degree in computational biology from the University of Southern California, where he developed tools to predict cancer patient outcomes using large single-cell liquid biopsy datasets. Brandon is passionate about using technology to advance medicine. At Hopkins, he conducts research in surgical outcomes, brain-computer interfaces, and AI-enabled medical devices. He enjoys spending his free time exploring the outdoors through backpacking, hiking, and trail-running.",
     plus: "Learning and working at the intersection of AI and medicine has made two things clear to me. First, AI is destined to change how we approach healthcare administration and patient care; but second, much work remains to be done to ensure it can perform ethically and safely at the bedside. I hope to combine my medical training and technical background to sustain dialogues between physicians, scientists, and policymakers regarding the ethical deployment of these new technologies in the service of our patients.",
     whyJoined:
@@ -210,6 +225,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     vertical: "Health Policy",
     school: "Drexel University College of Medicine",
     imageSrc: "/ExecHeadshots/Ankith_Alluri_Headshot.jpeg",
+    linkedIn: "https://www.linkedin.com/in/ankith-alluri-5a0935191",
     bio: "Ankith Alluri is an M1 in the B.S./M.D. program at Drexel University College of Medicine. He is involved with UN Shot@Life, where he organizes advocacy workshops and helps coordinate meetings between trained advocates and members of Congress to advance equitable global vaccine access. He also founded The Full Picture, a student-led curricular initiative involving more than 30 medical students that aims to teach the practical, policy, and systems-level aspects of medicine often missing from traditional medical education. Ankith is broadly interested in the intersection of medicine, health policy, and health systems. Outside of school, he enjoys reading widely—especially about healthcare policy and systems reform—thrifting, and exploring Philadelphia.",
     plus: "My curricular initiative is a way for me to help expand both my own and other medical students' understanding of health systems and topics not typically covered in medical school.",
     whyJoined:
@@ -223,6 +239,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Health Policy",
     school: "Washington University School of Medicine",
+    linkedIn: "https://www.linkedin.com/in/uswakhan",
   },
 
   // ── Directors — Venture Capital ────────────────────────────────────────────
@@ -233,6 +250,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     vertical: "Venture Capital",
     school: "UNC School of Medicine",
     imageSrc: "/ExecHeadshots/Aneri Kothari.jpg",
+    linkedIn: "https://www.linkedin.com/in/aneri-kothari16",
     bio: "Aneri Kothari is an MD/MBA candidate at the UNC School of Medicine. Prior to medical school, she worked in healthcare venture capital, where she evaluated digital health and clinical based startups, and developed a strong interest in the intersection of innovation, business, and clinical care. During medical school, she has continued to build on this interest through her work in women's health, medical education, and healthcare innovation, with a particular focus on how medical devices and emerging technologies can improve outcomes and expand access to care in obstetrics and gynecology, especially in underserved populations. Outside of medicine, Aneri enjoys traveling, staying active, spending time with friends, and exploring creative outlets including baking and painting.",
     plus: "My pluses are healthcare innovation and entrepreneurship and venture capital. I am equally motivated to take what I learn at the bedside and translate it into solutions that can improve care at scale — whether through building new tools, supporting early-stage companies, or helping shape how innovations enter clinical practice.",
     whyJoined:
@@ -248,6 +266,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Medical Devices",
     school: "Harvard Medical School",
+    linkedIn: "https://www.linkedin.com/in/aliyashabbir",
     bio: "Aliya Shabbir is a third-year medical student at Harvard Medical School. Prior to medical school, she worked as a clinical trials coordinator, where she gained hands-on experience at the interface of research and clinical care.",
   },
 
@@ -257,6 +276,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Director",
     tier: "director",
     vertical: "Biotech",
+    linkedIn: "https://www.linkedin.com/in/shannonmcl2",
   },
 
   // ── Directors — Research ──────────────────────────────────────────────────
@@ -266,6 +286,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Research",
     school: "Penn State College of Medicine",
+    linkedIn: "https://www.linkedin.com/in/aelsayed2002",
   },
   {
     name: "Samantha Mallahan",
@@ -273,6 +294,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Research",
     school: "Loyola University Chicago / Stritch School of Medicine",
+    linkedIn: "https://www.linkedin.com/in/samantha-mallahan",
     bio: "Sam Mallahan is a first year medical student at Loyola Chicago Stritch School of Medicine. She graduated from Vanderbilt University in 2023 with a biomedical engineering degree and then worked as a data analyst at Tempus AI, a precision-oncology AI company in Chicago for two years. Her passion for her \"plus\" began after interning at Fogarty Innovation, a silicon-valley based startup incubator where she was paired with a women's FemTech company called Materna Medical — and from then on she's been deeply passionate about the ecosystem of healthcare innovation.",
     whyJoined:
       "I joined MD+ to continue exploring how I want my future career to look as an aspiring physician innovator. From my first exposure to the startup world working at Fogarty, to exploring the role of AI in medicine at Tempus, I was worried when I went back to school that I would have to give up these passions as a medical student — and I realized that was not true at all due to the awesome community of MDplus that has actually enabled me to do the exact opposite :)",
@@ -286,6 +308,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Consulting",
     school: "Wright State University / Boonshoft School of Medicine",
+    linkedIn: "https://www.linkedin.com/in/eshitagarg",
     bio: "Esh Garg is a fourth-year medical student at Wright State University Boonshoft School of Medicine. Prior to medical school, she earned her B.S. from UC San Diego and her M.S. from Columbia University. After graduation, she'll be trading in the hospital for the world of management consulting. Outside of academics and professional pursuits, Esh loves to travel, junk journal, and enthusiastically dive into new hobbies — most of which she absolutely cannot keep up with for more than a week.",
     plus: "My \"pluses\" are biotech innovation, AI, and consulting — which is a long way of saying I have never been able to be just one thing. I've always known I didn't want to be \"just a physician,\" and along the way, I've leaned into that curiosity through experiences with ExactRx, No Patient Left Behind, Global Biotech Revolution, Nucleate, and more. I am building toward becoming a physician who understands these \"pluses\" and uses them to rethink and improve the healthcare ecosystem — because healthcare shouldn't exist in a silo, and neither should we.",
     whyJoined:
@@ -298,6 +321,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Consulting",
     school: "University of Central Florida College of Medicine",
+    linkedIn: "https://www.linkedin.com/in/kai-thomas-193b99246",
     bio: "Kai Thomas is an MS1 at the University of Central Florida College of Medicine. During his undergraduate studies at UCSB, he worked as a surgical technician, gaining a unique understanding of the interaction between medical device companies and the surgeons who consult on new technologies. He is currently interning at NeXtGen Biologics, a medical device startup, focusing on the research and development of a novel bone product for spine surgeries, and plans to transition to a consultant role following his internship. Kai is involved in multiple orthopedic research projects and will further explore the field this summer through an internship at the UCSF Orthopaedic Trauma Institute. In his free time, he enjoys basketball, surfing, snowboarding, traveling, and finance.",
     plus: "My plus is interning at a medical device company as R&D consultant. For the past three months, my internship at NeXtGen Biologics has provided incredible insight into the world of medical device development and the critical role physicians play in that process. I am excited to continue this work and plan to explore every available opportunity in the field.",
     whyJoined:
@@ -313,6 +337,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     vertical: "Alumni Engagement",
     school: "Washington University School of Medicine",
     imageSrc: "/ExecHeadshots/Connor Alder - Cropped 1.JPG",
+    linkedIn: "https://www.linkedin.com/in/connor-alder-1a73041aa",
     bio: "Connor Alder is an M2 at Washington University School of Medicine in St. Louis with interests in global health, entrepreneurship, and healthcare innovation. Before and during medical school, he has built and led multiple ventures at the intersection of medicine and technology, including a marketing agency for mental health clinics and Brivy, an AI-powered clinical scribe for therapists. He also leads research in global ophthalmology, with publications about the cost-effectiveness of addressing ROP in Rwanda, and authorship representation in sub-Saharan Africa. Outside of medicine, Connor loves watching and playing basketball and going on backpacking trips with friends.",
     plus: "My plus is exploring healthcare startups. For now, I'm particularly interested in AI as a means to improve access and equity in global ophthalmology. I'm especially interested in understanding which interventions are scalable even in low-resource settings.",
     whyJoined:
@@ -326,6 +351,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     vertical: "Alumni Engagement",
     school: "Drexel University College of Medicine",
     imageSrc: "/ExecHeadshots/Rohan_Chandraghatgi_Headshot.jpg",
+    linkedIn: "https://www.linkedin.com/in/rohan-chandraghatgi",
     bio: "Rohan Chandraghatgi is an MS1 in Drexel University College of Medicine's BS/MD program. Before medical school, he conducted research in computational drug discovery and developed image registration algorithms for digital pathology workflows at Mayo Clinic. He is now working with a team at Penn Medicine focused on data drift detection in digital pathology, and this summer he will be joining MD Anderson Cancer Center to pursue deep learning research in radiation oncology. His work is guided by a broader interest in healthcare AI and digital transformation, and the challenge of building intelligent systems that perform reliably in real clinical environments. Outside of research, he enjoys exploring Philadelphia's food scene and traveling as much as possible.",
     plus: "My plus is in the development of robust AI technologies to improve healthcare delivery. Currently, I investigate data drift in longitudinal pathology datasets and its implications for deploying deep learning models in diagnostic support systems. In the future, I hope to help health systems deploy diagnostic support tools safely and effectively.",
     whyJoined:
@@ -342,21 +368,25 @@ export const FOUNDERS: Founder[] = [
     role: "Co-Founder",
     bio: "Founded MD+ in 2019 at Mount Sinai. Stanford CS → MS in Management Science → vaccine researcher at NIH → PM at PatientPing → healthcare investor at AlleyCorp. Now an Emergency Medicine resident at Stanford and Venture Fellow at a16z bio+health.",
     imageSrc: "/Advisors/sherman-leung.webp",
+    linkedIn: "https://www.linkedin.com/in/shleung",
   },
   {
     name: "Sarah Zweifach",
     role: "Co-Founder",
     bio: "NYU MD/MBA. One of the four co-founders at the October 2019 founding meetup. Built the early events operation that turned the Slack into a real community.",
+    linkedIn: "https://www.linkedin.com/in/sarahzweifach",
   },
   {
     name: "Omar Njie",
     role: "Co-Founder",
     bio: "Mount Sinai. Co-founded MD+ at the 2019 founding meetup; contributed to early community building.",
+    linkedIn: "https://www.linkedin.com/in/omarnjie",
   },
   {
     name: "Walter Hsiang",
     role: "Co-Founder",
     bio: "Yale MD/MBA. Co-founded MD+ at the 2019 founding meetup.",
+    linkedIn: "https://www.linkedin.com/in/walter-hsiang",
   },
 ];
 
@@ -508,6 +538,7 @@ export type Advisor = {
   role: string;
   funFact?: string;
   imageSrc: string;
+  linkedIn?: string;
 };
 
 export const ADVISORS: Advisor[] = [
@@ -516,74 +547,87 @@ export const ADVISORS: Advisor[] = [
     role: "Founder",
     funFact: "I sang tenor with an R&B/Hip Hop acapella group in college",
     imageSrc: "/Advisors/sherman-leung.webp",
+    linkedIn: "https://www.linkedin.com/in/shleung",
   },
   {
     name: "Daniel Friedman",
     role: "Graduate",
     funFact: "I can type the alphabet in under 2.5 seconds.",
     imageSrc: "/Advisors/daniel-friedman.webp",
+    linkedIn: "https://www.linkedin.com/in/danielmfriedman",
   },
   {
     name: "Jon Wang",
     role: "Entrepreneurship",
     funFact: "I've eaten two Chipotle burritos in one sitting before.",
     imageSrc: "/Advisors/jon-wang.webp",
+    linkedIn: "https://www.linkedin.com/in/jonxwang",
   },
   {
     name: "Shaq Junaid",
     role: "Healthcare Consulting",
     funFact: "I have the same nickname and birthday as Shaquille O'Neal",
     imageSrc: "/Advisors/shaq-junaid.webp",
+    linkedIn: "https://www.linkedin.com/in/shaq-junaid-md-0a7b2914a",
   },
   {
     name: "Katie Link",
     role: "AI",
     imageSrc: "/Advisors/katie-link.webp",
+    linkedIn: "https://www.linkedin.com/in/katie-e-link",
   },
   {
     name: "Jun Jeon",
     role: "Life Sciences",
     imageSrc: "/Advisors/jun-jeon.webp",
+    linkedIn: "https://www.linkedin.com/in/jun-jeon",
   },
   {
     name: "David Mui",
     role: "Curriculum",
     imageSrc: "/Advisors/david-mui.webp",
+    linkedIn: "https://www.linkedin.com/in/davidmui33",
   },
   {
     name: "Kylie Long",
     role: "Growth",
     funFact: "I'm in a slack group with Patrick Schwarzenegger.",
     imageSrc: "/Advisors/kylie-long.webp",
+    linkedIn: "https://www.linkedin.com/in/kylielong1",
   },
   {
     name: "Dhuru Patel",
     role: "Consulting",
     funFact: "I visited 14 countries solo in 2 months.",
     imageSrc: "/Advisors/dhuru-patel.webp",
+    linkedIn: "https://www.linkedin.com/in/dhurupatel",
   },
   {
     name: "Clara Sun",
     role: "Community",
     funFact: "I love collecting matchboxes!",
     imageSrc: "/Advisors/clara-sun.webp",
+    linkedIn: "https://www.linkedin.com/in/clara21sun",
   },
   {
     name: "Michael Yao",
     role: "AI/Data",
     funFact: "Gwyneth Paltrow watched me run a lab experiment (and spill a flask) in college.",
     imageSrc: "/Advisors/michael-yao.webp",
+    linkedIn: "https://www.linkedin.com/in/michael-s-yao",
   },
   {
     name: "Lawrence Huang",
     role: "AI/Data",
     funFact: "I biked a 10,000 ft volcano in Hawaii and started hallucinating at altitude while singing the Moulin Rouge theme to a group of confused tourists.",
     imageSrc: "/Advisors/laurence-huang.webp",
+    linkedIn: "https://www.linkedin.com/in/lawrence-huang-1850",
   },
   {
     name: "Pranav Sanghvi",
     role: "Advisor",
     imageSrc: "/Advisors/pranav-sanghvi.webp",
+    linkedIn: "https://www.linkedin.com/in/anuj-pranav-sanghvi",
   },
 ];
 
