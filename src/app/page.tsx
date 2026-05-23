@@ -587,7 +587,7 @@ export default async function Home() {
         <section className="bg-rhino-900 py-16 md:py-20">
           <div className="mx-auto max-w-(--container-max) px-6">
 
-            <div className="flex flex-wrap items-center justify-between gap-4">
+            <Reveal className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
                   Recently from MDplus
@@ -603,11 +603,11 @@ export default async function Home() {
                 Full archive
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-            </div>
+            </Reveal>
 
             {/* Masonry wall */}
             <div className="mt-8 columns-1 gap-3 sm:columns-2 lg:columns-3">
-              {contentWall.map((item) => {
+              {contentWall.map((item, i) => {
                 const isArticle = item._kind === "article";
                 const isPodcast = item._kind === "podcast";
                 const isEvent   = item._kind === "event";
@@ -627,10 +627,10 @@ export default async function Home() {
                   : null;
 
                 return (
+                  <Reveal key={item._id} className="mb-3 break-inside-avoid" delay={i * 55}>
                   <Link
-                    key={item._id}
                     href={href}
-                    className="group mb-3 block break-inside-avoid overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] transition-all hover:border-white/15 hover:bg-white/[0.07]"
+                    className="group block overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] transition-all hover:border-white/15 hover:bg-white/[0.07]"
                   >
                     {/* Cover image */}
                     {imgUrl && (
@@ -706,6 +706,7 @@ export default async function Home() {
                       </div>
                     </div>
                   </Link>
+                  </Reveal>
                 );
               })}
             </div>
@@ -763,96 +764,84 @@ export default async function Home() {
       </section>
 
       {/* ── Alternative paths (newsletter + podcast) ─────────── */}
-      <section className="bg-yellow-50 py-20 md:py-28">
+      <section className="bg-neutral-50 py-12 md:py-16">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-yellow-700">
-              Not ready yet?
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
-              Two lower-commitment ways to stay close.
-            </h2>
-            <p className="mt-6 text-lg text-neutral-600">
-              The community is the deepest layer, but it&apos;s not the only
-              one. If you&apos;d rather just stay in the loop for now, both of
-              these are free and there&apos;s no Slack invite involved.
-            </p>
-          </div>
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-400">
+            Not ready for the community?
+          </p>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {/* Newsletter card with embedded signup */}
-            <article className="flex flex-col rounded-xl border border-rhino-100 bg-neutral-0 p-8 md:p-10">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex size-12 items-center justify-center rounded-md bg-denim-500 text-white">
-                  <Mail className="size-6" aria-hidden />
-                </span>
-                <span className="rounded-pill bg-denim-50 px-2.5 py-0.5 text-xs font-semibold text-denim-700">
-                  Weekly · 5 min read
-                </span>
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-rhino-700 md:text-3xl">
-                The MDplus Newsletter
-              </h3>
-              <p className="mt-3 text-base leading-relaxed text-neutral-600">
-                A signal-only Sunday briefing for physician-innovators.
-                Founder spotlights, AI in clinical practice, career moves,
-                healthtech deals. Five minutes. Zero spam.
-              </p>
-              <div className="mt-6">
-                <NewsletterSignup />
-              </div>
-              <Link
-                href="/learn/newsletter"
-                className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
-              >
-                See sample issues + topics
-                <ArrowRight className="size-3.5" aria-hidden />
-              </Link>
-            </article>
-
-            {/* Podcast card */}
-            <article className="flex flex-col rounded-xl border border-rhino-100 bg-neutral-0 p-8 md:p-10">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex size-12 items-center justify-center rounded-md bg-rhino-700 text-white">
-                  <Mic className="size-6" aria-hidden />
-                </span>
-                <span className="rounded-pill bg-rhino-50 px-2.5 py-0.5 text-xs font-semibold text-rhino-700">
-                  Audio · 3 series
-                </span>
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-rhino-700 md:text-3xl">
-                The MD+ Podcast
-              </h3>
-              <p className="mt-3 flex-1 text-base leading-relaxed text-neutral-600">
-                Conversations with physician-founders, healthcare investors,
-                and trainees navigating non-traditional paths. Hosted by{" "}
-                <span className="font-semibold text-rhino-700">
-                  Geoff Bocobo, MD
-                </span>
-                . No commitment beyond clicking play.
-              </p>
-              <div className="mt-7 flex flex-wrap items-center gap-4">
-                <a
-                  href="https://open.spotify.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-rhino-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-rhino-600"
-                >
-                  Listen on Spotify
-                  <ArrowUpRight className="size-4" aria-hidden />
-                </a>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {/* Newsletter card */}
+            <article className="flex items-start gap-4 rounded-xl border border-neutral-200 bg-neutral-0 p-5">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-denim-500 text-white">
+                <Mail className="size-4" aria-hidden />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-display text-sm font-bold text-rhino-700">
+                    The MDplus Newsletter
+                  </h3>
+                  <span className="rounded-pill bg-denim-50 px-2 py-0.5 text-[10px] font-semibold text-denim-600">
+                    Weekly · 5 min
+                  </span>
+                </div>
+                <p className="mt-1 text-xs leading-relaxed text-neutral-500">
+                  Signal-only Sunday briefing — founder spotlights, AI in practice, healthtech deals. Zero spam.
+                </p>
+                <div className="mt-3">
+                  <NewsletterSignup compact />
+                </div>
                 <Link
-                  href="/learn/podcast"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-denim-600 hover:text-denim-700"
+                  href="/learn/newsletter"
+                  className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-denim-600 hover:text-denim-700"
                 >
-                  Podcast page
-                  <ArrowRight className="size-3.5" aria-hidden />
+                  See sample issues
+                  <ArrowRight className="size-3" aria-hidden />
                 </Link>
               </div>
             </article>
+
+            {/* Podcast card */}
+            <article className="flex items-start gap-4 rounded-xl border border-neutral-200 bg-neutral-0 p-5">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-rhino-700 text-white">
+                <Mic className="size-4" aria-hidden />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-display text-sm font-bold text-rhino-700">
+                    The MD+ Podcast
+                  </h3>
+                  <span className="rounded-pill bg-rhino-50 px-2 py-0.5 text-[10px] font-semibold text-rhino-600">
+                    Audio · 3 series
+                  </span>
+                </div>
+                <p className="mt-1 text-xs leading-relaxed text-neutral-500">
+                  Physician-founders, healthcare investors, non-traditional paths. Hosted by{" "}
+                  <span className="font-semibold text-neutral-600">Geoff Bocobo, MD</span>.
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://open.spotify.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-rhino-700 underline-offset-2 hover:underline"
+                  >
+                    Listen on Spotify
+                    <ArrowUpRight className="size-3" aria-hidden />
+                  </a>
+                  <Link
+                    href="/learn/podcast"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-denim-600 hover:text-denim-700"
+                  >
+                    Podcast page
+                    <ArrowRight className="size-3" aria-hidden />
+                  </Link>
+                </div>
+              </div>
+            </article>
           </div>
 
-          <p className="mt-10 text-center text-sm text-neutral-500">
+          <p className="mt-6 text-center text-xs text-neutral-400">
             Changed your mind?{" "}
             <Link
               href="https://app.mdplus.community/apply"
