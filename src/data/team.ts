@@ -31,6 +31,7 @@ export type Founder = {
   name: string;
   role: "Co-Founder";
   bio: string;
+  imageSrc?: string;
 };
 
 export type HistoricalMember = {
@@ -340,6 +341,7 @@ export const FOUNDERS: Founder[] = [
     name: "Sherman Leung",
     role: "Co-Founder",
     bio: "Founded MD+ in 2019 at Mount Sinai. Stanford CS → MS in Management Science → vaccine researcher at NIH → PM at PatientPing → healthcare investor at AlleyCorp. Now an Emergency Medicine resident at Stanford and Venture Fellow at a16z bio+health.",
+    imageSrc: "/Advisors/sherman-leung.webp",
   },
   {
     name: "Sarah Zweifach",
@@ -509,12 +511,6 @@ export type Advisor = {
 };
 
 export const ADVISORS: Advisor[] = [
-  {
-    name: "Sherman Leung",
-    role: "Founder",
-    funFact: "I sang tenor with an R&B/Hip Hop acapella group in college",
-    imageSrc: "/Advisors/sherman-leung.webp",
-  },
   {
     name: "Daniel Friedman",
     role: "Graduate",

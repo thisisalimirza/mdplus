@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 function FounderCard({ member }: { member: Founder }) {
   return (
     <article className="flex gap-5 rounded-xl border border-neutral-200 bg-neutral-0 p-6 transition-shadow hover:shadow-sm">
-      <Avatar name={member.name} size="lg" className="shrink-0" />
+      <Avatar name={member.name} src={member.imageSrc} size="lg" className="shrink-0" />
       <div className="min-w-0 flex-1">
         <h3 className="font-display text-base font-bold text-rhino-700">{member.name}</h3>
         <p className="mt-0.5 text-sm font-medium text-denim-600">{member.role}</p>
