@@ -512,6 +512,12 @@ export type Advisor = {
 
 export const ADVISORS: Advisor[] = [
   {
+    name: "Sherman Leung",
+    role: "Founder",
+    funFact: "I sang tenor with an R&B/Hip Hop acapella group in college",
+    imageSrc: "/Advisors/sherman-leung.webp",
+  },
+  {
     name: "Daniel Friedman",
     role: "Graduate",
     funFact: "I can type the alphabet in under 2.5 seconds.",

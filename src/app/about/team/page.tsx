@@ -72,12 +72,6 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* ── Advisors ────────────────────────────────────────────── */}
-      <AdvisorsSection advisors={ADVISORS} />
-
-      {/* ── Past leadership ─────────────────────────────────────── */}
-      <PastYearsSection years={PAST_YEARS} />
-
       {/* ── Founders ────────────────────────────────────────────── */}
       <section className="border-t border-neutral-100 bg-yellow-50 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
@@ -101,6 +95,12 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Advisors ────────────────────────────────────────────── */}
+      <AdvisorsSection advisors={ADVISORS} />
+
+      {/* ── Past leadership ─────────────────────────────────────── */}
+      <PastYearsSection years={PAST_YEARS} />
 
       {/* ── Join CTA ─────────────────────────────────────────────── */}
       <section className="bg-neutral-0 py-20 md:py-28">

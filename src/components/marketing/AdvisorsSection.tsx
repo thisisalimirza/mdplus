@@ -38,10 +38,10 @@ export function AdvisorsSection({ advisors }: { advisors: Advisor[] }) {
             Advisors
           </p>
           <h2 className="mt-3 font-display text-3xl font-bold text-rhino-700 md:text-4xl">
-            The people who helped build this.
+            The people in our corner.
           </h2>
           <p className="mt-4 text-base text-neutral-500">
-            Alumni and mentors who advised, led, and shaped MDplus over the years.
+            Former leaders and mentors who continue to advise, connect, and open doors for the community.
           </p>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
