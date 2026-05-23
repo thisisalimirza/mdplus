@@ -20,6 +20,7 @@ import { RotatingHeadline } from "@/components/marketing/RotatingHeadline";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { COMMUNITIES as ALL_COMMUNITIES } from "@/data/communities";
 import { CommunityCard } from "@/components/site/CommunityCard";
+import { Reveal } from "@/components/site/Reveal";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -114,14 +115,22 @@ export default async function Home() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(29,123,189,0.08),_transparent_60%)]"
         />
         <div className="relative mx-auto max-w-(--container-max) px-6 pt-24 pb-20 md:pt-32 md:pb-28">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-pill border border-rhino-100 bg-neutral-0 px-3 py-1 text-xs font-medium text-rhino-600 shadow-xs">
+          <p
+            className="mb-6 inline-flex items-center gap-2 rounded-pill border border-rhino-100 bg-neutral-0 px-3 py-1 text-xs font-medium text-rhino-600 shadow-xs"
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "0ms" }}
+          >
             <span className="size-1.5 rounded-full bg-yellow-500" />
             For physicians and med students who want more
           </p>
 
-          <RotatingHeadline />
+          <div style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "80ms" }}>
+            <RotatingHeadline />
+          </div>
 
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl">
+          <p
+            className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl"
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "220ms" }}
+          >
             The community for physicians and med students building in tech,
             data, AI, and entrepreneurship,{" "}
             <span className="font-semibold text-rhino-700">
@@ -129,7 +138,10 @@ export default async function Home() {
             </span>
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
+          <div
+            className="mt-10 flex flex-wrap items-center gap-3"
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "360ms" }}
+          >
             <Link
               href="https://app.mdplus.community/apply"
               className="inline-flex items-center justify-center rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all hover:bg-denim-600 active:bg-denim-700"
@@ -144,14 +156,17 @@ export default async function Home() {
             </Link>
           </div>
 
-          <p className="mt-6 text-sm text-neutral-500">
+          <p
+            className="mt-6 text-sm text-neutral-500"
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "460ms" }}
+          >
             Free forever. We&apos;ll never spam you. 5,000+ members already in.
           </p>
         </div>
       </section>
 
       {/* ── Social proof bar ─────────────────────────────────── */}
-      <section className="border-y border-neutral-100 bg-neutral-0 py-12">
+      <section className="border-t border-neutral-100 bg-neutral-0 py-12">
         <div className="mx-auto max-w-(--container-max) px-6">
           <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-500">
             Members at top medical schools, residencies, and firms
@@ -205,7 +220,7 @@ export default async function Home() {
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             {/* Text */}
-            <div>
+            <Reveal>
               <h2 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
                 Building together.<br />
                 Learning together.<br />
@@ -221,10 +236,10 @@ export default async function Home() {
                 5,000+ physicians and med students — residents, attendings, and
                 researchers — building the future of healthcare together.
               </p>
-            </div>
+            </Reveal>
 
             {/* Photo mosaic */}
-            <div className="grid h-72 grid-cols-3 grid-rows-2 gap-2 md:h-96">
+            <Reveal delay={160} className="grid h-72 grid-cols-3 grid-rows-2 gap-2 md:h-96">
               {/* Large — left 2 cols, full height */}
               <div className="col-span-2 row-span-2 relative overflow-hidden rounded-xl">
                 <Image
@@ -256,7 +271,7 @@ export default async function Home() {
                   sizes="(min-width: 1024px) 18vw, 30vw"
                 />
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -264,7 +279,7 @@ export default async function Home() {
       {/* ── Why MD+? — 4 feature cards ───────────────────────── */}
       <section className="border-t border-white/10 bg-rhino-800 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="mb-16 grid gap-8 md:grid-cols-2">
+          <Reveal className="mb-16 grid gap-8 md:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
                 Why MD+?
@@ -279,32 +294,31 @@ export default async function Home() {
                 meaningful projects, and create lasting impact in healthcare.
               </p>
             </div>
-          </div>
+          </Reveal>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {WHY_FEATURES.map((feat, i) => {
               const Icon = feat.icon;
               return (
-                <div
-                  key={feat.title}
-                  className="relative overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] p-7"
-                >
-                  <div className="inline-flex size-12 items-center justify-center rounded-full bg-rhino-600/60">
-                    <Icon className="size-5 text-rhino-200" aria-hidden />
+                <Reveal key={feat.title} delay={i * 90}>
+                  <div className="group relative overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-rhino-400/40 hover:bg-white/[0.08] hover:shadow-xl hover:shadow-black/40">
+                    <div className="inline-flex size-12 items-center justify-center rounded-full bg-rhino-600/60 transition-colors duration-300 group-hover:bg-rhino-500/80">
+                      <Icon className="size-5 text-rhino-200" aria-hidden />
+                    </div>
+                    <h3 className="mt-5 font-display text-lg font-bold text-white">
+                      {feat.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/50">
+                      {feat.description}
+                    </p>
+                    <span
+                      aria-hidden
+                      className="absolute right-5 bottom-4 font-display text-5xl font-bold text-white/[0.05]"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-bold text-white">
-                    {feat.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/50">
-                    {feat.description}
-                  </p>
-                  <span
-                    aria-hidden
-                    className="absolute right-5 bottom-4 font-display text-5xl font-bold text-white/[0.05]"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
+                </Reveal>
               );
             })}
           </div>
@@ -316,7 +330,7 @@ export default async function Home() {
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Quote */}
-            <div>
+            <Reveal>
               <p
                 aria-hidden
                 className="font-display text-8xl font-bold leading-none text-rhino-700/80"
@@ -336,10 +350,10 @@ export default async function Home() {
                   <p className="text-sm text-white/40">MD+ Member</p>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             {/* Photo */}
-            <div className="relative h-72 overflow-hidden rounded-2xl md:h-80">
+            <Reveal delay={180} className="relative h-72 overflow-hidden rounded-2xl md:h-80">
               <Image
                 src="/event-photos/IMG_7171.jpg"
                 alt="MDplus members at an event"
@@ -348,38 +362,44 @@ export default async function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
               <div className="absolute inset-0 bg-rhino-900/20" aria-hidden />
-            </div>
+            </Reveal>
           </div>
 
           {/* Offsite photo strip */}
           <div className="mt-20">
-            <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
-              Moments from our offsite
-            </p>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-widest text-rhino-400">
+                Moments from our offsite
+              </p>
+            </Reveal>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
                 "/event-photos/IMG_7172.jpg",
                 "/event-photos/IMG_7173.jpg",
                 "/event-photos/IMG_4221.JPG",
                 "/event-photos/IMG_7169.jpg",
-              ].map((src) => (
-                <div
+              ].map((src, i) => (
+                <Reveal
                   key={src}
+                  delay={i * 80}
+                  y={16}
                   className="relative aspect-square overflow-hidden rounded-xl"
                 >
                   <Image
                     src={src}
                     alt="MDplus offsite moment"
                     fill
-                    className="object-cover grayscale"
+                    className="object-cover grayscale transition-all duration-500 hover:grayscale-0 hover:scale-105"
                     sizes="(min-width: 640px) 25vw, 50vw"
                   />
-                </div>
+                </Reveal>
               ))}
             </div>
-            <p className="mt-8 text-center font-script text-3xl text-white/60">
-              Real conversations. Real connections. Real impact.
-            </p>
+            <Reveal delay={320}>
+              <p className="mt-8 text-center font-script text-3xl text-white/60">
+                Real conversations. Real connections. Real impact.
+              </p>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -531,7 +551,7 @@ export default async function Home() {
       {/* ── Communities teaser ───────────────────────────────── */}
       <section className="bg-neutral-0 py-24 md:py-32">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="flex flex-wrap items-end justify-between gap-6">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
                 Sub-communities
@@ -550,11 +570,13 @@ export default async function Home() {
             >
               View all communities →
             </Link>
-          </div>
+          </Reveal>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {COMMUNITIES.map((c, i) => (
-              <CommunityCard key={c.slug} community={c} index={i} />
+              <Reveal key={c.slug} delay={i * 70}>
+                <CommunityCard community={c} index={i} />
+              </Reveal>
             ))}
           </div>
         </div>

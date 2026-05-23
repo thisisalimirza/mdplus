@@ -159,6 +159,20 @@
   }
 }
 
+/* ── Scroll / load animations ────────────────────────
+   fade-up: used for hero load sequence and as the
+   base motion for the Reveal component. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Hero rotating-word animation ────────────────────
    The animated word in the headline fades + slides on
    change. Component code triggers re-mount per word. */
