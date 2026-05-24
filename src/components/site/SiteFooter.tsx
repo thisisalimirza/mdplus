@@ -85,6 +85,17 @@ export function SiteFooter() {
             © {new Date().getFullYear()} MDplus. A 501(c)(3) non-profit.
           </p>
           <p>
+            Designed &amp; built by{" "}
+            <a
+              href="https://www.braskstudio.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-rhino-700 hover:text-denim-600"
+            >
+              Brask Studio
+            </a>
+          </p>
+          <p>
             Skills Library lives at{" "}
             <a
               href="https://skills.mdplus.community"
