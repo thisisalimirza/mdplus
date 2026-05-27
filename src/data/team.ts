@@ -360,6 +360,17 @@ export const CURRENT_TEAM: CurrentMember[] = [
   },
 ];
 
+// ── Lookup helpers ────────────────────────────────────────────────────────────
+
+/**
+ * Returns the imageSrc for a team member by name, or undefined if not found or
+ * no photo is on file. Name must match exactly as spelled in CURRENT_TEAM.
+ * Used by community pages to auto-display headshots for chairs/directors.
+ */
+export function getTeamMemberImage(name: string): string | undefined {
+  return CURRENT_TEAM.find((m) => m.name === name)?.imageSrc;
+}
+
 // ── Founders ──────────────────────────────────────────────────────────────────
 
 export const FOUNDERS: Founder[] = [

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -5,6 +6,7 @@ import { ArrowRight, Building2, Users } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { COMMUNITIES, getCommunity } from "@/data/communities";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
+import { getTeamMemberImage } from "@/data/team";
 
 type Params = { slug: string };
 
@@ -79,17 +81,42 @@ export default async function CommunityDetailPage({
                     <Users className="size-3.5" aria-hidden />
                     Leadership
                   </p>
-                  <ul className="mt-4 space-y-3">
-                    {community.leaders.map((leader) => (
-                      <li key={leader.name}>
-                        <p className="font-display text-base font-semibold text-rhino-700">
-                          {leader.name}
-                        </p>
-                        <p className="text-sm text-neutral-600">
-                          {leader.role}
-                        </p>
-                      </li>
-                    ))}
+                  <ul className="mt-4 space-y-4">
+                    {community.leaders.map((leader) => {
+                      const photo = getTeamMemberImage(leader.name);
+                      const initials = leader.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .slice(0, 2);
+                      return (
+                        <li key={leader.name} className="flex items-center gap-3">
+                          <div className="relative size-10 shrink-0 overflow-hidden rounded-full bg-rhino-100">
+                            {photo ? (
+                              <Image
+                                src={photo}
+                                alt={leader.name}
+                                fill
+                                className="object-cover object-top"
+                                sizes="40px"
+                              />
+                            ) : (
+                              <span className="flex size-full items-center justify-center text-xs font-semibold text-rhino-600">
+                                {initials}
+                              </span>
+                            )}
+                          </div>
+                          <div>
+                            <p className="font-display text-base font-semibold text-rhino-700">
+                              {leader.name}
+                            </p>
+                            <p className="text-sm text-neutral-600">
+                              {leader.role}
+                            </p>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               )}
