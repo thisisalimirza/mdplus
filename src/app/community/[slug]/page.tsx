@@ -45,6 +45,7 @@ export default async function CommunityDetailPage({
         role: m.role,
         school: m.school,
         imageSrc: m.imageSrc,
+        imagePosition: m.imagePosition,
       }))
     : [];
 
@@ -105,7 +106,8 @@ export default async function CommunityDetailPage({
                                 src={leader.imageSrc}
                                 alt={leader.name}
                                 fill
-                                className="object-cover object-top"
+                                className="object-cover"
+                                style={{ objectPosition: leader.imagePosition ?? "50% 20%" }}
                                 sizes="40px"
                               />
                             ) : (
