@@ -43,6 +43,7 @@ export default async function CommunityDetailPage({
     ? directorsByVertical(community.teamVertical).map((m) => ({
         name: m.name,
         role: m.role,
+        school: m.school,
         imageSrc: m.imageSrc,
       }))
     : [];
@@ -120,6 +121,11 @@ export default async function CommunityDetailPage({
                             <p className="text-sm text-neutral-600">
                               {leader.role}
                             </p>
+                            {leader.school && (
+                              <p className="text-xs text-neutral-400">
+                                {leader.school}
+                              </p>
+                            )}
                           </div>
                         </li>
                       );
