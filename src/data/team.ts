@@ -309,7 +309,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Director",
     tier: "director",
     vertical: "Consulting",
-    school: "Wright State University / Boonshoft School of Medicine",
+    school: "Consulting Associate at Charles River Associates",
     linkedIn: "https://www.linkedin.com/in/eshitagarg",
     bio: "Esh Garg is a fourth-year medical student at Wright State University Boonshoft School of Medicine. Prior to medical school, she earned her B.S. from UC San Diego and her M.S. from Columbia University. After graduation, she'll be trading in the hospital for the world of management consulting. Outside of academics and professional pursuits, Esh loves to travel, junk journal, and enthusiastically dive into new hobbies — most of which she absolutely cannot keep up with for more than a week.",
     plus: "My \"pluses\" are biotech innovation, AI, and consulting — which is a long way of saying I have never been able to be just one thing. I've always known I didn't want to be \"just a physician,\" and along the way, I've leaned into that curiosity through experiences with ExactRx, No Patient Left Behind, Global Biotech Revolution, Nucleate, and more. I am building toward becoming a physician who understands these \"pluses\" and uses them to rethink and improve the healthcare ecosystem — because healthcare shouldn't exist in a silo, and neither should we.",
