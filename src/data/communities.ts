@@ -4,10 +4,16 @@
  *
  * Each community renders at /community/[slug] using this data.
  *
- * Data source: 2025-26 vertical leadership from internal MD+ knowledge
- * base (March 2026). Eight active verticals; Blockchain has been moved
- * to inactive status (channel last active August 2024).
+ * LEADERSHIP is derived automatically from src/data/team.ts via the
+ * `teamVertical` field — set it to the matching vertical name and the page
+ * will always show whoever is currently listed as a director in CURRENT_TEAM,
+ * including their headshot if one is on file. No manual `leaders` array needed.
+ *
+ * Eight active verticals; Blockchain has been moved to inactive status
+ * (channel last active August 2024).
  */
+
+import type { DirectorVertical } from "./team";
 
 export type ResourceItem = {
   label: string;
@@ -18,11 +24,6 @@ export type ResourceItem = {
 export type ResourceGroup = {
   title: string;
   items: ResourceItem[];
-};
-
-export type Leader = {
-  name: string;
-  role: string;
 };
 
 export type Community = {
@@ -37,8 +38,13 @@ export type Community = {
   slackChannel: string;
   /** Approximate count for badges. */
   memberCount?: string;
-  /** Optional list of community leaders / co-directors. */
-  leaders?: Leader[];
+  /**
+   * Links this community to its vertical in team.ts. When set, the community
+   * page derives its leadership list automatically from CURRENT_TEAM — whoever
+   * is a director for this vertical shows up, with headshots, no code change
+   * required. Must match a value in DIRECTOR_VERTICALS exactly.
+   */
+  teamVertical?: DirectorVertical;
   /** Optional list of resource groups (guides, books, podcasts, etc.) */
   resources?: ResourceGroup[];
   /** Optional companies/orgs members are at — for social proof. */
@@ -55,11 +61,7 @@ export const COMMUNITIES: Community[] = [
     description:
       "The largest and most active vertical. We maintain an AI/ML tutorial library with end-to-end Google Colab modules taught through a clinical lens, run a recurring Journal Club on the latest data and AI papers in medicine, and host the annual MD+ Datathon: a month-long competition that has run four years and produced peer-reviewed research published in JMIR Medical Education.",
     slackChannel: "ai-med",
-    leaders: [
-      { name: "Bhavana Kunisetty", role: "Director of AI & Data Science" },
-      { name: "Sahil Suresh", role: "Director of AI & Data Science" },
-      { name: "Emily Leventhal", role: "Director of AI & Data Science" },
-    ],
+    teamVertical: "AI & Data Science",
     resources: [
       {
         title: "AI/ML Tutorial Library",
@@ -104,10 +106,7 @@ export const COMMUNITIES: Community[] = [
     description:
       "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community runs a weekly News, Funds, and Deals recap, partners with Pillar VC on a 2-day VC 101 course, hosts panels with biotech, medtech, and digital-health investors, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, and Goldman Sachs healthcare.",
     slackChannel: "md-vcs",
-    leaders: [
-      { name: "Jessika Baral", role: "Director of Venture Capital" },
-      { name: "Sam Youkilis", role: "Director of Venture Capital" },
-    ],
+    teamVertical: "Venture Capital",
     representativeAt: [
       "a16z bio+health",
       "Bessemer",
@@ -161,7 +160,7 @@ export const COMMUNITIES: Community[] = [
     description:
       "The biotech vertical covers therapeutics, drug discovery, and the broader life-sciences industry. We send a weekly biotech newsletter, run panel events with physician-founders and biotech executives, and use RA Capital course material as reference for biotech investing. Recent programming includes a Nucleate Translate panel on physician careers in biotech (with Jay Bradner of NIBR, Shehnaaz Suliman of ReCode Therapeutics, and Akshay Vaishnaw of Alnylam), a week-long Bio × ML hackathon co-hosted with Lux Capital and OpenBioML, and JPM Healthcare Conference debrief sessions.",
     slackChannel: "md-biotech",
-    leaders: [{ name: "Shannon McLaughlin", role: "Director of Biotech" }],
+    teamVertical: "Biotech",
     representativeAt: ["Novartis NIBR", "ReCode Therapeutics", "Alnylam", "Lux Capital"],
     resources: [
       {
@@ -182,10 +181,7 @@ export const COMMUNITIES: Community[] = [
     description:
       "Our consulting community introduces, mentors, and connects individuals interested in healthcare or management consulting to opportunities and training that enable their transition from clinical care. Members range from medical students to residents to attendings, and include full- and part-time consultants at McKinsey, Bain, BCG, LEK, and others. Many have prior consulting experience or have participated in McKinsey's MD Fellow or BCG's MD Scholar program. We published the MD+ Consulting Guide 2024 and partner with RocketBlocks for case-interview prep.",
     slackChannel: "md-consulting",
-    leaders: [
-      { name: "Esh Garg", role: "Director of Consulting" },
-      { name: "Edward Kim", role: "Director of Consulting" },
-    ],
+    teamVertical: "Consulting",
     representativeAt: ["McKinsey", "Bain", "BCG", "LEK"],
     resources: [
       {
@@ -213,29 +209,27 @@ export const COMMUNITIES: Community[] = [
     name: "Health Policy",
     shortName: "Policy",
     tagline:
-      "Op-ed writing groups, expert speakers, and the policy segment of the MD+ Podcast.",
+      "Op-ed writing groups, expert speakers, and workshops to make health policy approachable.",
     description:
-      "Our policy community makes health policy approachable for medical students and physicians. We run op-ed writing groups targeting JAMA Viewpoints and NEJM Perspectives, host expert speakers from healthcare and policy, track legislative developments via a shared calendar, and produce the policy segment of the MD+ Podcast. We send a biweekly Monday Morning Health Policy Recap and have brought members to ACP Leadership Day in Washington DC.",
+      "Our policy community makes health policy approachable for medical students and physicians. We run op-ed writing groups targeting local news outlets, host expert speakers from healthcare and policy, have workshops aimed at developing policy skills, and are developing a systems science curriculum.",
     slackChannel: "health-policy",
-    leaders: [
-      { name: "Archita Goyal", role: "Director of Health Policy" },
-      { name: "Elena Dennis", role: "Director of Health Policy" },
-    ],
+    teamVertical: "Health Policy",
     resources: [
       {
         title: "Programs",
         items: [
-          { label: "Op-ed writing groups", note: "JAMA Viewpoints, NEJM Perspectives" },
-          { label: "Monday Morning Health Policy Recap", note: "Biweekly" },
-          { label: "ACP Leadership Day delegation", note: "Annual, Washington DC" },
+          { label: "Op-ed writing groups", note: "Targeting local news outlets" },
+          { label: "Expert speaker series", note: "Healthcare and policy" },
+          { label: "Policy skills workshops" },
+          { label: "Systems science curriculum", note: "In development" },
         ],
       },
       {
         title: "External resources",
         items: [
           {
-            label: "Alliance for Health Policy",
-            href: "https://www.allhealthpolicy.org",
+            label: "The Full Picture",
+            href: "https://thefullpicture.org",
           },
         ],
       },
@@ -250,7 +244,7 @@ export const COMMUNITIES: Community[] = [
     description:
       "The medical devices vertical covers device development, regulatory pathways, and the entrepreneurial side of medtech. Revived in 2025 with a new workshop series, the program runs an Intro to Medical Device Development workshop (educational segment plus breakout rooms) and collaborates closely with the Design vertical. Member discussions have spanned surgical innovation, neurotech, wearables, and the tension between hype and clinical evidence in medtech.",
     slackChannel: "md-devices",
-    leaders: [{ name: "Mahima Goel", role: "Director of Medical Devices" }],
+    teamVertical: "Medical Devices",
     resources: [
       {
         title: "Programs",
@@ -276,7 +270,7 @@ export const COMMUNITIES: Community[] = [
     description:
       "MD+ Labs is the newest active vertical (launched in 2025). It's a Notion-based dashboard where members post research projects and find collaborators across the community. The team also supports conference submissions for innovation and biotech projects, and runs internal research on MD+ programming itself.",
     slackChannel: "research",
-    leaders: [{ name: "Adam Elsayed", role: "Director of Research" }],
+    teamVertical: "Research",
     resources: [
       {
         title: "Get involved",
@@ -298,7 +292,8 @@ export const COMMUNITIES: Community[] = [
     description:
       "The design vertical, launched in 2024-25, focuses on design thinking applied to healthcare: UX for clinical tools, service design for care delivery, and visual communication for medical education. The team partners with Medical Devices on hardware UX and contributes to MDplus's own brand and communication work.",
     slackChannel: "innovative-design",
-    leaders: [{ name: "Devika Patel", role: "Director of Design" }],
+    // No teamVertical — Design has no current director in CURRENT_TEAM.
+    // Add one there and set teamVertical: "Design" once DIRECTOR_VERTICALS includes it.
   },
 ];
 
