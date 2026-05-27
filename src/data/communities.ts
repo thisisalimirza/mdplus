@@ -395,7 +395,7 @@ export const COMMUNITIES: Community[] = [
       "A research collaboration platform: post a project, find collaborators, ship a paper.",
     description:
       "MD+ Labs is the newest active vertical (launched in 2025). It's a Notion-based dashboard where members post research projects and find collaborators across the community. The team also supports conference submissions for innovation and biotech projects, and runs internal research on MD+ programming itself.",
-    slackChannel: "research",
+    slackChannel: "md-research",
     teamVertical: "Research",
     resources: [
       {
