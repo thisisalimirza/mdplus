@@ -7,7 +7,11 @@ import { postsQuery, postsByCategoryQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import type { PostListItem } from "@/sanity/lib/types";
 
-export const metadata: Metadata = { title: "Articles" };
+export const metadata: Metadata = {
+  title: "Articles",
+  description:
+    "Long-form articles from physicians and med students on medicine, AI, career, technology, research, and healthcare innovation.",
+};
 
 export const revalidate = 60;
 

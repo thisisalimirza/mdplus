@@ -3,7 +3,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/marketing/PageHero";
 import { LEARN_SECTIONS } from "@/data/learn-sections";
 
-export const metadata: Metadata = { title: "Learn" };
+export const metadata: Metadata = {
+  title: "Learn",
+  description:
+    "Everything MDplus publishes in one place: long-form articles, podcast episodes, weekly newsletter, and the journal club.",
+};
 
 export default function LearnPage() {
   return (
