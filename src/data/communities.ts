@@ -213,29 +213,30 @@ export const COMMUNITIES: Community[] = [
     name: "Health Policy",
     shortName: "Policy",
     tagline:
-      "Op-ed writing groups, expert speakers, and the policy segment of the MD+ Podcast.",
+      "Op-ed writing groups, expert speakers, and workshops to make health policy approachable.",
     description:
-      "Our policy community makes health policy approachable for medical students and physicians. We run op-ed writing groups targeting JAMA Viewpoints and NEJM Perspectives, host expert speakers from healthcare and policy, track legislative developments via a shared calendar, and produce the policy segment of the MD+ Podcast. We send a biweekly Monday Morning Health Policy Recap and have brought members to ACP Leadership Day in Washington DC.",
+      "Our policy community makes health policy approachable for medical students and physicians. We run op-ed writing groups targeting local news outlets, host expert speakers from healthcare and policy, have workshops aimed at developing policy skills, and are developing a systems science curriculum.",
     slackChannel: "health-policy",
     leaders: [
-      { name: "Archita Goyal", role: "Director of Health Policy" },
-      { name: "Elena Dennis", role: "Director of Health Policy" },
+      { name: "Uswa Khan", role: "Chair" },
+      { name: "Ankith Alluri", role: "Chair" },
     ],
     resources: [
       {
         title: "Programs",
         items: [
-          { label: "Op-ed writing groups", note: "JAMA Viewpoints, NEJM Perspectives" },
-          { label: "Monday Morning Health Policy Recap", note: "Biweekly" },
-          { label: "ACP Leadership Day delegation", note: "Annual, Washington DC" },
+          { label: "Op-ed writing groups", note: "Targeting local news outlets" },
+          { label: "Expert speaker series", note: "Healthcare and policy" },
+          { label: "Policy skills workshops" },
+          { label: "Systems science curriculum", note: "In development" },
         ],
       },
       {
         title: "External resources",
         items: [
           {
-            label: "Alliance for Health Policy",
-            href: "https://www.allhealthpolicy.org",
+            label: "The Full Picture",
+            href: "https://thefullpicture.org",
           },
         ],
       },
