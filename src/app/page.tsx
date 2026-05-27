@@ -821,7 +821,7 @@ export default async function Home() {
                 </p>
                 <div className="mt-3 flex flex-wrap items-center gap-3">
                   <a
-                    href="https://open.spotify.com/"
+                    href="https://open.spotify.com/show/3Sf6VxkcSEgqnsm2Jaay60"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs font-semibold text-rhino-700 underline-offset-2 hover:underline"

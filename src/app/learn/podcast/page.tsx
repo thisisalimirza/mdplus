@@ -9,7 +9,6 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
-import { PageHero } from "@/components/marketing/PageHero";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { podcastEpisodesQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
@@ -21,11 +20,9 @@ export const metadata: Metadata = {
     "The MD+ Podcast: conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD.",
 };
 
-// Replace with the real Spotify show ID once we have it.
-// Format: https://open.spotify.com/embed/show/<SHOW_ID>
-// Until then, we link out to the host's profile / Buzzsprout.
-const SPOTIFY_URL = "https://open.spotify.com/";
-const BUZZSPROUT_URL = "https://buzzsprout.com/";
+const SPOTIFY_SHOW_ID = "3Sf6VxkcSEgqnsm2Jaay60";
+const SPOTIFY_URL = `https://open.spotify.com/show/${SPOTIFY_SHOW_ID}`;
+const SPOTIFY_EMBED_URL = `https://open.spotify.com/embed/show/${SPOTIFY_SHOW_ID}?utm_source=generator&theme=0`;
 
 const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
   {
@@ -59,47 +56,61 @@ export default async function PodcastPage() {
     : [];
   return (
     <>
-      <PageHero
-        eyebrow="Learn · The MD+ Podcast"
-        title={
-          <>
-            Conversations with{" "}
-            <span className="text-denim-600">physician-innovators.</span>
-          </>
-        }
-        description={
-          <>
-            The MD+ Podcast is an audio series featuring physician-founders,
-            healthcare investors, and trainees navigating non-traditional
-            paths. Hosted by{" "}
-            <span className="font-semibold text-rhino-700">
-              Geoff Bocobo, MD
-            </span>
-            . Launched June 2023; available on Spotify and Buzzsprout.
-          </>
-        }
-      >
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={SPOTIFY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
-          >
-            Listen on Spotify
-            <ArrowUpRight className="size-4" aria-hidden />
-          </a>
-          <a
-            href={BUZZSPROUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
-          >
-            Listen on Buzzsprout
-            <ArrowUpRight className="size-4" aria-hidden />
-          </a>
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-yellow-50">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(29,123,189,0.08),_transparent_60%)]"
+        />
+        <div className="relative mx-auto max-w-(--container-max) px-6 pt-20 pb-16 md:pt-28 md:pb-20">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left: text + CTAs */}
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+                Learn · The MD+ Podcast
+              </p>
+              <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] tracking-tight text-rhino-700 md:text-5xl">
+                Conversations with{" "}
+                <span className="text-denim-600">physician-innovators.</span>
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+                The MD+ Podcast is an audio series featuring physician-founders,
+                healthcare investors, and trainees navigating non-traditional
+                paths. Hosted by{" "}
+                <span className="font-semibold text-rhino-700">
+                  Geoff Bocobo, MD
+                </span>
+                . Launched June 2023; available on Spotify.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={SPOTIFY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                >
+                  Listen on Spotify
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Spotify embed */}
+            <div>
+              <iframe
+                title="The MD+ Podcast on Spotify"
+                src={SPOTIFY_EMBED_URL}
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="rounded-xl shadow-md"
+              />
+            </div>
+          </div>
         </div>
-      </PageHero>
+      </section>
 
       {/* ── Three series ───────────────────────────────────── */}
       <section className="bg-neutral-0 py-20 md:py-28">
