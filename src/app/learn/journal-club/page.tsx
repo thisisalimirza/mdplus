@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { BookOpen } from "lucide-react";
+import { BookOpen, ExternalLink } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { journalClubListQuery } from "@/sanity/lib/queries";
@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 60;
+
+const NOTION_ARCHIVE_URL =
+  "https://vanilla-emmental-550.notion.site/1cd8bdd2e2a34976a2fd4fcc01dbdd07?v=90466d91ab9b4d95b46c7c9e18e0c4b0";
 
 export default async function JournalClubPage() {
   const entries: JournalClubListItem[] = isSanityConfigured
@@ -111,6 +114,32 @@ export default async function JournalClubPage() {
               ))}
             </div>
           )}
+
+          {/* Archive */}
+          <div className="mt-16 rounded-xl border border-neutral-200 bg-neutral-50 p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-rhino-500">
+                  Legacy Archive
+                </p>
+                <h2 className="mt-1 font-display text-xl font-bold text-rhino-700">
+                  AI in Medicine Journal Club — Past Sessions
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                  Browse past paper discussions focused on AI, data science, and clinical innovation from previous Journal Club seasons.
+                </p>
+              </div>
+              <a
+                href={NOTION_ARCHIVE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-md border border-neutral-300 bg-neutral-0 px-5 py-2.5 text-sm font-semibold text-rhino-700 transition-colors hover:border-denim-300 hover:text-denim-700"
+              >
+                View archive
+                <ExternalLink className="size-3.5" aria-hidden />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>

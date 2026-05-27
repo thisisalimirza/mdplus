@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowRight, Building2, Users } from "lucide-react";
+import { ArrowRight, Building2, Users, MoveRight } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { COMMUNITIES, getCommunity } from "@/data/communities";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
@@ -200,6 +200,60 @@ export default async function CommunityDetailPage({
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Learning Pathway ───────────────────────────────── */}
+      {community.learningPathway && community.learningPathway.length > 0 && (
+        <section className="bg-denim-900 py-20 md:py-28">
+          <div className="mx-auto max-w-(--container-max) px-6">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-widest text-denim-300">
+                Your path
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold text-white md:text-4xl">
+                From zero to building — step by step.
+              </h2>
+              <p className="mt-4 text-lg text-denim-200">
+                The AI &amp; Data Science vertical is designed as a complete learning journey. Start anywhere, move at your own pace.
+              </p>
+            </div>
+            <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {community.learningPathway.map((step, index) => (
+                <li key={step.label} className="relative">
+                  {step.href ? (
+                    <Link
+                      href={step.href}
+                      className="group flex h-full flex-col rounded-lg border border-denim-700 bg-denim-800 p-6 transition-all hover:border-denim-500 hover:bg-denim-700"
+                    >
+                      <span className="text-xs font-bold uppercase tracking-widest text-denim-400">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-2 flex items-center gap-1.5 font-display text-lg font-bold text-white group-hover:text-denim-200">
+                        {step.label}
+                        <MoveRight className="size-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
+                      </h3>
+                      <p className="mt-2 flex-1 text-sm leading-relaxed text-denim-300">
+                        {step.description}
+                      </p>
+                    </Link>
+                  ) : (
+                    <div className="flex h-full flex-col rounded-lg border border-denim-700 bg-denim-800 p-6">
+                      <span className="text-xs font-bold uppercase tracking-widest text-denim-400">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-2 font-display text-lg font-bold text-white">
+                        {step.label}
+                      </h3>
+                      <p className="mt-2 flex-1 text-sm leading-relaxed text-denim-300">
+                        {step.description}
+                      </p>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
       )}

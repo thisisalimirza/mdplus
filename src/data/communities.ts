@@ -26,6 +26,12 @@ export type ResourceGroup = {
   items: ResourceItem[];
 };
 
+export type LearningPathwayStep = {
+  label: string;
+  description: string;
+  href?: string;
+};
+
 export type Community = {
   slug: string;
   name: string;
@@ -49,6 +55,8 @@ export type Community = {
   resources?: ResourceGroup[];
   /** Optional companies/orgs members are at — for social proof. */
   representativeAt?: string[];
+  /** Optional step-by-step learning pathway shown on the community detail page. */
+  learningPathway?: LearningPathwayStep[];
 };
 
 export const COMMUNITIES: Community[] = [
@@ -57,11 +65,47 @@ export const COMMUNITIES: Community[] = [
     name: "AI & Data Science",
     shortName: "Data + AI",
     tagline:
-      "Hands-on tutorials in ML, RAG, and CNNs through a clinical lens, plus the annual Datathon.",
+      "The largest and most active MD+ vertical — structured tutorials, Datathon, Journal Club, and Catalyst for clinicians who want to build with AI.",
     description:
-      "The largest and most active vertical. We maintain an AI/ML tutorial library with end-to-end Google Colab modules taught through a clinical lens, run a recurring Journal Club on the latest data and AI papers in medicine, and host the annual MD+ Datathon: a month-long competition that has run four years and produced peer-reviewed research published in JMIR Medical Education.",
+      "The largest and most active vertical in MD+. We offer a complete learning pathway: from foundational tutorials in Python, clinical data science, and machine learning, through hands-on Google Colab modules on Q-Learning, RAG, and CNNs taught through a clinical lens. Members compete in the annual MD+ Datathon — a month-long competition now in its fourth year with ~300 participants in 2025, producing peer-reviewed research published in JMIR Medical Education. Those who want hands-on project experience and leadership can apply to Catalyst. The AI & Data Science community is where clinicians go from zero experience to building real AI projects.",
     slackChannel: "ai-med",
     teamVertical: "AI & Data Science",
+    learningPathway: [
+      {
+        label: "Learn",
+        description:
+          "Build your foundation with structured articles, resources, and educational content.",
+        href: "/learn",
+      },
+      {
+        label: "Tutorials",
+        description:
+          "Work through hands-on Colab modules on Q-Learning, RAG, CNNs, Python, clinical data science, and more.",
+      },
+      {
+        label: "Journal Club",
+        description:
+          "Join active paper deep-dives with the community. Past sessions are preserved in the archive — focused on AI, data science, and clinical innovation.",
+        href: "/learn/journal-club",
+      },
+      {
+        label: "Datathon",
+        description:
+          "Compete in our annual month-long AI competition on real clinical datasets. Four years running, ~300 participants in 2025.",
+        href: "/programs/datathon",
+      },
+      {
+        label: "Catalyst",
+        description:
+          "A structured cohort for members who want hands-on AI projects, real-world experience, and leadership opportunities.",
+        href: "/programs/catalyst",
+      },
+      {
+        label: "Leadership & Research",
+        description:
+          "Director roles, peer-reviewed publications, and community leadership in the largest MD+ vertical.",
+      },
+    ],
     resources: [
       {
         title: "AI/ML Tutorial Library",
@@ -81,17 +125,40 @@ export const COMMUNITIES: Community[] = [
         ],
       },
       {
+        title: "Educational Content",
+        items: [
+          { label: "API Key Management & Security Best Practices" },
+          { label: "Clinical Datasets & HIPAA Considerations" },
+          { label: "Data De-identification & Privacy-Preserving Workflows" },
+          { label: "Intro to Python for Healthcare Data Science" },
+          { label: "Jupyter Notebook Fundamentals" },
+          { label: "Basic Machine Learning Workflows" },
+          { label: "Medical Imaging & Computer Vision" },
+          { label: "LLMs in Healthcare" },
+          { label: "RAG for Medical Literature & Clinical Knowledge Bases" },
+          { label: "Clinical NLP Fundamentals" },
+          { label: "Data Visualization for Healthcare Datasets" },
+          { label: "Reproducible Research & Version Control (Git/GitHub)" },
+          { label: "End-to-End Healthcare AI Project Tutorials" },
+        ],
+      },
+      {
         title: "Programs",
         items: [
           {
             label: "Annual Datathon",
             href: "/programs/datathon",
-            note: "Four years running; ~300 participants in 2025",
+            note: "Four years running; ~300 participants in 2025; published in JMIR Medical Education",
           },
           {
-            label: "Journal Club",
-            href: "/learn/journal-club",
-            note: "Recurring deep-dives into AI in medicine",
+            label: "Catalyst",
+            href: "/programs/catalyst",
+            note: "Hands-on AI projects, leadership, and real-world experience",
+          },
+          {
+            label: "Journal Club (Archive)",
+            href: "https://vanilla-emmental-550.notion.site/1cd8bdd2e2a34976a2fd4fcc01dbdd07?v=90466d91ab9b4d95b46c7c9e18e0c4b0",
+            note: "Past deep-dives into AI, data science, and clinical innovation papers",
           },
         ],
       },
