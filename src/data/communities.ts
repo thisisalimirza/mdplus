@@ -177,15 +177,15 @@ export const COMMUNITIES: Community[] = [
     tagline:
       "Fellowship pipelines, investor introductions, and the resources to actually break into healthtech VC.",
     description:
-      "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community runs a weekly News, Funds, and Deals recap, partners with Pillar VC on a 2-day VC 101 course, hosts panels with biotech, medtech, and digital-health investors, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, and Goldman Sachs healthcare.",
+      "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community hosts panels with biotech, medtech, and digital-health investors, provides educational resources relevant for healthcare VC including development of market maps and competitive landscapes, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, Goldman Sachs Healthcare, and more.",
     slackChannel: "md-vcs",
     teamVertical: "Venture Capital",
     representativeAt: [
       "a16z bio+health",
       "Bessemer",
       "Foresite",
-      "Pillar VC",
-      "AlleyCorp",
+      "Artis Ventures",
+      "Goldman Sachs Healthcare",
     ],
     resources: [
       {
