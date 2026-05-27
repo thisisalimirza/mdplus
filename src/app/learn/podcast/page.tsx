@@ -21,10 +21,9 @@ export const metadata: Metadata = {
     "The MD+ Podcast: conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD.",
 };
 
-// Replace with the real Spotify show ID once we have it.
-// Format: https://open.spotify.com/embed/show/<SHOW_ID>
-// Until then, we link out to the host's profile / Buzzsprout.
-const SPOTIFY_URL = "https://open.spotify.com/";
+const SPOTIFY_SHOW_ID = "3Sf6VxkcSEgqnsm2Jaay60";
+const SPOTIFY_URL = `https://open.spotify.com/show/${SPOTIFY_SHOW_ID}`;
+const SPOTIFY_EMBED_URL = `https://open.spotify.com/embed/show/${SPOTIFY_SHOW_ID}?utm_source=generator&theme=0`;
 const BUZZSPROUT_URL = "https://buzzsprout.com/";
 
 const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
@@ -100,6 +99,38 @@ export default async function PodcastPage() {
           </a>
         </div>
       </PageHero>
+
+      {/* ── Spotify embed ──────────────────────────────────── */}
+      <section className="bg-neutral-50 py-12 md:py-16">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-6 flex items-center gap-3">
+              {/* Spotify wordmark colour */}
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                className="size-5 shrink-0 fill-[#1DB954]"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.307a.748.748 0 0 1-1.029.25c-2.818-1.722-6.365-2.112-10.542-1.157a.748.748 0 1 1-.333-1.459c4.574-1.045 8.495-.595 11.654 1.337a.748.748 0 0 1 .25 1.029zm1.472-3.27a.937.937 0 0 1-1.288.308c-3.225-1.982-8.142-2.557-11.958-1.399a.937.937 0 1 1-.543-1.793c4.361-1.322 9.784-.681 13.481 1.596a.937.937 0 0 1 .308 1.288zm.127-3.403C15.417 8.452 9.397 8.25 5.942 9.302a1.125 1.125 0 1 1-.652-2.152c3.984-1.207 10.614-.974 14.799 1.57a1.125 1.125 0 0 1-1.074 1.914z" />
+              </svg>
+              <p className="text-sm font-semibold text-neutral-500">
+                Listen on Spotify
+              </p>
+            </div>
+            <iframe
+              title="The MD+ Podcast on Spotify"
+              src={SPOTIFY_EMBED_URL}
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              className="rounded-xl"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ── Three series ───────────────────────────────────── */}
       <section className="bg-neutral-0 py-20 md:py-28">
