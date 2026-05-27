@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { ComingSoon } from "@/components/marketing/ComingSoon";
 
-export const metadata: Metadata = { title: "Donate" };
+export const metadata: Metadata = {
+  title: "Donate",
+  description:
+    "Support MDplus, a 501(c)3 non-profit. Donations cover programs, hosting, and keeping the community free — fully tax-deductible.",
+};
 
 export default function DonatePage() {
   return (

@@ -55,9 +55,10 @@ export const metadata: Metadata = {
   description:
     "The community for physicians and med students building in tech, data, AI, and entrepreneurship, without figuring it out alone.",
   openGraph: {
-    title: "MDplus",
-    description:
-      "The community for physicians and med students building in tech, data, AI, and entrepreneurship, without figuring it out alone.",
+    // title and description intentionally omitted — Next.js infers them from
+    // the resolved metadata.title and metadata.description of each page, so
+    // og:title becomes "Events · MDplus", "About · MDplus", etc. rather than
+    // a hardcoded "MDplus" for every page.
     // Don't hardcode `url: "https://mdplus.community"` until DNS points there.
     // Next.js falls back to `metadataBase + pathname` for og:url, which is what
     // we want — scrapers won't recanonicalize back to the Squarespace site.
@@ -66,9 +67,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MDplus",
-    description:
-      "The community for physicians and med students building in tech, data, AI, and entrepreneurship.",
+    // title and description inferred per-page (same reasoning as openGraph above)
   },
 };
 

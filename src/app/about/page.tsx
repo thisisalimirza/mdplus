@@ -5,7 +5,11 @@ import { EventPhotoStrip } from "@/components/marketing/EventPhotoStrip";
 import { HERO_COLLAGE, MEETUP_PHOTOS } from "@/data/event-photos";
 import { ABOUT_SECTIONS } from "@/data/about-sections";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "MDplus is a 501(c)3 non-profit built by physicians — making the path from medicine into healthcare innovation, data, AI, and entrepreneurship easier and less lonely.",
+};
 
 export default function AboutPage() {
   return (

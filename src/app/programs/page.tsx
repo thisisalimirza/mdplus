@@ -3,7 +3,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/marketing/PageHero";
 import { PROGRAMS_SECTIONS } from "@/data/programs-sections";
 
-export const metadata: Metadata = { title: "Programs" };
+export const metadata: Metadata = {
+  title: "Programs",
+  description:
+    "Cohort-based programs for physicians and med students: Catalyst, Datathon, and more. Learn by doing, with peers.",
+};
 
 export default function ProgramsPage() {
   return (

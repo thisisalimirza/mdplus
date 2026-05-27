@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/marketing/PageHero";
 
-export const metadata: Metadata = { title: "Community guidelines" };
+export const metadata: Metadata = {
+  title: "Community guidelines",
+  description:
+    "Three simple rules that keep the MDplus community valuable for everyone in it. We enforce them lightly but consistently.",
+};
 
 const RULES = [
   {
