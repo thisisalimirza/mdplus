@@ -23,7 +23,6 @@ export const metadata: Metadata = {
 const SPOTIFY_SHOW_ID = "3Sf6VxkcSEgqnsm2Jaay60";
 const SPOTIFY_URL = `https://open.spotify.com/show/${SPOTIFY_SHOW_ID}`;
 const SPOTIFY_EMBED_URL = `https://open.spotify.com/embed/show/${SPOTIFY_SHOW_ID}?utm_source=generator&theme=0`;
-const BUZZSPROUT_URL = "https://buzzsprout.com/";
 
 const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
   {
@@ -81,7 +80,7 @@ export default async function PodcastPage() {
                 <span className="font-semibold text-rhino-700">
                   Geoff Bocobo, MD
                 </span>
-                . Launched June 2023.
+                . Launched June 2023; available on Spotify.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
@@ -91,15 +90,6 @@ export default async function PodcastPage() {
                   className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
                 >
                   Listen on Spotify
-                  <ArrowUpRight className="size-4" aria-hidden />
-                </a>
-                <a
-                  href={BUZZSPROUT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
-                >
-                  Listen on Buzzsprout
                   <ArrowUpRight className="size-4" aria-hidden />
                 </a>
               </div>
