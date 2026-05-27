@@ -6,7 +6,7 @@ import { ArrowRight, Building2, Users } from "lucide-react";
 import { PageHero } from "@/components/marketing/PageHero";
 import { COMMUNITIES, getCommunity } from "@/data/communities";
 import { COMMUNITY_ICON } from "@/lib/community-icons";
-import { getTeamMemberImage } from "@/data/team";
+import { directorsByVertical } from "@/data/team";
 
 type Params = { slug: string };
 
@@ -38,6 +38,14 @@ export default async function CommunityDetailPage({
   if (!community) notFound();
 
   const others = COMMUNITIES.filter((c) => c.slug !== community.slug);
+
+  const leaderCards = community.teamVertical
+    ? directorsByVertical(community.teamVertical).map((m) => ({
+        name: m.name,
+        role: m.role,
+        imageSrc: m.imageSrc,
+      }))
+    : [];
 
   return (
     <>
@@ -75,15 +83,14 @@ export default async function CommunityDetailPage({
               </div>
             </div>
             <aside className="md:pt-9">
-              {community.leaders && community.leaders.length > 0 && (
+              {leaderCards.length > 0 && (
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-rhino-500">
                     <Users className="size-3.5" aria-hidden />
                     Leadership
                   </p>
                   <ul className="mt-4 space-y-4">
-                    {community.leaders.map((leader) => {
-                      const photo = getTeamMemberImage(leader.name);
+                    {leaderCards.map((leader) => {
                       const initials = leader.name
                         .split(" ")
                         .map((n) => n[0])
@@ -92,9 +99,9 @@ export default async function CommunityDetailPage({
                       return (
                         <li key={leader.name} className="flex items-center gap-3">
                           <div className="relative size-10 shrink-0 overflow-hidden rounded-full bg-rhino-100">
-                            {photo ? (
+                            {leader.imageSrc ? (
                               <Image
-                                src={photo}
+                                src={leader.imageSrc}
                                 alt={leader.name}
                                 fill
                                 className="object-cover object-top"
