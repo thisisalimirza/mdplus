@@ -9,7 +9,6 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
-import { PageHero } from "@/components/marketing/PageHero";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { podcastEpisodesQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
@@ -58,76 +57,67 @@ export default async function PodcastPage() {
     : [];
   return (
     <>
-      <PageHero
-        eyebrow="Learn · The MD+ Podcast"
-        title={
-          <>
-            Conversations with{" "}
-            <span className="text-denim-600">physician-innovators.</span>
-          </>
-        }
-        description={
-          <>
-            The MD+ Podcast is an audio series featuring physician-founders,
-            healthcare investors, and trainees navigating non-traditional
-            paths. Hosted by{" "}
-            <span className="font-semibold text-rhino-700">
-              Geoff Bocobo, MD
-            </span>
-            . Launched June 2023; available on Spotify and Buzzsprout.
-          </>
-        }
-      >
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={SPOTIFY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
-          >
-            Listen on Spotify
-            <ArrowUpRight className="size-4" aria-hidden />
-          </a>
-          <a
-            href={BUZZSPROUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
-          >
-            Listen on Buzzsprout
-            <ArrowUpRight className="size-4" aria-hidden />
-          </a>
-        </div>
-      </PageHero>
-
-      {/* ── Spotify embed ──────────────────────────────────── */}
-      <section className="bg-neutral-50 py-12 md:py-16">
-        <div className="mx-auto max-w-(--container-max) px-6">
-          <div className="mx-auto max-w-3xl">
-            <div className="mb-6 flex items-center gap-3">
-              {/* Spotify wordmark colour */}
-              <svg
-                aria-hidden
-                viewBox="0 0 24 24"
-                className="size-5 shrink-0 fill-[#1DB954]"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.307a.748.748 0 0 1-1.029.25c-2.818-1.722-6.365-2.112-10.542-1.157a.748.748 0 1 1-.333-1.459c4.574-1.045 8.495-.595 11.654 1.337a.748.748 0 0 1 .25 1.029zm1.472-3.27a.937.937 0 0 1-1.288.308c-3.225-1.982-8.142-2.557-11.958-1.399a.937.937 0 1 1-.543-1.793c4.361-1.322 9.784-.681 13.481 1.596a.937.937 0 0 1 .308 1.288zm.127-3.403C15.417 8.452 9.397 8.25 5.942 9.302a1.125 1.125 0 1 1-.652-2.152c3.984-1.207 10.614-.974 14.799 1.57a1.125 1.125 0 0 1-1.074 1.914z" />
-              </svg>
-              <p className="text-sm font-semibold text-neutral-500">
-                Listen on Spotify
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-yellow-50">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(29,123,189,0.08),_transparent_60%)]"
+        />
+        <div className="relative mx-auto max-w-(--container-max) px-6 pt-20 pb-16 md:pt-28 md:pb-20">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left: text + CTAs */}
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+                Learn · The MD+ Podcast
               </p>
+              <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] tracking-tight text-rhino-700 md:text-5xl">
+                Conversations with{" "}
+                <span className="text-denim-600">physician-innovators.</span>
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+                The MD+ Podcast is an audio series featuring physician-founders,
+                healthcare investors, and trainees navigating non-traditional
+                paths. Hosted by{" "}
+                <span className="font-semibold text-rhino-700">
+                  Geoff Bocobo, MD
+                </span>
+                . Launched June 2023.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={SPOTIFY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                >
+                  Listen on Spotify
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+                <a
+                  href={BUZZSPROUT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
+                >
+                  Listen on Buzzsprout
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+              </div>
             </div>
-            <iframe
-              title="The MD+ Podcast on Spotify"
-              src={SPOTIFY_EMBED_URL}
-              width="100%"
-              height="352"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              className="rounded-xl"
-            />
+
+            {/* Right: Spotify embed */}
+            <div>
+              <iframe
+                title="The MD+ Podcast on Spotify"
+                src={SPOTIFY_EMBED_URL}
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="rounded-xl shadow-md"
+              />
+            </div>
           </div>
         </div>
       </section>

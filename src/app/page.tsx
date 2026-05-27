@@ -819,26 +819,14 @@ export default async function Home() {
                   Physician-founders, healthcare investors, non-traditional paths. Hosted by{" "}
                   <span className="font-semibold text-neutral-600">Geoff Bocobo, MD</span>.
                 </p>
-                <div className="mt-3">
-                  <iframe
-                    title="The MD+ Podcast on Spotify"
-                    src="https://open.spotify.com/embed/show/3Sf6VxkcSEgqnsm2Jaay60?utm_source=generator&theme=0"
-                    width="100%"
-                    height="152"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    className="rounded-lg"
-                  />
-                </div>
-                <div className="mt-2 flex flex-wrap items-center gap-3">
+                <div className="mt-3 flex flex-wrap items-center gap-3">
                   <a
                     href="https://open.spotify.com/show/3Sf6VxkcSEgqnsm2Jaay60"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs font-semibold text-rhino-700 underline-offset-2 hover:underline"
                   >
-                    Open in Spotify
+                    Listen on Spotify
                     <ArrowUpRight className="size-3" aria-hidden />
                   </a>
                   <Link
