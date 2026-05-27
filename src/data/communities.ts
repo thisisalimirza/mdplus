@@ -177,28 +177,46 @@ export const COMMUNITIES: Community[] = [
     tagline:
       "Fellowship pipelines, investor introductions, and the resources to actually break into healthtech VC.",
     description:
-      "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community runs a weekly News, Funds, and Deals recap, partners with Pillar VC on a 2-day VC 101 course, hosts panels with biotech, medtech, and digital-health investors, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, and Goldman Sachs healthcare.",
+      "The longest-running vertical at MDplus: the #md-vcs channel has been active since December 2019. The community hosts panels with biotech, medtech, and digital-health investors, provides educational resources relevant for healthcare VC including development of market maps and competitive landscapes, and connects members to fellowships at firms across healthtech. Members include current and former investors at a16z bio+health, Bessemer, Foresite, Artis Ventures, Goldman Sachs Healthcare, and more.",
     slackChannel: "md-vcs",
     teamVertical: "Venture Capital",
     representativeAt: [
       "a16z bio+health",
       "Bessemer",
       "Foresite",
-      "Pillar VC",
-      "AlleyCorp",
+      "Artis Ventures",
+      "Goldman Sachs Healthcare",
     ],
     resources: [
       {
         title: "Get oriented",
         items: [
+          {
+            label: "Sherman's Guide",
+            href: "https://docs.google.com/document/d/1TjklF11-f4VqwFNGMcyhYygiav6X1uYcLRNWIM4_yho/edit",
+            note: "VC fundamentals overview",
+          },
           { label: "VC Glossary", note: "MDplus internal doc" },
-          { label: "Investment thesis guide" },
-          { label: "Healthtech investor database" },
+          {
+            label: "Investment thesis guide",
+            href: "https://medium.com/the-importance-of-being-earnest/an-aspiring-vcs-guide-to-building-an-investment-thesis-990a8e24666",
+          },
+          {
+            label: "Healthtech investor database",
+            href: "https://airtable.com/appi82OqC0sofDlcH/shrdqT0dM0vaIeO9u/tblyAK2VE4dS8O4dZ/viwiaTchRnMLqZqsS?backgroundColor=blue&blocks=hide",
+          },
           {
             label: "YC Startup Library",
             href: "https://www.ycombinator.com/library",
           },
-          { label: "John Gannon Blog", href: "https://www.johngannonblog.com" },
+          {
+            label: "John Gannon Blog",
+            href: "https://johngannonblog.com",
+          },
+          {
+            label: "The Business of Venture Capital",
+            href: "https://www.thebusinessofvc.com",
+          },
         ],
       },
       {
@@ -215,12 +233,47 @@ export const COMMUNITIES: Community[] = [
         ],
       },
       {
-        title: "Books & podcasts",
+        title: "Books",
         items: [
-          { label: "Venture Deals", note: "Brad Feld" },
-          { label: "Secrets of Sand Hill Road", note: "Scott Kupor" },
-          { label: "Venture Unlocked" },
-          { label: "The Twenty Minute VC" },
+          {
+            label: "Venture Deals",
+            href: "https://www.venturedeals.com",
+            note: "Brad Feld",
+          },
+          {
+            label: "Secrets of Sand Hill Road",
+            href: "https://www.amazon.com/Secrets-Sand-Hill-Road-Venture/dp/059308358X",
+            note: "Scott Kupor",
+          },
+        ],
+      },
+      {
+        title: "Podcasts",
+        items: [
+          {
+            label: "Venture Unlocked",
+            href: "https://podcasts.apple.com/us/podcast/venture-unlocked-the-playbook-for-venture-capital/id1535501313",
+          },
+          {
+            label: "The Twenty Minute VC",
+            href: "https://www.thetwentyminutevc.com",
+          },
+          {
+            label: "Spearhead",
+            href: "https://podcasts.apple.com/us/podcast/spearhead/id1412486606",
+          },
+          {
+            label: "The Consumer VC",
+            href: "https://theconsumervc.com",
+          },
+          {
+            label: "How I Built This",
+            href: "https://www.npr.org/series/490248027/how-i-built-this",
+          },
+          {
+            label: "Women in Venture Capital",
+            href: "https://podcasts.apple.com/us/podcast/women-in-venture-capital/id1526012261",
+          },
         ],
       },
     ],
