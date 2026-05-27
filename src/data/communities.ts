@@ -116,6 +116,11 @@ export const COMMUNITIES: Community[] = [
         title: "AI/ML Tutorial Library",
         items: [
           {
+            label: "Tutorial Library",
+            href: "https://ai.mdplus.community/",
+            note: "Full library at ai.mdplus.community",
+          },
+          {
             label: "Q-Learning Module",
             note: "Reinforcement learning basics, in a clinical scenario",
           },
@@ -313,10 +318,22 @@ export const COMMUNITIES: Community[] = [
       {
         title: "Get started",
         items: [
-          { label: "Breaking into Consulting 101", note: "MDplus guide" },
+          {
+            label: "Breaking into Consulting 101",
+            href: "https://drive.google.com/file/d/1tOoB6I3XOUYuDw0sdxGW9f3-n0S_AZmf/view",
+            note: "MDplus guide",
+          },
           { label: "MD+ Consulting Guide 2024", note: "Published playbook" },
-          { label: "Case Books Drive", note: "Shared library" },
-          { label: "Case Prep Workshop", note: "Recurring" },
+          {
+            label: "Case Books Drive",
+            href: "https://drive.google.com/drive/folders/1sdt9XTo2Y9-sYcohhn49YB6sjh4jP4RT?usp=drive_link",
+            note: "Shared library",
+          },
+          {
+            label: "Case Prep Workshop",
+            href: "https://drive.google.com/drive/folders/1sdt9XTo2Y9-sYcohhn49YB6sjh4jP4RT?usp=drive_link",
+            note: "Recurring",
+          },
         ],
       },
       {
