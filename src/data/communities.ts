@@ -36,6 +36,11 @@ export type LearningPathwayStep = {
   status?: string;
 };
 
+export type RepresentativeOrg = {
+  name: string;
+  href?: string;
+};
+
 export type Community = {
   slug: string;
   name: string;
@@ -58,7 +63,7 @@ export type Community = {
   /** Optional list of resource groups (guides, books, podcasts, etc.) */
   resources?: ResourceGroup[];
   /** Optional companies/orgs members are at — for social proof. */
-  representativeAt?: string[];
+  representativeAt?: RepresentativeOrg[];
   /** Optional step-by-step learning pathway shown on the community detail page. */
   learningPathway?: LearningPathwayStep[];
 };
@@ -184,11 +189,11 @@ export const COMMUNITIES: Community[] = [
     slackChannel: "md-vcs",
     teamVertical: "Venture Capital",
     representativeAt: [
-      "a16z bio+health",
-      "Bessemer",
-      "Foresite",
-      "Artis Ventures",
-      "Goldman Sachs Healthcare",
+      { name: "a16z bio+health" },
+      { name: "Bessemer" },
+      { name: "Foresite" },
+      { name: "Artis Ventures" },
+      { name: "Goldman Sachs Healthcare" },
     ],
     resources: [
       {
@@ -290,7 +295,12 @@ export const COMMUNITIES: Community[] = [
       "The biotech vertical covers therapeutics, drug discovery, and the broader life-sciences industry. We send a weekly biotech newsletter, run panel events with physician-founders and biotech executives, and use RA Capital course material as reference for biotech investing. Recent programming includes a Nucleate Translate panel on physician careers in biotech (with Jay Bradner of NIBR, Shehnaaz Suliman of ReCode Therapeutics, and Akshay Vaishnaw of Alnylam), a week-long Bio × ML hackathon co-hosted with Lux Capital and OpenBioML, and JPM Healthcare Conference debrief sessions.",
     slackChannel: "md-biotech",
     teamVertical: "Biotech",
-    representativeAt: ["Novartis NIBR", "ReCode Therapeutics", "Alnylam", "Lux Capital"],
+    representativeAt: [
+      { name: "Novartis NIBR" },
+      { name: "ReCode Therapeutics" },
+      { name: "Alnylam" },
+      { name: "Lux Capital" },
+    ],
     resources: [
       {
         title: "Programs",
@@ -312,34 +322,18 @@ export const COMMUNITIES: Community[] = [
     slackChannel: "md-consulting",
     teamVertical: "Consulting",
     representativeAt: [
-      "McKinsey",
-      "Bain",
-      "BCG",
-      "LEK",
-      "EY-Parthenon",
-      "Charles River Associates",
-      "Accenture",
-      "Deloitte",
+      { name: "McKinsey", href: "https://www.mckinsey.com" },
+      { name: "Bain", href: "https://www.bain.com" },
+      { name: "BCG", href: "https://www.bcg.com" },
+      { name: "LEK", href: "https://www.lek.com" },
+      { name: "EY-Parthenon", href: "https://www.ey.com/en_us/strategy/parthenon" },
+      { name: "Charles River Associates", href: "https://www.crai.com" },
+      { name: "Accenture", href: "https://www.accenture.com" },
+      { name: "Deloitte", href: "https://www.deloitte.com" },
     ],
     resources: [
       {
-        title: "MDplus Resources",
-        items: [
-          { label: "MD+ Consulting Guide 2024", note: "Published playbook" },
-          {
-            label: "Case Books Drive",
-            href: "https://drive.google.com/drive/folders/1sdt9XTo2Y9-sYcohhn49YB6sjh4jP4RT?usp=drive_link",
-            note: "Shared library",
-          },
-          {
-            label: "Case Prep Workshop",
-            href: "https://drive.google.com/drive/folders/1sdt9XTo2Y9-sYcohhn49YB6sjh4jP4RT?usp=drive_link",
-            note: "Recurring",
-          },
-        ],
-      },
-      {
-        title: "ListServs for Opportunities",
+        title: "Sign Ups for Consulting Opportunities",
         items: [
           {
             label: "Harvard Biotech Club",
@@ -364,7 +358,7 @@ export const COMMUNITIES: Community[] = [
         ],
       },
       {
-        title: "Links for All Things Consulting",
+        title: "General Consulting Resources",
         items: [
           {
             label: "Resume Template",

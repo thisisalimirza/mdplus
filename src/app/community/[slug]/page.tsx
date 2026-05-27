@@ -144,11 +144,21 @@ export default async function CommunityDetailPage({
                     </p>
                     <ul className="mt-4 flex flex-wrap gap-1.5">
                       {community.representativeAt.map((org) => (
-                        <li
-                          key={org}
-                          className="rounded-pill bg-neutral-0 px-3 py-1 text-xs font-medium text-rhino-600 ring-1 ring-neutral-200"
-                        >
-                          {org}
+                        <li key={org.name}>
+                          {org.href ? (
+                            <a
+                              href={org.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block rounded-pill bg-neutral-0 px-3 py-1 text-xs font-medium text-denim-600 ring-1 ring-neutral-200 transition-colors hover:bg-denim-50 hover:ring-denim-300"
+                            >
+                              {org.name}
+                            </a>
+                          ) : (
+                            <span className="block rounded-pill bg-neutral-0 px-3 py-1 text-xs font-medium text-rhino-600 ring-1 ring-neutral-200">
+                              {org.name}
+                            </span>
+                          )}
                         </li>
                       ))}
                     </ul>
