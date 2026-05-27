@@ -306,21 +306,25 @@ export const COMMUNITIES: Community[] = [
     slug: "consulting",
     name: "Consulting",
     tagline:
-      "Mentorship and case prep for clinicians moving into management consulting.",
+      "Mentorship and resources for clinicians building careers in consulting, life sciences, and healthcare strategy.",
     description:
-      "Our consulting community introduces, mentors, and connects individuals interested in healthcare or management consulting to opportunities and training that enable their transition from clinical care. Members range from medical students to residents to attendings, and include full- and part-time consultants at McKinsey, Bain, BCG, LEK, and others. Many have prior consulting experience or have participated in McKinsey's MD Fellow or BCG's MD Scholar program. We published the MD+ Consulting Guide 2024 and partner with RocketBlocks for case-interview prep.",
+      "Our community mentors and connects clinicians navigating careers at the intersection of medicine and industry; whether that's management consulting, life sciences strategy, or advisory work at medtech companies, startups, and beyond. Members range from medical students to attendings, spanning full- and part-time consultants, physicians in industry roles, and those doing side-gig advisory work at life sciences firms, digital health startups, and device companies. We partner with consulting firms and case prep resources to help you break in and succeed.",
     slackChannel: "md-consulting",
     teamVertical: "Consulting",
-    representativeAt: ["McKinsey", "Bain", "BCG", "LEK"],
+    representativeAt: [
+      "McKinsey",
+      "Bain",
+      "BCG",
+      "LEK",
+      "EY-Parthenon",
+      "Charles River Associates",
+      "Accenture",
+      "Deloitte",
+    ],
     resources: [
       {
-        title: "Get started",
+        title: "MDplus Resources",
         items: [
-          {
-            label: "Breaking into Consulting 101",
-            href: "https://drive.google.com/file/d/1tOoB6I3XOUYuDw0sdxGW9f3-n0S_AZmf/view",
-            note: "MDplus guide",
-          },
           { label: "MD+ Consulting Guide 2024", note: "Published playbook" },
           {
             label: "Case Books Drive",
@@ -335,11 +339,68 @@ export const COMMUNITIES: Community[] = [
         ],
       },
       {
+        title: "ListServs for Opportunities",
+        items: [
+          {
+            label: "Harvard Biotech Club",
+            href: "https://thebiotechclub.us16.list-manage.com/subscribe?id=1d5beb74df&u=081d647514108a0ce600a149b",
+          },
+          {
+            label: "Duke Consulting Club",
+            href: "https://lists.duke.edu/sympa/info/consulting",
+          },
+          {
+            label: "Yale Graduate Student Consulting Club",
+            href: "https://www.ygccgradconsulting.org/join-us",
+          },
+          {
+            label: "Biotech Connection Bay Area",
+            href: "https://biotechconnectionbay.org/",
+          },
+          {
+            label: "Consulting Club at Texas Medical Center",
+            href: "https://www.medcenterconsulting.com/plans",
+          },
+        ],
+      },
+      {
+        title: "Links for All Things Consulting",
+        items: [
+          {
+            label: "Resume Template",
+            href: "https://www.wallstreetoasis.com/resources/templates/word-templates/consulting-resume-template",
+          },
+          {
+            label: "Cover Letter Template",
+            href: "https://managementconsulted.com/consulting-cover-letter/",
+          },
+          {
+            label: "MBB Online Tests",
+            href: "https://www.casebasix.com/pages/consulting-articles#consultingonlinetests",
+            note: "Free practice",
+          },
+          {
+            label: "Consulting Casebooks",
+            href: "https://www.casebasix.com/pages/mbb-case-bank",
+          },
+          {
+            label: "Roadmap to Consulting",
+            href: "https://docs.google.com/presentation/d/1Ygg5YL78tZye25DeG6UIRI0l9eJMiEGiNBrLQ2DLZSU/edit?usp=sharing",
+            note: "Slide deck",
+          },
+          {
+            label: "Breaking into Consulting 101",
+            href: "https://drive.google.com/file/d/1tOoB6I3XOUYuDw0sdxGW9f3-n0S_AZmf/view?usp=drive_link",
+          },
+        ],
+      },
+      {
         title: "Partners",
         items: [
           {
             label: "RocketBlocks",
-            note: "Case interview prep; member discounts and raffle prizes",
+            href: "https://www.rocketblocks.me/",
+            note: "Case interview prep — use code MDplus_2025 for 10% off",
           },
         ],
       },

@@ -102,7 +102,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     name: "Ali Mirza",
     role: "VP of External Relations",
     tier: "vp",
-    school: "UConn School of Medicine",
+    school: "Consulting Associate at Charles River Associates",
     imageSrc: "/ExecHeadshots/Ali_Mirza.png",
     linkedIn: "https://www.linkedin.com/in/thisisalimirza",
     bio: "Ali is an MD Candidate at UConn School of Medicine. A Foote Fellow and Da Vinci Scholar at the University of Miami, he studied Biochemistry and Classics while pursuing broad interests in computer science, game theory, economics, and international relations, supported by a fifth-year scholarship in Healthcare Economics, Management, and Policy. Prior to medical school, he worked as a Project Manager at Epic in Madison, WI, and founded Janus, a marketing agency he grew to $250K ARR. In medical school, he has published two machine learning papers, writes on his Substack Side Effects, and built Rounds (100 DAU) and Sitr (1,000+ peak users). He is pursuing Cardiology with a focus on technology-enabled innovation in patient care.",
