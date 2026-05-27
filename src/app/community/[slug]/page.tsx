@@ -172,6 +172,11 @@ export default async function CommunityDetailPage({
                   <h3 className="font-display text-lg font-bold text-rhino-700">
                     {group.title}
                   </h3>
+                  {group.note && (
+                    <p className="mt-1 text-xs font-medium text-amber-600">
+                      {group.note}
+                    </p>
+                  )}
                   <ul className="mt-4 space-y-3">
                     {group.items.map((item, idx) => (
                       <li key={idx}>
@@ -227,9 +232,16 @@ export default async function CommunityDetailPage({
                       href={step.href}
                       className="group flex h-full flex-col rounded-lg border border-denim-700 bg-denim-800 p-6 transition-all hover:border-denim-500 hover:bg-denim-700"
                     >
-                      <span className="text-xs font-bold uppercase tracking-widest text-denim-400">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-widest text-denim-400">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        {step.status && (
+                          <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                            {step.status}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="mt-2 flex items-center gap-1.5 font-display text-lg font-bold text-white group-hover:text-denim-200">
                         {step.label}
                         <MoveRight className="size-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
@@ -240,9 +252,16 @@ export default async function CommunityDetailPage({
                     </Link>
                   ) : (
                     <div className="flex h-full flex-col rounded-lg border border-denim-700 bg-denim-800 p-6">
-                      <span className="text-xs font-bold uppercase tracking-widest text-denim-400">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-widest text-denim-400">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        {step.status && (
+                          <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                            {step.status}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="mt-2 font-display text-lg font-bold text-white">
                         {step.label}
                       </h3>
