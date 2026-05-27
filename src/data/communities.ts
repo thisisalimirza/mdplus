@@ -116,20 +116,18 @@ export const COMMUNITIES: Community[] = [
         title: "AI/ML Tutorial Library",
         items: [
           {
-            label: "Tutorial Library",
-            href: "https://ai.mdplus.community/",
-            note: "Full library at ai.mdplus.community",
-          },
-          {
             label: "Q-Learning Module",
+            href: "https://colab.research.google.com/drive/1JTC0PjcaFKqR9zTIb9_P0zVs4QYvOslN?usp=sharing&copy=true",
             note: "Reinforcement learning basics, in a clinical scenario",
           },
           {
             label: "Retrieval-Augmented Generation (RAG)",
+            href: "https://colab.research.google.com/drive/1sYL1f5YqV6KCu1OZkD2c8L9cj4ifFjqO?usp=sharing&copy=true",
             note: "Build a RAG system over medical literature",
           },
           {
             label: "Convolutional Neural Networks",
+            href: "https://colab.research.google.com/drive/1OijmTzfz1H2R-ZGDIutJDgCxO5e5dPrX?usp=sharing&copy=true",
             note: "Imaging-focused intro to CNNs",
           },
         ],
