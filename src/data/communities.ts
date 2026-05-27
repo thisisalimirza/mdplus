@@ -21,6 +21,11 @@ export type ResourceGroup = {
 };
 
 export type Leader = {
+  /**
+   * Must match the `name` field in CURRENT_TEAM (src/data/team.ts) exactly.
+   * When it matches and the team member has an `imageSrc`, their headshot
+   * appears automatically on the community page. No match = initials avatar.
+   */
   name: string;
   role: string;
 };
@@ -183,7 +188,7 @@ export const COMMUNITIES: Community[] = [
       "Our consulting community introduces, mentors, and connects individuals interested in healthcare or management consulting to opportunities and training that enable their transition from clinical care. Members range from medical students to residents to attendings, and include full- and part-time consultants at McKinsey, Bain, BCG, LEK, and others. Many have prior consulting experience or have participated in McKinsey's MD Fellow or BCG's MD Scholar program. We published the MD+ Consulting Guide 2024 and partner with RocketBlocks for case-interview prep.",
     slackChannel: "md-consulting",
     leaders: [
-      { name: "Esh Garg", role: "Director of Consulting" },
+      { name: "Eshita Garg", role: "Director of Consulting" },
       { name: "Edward Kim", role: "Director of Consulting" },
     ],
     representativeAt: ["McKinsey", "Bain", "BCG", "LEK"],
