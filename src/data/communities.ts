@@ -85,7 +85,7 @@ export const COMMUNITIES: Community[] = [
       {
         label: "Journal Club",
         description:
-          "Deep-dive into landmark AI in medicine papers with the community — or browse the archive of past sessions.",
+          "Join active paper deep-dives with the community. Past sessions are preserved in the archive — focused on AI, data science, and clinical innovation.",
         href: "/learn/journal-club",
       },
       {
@@ -157,7 +157,7 @@ export const COMMUNITIES: Community[] = [
           },
           {
             label: "Journal Club (Archive)",
-            href: "/learn/journal-club",
+            href: "https://vanilla-emmental-550.notion.site/1cd8bdd2e2a34976a2fd4fcc01dbdd07?v=90466d91ab9b4d95b46c7c9e18e0c4b0",
             note: "Past deep-dives into AI, data science, and clinical innovation papers",
           },
         ],
