@@ -24,12 +24,16 @@ export type ResourceItem = {
 export type ResourceGroup = {
   title: string;
   items: ResourceItem[];
+  /** Optional note shown below the group title, e.g. "Planned content". */
+  note?: string;
 };
 
 export type LearningPathwayStep = {
   label: string;
   description: string;
   href?: string;
+  /** Optional pill shown on the pathway card, e.g. "Paused" or "Coming soon". */
+  status?: string;
 };
 
 export type Community = {
@@ -85,8 +89,9 @@ export const COMMUNITIES: Community[] = [
       {
         label: "Journal Club",
         description:
-          "Join active paper deep-dives with the community. Past sessions are preserved in the archive — focused on AI, data science, and clinical innovation.",
+          "Past sessions are preserved in the archive — focused on AI, data science, and clinical innovation. New sessions paused for now.",
         href: "/learn/journal-club",
+        status: "Paused",
       },
       {
         label: "Datathon",
@@ -126,6 +131,7 @@ export const COMMUNITIES: Community[] = [
       },
       {
         title: "Educational Content",
+        note: "Planned — content coming soon",
         items: [
           { label: "API Key Management & Security Best Practices" },
           { label: "Clinical Datasets & HIPAA Considerations" },
