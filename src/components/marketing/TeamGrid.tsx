@@ -104,6 +104,7 @@ function MemberCard({
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          style={{ objectPosition: member.imagePosition ?? "50% 20%" }}
         />
       ) : (
         <div
@@ -204,6 +205,7 @@ function MemberModal({
                 src={member.imageSrc}
                 size="xl"
                 className="shrink-0"
+                objectPosition={member.imagePosition ?? "50% 20%"}
               />
               <div className="min-w-0 pt-1">
                 <span

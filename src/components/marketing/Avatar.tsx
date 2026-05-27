@@ -7,6 +7,7 @@ type AvatarProps = {
   src?: string;
   size?: AvatarSize;
   className?: string;
+  objectPosition?: string;
 };
 
 const SIZE_CLASS: Record<AvatarSize, string> = {
@@ -54,7 +55,7 @@ function colorFor(name: string): string {
  * Person avatar. Uses next/image for real photos, falls back to
  * deterministic colored initials when no `src` is provided.
  */
-export function Avatar({ name, src, size = "md", className = "" }: AvatarProps) {
+export function Avatar({ name, src, size = "md", className = "", objectPosition }: AvatarProps) {
   const baseRing = "ring-1 ring-rhino-100";
   const sizeClasses = SIZE_CLASS[size];
 
@@ -69,6 +70,7 @@ export function Avatar({ name, src, size = "md", className = "" }: AvatarProps) 
           width={SIZE_PX[size]}
           height={SIZE_PX[size]}
           className="size-full object-cover"
+          style={{ objectPosition: objectPosition ?? "50% 20%" }}
         />
       </div>
     );

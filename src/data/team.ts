@@ -25,6 +25,8 @@ export type CurrentMember = {
   /** Verbatim "Interesting/Weird Fact or Talent" */
   funFact?: string;
   imageSrc?: string;
+  /** CSS object-position for avatar crops, e.g. "50% 15%". Defaults to "50% 20%". */
+  imagePosition?: string;
   linkedIn?: string;
 };
 
