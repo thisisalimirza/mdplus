@@ -326,7 +326,7 @@ export const COMMUNITIES: Community[] = [
       { name: "Bain", href: "https://www.bain.com" },
       { name: "BCG", href: "https://www.bcg.com" },
       { name: "LEK", href: "https://www.lek.com" },
-      { name: "EY-Parthenon", href: "https://www.ey.com/en_us/strategy/parthenon" },
+      { name: "EY-Parthenon", href: "https://www.ey.com/en_us/services/strategy/parthenon" },
       { name: "Charles River Associates", href: "https://www.crai.com" },
       { name: "Accenture", href: "https://www.accenture.com" },
       { name: "Deloitte", href: "https://www.deloitte.com" },
