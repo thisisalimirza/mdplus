@@ -285,6 +285,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Director",
     tier: "director",
     vertical: "Biotech",
+    imageSrc: "/ExecHeadshots/Shannon.WEBP",
     linkedIn: "https://www.linkedin.com/in/shannonmcl2",
   },
 
@@ -295,6 +296,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Research",
     school: "Penn State College of Medicine",
+    imageSrc: "/ExecHeadshots/Adam.jpg",
     linkedIn: "https://www.linkedin.com/in/aelsayed2002",
   },
   {
@@ -303,6 +305,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Research",
     school: "Loyola University Chicago / Stritch School of Medicine",
+    imageSrc: "/ExecHeadshots/SamMallahan.jpg",
     linkedIn: "https://www.linkedin.com/in/samantha-mallahan",
     bio: "Sam Mallahan is a first year medical student at Loyola Chicago Stritch School of Medicine. She graduated from Vanderbilt University in 2023 with a biomedical engineering degree and then worked as a data analyst at Tempus AI, a precision-oncology AI company in Chicago for two years. Her passion for her \"plus\" began after interning at Fogarty Innovation, a silicon-valley based startup incubator where she was paired with a women's FemTech company called Materna Medical — and from then on she's been deeply passionate about the ecosystem of healthcare innovation.",
     whyJoined:
@@ -317,6 +320,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Consulting",
     school: "Consulting Associate at Charles River Associates",
+    imageSrc: "/ExecHeadshots/Eshita.jpg",
     linkedIn: "https://www.linkedin.com/in/eshitagarg",
     bio: "Esh Garg is a fourth-year medical student at Wright State University Boonshoft School of Medicine. Prior to medical school, she earned her B.S. from UC San Diego and her M.S. from Columbia University. After graduation, she'll be trading in the hospital for the world of management consulting. Outside of academics and professional pursuits, Esh loves to travel, junk journal, and enthusiastically dive into new hobbies — most of which she absolutely cannot keep up with for more than a week.",
     plus: "My \"pluses\" are biotech innovation, AI, and consulting — which is a long way of saying I have never been able to be just one thing. I've always known I didn't want to be \"just a physician,\" and along the way, I've leaned into that curiosity through experiences with ExactRx, No Patient Left Behind, Global Biotech Revolution, Nucleate, and more. I am building toward becoming a physician who understands these \"pluses\" and uses them to rethink and improve the healthcare ecosystem — because healthcare shouldn't exist in a silo, and neither should we.",
@@ -330,6 +334,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Consulting",
     school: "University of Central Florida College of Medicine",
+    imageSrc: "/ExecHeadshots/Kai.jpg",
     linkedIn: "https://www.linkedin.com/in/kai-thomas-193b99246",
     bio: "Kai Thomas is an MS1 at the University of Central Florida College of Medicine. During his undergraduate studies at UCSB, he worked as a surgical technician, gaining a unique understanding of the interaction between medical device companies and the surgeons who consult on new technologies. He is currently interning at NeXtGen Biologics, a medical device startup, focusing on the research and development of a novel bone product for spine surgeries, and plans to transition to a consultant role following his internship. Kai is involved in multiple orthopedic research projects and will further explore the field this summer through an internship at the UCSF Orthopaedic Trauma Institute. In his free time, he enjoys basketball, surfing, snowboarding, traveling, and finance.",
     plus: "My plus is interning at a medical device company as R&D consultant. For the past three months, my internship at NeXtGen Biologics has provided incredible insight into the world of medical device development and the critical role physicians play in that process. I am excited to continue this work and plan to explore every available opportunity in the field.",
