@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 
@@ -13,6 +13,10 @@ function LinkedInIcon({ className }: { className?: string }) {
 }
 import { Avatar } from "@/components/marketing/Avatar";
 import type { CurrentMember, DirectorVertical } from "@/data/team";
+
+// ── Brand accent colors for duotone treatment ─────────────────────────────────
+
+const ACCENT_CLASSES = ["bg-denim-500", "bg-yellow-400"] as const;
 
 // ── Fallback avatar helpers (for no-photo cards) ──────────────────────────────
 
@@ -84,12 +88,15 @@ function getModalHeaderBg(tier: string): string {
 function MemberCard({
   member,
   onClick,
+  colorIndex,
 }: {
   member: CurrentMember;
   onClick: () => void;
+  colorIndex: number;
 }) {
   const badge = getBadge(member);
   const fallback = fallbackColor(member.name);
+  const accentBg = ACCENT_CLASSES[colorIndex % 2];
 
   return (
     <button
@@ -98,14 +105,18 @@ function MemberCard({
     >
       {/* Background: photo or colored initials */}
       {member.imageSrc ? (
-        <Image
-          src={member.imageSrc}
-          alt={member.name}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          style={{ objectPosition: member.imagePosition ?? "50% 20%" }}
-        />
+        <>
+          <Image
+            src={member.imageSrc}
+            alt={member.name}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="grayscale object-cover transition-transform duration-500 group-hover:scale-105"
+            style={{ objectPosition: member.imagePosition ?? "50% 20%" }}
+          />
+          {/* Duotone brand color overlay */}
+          <div className={`absolute inset-0 ${accentBg} mix-blend-multiply`} />
+        </>
       ) : (
         <div
           className={`absolute inset-0 flex items-center justify-center ${fallback.bg}`}
@@ -302,6 +313,12 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
     return m.vertical === filter;
   });
 
+  // Stable color index per member so filtering doesn't reshuffle the duotone colors
+  const memberColorIndex = useMemo(
+    () => new Map(members.map((m, i) => [m.name, i])),
+    [members]
+  );
+
   const handleClose = useCallback(() => setSelected(null), []);
 
   return (
@@ -326,7 +343,12 @@ export function TeamGrid({ members }: { members: CurrentMember[] }) {
       {/* Flat grid */}
       <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
         {filtered.map((m) => (
-          <MemberCard key={m.name} member={m} onClick={() => setSelected(m)} />
+          <MemberCard
+            key={m.name}
+            member={m}
+            colorIndex={memberColorIndex.get(m.name) ?? 0}
+            onClick={() => setSelected(m)}
+          />
         ))}
       </div>
 
