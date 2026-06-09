@@ -58,6 +58,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Co-Chair",
     tier: "co-chair",
     school: "UNC School of Medicine",
+    imageSrc: "/ExecHeadshots/Arvind.WEBP",
     linkedIn: "https://www.linkedin.com/in/arvind-rajan-8380b2143",
     bio: "Arvind is an MD candidate at the UNC School of Medicine currently on a leave of absence working in healthcare AI at Doximity. Before medical school he pursued an MPH where he researched racial disparities in cancer care, which developed his interest in oncology as a field. In medical school, he's further explored that interest through research and has deepened his focus on clinical AI, particularly in medical education. In his free time, he enjoys Carolina basketball, traveling, and videography.",
     plus: "My plus is healthcare AI - specifically how it can transform both medical education and clinical workflows. I'm currently on a leave of absence working at Doximity, where I focus on building AI tools that reduce physician burnout and help clinicians deliver better care on their own terms. I'm equally drawn to the medical education side - how AI can improve how we train the next generation of clinicians.",
@@ -71,6 +72,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "Co-Chair",
     tier: "co-chair",
     school: "Icahn School of Medicine at Mount Sinai",
+    imageSrc: "/ExecHeadshots/Emily.WEBP",
     linkedIn: "https://www.linkedin.com/in/emily-l-leventhal",
     bio: "Emily is an MD-PhD student in her first year of the PhD at the Icahn School of Medicine at Mount Sinai. Her research leverages genetics, clinical data, and AI to better understand women's health and mental health conditions. Before and during medical school, she has worked on a mobile health intervention for anxiety, at an e-consult platform startup, and at a biotech startup focused on precision medicine. Through MD+, she has led two national datathons and spearheaded an initiative in which trainees authored white papers on the role of AI across clinical specialties. At Sinai, she co-directed courses on ethical AI and modern medical ethics. Beyond medicine and academics, Emily loves to run in Central Park, do yoga, listen to music, and spend time with friends in NY!",
     plus: "My pluses are AI and ethics. I love the prospect of building models with new technology that will meaningfully advance the future of women's health. In undergrad, I also minored in bioethics and have always loved exploring ethics topics in medicine.",
@@ -84,6 +86,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of Operations",
     tier: "vp",
     school: "Warren Alpert Medical School of Brown University",
+    imageSrc: "/ExecHeadshots/Kaden.WEBP",
     linkedIn: "https://www.linkedin.com/in/kadenbunch",
     bio: "Kaden Bunch is a second-year medical student at the Warren Alpert Medical School of Brown University with a background in biology, business, and entrepreneurship. He earned an MBA focused on operations and start-ups before medical school and applies this expertise to healthcare innovation. His research explores machine learning and large language models for predicting mental health conditions and disease outcomes, as well as leadership competencies in medical education. He has led initiatives in vision screening for underserved populations and curriculum innovation while also supporting students in data science through MD+. Outside of medicine, Kaden enjoys spending time at the beach with his wife and caring for their two Sphynx cats.",
     funFact:
@@ -94,6 +97,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     role: "VP of Operations",
     tier: "vp",
     school: "Icahn School of Medicine at Mount Sinai",
+    imageSrc: "/ExecHeadshots/Veer.WEBP",
     linkedIn: "https://www.linkedin.com/in/shah-veer",
   },
 
@@ -144,6 +148,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     name: "Jennifer Ipe",
     role: "VP of Growth",
     tier: "vp",
+    imageSrc: "/ExecHeadshots/JenniferIpe.WEBP",
     linkedIn: "https://www.linkedin.com/in/jennifer-ipe-81b03a210",
   },
   {
@@ -241,6 +246,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Health Policy",
     school: "Washington University School of Medicine",
+    imageSrc: "/ExecHeadshots/Uswa.WEBP",
     linkedIn: "https://www.linkedin.com/in/uswakhan",
   },
 
