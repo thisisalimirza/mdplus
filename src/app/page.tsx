@@ -128,19 +128,15 @@ export default async function Home() {
           </div>
 
           <p
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl"
-            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "220ms" }}
+            className="mt-4 max-w-xl text-2xl font-semibold leading-snug text-rhino-700 md:text-3xl"
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "180ms" }}
           >
-            The community for physicians and med students building in tech,
-            data, AI, and entrepreneurship,{" "}
-            <span className="font-semibold text-rhino-700">
-              without figuring it out alone.
-            </span>
+            We create community for aspiring physician-innovators.
           </p>
 
           <div
             className="mt-10 flex flex-wrap items-center gap-3"
-            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "360ms" }}
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "300ms" }}
           >
             <Link
               href="https://app.mdplus.community/apply"
@@ -158,7 +154,7 @@ export default async function Home() {
 
           <p
             className="mt-6 text-sm text-neutral-500"
-            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "460ms" }}
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "400ms" }}
           >
             Free forever. We&apos;ll never spam you. 5,000+ members already in.
           </p>
