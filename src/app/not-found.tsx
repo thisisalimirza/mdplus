@@ -48,20 +48,20 @@ export default function NotFound() {
         {/* Vitals bar */}
         <div
           aria-hidden
-          className="mb-8 flex flex-wrap items-center gap-5 font-mono text-xs text-rhino-600"
+          className="mb-8 flex flex-wrap items-center gap-5 font-mono text-xs text-rhino-400"
         >
-          <span>HR <span className="text-red-500/70">— bpm</span></span>
-          <span>BP <span className="text-yellow-500/60">—/—</span></span>
-          <span>SPO₂ <span className="text-sky-400/60">— %</span></span>
-          <span className="ml-2 flex items-center gap-1.5 text-red-500/80">
-            <span className="vitals-alert inline-block size-1.5 rounded-full bg-red-500" />
+          <span>HR <span className="text-red-400/80">— bpm</span></span>
+          <span>BP <span className="text-yellow-400/70">—/—</span></span>
+          <span>SPO₂ <span className="text-sky-300/70">— %</span></span>
+          <span className="ml-2 flex items-center gap-1.5 text-red-400">
+            <span className="vitals-alert inline-block size-1.5 rounded-full bg-red-400" />
             PAGE UNRESPONSIVE
           </span>
         </div>
 
         {/* 404 */}
         <p
-          className="font-display font-bold leading-none tracking-tight text-rhino-800"
+          className="font-display font-bold leading-none tracking-tight text-white/[0.13]"
           style={{ fontSize: "clamp(5rem, 18vw, 13rem)" }}
         >
           4<span className="text-yellow-500">0</span>4
@@ -73,21 +73,21 @@ export default function NotFound() {
         </h1>
 
         {/* Body */}
-        <p className="mt-5 max-w-lg text-base leading-relaxed text-rhino-400">
+        <p className="mt-5 max-w-lg text-base leading-relaxed text-rhino-200">
           We may have moved it, retired it, or it hasn&apos;t shipped yet.
           The site is actively being built — if you followed an old link,
           that&apos;s why.
         </p>
 
         {/* Clinical note card */}
-        <div className="mt-8 inline-block rounded-xl border border-rhino-700 bg-rhino-800/60 px-5 py-4 font-mono text-sm">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-rhino-500">
+        <div className="mt-8 inline-block rounded-xl border border-rhino-600 bg-rhino-800/80 px-5 py-4 font-mono text-sm">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-rhino-400">
             Chart note
           </p>
           <p className="mt-1.5 text-white">
             Dx: 404 — Resource not located
           </p>
-          <p className="mt-0.5 text-rhino-500">
+          <p className="mt-0.5 text-rhino-300">
             Plan: Return to home. Follow up with community if needed.
           </p>
         </div>
