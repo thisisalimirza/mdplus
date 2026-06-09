@@ -104,6 +104,14 @@ export function SiteFooter() {
               skills.mdplus.community
             </a>
           </p>
+          {/* Subtle CMS entry point — visible to team, invisible to casual visitors */}
+          <Link
+            href="/studio"
+            className="text-neutral-300 transition-colors hover:text-neutral-500"
+            aria-label="Content studio"
+          >
+            ✦
+          </Link>
         </div>
       </div>
     </footer>
