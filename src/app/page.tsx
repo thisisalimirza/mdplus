@@ -128,25 +128,21 @@ export default async function Home() {
           </div>
 
           <p
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 md:text-xl"
-            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "220ms" }}
+            className="mt-4 max-w-xl text-2xl font-semibold leading-snug text-rhino-700 md:text-3xl"
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "180ms" }}
           >
-            The community for physicians and med students building in tech,
-            data, AI, and entrepreneurship,{" "}
-            <span className="font-semibold text-rhino-700">
-              without figuring it out alone.
-            </span>
+            We create community for aspiring physician-innovators.
           </p>
 
           <div
             className="mt-10 flex flex-wrap items-center gap-3"
-            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "360ms" }}
+            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "300ms" }}
           >
             <Link
               href="https://app.mdplus.community/apply"
               className="inline-flex items-center justify-center rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all hover:bg-denim-600 active:bg-denim-700"
             >
-              Join free →
+              Apply →
             </Link>
             <Link
               href="/community"
@@ -155,13 +151,6 @@ export default async function Home() {
               See what's inside
             </Link>
           </div>
-
-          <p
-            className="mt-6 text-sm text-neutral-500"
-            style={{ animation: "fade-up 0.6s cubic-bezier(0.2,0.8,0.2,1) both", animationDelay: "460ms" }}
-          >
-            Free forever. We&apos;ll never spam you. 5,000+ members already in.
-          </p>
         </div>
       </section>
 
@@ -744,7 +733,7 @@ export default async function Home() {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-8 text-lg text-rhino-100/75 md:text-xl">
-              Free Slack membership. Take a look around. Stay if it&apos;s for you.
+              Take a look around. Stay if it&apos;s for you.
             </p>
           </Reveal>
           <Reveal delay={220}>
@@ -753,10 +742,10 @@ export default async function Home() {
                 href="https://app.mdplus.community/apply"
                 className="inline-flex items-center justify-center rounded-md bg-yellow-500 px-10 py-4 text-base font-semibold text-rhino-900 shadow-lg transition hover:bg-yellow-400 hover:scale-[1.03] active:scale-[0.98]"
               >
-                Join free →
+                Apply →
               </Link>
               <p className="text-sm text-rhino-300/70">
-                5,000+ physicians &amp; med students already in
+                5,000+ physician-innovators already in
               </p>
             </div>
           </Reveal>
