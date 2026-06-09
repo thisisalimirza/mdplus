@@ -36,6 +36,8 @@ export type Founder = {
   bio: string;
   imageSrc?: string;
   linkedIn?: string;
+  /** Set true to hide from the public page while preserving the record. */
+  hidden?: boolean;
 };
 
 export type HistoricalMember = {
@@ -400,18 +402,21 @@ export const FOUNDERS: Founder[] = [
     role: "Co-Founder",
     bio: "NYU MD/MBA. One of the four co-founders at the October 2019 founding meetup. Built the early events operation that turned the Slack into a real community.",
     linkedIn: "https://www.linkedin.com/in/sarahzweifach",
+    hidden: true,
   },
   {
     name: "Omar Njie",
     role: "Co-Founder",
     bio: "Mount Sinai. Co-founded MD+ at the 2019 founding meetup; contributed to early community building.",
     linkedIn: "https://www.linkedin.com/in/omarnjie",
+    hidden: true,
   },
   {
     name: "Walter Hsiang",
     role: "Co-Founder",
     bio: "Yale MD/MBA. Co-founded MD+ at the 2019 founding meetup.",
     linkedIn: "https://www.linkedin.com/in/walter-hsiang",
+    hidden: true,
   },
 ];
 
