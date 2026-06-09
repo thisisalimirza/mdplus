@@ -274,6 +274,7 @@ export const CURRENT_TEAM: CurrentMember[] = [
     tier: "director",
     vertical: "Medical Devices",
     school: "Harvard Medical School",
+    imageSrc: "/ExecHeadshots/Aliya Shabbir.PNG",
     linkedIn: "https://www.linkedin.com/in/aliyashabbir",
     bio: "Aliya Shabbir is a third-year medical student at Harvard Medical School. Prior to medical school, she worked as a clinical trials coordinator, where she gained hands-on experience at the interface of research and clinical care.",
   },
