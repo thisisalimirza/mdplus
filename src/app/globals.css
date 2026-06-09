@@ -231,3 +231,32 @@
     animation: none;
   }
 }
+
+/* ── 404 ECG line draw ───────────────────────────────
+   Animates the ECG stroke from left to right, then
+   the tail flatlines, giving a "page went unresponsive"
+   read on the 404 screen. */
+@keyframes ecg-draw {
+  from { stroke-dashoffset: 700; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.ecg-line {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: ecg-draw 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes vitals-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.vitals-alert {
+  animation: vitals-blink 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ecg-line    { animation: none; stroke-dashoffset: 0; }
+  .vitals-alert { animation: none; }
+}
