@@ -56,21 +56,21 @@ const FILTERS: { label: string; value: FilterValue }[] = [
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function getBadge(m: CurrentMember): { label: string; className: string } {
+function getTierPill(m: CurrentMember): { label: string; className: string } {
   if (m.tier === "co-chair") {
     return { label: "Co-Chair", className: "bg-yellow-200 text-yellow-800" };
   }
   if (m.tier === "vp") {
-    return {
-      label: m.role.replace("VP of ", ""),
-      className: "bg-denim-100 text-denim-700",
-    };
+    return { label: "VP", className: "bg-denim-100 text-denim-700" };
   }
-  const label = (m.vertical ?? "Director")
-    .replace(" & Data Science", " & Data")
-    .replace(" Engagement", "")
-    .replace("Medical ", "");
-  return { label, className: "bg-neutral-100 text-neutral-600" };
+  return { label: "Director", className: "bg-neutral-100/90 text-neutral-600" };
+}
+
+function getFullRoleLabel(m: CurrentMember): string {
+  if (m.tier === "director" && m.vertical) {
+    return `${m.vertical}`;
+  }
+  return m.role;
 }
 
 function getModalHeaderBg(tier: string): string {
@@ -88,7 +88,8 @@ function MemberCard({
   member: CurrentMember;
   onClick: () => void;
 }) {
-  const badge = getBadge(member);
+  const pill = getTierPill(member);
+  const roleLabel = getFullRoleLabel(member);
   const fallback = fallbackColor(member.name);
 
   return (
@@ -117,24 +118,25 @@ function MemberCard({
       )}
 
       {/* Gradient for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
 
-      {/* Role badge — top left */}
+      {/* Tier pill — top left */}
       <div className="absolute left-3 top-3">
-        <span
-          className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.className}`}
-        >
-          {badge.label}
+        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${pill.className}`}>
+          {pill.label}
         </span>
       </div>
 
-      {/* Name + school — bottom */}
+      {/* Name + role + school — bottom */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <h3 className="font-display text-sm font-bold leading-tight text-white">
           {member.name}
         </h3>
+        <p className="mt-0.5 text-xs font-medium leading-snug text-white/90">
+          {roleLabel}
+        </p>
         {member.school && (
-          <p className="mt-0.5 text-xs leading-snug text-white/65">
+          <p className="mt-0.5 text-xs leading-snug text-white/55">
             {member.school}
           </p>
         )}
@@ -171,7 +173,7 @@ function MemberModal({
     };
   }, [onClose]);
 
-  const badge = getBadge(member);
+  const pill = getTierPill(member);
   const headerBg = getModalHeaderBg(member.tier);
 
   return (
@@ -209,15 +211,18 @@ function MemberModal({
               />
               <div className="min-w-0 pt-1">
                 <span
-                  className={`rounded-full px-3 py-0.5 text-xs font-semibold ${badge.className}`}
+                  className={`rounded-full px-3 py-0.5 text-xs font-semibold ${pill.className}`}
                 >
-                  {badge.label}
+                  {pill.label}
                 </span>
                 <h2 className="mt-2 font-display text-2xl font-bold text-rhino-700">
                   {member.name}
                 </h2>
                 <p className="mt-0.5 text-sm font-medium text-denim-600">
                   {member.role}
+                  {member.tier === "director" && member.vertical
+                    ? `, ${member.vertical}`
+                    : ""}
                 </p>
                 {member.school && (
                   <p className="mt-0.5 text-xs text-neutral-500">

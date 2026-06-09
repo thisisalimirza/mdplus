@@ -97,10 +97,10 @@ export default function TeamPage() {
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-yellow-700">
-              Founders · 2019
+              Founder · 2019
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold text-rhino-700 md:text-4xl">
-              The four who started it.
+              Where it all began.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
               MDplus began with a Slack workspace on August 27, 2019 and a first
@@ -108,8 +108,8 @@ export default function TeamPage() {
               City on October 2, 2019.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {FOUNDERS.map((m) => (
+          <div className="mt-12 max-w-2xl">
+            {FOUNDERS.filter((m) => !m.hidden).map((m) => (
               <FounderCard key={m.name} member={m} />
             ))}
           </div>
