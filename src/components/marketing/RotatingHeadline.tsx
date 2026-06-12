@@ -35,7 +35,7 @@ export function RotatingHeadline() {
 
   return (
     <h1
-      className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-rhino-700 md:text-7xl lg:text-[5.5rem]"
+      className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-rhino-700 min-h-[2lh] md:min-h-0 md:text-7xl lg:text-[5.5rem]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
