@@ -49,9 +49,8 @@ export function RotatingHeadline() {
           key={current}
           className="word-animate word-underline inline-block text-denim-600"
         >
-          {current}
+          {current}<span className="text-rhino-700">.</span>
         </span>
-        <span className="text-rhino-700">.</span>
       </span>
       <span className="sr-only" aria-live="polite" aria-atomic="true">
         MD plus {current}.
