@@ -22,22 +22,11 @@ const dancingScript = Dancing_Script({
   display: "swap",
 });
 
-// Resolve metadataBase to whatever URL actually serves the build. We must NOT
-// hardcode `https://mdplus.community`: that domain still resolves to the old
-// Squarespace site, so any `og:image=https://mdplus.community/opengraph-image.png`
-// we emit will 404. When social scrapers fail to fetch the declared OG image,
-// they fall back to scraping the page for a plausible image — picking up the
-// Harvard logo from the partners strip on the homepage instead of our OG card.
-//
-//   - Production → VERCEL_PROJECT_PRODUCTION_URL (Vercel's stable shortest
-//                  production alias — `mdplus-nine.vercel.app` today, and
-//                  auto-updates to `mdplus.community` once that domain is
-//                  added as a production domain in Vercel and DNS cuts over)
-//   - Preview    → VERCEL_URL (unique per-deployment preview URL)
-//   - `next dev` → http://localhost:3000
+// Production canonical domain. Preview deployments use the unique Vercel URL
+// so OG image absolute URLs don't point at a foreign host.
 const siteUrl =
-  process.env.VERCEL_ENV === "production" && process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  process.env.VERCEL_ENV === "production"
+    ? "https://mdplus.community"
     : process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000";
@@ -55,19 +44,11 @@ export const metadata: Metadata = {
   description:
     "The community for physicians and med students building in tech, data, AI, and entrepreneurship, without figuring it out alone.",
   openGraph: {
-    // title and description intentionally omitted — Next.js infers them from
-    // the resolved metadata.title and metadata.description of each page, so
-    // og:title becomes "Events · MDplus", "About · MDplus", etc. rather than
-    // a hardcoded "MDplus" for every page.
-    // Don't hardcode `url: "https://mdplus.community"` until DNS points there.
-    // Next.js falls back to `metadataBase + pathname` for og:url, which is what
-    // we want — scrapers won't recanonicalize back to the Squarespace site.
     siteName: "MDplus",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    // title and description inferred per-page (same reasoning as openGraph above)
   },
 };
 
