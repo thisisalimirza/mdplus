@@ -12,6 +12,7 @@
     "@calcom/embed-react": "^1.5.3",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.25.1",
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "next-sanity": "^12.4.5",
