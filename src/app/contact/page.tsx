@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 // Single source of truth for outbound contact info. Update here if
 // addresses or links change.
-const CONTACT_EMAIL = "hello@mdplus.community";
+const CONTACT_EMAIL = "admin@mdplus.community";
 const PARTNERSHIPS_EMAIL = "partnerships@mdplus.community";
 const GENERAL_CAL_LINK = "mdplus/15min";
 
