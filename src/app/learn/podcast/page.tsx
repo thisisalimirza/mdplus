@@ -9,20 +9,17 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
-import { client, isSanityConfigured } from "@/sanity/lib/client";
-import { podcastEpisodesQuery } from "@/sanity/lib/queries";
-import { urlFor } from "@/sanity/lib/image";
-import type { PodcastEpisodeListItem } from "@/sanity/lib/types";
+import {
+  getPodcastEpisodes,
+  SPOTIFY_SHOW_URL,
+  SPOTIFY_EMBED_URL,
+} from "@/lib/podcast";
 
 export const metadata: Metadata = {
   title: "Podcast",
   description:
     "The MD+ Podcast: conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD.",
 };
-
-const SPOTIFY_SHOW_ID = "3Sf6VxkcSEgqnsm2Jaay60";
-const SPOTIFY_URL = `https://open.spotify.com/show/${SPOTIFY_SHOW_ID}`;
-const SPOTIFY_EMBED_URL = `https://open.spotify.com/embed/show/${SPOTIFY_SHOW_ID}?utm_source=generator&theme=0`;
 
 const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
   {
@@ -42,18 +39,11 @@ const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
   },
 ];
 
-export const revalidate = 60;
-
-const SERIES_LABELS: Record<string, string> = {
-  "founder-stories": "Founder Stories",
-  "fireside-chats": "Fireside Chats",
-  "trainee-decision-points": "Trainee Decision Points",
-};
+export const revalidate = 3600;
 
 export default async function PodcastPage() {
-  const episodes: PodcastEpisodeListItem[] = isSanityConfigured
-    ? await client.fetch(podcastEpisodesQuery)
-    : [];
+  const episodes = await getPodcastEpisodes();
+
   return (
     <>
       {/* ── Hero ───────────────────────────────────────────── */}
@@ -84,7 +74,7 @@ export default async function PodcastPage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href={SPOTIFY_URL}
+                  href={SPOTIFY_SHOW_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
@@ -153,39 +143,61 @@ export default async function PodcastPage() {
         </div>
       </section>
 
-      {/* ── Episodes ───────────────────────────────────────── */}
-      {episodes.length > 0 && (
-        <section className="bg-neutral-50 py-20 md:py-28">
-          <div className="mx-auto max-w-(--container-max) px-6">
-            <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-              Episodes
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
-              Latest conversations.
-            </h2>
+      {/* ── Episodes (auto from Buzzsprout/Spotify feed) ───── */}
+      <section className="bg-neutral-50 py-20 md:py-28">
+        <div className="mx-auto max-w-(--container-max) px-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
+                Episodes
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
+                Latest conversations.
+              </h2>
+              <p className="mt-3 text-base text-neutral-500">
+                Pulled live from the podcast feed — new episodes appear here
+                automatically.
+              </p>
+            </div>
+            {episodes.length > 0 && (
+              <p className="text-sm text-neutral-400">
+                {episodes.length} episode{episodes.length === 1 ? "" : "s"}
+              </p>
+            )}
+          </div>
 
+          {episodes.length === 0 ? (
+            <div className="mt-12 rounded-xl border border-neutral-200 bg-neutral-0 p-8 text-center">
+              <p className="text-neutral-600">
+                Episodes couldn&apos;t be loaded right now. Listen on Spotify
+                instead.
+              </p>
+              <a
+                href={SPOTIFY_SHOW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-denim-600 hover:text-denim-800"
+              >
+                Open Spotify
+                <ArrowUpRight className="size-4" aria-hidden />
+              </a>
+            </div>
+          ) : (
             <div className="mt-12 grid gap-5 md:grid-cols-2">
               {episodes.map((ep) => (
                 <Link
-                  key={ep._id}
-                  href={`/learn/podcast/${ep.slug?.current}`}
+                  key={ep.id}
+                  href={`/learn/podcast/${ep.slug}`}
                   className="group flex gap-5 rounded-xl border border-neutral-200 bg-neutral-0 p-5 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
                 >
-                  {/* Thumbnail */}
                   <div className="relative size-20 shrink-0 overflow-hidden rounded-lg bg-denim-50">
-                    {!!ep.coverImage?.asset ? (
+                    {ep.coverImageUrl ? (
                       <Image
-                        src={urlFor(ep.coverImage).width(160).height(160).url()}
-                        alt={ep.coverImage.alt ?? ep.title ?? ""}
+                        src={ep.coverImageUrl}
+                        alt=""
                         fill
                         className="object-cover"
-                      />
-                    ) : !!ep.guestPhoto?.asset ? (
-                      <Image
-                        src={urlFor(ep.guestPhoto).width(160).height(160).url()}
-                        alt={ep.guest ?? ""}
-                        fill
-                        className="object-cover"
+                        sizes="80px"
                       />
                     ) : (
                       <span className="flex h-full items-center justify-center">
@@ -194,33 +206,36 @@ export default async function PodcastPage() {
                     )}
                   </div>
 
-                  {/* Text */}
                   <div className="flex min-w-0 flex-1 flex-col">
                     <div className="flex flex-wrap items-center gap-2">
-                      {ep.episodeNumber && (
+                      {ep.episodeNumber != null && (
                         <span className="text-xs font-semibold text-neutral-400">
                           Ep. {ep.episodeNumber}
                         </span>
                       )}
-                      {ep.series && (
-                        <span className="rounded-full bg-denim-50 px-2 py-0.5 text-xs font-semibold text-denim-700">
-                          {SERIES_LABELS[ep.series] ?? ep.series}
+                      {ep.durationLabel && (
+                        <span className="text-xs text-neutral-400">
+                          {ep.durationLabel}
                         </span>
                       )}
-                      {ep.duration && (
-                        <span className="text-xs text-neutral-400">{ep.duration}</span>
+                      {ep.publishedAt && (
+                        <time
+                          className="text-xs text-neutral-400"
+                          dateTime={ep.publishedAt}
+                        >
+                          {new Date(ep.publishedAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </time>
                       )}
                     </div>
                     <h3 className="mt-1.5 font-display text-base font-bold leading-snug text-rhino-700 group-hover:text-denim-700">
                       {ep.title}
                     </h3>
                     {ep.guest && (
-                      <p className="mt-1 text-sm text-neutral-500">
-                        {ep.guest}
-                        {ep.guestTitle && (
-                          <span className="text-neutral-400"> · {ep.guestTitle}</span>
-                        )}
-                      </p>
+                      <p className="mt-1 text-sm text-neutral-500">{ep.guest}</p>
                     )}
                     {ep.summary && (
                       <p className="mt-2 text-sm leading-relaxed text-neutral-600 line-clamp-2">
@@ -231,9 +246,9 @@ export default async function PodcastPage() {
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
       {/* ── Host card ──────────────────────────────────────── */}
       <section className="bg-yellow-50 py-20 md:py-24">
@@ -256,7 +271,7 @@ export default async function PodcastPage() {
             </div>
             <div className="md:justify-self-end">
               <a
-                href={SPOTIFY_URL}
+                href={SPOTIFY_SHOW_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-rhino-700 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-rhino-600"

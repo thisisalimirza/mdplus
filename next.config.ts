@@ -7,6 +7,26 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
       },
+      {
+        protocol: "https",
+        hostname: "storage.buzzsprout.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.buzzsprout.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+      },
+      {
+        protocol: "https",
+        hostname: "image-cdn-fa.spotifycdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "image-cdn-ak.spotifycdn.com",
+      },
     ],
   },
   async redirects() {

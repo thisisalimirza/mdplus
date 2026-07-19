@@ -5,9 +5,9 @@ import {
   archivePostsQuery,
   archivePublicationsQuery,
   archiveJournalClubQuery,
-  archivePodcastQuery,
   archiveEventsQuery,
 } from "@/sanity/lib/queries";
+import { getPodcastEpisodes } from "@/lib/podcast";
 import { ArchiveSearch, type ArchiveItem } from "@/components/archive/ArchiveSearch";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Every article, publication, journal club session, podcast episode, and event from MDplus — searchable in one place.",
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const CATEGORY_LABELS: Record<string, string> = {
   "medicine-ai": "Medicine & AI",
@@ -28,29 +28,16 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 export default async function ArchivePage() {
-  if (!isSanityConfigured) {
-    return (
-      <>
-        <PageHero
-          eyebrow="Archive"
-          title="Everything we've published."
-          description="Articles, publications, journal club sessions, podcast episodes, and events — all in one searchable place."
-        />
-        <section className="bg-neutral-0 py-20">
-          <div className="mx-auto max-w-(--container-max) px-6 text-center">
-            <p className="text-neutral-500">Content will appear here once Sanity is configured.</p>
-          </div>
-        </section>
-      </>
-    );
-  }
-
-  const [posts, publications, journalClub, podcast, events] = await Promise.all([
-    client.fetch(archivePostsQuery),
-    client.fetch(archivePublicationsQuery),
-    client.fetch(archiveJournalClubQuery),
-    client.fetch(archivePodcastQuery),
-    client.fetch(archiveEventsQuery),
+  const [posts, publications, journalClub, events, podcast] = await Promise.all([
+    isSanityConfigured ? client.fetch(archivePostsQuery) : Promise.resolve([]),
+    isSanityConfigured
+      ? client.fetch(archivePublicationsQuery)
+      : Promise.resolve([]),
+    isSanityConfigured
+      ? client.fetch(archiveJournalClubQuery)
+      : Promise.resolve([]),
+    isSanityConfigured ? client.fetch(archiveEventsQuery) : Promise.resolve([]),
+    getPodcastEpisodes(),
   ]);
 
   const items: ArchiveItem[] = [
@@ -93,18 +80,19 @@ export default async function ArchivePage() {
       meta: j.paperTitle ? `Paper: ${j.paperTitle}` : null,
     })),
 
-    // Podcast
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...podcast.map((e: any): ArchiveItem => ({
-      id: e._id,
-      type: "podcast",
-      title: e.title ?? "",
-      date: e.publishedAt,
-      summary: e.summary,
-      href: `/learn/podcast/${e.slug}`,
-      badge: e.episodeNumber ? `Ep. ${e.episodeNumber}` : null,
-      meta: e.guest ? `${e.guest}${e.guestTitle ? ` · ${e.guestTitle}` : ""}` : null,
-    })),
+    // Podcast — live from the Buzzsprout feed that powers Spotify
+    ...podcast.map(
+      (e): ArchiveItem => ({
+        id: e.id,
+        type: "podcast",
+        title: e.title,
+        date: e.publishedAt,
+        summary: e.summary,
+        href: `/learn/podcast/${e.slug}`,
+        badge: e.episodeNumber != null ? `Ep. ${e.episodeNumber}` : null,
+        meta: e.guest,
+      }),
+    ),
 
     // Events
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -134,7 +122,13 @@ export default async function ArchivePage() {
 
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
-          <ArchiveSearch items={items} />
+          {items.length === 0 ? (
+            <p className="text-center text-neutral-500">
+              Content will appear here once it&apos;s published.
+            </p>
+          ) : (
+            <ArchiveSearch items={items} />
+          )}
         </div>
       </section>
     </>
