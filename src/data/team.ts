@@ -180,6 +180,12 @@ export const CURRENT_TEAM: CurrentMember[] = [
     imageSrc: "/ExecHeadshots/Ishani Bansal.jpeg",
     linkedIn: "https://www.linkedin.com/in/ishani-bansal-4464441aa",
   },
+  {
+    name: "Mitali Shroff",
+    role: "VP of Community",
+    tier: "vp",
+    imageSrc: "/ExecHeadshots/Profile photo for Mitali Shroff.png",
+  },
 
   // ── Directors — AI & Data Science ─────────────────────────────────────────
   {
