@@ -25,9 +25,9 @@ import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import {
   homepageRecentPostsQuery,
-  homepageRecentPodcastQuery,
   homepageRecentEventQuery,
 } from "@/sanity/lib/queries";
+import { getRecentPodcastEpisodes } from "@/lib/podcast";
 
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
@@ -85,20 +85,27 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 export default async function Home() {
-  const [recentPosts, recentPodcast, recentEvents] = isSanityConfigured
-    ? await Promise.all([
-        client.fetch(homepageRecentPostsQuery),
-        client.fetch(homepageRecentPodcastQuery),
-        client.fetch(homepageRecentEventQuery),
-      ])
-    : [[], [], []];
+  const [recentPosts, recentEvents, recentPodcast] = await Promise.all([
+    isSanityConfigured ? client.fetch(homepageRecentPostsQuery) : Promise.resolve([]),
+    isSanityConfigured ? client.fetch(homepageRecentEventQuery) : Promise.resolve([]),
+    getRecentPodcastEpisodes(3),
+  ]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const contentWall: any[] = [
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...recentPosts.map((p: any) => ({ ...p, _kind: "article", _date: p.publishedAt })),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...recentPodcast.map((e: any) => ({ ...e, _kind: "podcast", _date: e.publishedAt })),
+    ...recentPodcast.map((e) => ({
+      _id: e.id,
+      _kind: "podcast" as const,
+      _date: e.publishedAt,
+      title: e.title,
+      slug: e.slug,
+      summary: e.summary,
+      guest: e.guest,
+      episodeNumber: e.episodeNumber,
+      coverImageUrl: e.coverImageUrl,
+    })),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...recentEvents.map((e: any) => ({ ...e, _kind: "event", _date: e.startDate })),
   ].sort((a, b) => {
@@ -611,7 +618,9 @@ export default async function Home() {
                   ? new Date(item._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
                   : null;
 
-                const imgUrl = item.coverImage?.asset
+                const imgUrl = item.coverImageUrl
+                  ? item.coverImageUrl
+                  : item.coverImage?.asset
                   ? urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
                   : null;
 
