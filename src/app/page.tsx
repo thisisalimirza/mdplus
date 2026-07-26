@@ -602,12 +602,12 @@ export default async function Home() {
               </Link>
             </Reveal>
 
-            {/* Masonry wall */}
-            <div className="mt-8 columns-1 gap-3 sm:columns-2 lg:columns-3">
+            {/* Chronological content grid */}
+            <div className="mt-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {contentWall.map((item, i) => {
                 const isArticle = item._kind === "article";
                 const isPodcast = item._kind === "podcast";
-                const isEvent   = item._kind === "event";
+                const isEvent = item._kind === "event";
 
                 const href = isArticle
                   ? `/learn/articles/${item.slug}`
@@ -634,31 +634,39 @@ export default async function Home() {
                   : null;
 
                 return (
-                  <Reveal key={item._id} className="mb-3 break-inside-avoid" delay={i * 55}>
-                  <Link
-                    href={href}
-                    className="group block overflow-hidden rounded-xl border border-white/8 bg-white/[0.04] transition-all hover:border-white/15 hover:bg-white/[0.07]"
-                  >
-                    {/* Cover image */}
-                    {imgUrl && (
-                      <div className="relative h-40 w-full overflow-hidden">
-                        <Image
-                          src={imgUrl}
-                          alt={item.coverImage?.alt ?? item.title ?? ""}
-                          fill
-                          className={`transition-transform duration-500 ${
-                            isEvent
-                              ? "object-contain p-2 group-hover:scale-[1.02]"
-                              : "object-cover group-hover:scale-105"
-                          }`}
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        />
-                        {/* gradient so badge stays readable over any photo */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" aria-hidden />
+                  <Reveal key={item._id} className="h-full" delay={i * 55}>
+                    <Link
+                      href={href}
+                      className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-xl hover:shadow-black/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"
+                    >
+                      {/* Consistent media frame prevents uneven card rows. */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-white/8 bg-black/20">
+                        {imgUrl ? (
+                          <Image
+                            src={imgUrl}
+                            alt={item.coverImage?.alt ?? item.title ?? ""}
+                            fill
+                            className={`transition-transform duration-500 ${
+                              isEvent || isPodcast
+                                ? "object-contain p-4 group-hover:scale-[1.03]"
+                                : "object-cover group-hover:scale-105"
+                            }`}
+                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center text-white/15">
+                            {isArticle ? (
+                              <FileText className="size-10" aria-hidden />
+                            ) : isPodcast ? (
+                              <Mic className="size-10" aria-hidden />
+                            ) : (
+                              <Calendar className="size-10" aria-hidden />
+                            )}
+                          </div>
+                        )}
                       </div>
-                    )}
 
-                    <div className="p-4">
+                      <div className="flex flex-1 flex-col p-5">
                       {/* Type badge */}
                       <div className="flex items-center gap-1.5">
                         {isArticle && (
@@ -688,7 +696,7 @@ export default async function Home() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="mt-2 text-sm font-semibold leading-snug text-white/90 line-clamp-3 group-hover:text-white">
+                      <h3 className="mt-3 line-clamp-3 text-base font-semibold leading-snug text-white/90 group-hover:text-white">
                         {item.title}
                       </h3>
 
@@ -709,14 +717,14 @@ export default async function Home() {
                       )}
 
                       {/* Date + arrow */}
-                      <div className="mt-3 flex items-center justify-between">
+                      <div className="mt-auto flex items-center justify-between pt-5">
                         {dateStr && (
                           <time className="text-[10px] text-white/25" dateTime={item._date}>{dateStr}</time>
                         )}
                         <ArrowRight className="size-3 text-white/20 transition-all group-hover:translate-x-0.5 group-hover:text-white/50 ml-auto" aria-hidden />
                       </div>
-                    </div>
-                  </Link>
+                      </div>
+                    </Link>
                   </Reveal>
                 );
               })}
