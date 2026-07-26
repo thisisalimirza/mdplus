@@ -210,7 +210,7 @@ export const homepageRecentPodcastQuery = defineQuery(`
 
 export const homepageUpcomingEventsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current) && coalesce(endDate, startDate) >= now()] | order(startDate asc) [0...3] {
-    _id, title, "slug": slug.current, startDate, endDate, location, eventType, summary,
+    _id, title, slug, startDate, endDate, location, eventType, summary,
     coverImage { asset, alt }
   }
 `);

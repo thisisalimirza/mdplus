@@ -23,6 +23,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { homepageUpcomingEventsQuery } from "@/sanity/lib/queries";
+import type { EventListItem } from "@/sanity/lib/types";
 import { formatEventDate } from "@/lib/events";
 
 const LOGOS = [
@@ -72,7 +73,7 @@ const WHY_FEATURES: { icon: LucideIcon; title: string; description: string }[] =
 export const revalidate = 60;
 
 export default async function Home() {
-  const upcomingEvents = isSanityConfigured
+  const upcomingEvents: EventListItem[] = isSanityConfigured
     ? await client.fetch(homepageUpcomingEventsQuery)
     : [];
   return (
@@ -582,7 +583,7 @@ export default async function Home() {
                 return (
                   <Reveal key={event._id} className="h-full" delay={i * 55}>
                     <Link
-                      href={`/events/${event.slug}`}
+                      href={`/events/${event.slug?.current}`}
                       className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-xl hover:shadow-black/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"
                     >
                       {/* Consistent media frame prevents uneven card rows. */}
