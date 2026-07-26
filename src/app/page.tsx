@@ -9,7 +9,6 @@ import {
   Trophy,
   Mail,
   Mic,
-  FileText,
   MapPin,
   Lightbulb,
   Rocket,
@@ -23,11 +22,7 @@ import { CommunityCard } from "@/components/site/CommunityCard";
 import { Reveal } from "@/components/site/Reveal";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import {
-  homepageRecentPostsQuery,
-  homepageUpcomingEventsQuery,
-} from "@/sanity/lib/queries";
-import { getRecentPodcastEpisodes } from "@/lib/podcast";
+import { homepageUpcomingEventsQuery } from "@/sanity/lib/queries";
 import { formatEventDate } from "@/lib/events";
 
 const LOGOS = [
@@ -76,51 +71,10 @@ const WHY_FEATURES: { icon: LucideIcon; title: string; description: string }[] =
 
 export const revalidate = 60;
 
-const CATEGORY_LABELS: Record<string, string> = {
-  "medicine-ai": "Medicine & AI",
-  career: "Career",
-  technology: "Technology",
-  research: "Research",
-  community: "Community",
-  opinion: "Opinion",
-};
-
 export default async function Home() {
-  const [recentPosts, upcomingEvents, recentPodcast] = await Promise.all([
-    isSanityConfigured ? client.fetch(homepageRecentPostsQuery) : Promise.resolve([]),
-    isSanityConfigured ? client.fetch(homepageUpcomingEventsQuery) : Promise.resolve([]),
-    getRecentPodcastEpisodes(3),
-  ]);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recentContent: any[] = [
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...recentPosts.map((p: any) => ({ ...p, _kind: "article", _date: p.publishedAt })),
-    ...recentPodcast.map((e) => ({
-      _id: e.id,
-      _kind: "podcast" as const,
-      _date: e.publishedAt,
-      title: e.title,
-      slug: e.slug,
-      summary: e.summary,
-      guest: e.guest,
-      episodeNumber: e.episodeNumber,
-      coverImageUrl: e.coverImageUrl,
-    })),
-  ].sort((a, b) => {
-    if (!a._date) return 1;
-    if (!b._date) return -1;
-    return new Date(b._date).getTime() - new Date(a._date).getTime();
-  });
-
-  // Keep the wall concise: upcoming events first (soonest first), followed
-  // by the newest articles and podcast episodes.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const contentWall: any[] = [
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...upcomingEvents.map((e: any) => ({ ...e, _kind: "event", _date: e.startDate })),
-    ...recentContent,
-  ].slice(0, 6);
+  const upcomingEvents = isSanityConfigured
+    ? await client.fetch(homepageUpcomingEventsQuery)
+    : [];
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -586,18 +540,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── Recent content wall ──────────────────────────────── */}
-      {contentWall.length > 0 && (
+      {/* ── Upcoming events ──────────────────────────────────── */}
+      {upcomingEvents.length > 0 && (
         <section className="bg-rhino-900 py-16 md:py-20">
           <div className="mx-auto max-w-(--container-max) px-6">
 
             <Reveal className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400">
-                  Recently from MDplus
+                  Upcoming at MDplus
                 </p>
                 <h2 className="mt-1.5 font-display text-2xl font-bold text-white md:text-3xl">
-                  Always something happening.
+                  See what&apos;s next.
                 </h2>
               </div>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -618,41 +572,17 @@ export default async function Home() {
               </div>
             </Reveal>
 
-            {/* Chronological content grid */}
+            {/* Events are returned soonest-first. */}
             <div className="mt-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {contentWall.map((item, i) => {
-                const isArticle = item._kind === "article";
-                const isPodcast = item._kind === "podcast";
-                const isEvent = item._kind === "event";
-
-                const href = isArticle
-                  ? `/learn/articles/${item.slug}`
-                  : isPodcast
-                  ? `/learn/podcast/${item.slug}`
-                  : `/events/${item.slug}`;
-
-                const dateStr = item._date
-                  ? isEvent
-                    ? formatEventDate(item._date)
-                    : new Date(item._date).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })
-                  : null;
-
-                const imgUrl = item.coverImageUrl
-                  ? item.coverImageUrl
-                  : item.coverImage?.asset
-                  ? isEvent
-                    ? urlFor(item.coverImage).width(800).auto("format").url()
-                    : urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
+              {upcomingEvents.map((event, i) => {
+                const imgUrl = event.coverImage?.asset
+                  ? urlFor(event.coverImage).width(800).auto("format").url()
                   : null;
 
                 return (
-                  <Reveal key={item._id} className="h-full" delay={i * 55}>
+                  <Reveal key={event._id} className="h-full" delay={i * 55}>
                     <Link
-                      href={href}
+                      href={`/events/${event.slug}`}
                       className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-xl hover:shadow-black/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"
                     >
                       {/* Consistent media frame prevents uneven card rows. */}
@@ -660,24 +590,14 @@ export default async function Home() {
                         {imgUrl ? (
                           <Image
                             src={imgUrl}
-                            alt={item.coverImage?.alt ?? item.title ?? ""}
+                            alt={event.coverImage?.alt ?? event.title ?? ""}
                             fill
-                            className={`transition-transform duration-500 ${
-                              isEvent || isPodcast
-                                ? "object-contain p-4 group-hover:scale-[1.03]"
-                                : "object-cover group-hover:scale-105"
-                            }`}
+                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]"
                             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                           />
                         ) : (
                           <div className="flex h-full items-center justify-center text-white/15">
-                            {isArticle ? (
-                              <FileText className="size-10" aria-hidden />
-                            ) : isPodcast ? (
-                              <Mic className="size-10" aria-hidden />
-                            ) : (
-                              <Calendar className="size-10" aria-hidden />
-                            )}
+                            <Calendar className="size-10" aria-hidden />
                           </div>
                         )}
                       </div>
@@ -685,57 +605,29 @@ export default async function Home() {
                       <div className="flex flex-1 flex-col p-5">
                       {/* Type badge */}
                       <div className="flex items-center gap-1.5">
-                        {isArticle && (
-                          <>
-                            <FileText className="size-3 text-denim-400" aria-hidden />
-                            <span className="text-[10px] font-semibold uppercase tracking-widest text-denim-400">Article</span>
-                            {item.category && (
-                              <span className="ml-1 text-[10px] text-white/30">{CATEGORY_LABELS[item.category] ?? item.category}</span>
-                            )}
-                          </>
-                        )}
-                        {isPodcast && (
-                          <>
-                            <Mic className="size-3 text-sky-400" aria-hidden />
-                            <span className="text-[10px] font-semibold uppercase tracking-widest text-sky-400">Podcast</span>
-                            {item.episodeNumber && (
-                              <span className="ml-1 text-[10px] text-white/30">Ep. {item.episodeNumber}</span>
-                            )}
-                          </>
-                        )}
-                        {isEvent && (
-                          <>
-                            <Calendar className="size-3 text-yellow-400" aria-hidden />
-                            <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Upcoming event</span>
-                          </>
-                        )}
+                        <Calendar className="size-3 text-yellow-400" aria-hidden />
+                        <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Upcoming event</span>
                       </div>
 
                       {/* Title */}
                       <h3 className="mt-3 line-clamp-3 text-base font-semibold leading-snug text-white/90 group-hover:text-white">
-                        {item.title}
+                        {event.title}
                       </h3>
 
                       {/* Meta line */}
-                      {isArticle && item.authorName && (
-                        <p className="mt-1.5 text-xs text-white/40">{item.authorName}</p>
-                      )}
-                      {isPodcast && item.guest && (
-                        <p className="mt-1.5 text-xs text-white/40 line-clamp-1">
-                          {item.guest}{item.guestTitle ? ` · ${item.guestTitle}` : ""}
-                        </p>
-                      )}
-                      {isEvent && item.location && (
+                      {event.location && (
                         <p className="mt-1.5 flex items-center gap-1 text-xs text-white/40">
                           <MapPin className="size-3 shrink-0" aria-hidden />
-                          {item.location}
+                          {event.location}
                         </p>
                       )}
 
                       {/* Date + arrow */}
                       <div className="mt-auto flex items-center justify-between pt-5">
-                        {dateStr && (
-                          <time className="text-[10px] text-white/25" dateTime={item._date}>{dateStr}</time>
+                        {event.startDate && (
+                          <time className="text-[10px] text-white/25" dateTime={event.startDate}>
+                            {formatEventDate(event.startDate)}
+                          </time>
                         )}
                         <ArrowRight className="size-3 text-white/20 transition-all group-hover:translate-x-0.5 group-hover:text-white/50 ml-auto" aria-hidden />
                       </div>
