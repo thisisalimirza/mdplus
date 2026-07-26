@@ -7,6 +7,7 @@ import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { eventsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import type { EventListItem } from "@/sanity/lib/types";
+import { formatEventDate, isEventPast } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -28,22 +29,20 @@ const TYPE_STYLES: Record<string, string> = {
   hybrid: "bg-rhino-50 text-rhino-700",
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 export default async function EventsPage() {
   const events: EventListItem[] = isSanityConfigured
     ? await client.fetch(eventsQuery)
     : [];
 
-  const upcoming = events.filter((e) => e.status === "upcoming");
-  const past = events.filter((e) => e.status === "past");
+  const now = new Date();
+  const upcoming = events
+    .filter((e) => !isEventPast(e, now))
+    .sort((a, b) => {
+      const aTime = a.startDate ? new Date(a.startDate).getTime() : 0;
+      const bTime = b.startDate ? new Date(b.startDate).getTime() : 0;
+      return aTime - bTime;
+    });
+  const past = events.filter((e) => isEventPast(e, now));
 
   return (
     <>
@@ -83,7 +82,7 @@ export default async function EventsPage() {
             ) : (
               <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {upcoming.map((event) => (
-                  <EventCard key={event._id} event={event} />
+                  <EventCard key={event._id} event={event} isPast={false} />
                 ))}
               </div>
             )}
@@ -100,7 +99,7 @@ export default async function EventsPage() {
               </h2>
               <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {past.map((event) => (
-                  <EventCard key={event._id} event={event} />
+                  <EventCard key={event._id} event={event} isPast />
                 ))}
               </div>
             </div>
@@ -117,20 +116,24 @@ export default async function EventsPage() {
   );
 }
 
-function EventCard({ event }: { event: EventListItem }) {
-  const isPast = event.status === "past";
+function EventCard({ event, isPast }: { event: EventListItem; isPast: boolean }) {
+  const posterUrl = event.coverImage?.asset
+    ? urlFor(event.coverImage).width(800).fit("max").auto("format").url()
+    : null;
+
   return (
     <Link
       href={`/events/${event.slug?.current}`}
       className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-neutral-0 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
     >
-      {!!event.coverImage?.asset ? (
-        <div className="relative h-44 overflow-hidden bg-neutral-100">
+      {posterUrl ? (
+        <div className="relative aspect-4/3 overflow-hidden bg-neutral-100">
           <Image
-            src={urlFor(event.coverImage).width(600).height(352).url()}
-            alt={event.coverImage.alt ?? event.title ?? ""}
+            src={posterUrl}
+            alt={event.coverImage?.alt ?? event.title ?? ""}
             fill
-            className={`object-cover transition-transform duration-300 group-hover:scale-105 ${isPast ? "grayscale-[30%]" : ""}`}
+            className={`object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02] ${isPast ? "grayscale-[30%]" : ""}`}
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           {isPast && (
             <span className="absolute top-3 left-3 rounded-full bg-neutral-800/70 px-2.5 py-0.5 text-xs font-semibold text-white backdrop-blur-sm">
@@ -139,7 +142,7 @@ function EventCard({ event }: { event: EventListItem }) {
           )}
         </div>
       ) : (
-        <div className="flex h-44 items-center justify-center bg-denim-50">
+        <div className="flex aspect-4/3 items-center justify-center bg-denim-50">
           <Calendar className="size-8 text-denim-300" aria-hidden />
         </div>
       )}
@@ -153,7 +156,10 @@ function EventCard({ event }: { event: EventListItem }) {
           )}
           {event.startDate && (
             <time className="text-xs text-neutral-400" dateTime={event.startDate}>
-              {formatDate(event.startDate)}
+              {formatEventDate(event.startDate, {
+                short: true,
+                timeZone: event.timezone,
+              })}
             </time>
           )}
         </div>

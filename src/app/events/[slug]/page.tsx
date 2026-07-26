@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MapPin, Calendar, ExternalLink } from "lucide-react";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { eventBySlugQuery, eventSlugsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
+import { EventPoster } from "@/components/events/EventPoster";
 import type { EventDetail } from "@/sanity/lib/types";
+import { formatEventDate, isEventPast } from "@/lib/events";
 
 export const revalidate = 60;
 
@@ -22,16 +23,6 @@ const TYPE_STYLES: Record<string, string> = {
   virtual: "bg-denim-50 text-denim-700",
   hybrid: "bg-rhino-50 text-rhino-700",
 };
-
-function formatDate(iso: string, includeTime = false) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    ...(includeTime ? { hour: "numeric", minute: "2-digit" } : {}),
-  });
-}
 
 export async function generateStaticParams() {
   if (!isSanityConfigured) return [];
@@ -52,7 +43,7 @@ export async function generateMetadata({
     title: event.title ?? undefined,
     description: event.summary ?? undefined,
     openGraph: event.coverImage?.asset
-      ? { images: [urlFor(event.coverImage).width(1200).height(630).url()] }
+      ? { images: [urlFor(event.coverImage).width(1200).fit("max").url()] }
       : undefined,
   };
 }
@@ -67,20 +58,23 @@ export default async function EventPage({
   const event: EventDetail | null = await client.fetch(eventBySlugQuery, { slug });
   if (!event) notFound();
 
-  const isPast = event.status === "past";
+  const past = isEventPast(event);
+  const posterSrc = event.coverImage?.asset
+    ? urlFor(event.coverImage).width(1400).fit("max").auto("format").url()
+    : null;
+  const posterFullSrc = event.coverImage?.asset
+    ? urlFor(event.coverImage).width(2400).fit("max").auto("format").url()
+    : null;
 
   return (
     <article className="bg-neutral-0">
-      {!!event.coverImage?.asset && (
-        <div className="relative h-72 w-full overflow-hidden bg-neutral-100 md:h-96">
-          <Image
-            src={urlFor(event.coverImage).width(1400).height(600).url()}
-            alt={event.coverImage.alt ?? event.title ?? ""}
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+      {posterSrc && (
+        <EventPoster
+          src={posterSrc}
+          fullSrc={posterFullSrc ?? undefined}
+          alt={event.coverImage?.alt ?? event.title ?? ""}
+          priority
+        />
       )}
 
       <div className="mx-auto max-w-3xl px-6 py-12 md:py-16">
@@ -94,7 +88,7 @@ export default async function EventPage({
 
         {/* Status + type badges */}
         <div className="flex flex-wrap items-center gap-2">
-          {isPast && (
+          {past && (
             <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-500">
               Past event
             </span>
@@ -121,9 +115,20 @@ export default async function EventPage({
               <Calendar className="mt-0.5 size-4 shrink-0 text-denim-500" aria-hidden />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">Date</p>
-                <p className="mt-1 text-sm font-medium text-neutral-700">{formatDate(event.startDate, true)}</p>
+                <p className="mt-1 text-sm font-medium text-neutral-700">
+                  {formatEventDate(event.startDate, {
+                    includeTime: true,
+                    timeZone: event.timezone,
+                  })}
+                </p>
                 {event.endDate && (
-                  <p className="text-sm text-neutral-500">→ {formatDate(event.endDate, true)}</p>
+                  <p className="text-sm text-neutral-500">
+                    →{" "}
+                    {formatEventDate(event.endDate, {
+                      includeTime: true,
+                      timeZone: event.timezone,
+                    })}
+                  </p>
                 )}
               </div>
             </div>
@@ -140,7 +145,7 @@ export default async function EventPage({
         </div>
 
         {/* Registration CTA */}
-        {!isPast && event.registrationUrl && (
+        {!past && event.registrationUrl && (
           <div className="mt-8">
             <a
               href={event.registrationUrl}

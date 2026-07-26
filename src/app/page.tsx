@@ -28,6 +28,7 @@ import {
   homepageRecentEventQuery,
 } from "@/sanity/lib/queries";
 import { getRecentPodcastEpisodes } from "@/lib/podcast";
+import { formatEventDateShort } from "@/lib/events";
 
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
@@ -615,13 +616,21 @@ export default async function Home() {
                   : `/events/${item.slug}`;
 
                 const dateStr = item._date
-                  ? new Date(item._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+                  ? isEvent
+                    ? formatEventDateShort(item._date, item.timezone)
+                    : new Date(item._date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })
                   : null;
 
                 const imgUrl = item.coverImageUrl
                   ? item.coverImageUrl
                   : item.coverImage?.asset
-                  ? urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
+                  ? isEvent
+                    ? urlFor(item.coverImage).width(800).fit("max").auto("format").url()
+                    : urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
                   : null;
 
                 return (
@@ -632,16 +641,22 @@ export default async function Home() {
                   >
                     {/* Cover image */}
                     {imgUrl && (
-                      <div className="relative h-40 w-full overflow-hidden">
+                      <div className={`relative h-40 w-full overflow-hidden ${isEvent ? "bg-neutral-900" : ""}`}>
                         <Image
                           src={imgUrl}
                           alt={item.coverImage?.alt ?? item.title ?? ""}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className={
+                            isEvent
+                              ? "object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
+                              : "object-cover transition-transform duration-500 group-hover:scale-105"
+                          }
                           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         />
                         {/* gradient so badge stays readable over any photo */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" aria-hidden />
+                        {!isEvent && (
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" aria-hidden />
+                        )}
                       </div>
                     )}
 

@@ -18,6 +18,7 @@ import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { recentEventsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import type { EventListItem } from "@/sanity/lib/types";
+import { formatEventDate } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Community",
@@ -184,23 +185,27 @@ export default async function CommunityPage() {
                   className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-neutral-0 transition-all hover:-translate-y-0.5 hover:border-denim-300 hover:shadow-md"
                 >
                   {!!event.coverImage?.asset ? (
-                    <div className="relative h-40 overflow-hidden bg-neutral-100">
+                    <div className="relative aspect-4/3 overflow-hidden bg-neutral-100">
                       <Image
-                        src={urlFor(event.coverImage).width(600).height(320).url()}
+                        src={urlFor(event.coverImage).width(600).fit("max").auto("format").url()}
                         alt={event.coverImage.alt ?? event.title ?? ""}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
                   ) : (
-                    <div className="flex h-40 items-center justify-center bg-denim-50">
+                    <div className="flex aspect-4/3 items-center justify-center bg-denim-50">
                       <Calendar className="size-7 text-denim-300" aria-hidden />
                     </div>
                   )}
                   <div className="flex flex-1 flex-col p-5">
                     {event.startDate && (
                       <time className="text-xs font-semibold uppercase tracking-widest text-denim-600" dateTime={event.startDate}>
-                        {new Date(event.startDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                        {formatEventDate(event.startDate, {
+                          short: true,
+                          timeZone: event.timezone,
+                        })}
                       </time>
                     )}
                     <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">

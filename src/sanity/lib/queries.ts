@@ -147,6 +147,7 @@ export const eventsQuery = defineQuery(`
     slug,
     eventType,
     status,
+    timezone,
     startDate,
     endDate,
     location,
@@ -163,7 +164,9 @@ export const recentEventsQuery = defineQuery(`
     slug,
     eventType,
     status,
+    timezone,
     startDate,
+    endDate,
     location,
     coverImage { asset, alt, hotspot, crop },
     summary,
@@ -178,6 +181,7 @@ export const eventBySlugQuery = defineQuery(`
     slug,
     eventType,
     status,
+    timezone,
     startDate,
     endDate,
     location,
@@ -208,8 +212,8 @@ export const homepageRecentPodcastQuery = defineQuery(`
 `);
 
 export const homepageRecentEventQuery = defineQuery(`
-  *[_type == "event" && defined(slug.current) && status == "past"] | order(startDate desc) [0...3] {
-    _id, title, "slug": slug.current, startDate, location, eventType, summary,
+  *[_type == "event" && defined(slug.current) && coalesce(endDate, startDate) < now()] | order(startDate desc) [0...3] {
+    _id, title, "slug": slug.current, startDate, endDate, timezone, location, eventType, summary,
     coverImage { asset, alt, hotspot, crop }
   }
 `);
@@ -241,6 +245,6 @@ export const archivePodcastQuery = defineQuery(`
 
 export const archiveEventsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current)] | order(startDate desc) {
-    _id, title, "slug": slug.current, startDate, location, summary, eventType, status
+    _id, title, "slug": slug.current, startDate, endDate, timezone, location, summary, eventType, status
   }
 `);

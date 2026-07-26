@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Search, FileText, BookOpen, Mic, Calendar, FlaskConical, X } from "lucide-react";
+import { formatEventDateShort } from "@/lib/events";
 
 export type ArchiveItem = {
   id: string;
@@ -13,6 +14,8 @@ export type ArchiveItem = {
   href: string;
   badge: string | null;
   meta: string | null;
+  /** IANA timezone for event dates (avoids UTC day-shift). */
+  timeZone?: string | null;
 };
 
 const TYPE_CONFIG = {
@@ -43,7 +46,8 @@ const TYPE_CONFIG = {
   },
 } as const;
 
-function formatDate(iso: string) {
+function formatDate(iso: string, timeZone?: string | null) {
+  if (timeZone) return formatEventDateShort(iso, timeZone);
   return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -160,7 +164,7 @@ export function ArchiveSearch({ items }: { items: ArchiveItem[] }) {
                       )}
                       {item.date && (
                         <time className="text-xs text-neutral-400" dateTime={item.date}>
-                          {formatDate(item.date)}
+                          {formatDate(item.date, item.timeZone)}
                         </time>
                       )}
                     </div>

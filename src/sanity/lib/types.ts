@@ -70,7 +70,9 @@ export type EventListItem = {
   title: string | null;
   slug: { current: string | null } | null;
   eventType: string | null;
+  /** @deprecated Derived from dates; kept for legacy Sanity documents. */
   status: string | null;
+  timezone: string | null;
   startDate: string | null;
   endDate?: string | null;
   location: string | null;

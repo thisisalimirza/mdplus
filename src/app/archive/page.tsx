@@ -8,6 +8,7 @@ import {
   archiveEventsQuery,
 } from "@/sanity/lib/queries";
 import { getPodcastEpisodes } from "@/lib/podcast";
+import { isEventPast } from "@/lib/events";
 import { ArchiveSearch, type ArchiveItem } from "@/components/archive/ArchiveSearch";
 
 export const metadata: Metadata = {
@@ -103,8 +104,9 @@ export default async function ArchivePage() {
       date: e.startDate,
       summary: e.summary,
       href: `/events/${e.slug}`,
-      badge: e.status === "upcoming" ? "Upcoming" : null,
+      badge: isEventPast(e) ? null : "Upcoming",
       meta: e.location,
+      timeZone: e.timezone,
     })),
   ].sort((a, b) => {
     if (!a.date) return 1;
