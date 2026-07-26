@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -142,21 +143,17 @@ export function MobileMenu({ nav }: MobileMenuProps) {
           <Link
             href="/"
             onClick={closeMenu}
-            className="group inline-flex items-center gap-1.5 font-display text-xl font-bold text-white"
+            className="inline-flex items-center"
             aria-label="MDplus home"
           >
-            {/* Dark-background variant: blue plus uses white */}
-            <svg viewBox="0 0 44 44" className="h-6 w-6 shrink-0" aria-hidden>
-              <g className="transition-transform duration-300 [transform-origin:13px_31px] group-hover:[transform:rotate(-90deg)]">
-                <rect x="1" y="27" width="24" height="8" rx="2" fill="rgba(255,255,255,0.75)" />
-                <rect x="9" y="19" width="8" height="24" rx="2" fill="rgba(255,255,255,0.75)" />
-              </g>
-              <g className="transition-transform duration-300 [transform-origin:31px_13px] group-hover:[transform:rotate(90deg)]">
-                <rect x="19" y="9" width="24" height="8" rx="2" fill="#FFCB21" />
-                <rect x="27" y="1" width="8" height="24" rx="2" fill="#FFCB21" />
-              </g>
-            </svg>
-            MDplus
+            <Image
+              src="/MDplusBrandKit/A Logo for Dark Background (Use on %23172121 or %23020664).png"
+              alt=""
+              width={2908}
+              height={820}
+              className="h-7 w-auto"
+              sizes="100px"
+            />
           </Link>
           <button
             ref={closeRef}
