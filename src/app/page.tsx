@@ -156,7 +156,7 @@ export default async function Home() {
               href="/community"
               className="inline-flex items-center justify-center rounded-md border border-rhino-200 bg-neutral-0 px-6 py-3.5 text-base font-semibold text-rhino-700 transition-colors hover:border-rhino-300 hover:bg-neutral-50"
             >
-              See what's inside
+              See what&apos;s inside
             </Link>
           </div>
         </div>
