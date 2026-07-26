@@ -74,7 +74,7 @@ export type EventListItem = {
   startDate: string | null;
   endDate?: string | null;
   location: string | null;
-  coverImage: { asset: unknown; alt: string | null; hotspot: unknown; crop: unknown } | null;
+  coverImage: { asset: unknown; alt: string | null } | null;
   summary: string | null;
   registrationUrl: string | null;
 };

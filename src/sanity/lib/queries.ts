@@ -146,11 +146,11 @@ export const eventsQuery = defineQuery(`
     title,
     slug,
     eventType,
-    status,
+    "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming"),
     startDate,
     endDate,
     location,
-    coverImage { asset, alt, hotspot, crop },
+    coverImage { asset, alt },
     summary,
     registrationUrl
   }
@@ -162,10 +162,11 @@ export const recentEventsQuery = defineQuery(`
     title,
     slug,
     eventType,
-    status,
+    "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming"),
     startDate,
+    endDate,
     location,
-    coverImage { asset, alt, hotspot, crop },
+    coverImage { asset, alt },
     summary,
     registrationUrl
   }
@@ -177,11 +178,11 @@ export const eventBySlugQuery = defineQuery(`
     title,
     slug,
     eventType,
-    status,
+    "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming"),
     startDate,
     endDate,
     location,
-    coverImage { asset, alt, hotspot, crop },
+    coverImage { asset, alt },
     summary,
     registrationUrl,
     body
@@ -207,10 +208,10 @@ export const homepageRecentPodcastQuery = defineQuery(`
   }
 `);
 
-export const homepageRecentEventQuery = defineQuery(`
-  *[_type == "event" && defined(slug.current) && status == "past"] | order(startDate desc) [0...3] {
-    _id, title, "slug": slug.current, startDate, location, eventType, summary,
-    coverImage { asset, alt, hotspot, crop }
+export const homepageUpcomingEventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current) && coalesce(endDate, startDate) >= now()] | order(startDate asc) [0...3] {
+    _id, title, slug, startDate, endDate, location, eventType, summary,
+    coverImage { asset, alt }
   }
 `);
 
@@ -241,6 +242,7 @@ export const archivePodcastQuery = defineQuery(`
 
 export const archiveEventsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current)] | order(startDate desc) {
-    _id, title, "slug": slug.current, startDate, location, summary, eventType, status
+    _id, title, "slug": slug.current, startDate, endDate, location, summary, eventType,
+    "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming")
   }
 `);
