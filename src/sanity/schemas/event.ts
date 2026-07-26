@@ -32,28 +32,47 @@ export const eventSchema = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
-      name: "status",
-      title: "Status",
-      type: "string",
-      options: {
-        list: [
-          { title: "Upcoming", value: "upcoming" },
-          { title: "Past", value: "past" },
-        ],
-      },
-      initialValue: "upcoming",
-      validation: (r) => r.required(),
-    }),
-    defineField({
       name: "startDate",
-      title: "Date & Time",
+      title: "Start Date & Time",
       type: "datetime",
+      description:
+        "Enter the event's local date and time. The website converts the saved time to the display time zone below.",
+      options: {
+        dateFormat: "MMM D, YYYY",
+        timeFormat: "h:mm A",
+        timeStep: 15,
+      },
       validation: (r) => r.required(),
     }),
     defineField({
       name: "endDate",
       title: "End Date & Time",
       type: "datetime",
+      description:
+        "Recommended. The event automatically moves to Past after this time (or after the start time if left blank).",
+      options: {
+        dateFormat: "MMM D, YYYY",
+        timeFormat: "h:mm A",
+        timeStep: 15,
+      },
+    }),
+    defineField({
+      name: "timezone",
+      title: "Display Time Zone",
+      type: "string",
+      description:
+        "Controls the date and time shown on the website. Existing events default to Pacific Time.",
+      initialValue: "America/Los_Angeles",
+      options: {
+        list: [
+          { title: "Pacific Time (PT)", value: "America/Los_Angeles" },
+          { title: "Mountain Time (MT)", value: "America/Denver" },
+          { title: "Central Time (CT)", value: "America/Chicago" },
+          { title: "Eastern Time (ET)", value: "America/New_York" },
+          { title: "UTC", value: "UTC" },
+        ],
+        layout: "dropdown",
+      },
     }),
     defineField({
       name: "location",
@@ -63,9 +82,10 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "coverImage",
-      title: "Cover Image",
+      title: "Event Poster",
       type: "image",
-      options: { hotspot: true },
+      description:
+        "Upload the complete square or rectangular poster. The website displays the whole image without cropping.",
       fields: [
         defineField({ name: "alt", type: "string", title: "Alt text" }),
       ],
@@ -87,7 +107,7 @@ export const eventSchema = defineType({
     defineField({
       name: "body",
       title: "Event Details / Recap",
-      description: "Full description for upcoming events, or a recap post for past ones",
+      description: "Full description before the event, or a recap afterward",
       type: "array",
       of: [
         {
@@ -140,12 +160,26 @@ export const eventSchema = defineType({
     },
   ],
   preview: {
-    select: { title: "title", subtitle: "location", startDate: "startDate" },
+    select: {
+      title: "title",
+      subtitle: "location",
+      startDate: "startDate",
+      media: "coverImage",
+    },
     prepare(value) {
       const date = value.startDate
-        ? new Date(value.startDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+        ? new Date(value.startDate).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "America/Los_Angeles",
+          })
         : "";
-      return { title: value.title, subtitle: [date, value.subtitle].filter(Boolean).join(" · ") };
+      return {
+        title: value.title,
+        subtitle: [date, value.subtitle].filter(Boolean).join(" · "),
+        media: value.media,
+      };
     },
   },
 });

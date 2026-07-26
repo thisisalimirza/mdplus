@@ -8,6 +8,7 @@ import { eventBySlugQuery, eventSlugsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import type { EventDetail } from "@/sanity/lib/types";
+import { formatEventDate, isEventPast } from "@/lib/events";
 
 export const revalidate = 60;
 
@@ -22,16 +23,6 @@ const TYPE_STYLES: Record<string, string> = {
   virtual: "bg-denim-50 text-denim-700",
   hybrid: "bg-rhino-50 text-rhino-700",
 };
-
-function formatDate(iso: string, includeTime = false) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    ...(includeTime ? { hour: "numeric", minute: "2-digit" } : {}),
-  });
-}
 
 export async function generateStaticParams() {
   if (!isSanityConfigured) return [];
@@ -67,19 +58,41 @@ export default async function EventPage({
   const event: EventDetail | null = await client.fetch(eventBySlugQuery, { slug });
   if (!event) notFound();
 
-  const isPast = event.status === "past";
+  const isPast = isEventPast(event);
+  const posterUrl = event.coverImage?.asset
+    ? urlFor(event.coverImage).width(1600).auto("format").url()
+    : null;
 
   return (
     <article className="bg-neutral-0">
-      {!!event.coverImage?.asset && (
-        <div className="relative h-72 w-full overflow-hidden bg-neutral-100 md:h-96">
-          <Image
-            src={urlFor(event.coverImage).width(1400).height(600).url()}
-            alt={event.coverImage.alt ?? event.title ?? ""}
-            fill
-            priority
-            className="object-cover"
-          />
+      {posterUrl && (
+        <div className="border-b border-neutral-200 bg-neutral-100 px-6 py-6 md:py-10">
+          <a
+            href={posterUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative mx-auto block aspect-square w-full max-w-3xl"
+            aria-label="View full-size event poster"
+          >
+            <Image
+              src={posterUrl}
+              alt={event.coverImage?.alt ?? event.title ?? ""}
+              fill
+              priority
+              sizes="(min-width: 768px) 768px, 100vw"
+              className="object-contain"
+            />
+          </a>
+          <p className="mt-3 text-center">
+            <a
+              href={posterUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-denim-600 hover:text-denim-800 hover:underline"
+            >
+              View full-size poster
+            </a>
+          </p>
         </div>
       )}
 
@@ -121,9 +134,22 @@ export default async function EventPage({
               <Calendar className="mt-0.5 size-4 shrink-0 text-denim-500" aria-hidden />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">Date</p>
-                <p className="mt-1 text-sm font-medium text-neutral-700">{formatDate(event.startDate, true)}</p>
+                <p className="mt-1 text-sm font-medium text-neutral-700">
+                  {formatEventDate(
+                    event.startDate,
+                    event.timezone ?? undefined,
+                    true,
+                  )}
+                </p>
                 {event.endDate && (
-                  <p className="text-sm text-neutral-500">→ {formatDate(event.endDate, true)}</p>
+                  <p className="text-sm text-neutral-500">
+                    →{" "}
+                    {formatEventDate(
+                      event.endDate,
+                      event.timezone ?? undefined,
+                      true,
+                    )}
+                  </p>
                 )}
               </div>
             </div>

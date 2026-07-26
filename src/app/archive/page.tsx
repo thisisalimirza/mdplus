@@ -105,6 +105,7 @@ export default async function ArchivePage() {
       href: `/events/${e.slug}`,
       badge: e.status === "upcoming" ? "Upcoming" : null,
       meta: e.location,
+      timezone: e.timezone,
     })),
   ].sort((a, b) => {
     if (!a.date) return 1;

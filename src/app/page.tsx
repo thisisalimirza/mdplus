@@ -28,6 +28,7 @@ import {
   homepageRecentEventQuery,
 } from "@/sanity/lib/queries";
 import { getRecentPodcastEpisodes } from "@/lib/podcast";
+import { formatEventDate } from "@/lib/events";
 
 const LOGOS = [
   { src: "/logos/Harvard_University_logo.svg.png", alt: "Harvard University" },
@@ -615,13 +616,21 @@ export default async function Home() {
                   : `/events/${item.slug}`;
 
                 const dateStr = item._date
-                  ? new Date(item._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+                  ? isEvent
+                    ? formatEventDate(item._date, item.timezone ?? undefined)
+                    : new Date(item._date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })
                   : null;
 
                 const imgUrl = item.coverImageUrl
                   ? item.coverImageUrl
                   : item.coverImage?.asset
-                  ? urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
+                  ? isEvent
+                    ? urlFor(item.coverImage).width(800).auto("format").url()
+                    : urlFor(item.coverImage).width(800).height(420).fit("crop").auto("format").url()
                   : null;
 
                 return (
@@ -637,7 +646,11 @@ export default async function Home() {
                           src={imgUrl}
                           alt={item.coverImage?.alt ?? item.title ?? ""}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className={`transition-transform duration-500 ${
+                            isEvent
+                              ? "object-contain p-2 group-hover:scale-[1.02]"
+                              : "object-cover group-hover:scale-105"
+                          }`}
                           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         />
                         {/* gradient so badge stays readable over any photo */}

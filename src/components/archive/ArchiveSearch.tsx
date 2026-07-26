@@ -13,6 +13,7 @@ export type ArchiveItem = {
   href: string;
   badge: string | null;
   meta: string | null;
+  timezone?: string | null;
 };
 
 const TYPE_CONFIG = {
@@ -43,11 +44,12 @@ const TYPE_CONFIG = {
   },
 } as const;
 
-function formatDate(iso: string) {
+function formatDate(iso: string, timeZone?: string | null) {
   return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
+    timeZone: timeZone ?? undefined,
   });
 }
 
@@ -160,7 +162,7 @@ export function ArchiveSearch({ items }: { items: ArchiveItem[] }) {
                       )}
                       {item.date && (
                         <time className="text-xs text-neutral-400" dateTime={item.date}>
-                          {formatDate(item.date)}
+                          {formatDate(item.date, item.timezone)}
                         </time>
                       )}
                     </div>
