@@ -1,4 +1,4 @@
-export const DEFAULT_EVENT_TIME_ZONE = "America/Los_Angeles";
+export const EVENT_TIME_ZONE = "America/New_York";
 
 type EventTiming = {
   startDate: string | null;
@@ -15,7 +15,6 @@ export function isEventPast(event: EventTiming, now = Date.now()) {
 
 export function formatEventDate(
   iso: string,
-  timeZone = DEFAULT_EVENT_TIME_ZONE,
   includeTime = false,
 ) {
   return new Intl.DateTimeFormat("en-US", {
@@ -30,6 +29,6 @@ export function formatEventDate(
           timeZoneName: "short",
         }
       : {}),
-    timeZone,
+    timeZone: EVENT_TIME_ZONE,
   }).format(new Date(iso));
 }

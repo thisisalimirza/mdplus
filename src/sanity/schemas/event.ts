@@ -36,11 +36,13 @@ export const eventSchema = defineType({
       title: "Start Date & Time",
       type: "datetime",
       description:
-        "Enter the event's local date and time. The website converts the saved time to the display time zone below.",
+        "Enter the event time in Eastern Time (ET). The field automatically uses EST or EDT for the selected date.",
       options: {
         dateFormat: "MMM D, YYYY",
         timeFormat: "h:mm A",
         timeStep: 15,
+        displayTimeZone: "America/New_York",
+        allowTimeZoneSwitch: false,
       },
       validation: (r) => r.required(),
     }),
@@ -54,24 +56,8 @@ export const eventSchema = defineType({
         dateFormat: "MMM D, YYYY",
         timeFormat: "h:mm A",
         timeStep: 15,
-      },
-    }),
-    defineField({
-      name: "timezone",
-      title: "Display Time Zone",
-      type: "string",
-      description:
-        "Controls the date and time shown on the website. Existing events default to Pacific Time.",
-      initialValue: "America/Los_Angeles",
-      options: {
-        list: [
-          { title: "Pacific Time (PT)", value: "America/Los_Angeles" },
-          { title: "Mountain Time (MT)", value: "America/Denver" },
-          { title: "Central Time (CT)", value: "America/Chicago" },
-          { title: "Eastern Time (ET)", value: "America/New_York" },
-          { title: "UTC", value: "UTC" },
-        ],
-        layout: "dropdown",
+        displayTimeZone: "America/New_York",
+        allowTimeZoneSwitch: false,
       },
     }),
     defineField({
@@ -172,7 +158,7 @@ export const eventSchema = defineType({
             month: "short",
             day: "numeric",
             year: "numeric",
-            timeZone: "America/Los_Angeles",
+            timeZone: "America/New_York",
           })
         : "";
       return {

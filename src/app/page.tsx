@@ -617,7 +617,7 @@ export default async function Home() {
 
                 const dateStr = item._date
                   ? isEvent
-                    ? formatEventDate(item._date, item.timezone ?? undefined)
+                    ? formatEventDate(item._date)
                     : new Date(item._date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",

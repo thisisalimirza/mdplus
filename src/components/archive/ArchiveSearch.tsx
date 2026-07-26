@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Search, FileText, BookOpen, Mic, Calendar, FlaskConical, X } from "lucide-react";
+import { EVENT_TIME_ZONE } from "@/lib/events";
 
 export type ArchiveItem = {
   id: string;
@@ -13,7 +14,6 @@ export type ArchiveItem = {
   href: string;
   badge: string | null;
   meta: string | null;
-  timezone?: string | null;
 };
 
 const TYPE_CONFIG = {
@@ -44,12 +44,12 @@ const TYPE_CONFIG = {
   },
 } as const;
 
-function formatDate(iso: string, timeZone?: string | null) {
+function formatDate(iso: string, type: ArchiveItem["type"]) {
   return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
-    timeZone: timeZone ?? undefined,
+    timeZone: type === "event" ? EVENT_TIME_ZONE : undefined,
   });
 }
 
@@ -162,7 +162,7 @@ export function ArchiveSearch({ items }: { items: ArchiveItem[] }) {
                       )}
                       {item.date && (
                         <time className="text-xs text-neutral-400" dateTime={item.date}>
-                          {formatDate(item.date, item.timezone)}
+                          {formatDate(item.date, item.type)}
                         </time>
                       )}
                     </div>

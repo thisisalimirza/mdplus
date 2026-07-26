@@ -135,20 +135,12 @@ export default async function EventPage({
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">Date</p>
                 <p className="mt-1 text-sm font-medium text-neutral-700">
-                  {formatEventDate(
-                    event.startDate,
-                    event.timezone ?? undefined,
-                    true,
-                  )}
+                  {formatEventDate(event.startDate, true)}
                 </p>
                 {event.endDate && (
                   <p className="text-sm text-neutral-500">
                     →{" "}
-                    {formatEventDate(
-                      event.endDate,
-                      event.timezone ?? undefined,
-                      true,
-                    )}
+                    {formatEventDate(event.endDate, true)}
                   </p>
                 )}
               </div>

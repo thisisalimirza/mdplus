@@ -202,10 +202,7 @@ export default async function CommunityPage() {
                   <div className="flex flex-1 flex-col p-5">
                     {event.startDate && (
                       <time className="text-xs font-semibold uppercase tracking-widest text-denim-600" dateTime={event.startDate}>
-                        {formatEventDate(
-                          event.startDate,
-                          event.timezone ?? undefined,
-                        )}
+                        {formatEventDate(event.startDate)}
                       </time>
                     )}
                     <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-rhino-700 group-hover:text-denim-700">

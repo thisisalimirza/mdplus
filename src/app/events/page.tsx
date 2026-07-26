@@ -158,10 +158,7 @@ function EventCard({ event }: { event: EventListItem }) {
           )}
           {event.startDate && (
             <time className="text-xs text-neutral-400" dateTime={event.startDate}>
-              {formatEventDate(
-                event.startDate,
-                event.timezone ?? undefined,
-              )}
+              {formatEventDate(event.startDate)}
             </time>
           )}
         </div>

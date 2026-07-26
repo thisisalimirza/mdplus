@@ -149,7 +149,6 @@ export const eventsQuery = defineQuery(`
     "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming"),
     startDate,
     endDate,
-    timezone,
     location,
     coverImage { asset, alt },
     summary,
@@ -166,7 +165,6 @@ export const recentEventsQuery = defineQuery(`
     "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming"),
     startDate,
     endDate,
-    timezone,
     location,
     coverImage { asset, alt },
     summary,
@@ -183,7 +181,6 @@ export const eventBySlugQuery = defineQuery(`
     "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming"),
     startDate,
     endDate,
-    timezone,
     location,
     coverImage { asset, alt },
     summary,
@@ -213,7 +210,7 @@ export const homepageRecentPodcastQuery = defineQuery(`
 
 export const homepageRecentEventQuery = defineQuery(`
   *[_type == "event" && defined(slug.current) && coalesce(endDate, startDate) < now()] | order(startDate desc) [0...3] {
-    _id, title, "slug": slug.current, startDate, endDate, timezone, location, eventType, summary,
+    _id, title, "slug": slug.current, startDate, endDate, location, eventType, summary,
     coverImage { asset, alt }
   }
 `);
@@ -245,7 +242,7 @@ export const archivePodcastQuery = defineQuery(`
 
 export const archiveEventsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current)] | order(startDate desc) {
-    _id, title, "slug": slug.current, startDate, endDate, timezone, location, summary, eventType,
+    _id, title, "slug": slug.current, startDate, endDate, location, summary, eventType,
     "status": select(coalesce(endDate, startDate) < now() => "past", "upcoming")
   }
 `);

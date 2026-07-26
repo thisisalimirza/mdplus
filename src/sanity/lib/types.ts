@@ -73,7 +73,6 @@ export type EventListItem = {
   status: string | null;
   startDate: string | null;
   endDate?: string | null;
-  timezone: string | null;
   location: string | null;
   coverImage: { asset: unknown; alt: string | null } | null;
   summary: string | null;
