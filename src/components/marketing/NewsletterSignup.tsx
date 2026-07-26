@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/maqzjdqy";
+import { useId, useState, type FormEvent } from "react";
 
 type NewsletterSignupProps = {
   variant?: "light" | "dark";
@@ -10,6 +8,7 @@ type NewsletterSignupProps = {
 };
 
 export function NewsletterSignup({ variant = "light", compact = false }: NewsletterSignupProps) {
+  const emailInputId = useId();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -24,9 +23,9 @@ export function NewsletterSignup({ variant = "light", compact = false }: Newslet
     setErrorMsg("");
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch("/api/newsletter/subscribe", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
@@ -34,7 +33,7 @@ export function NewsletterSignup({ variant = "light", compact = false }: Newslet
         setStatus("success");
       } else {
         const data = await res.json().catch(() => ({}));
-        setErrorMsg(data?.errors?.[0]?.message ?? "Something went wrong. Please try again.");
+        setErrorMsg(data?.error ?? "Something went wrong. Please try again.");
         setStatus("error");
       }
     } catch {
@@ -68,11 +67,11 @@ export function NewsletterSignup({ variant = "light", compact = false }: Newslet
       className="flex flex-col gap-2 sm:flex-row"
       aria-label="Subscribe to the MDplus newsletter"
     >
-      <label htmlFor="newsletter-email" className="sr-only">
+      <label htmlFor={emailInputId} className="sr-only">
         Email address
       </label>
       <input
-        id="newsletter-email"
+        id={emailInputId}
         type="email"
         required
         autoComplete="email"
