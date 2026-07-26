@@ -1,4 +1,7 @@
+import { createHash } from "node:crypto";
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const SERVER_PREFIX_PATTERN = /^[a-z]{2}\d+$/;
 
 type MailchimpError = {
   title?: string;
@@ -10,7 +13,12 @@ function getMailchimpConfig() {
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
   const serverPrefix = apiKey?.split("-").at(-1);
 
-  if (!apiKey || !audienceId || !serverPrefix) {
+  if (
+    !apiKey ||
+    !audienceId ||
+    !serverPrefix ||
+    !SERVER_PREFIX_PATTERN.test(serverPrefix)
+  ) {
     return null;
   }
 
@@ -52,16 +60,18 @@ export async function POST(request: Request) {
   }
 
   try {
+    const subscriberHash = createHash("md5").update(email).digest("hex");
     const response = await fetch(
-      `https://${config.serverPrefix}.api.mailchimp.com/3.0/lists/${config.audienceId}/members`,
+      `https://${config.serverPrefix}.api.mailchimp.com/3.0/lists/${config.audienceId}/members/${subscriberHash}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           Authorization: `Basic ${btoa(`mdplus:${config.apiKey}`)}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email_address: email,
+          status_if_new: "subscribed",
           status: "subscribed",
         }),
       },
@@ -72,10 +82,6 @@ export async function POST(request: Request) {
     }
 
     const error = (await response.json().catch(() => ({}))) as MailchimpError;
-
-    if (response.status === 400 && error.title === "Member Exists") {
-      return Response.json({ success: true });
-    }
 
     console.error("Mailchimp newsletter signup failed.", {
       status: response.status,
