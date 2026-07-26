@@ -95,7 +95,7 @@ export default async function EventsPage() {
 
           {/* Past */}
           {past.length > 0 && (
-            <div>
+            <div id="past-events" className="scroll-mt-24">
               <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
                 Past events
               </p>

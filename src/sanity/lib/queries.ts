@@ -208,8 +208,8 @@ export const homepageRecentPodcastQuery = defineQuery(`
   }
 `);
 
-export const homepageRecentEventQuery = defineQuery(`
-  *[_type == "event" && defined(slug.current) && coalesce(endDate, startDate) < now()] | order(startDate desc) [0...3] {
+export const homepageUpcomingEventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current) && coalesce(endDate, startDate) >= now()] | order(startDate asc) [0...3] {
     _id, title, "slug": slug.current, startDate, endDate, location, eventType, summary,
     coverImage { asset, alt }
   }

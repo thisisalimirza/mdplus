@@ -25,7 +25,7 @@ import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import {
   homepageRecentPostsQuery,
-  homepageRecentEventQuery,
+  homepageUpcomingEventsQuery,
 } from "@/sanity/lib/queries";
 import { getRecentPodcastEpisodes } from "@/lib/podcast";
 import { formatEventDate } from "@/lib/events";
@@ -86,14 +86,14 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 export default async function Home() {
-  const [recentPosts, recentEvents, recentPodcast] = await Promise.all([
+  const [recentPosts, upcomingEvents, recentPodcast] = await Promise.all([
     isSanityConfigured ? client.fetch(homepageRecentPostsQuery) : Promise.resolve([]),
-    isSanityConfigured ? client.fetch(homepageRecentEventQuery) : Promise.resolve([]),
+    isSanityConfigured ? client.fetch(homepageUpcomingEventsQuery) : Promise.resolve([]),
     getRecentPodcastEpisodes(3),
   ]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const contentWall: any[] = [
+  const recentContent: any[] = [
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...recentPosts.map((p: any) => ({ ...p, _kind: "article", _date: p.publishedAt })),
     ...recentPodcast.map((e) => ({
@@ -107,13 +107,20 @@ export default async function Home() {
       episodeNumber: e.episodeNumber,
       coverImageUrl: e.coverImageUrl,
     })),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...recentEvents.map((e: any) => ({ ...e, _kind: "event", _date: e.startDate })),
   ].sort((a, b) => {
     if (!a._date) return 1;
     if (!b._date) return -1;
     return new Date(b._date).getTime() - new Date(a._date).getTime();
   });
+
+  // Keep the wall concise: upcoming events first (soonest first), followed
+  // by the newest articles and podcast episodes.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const contentWall: any[] = [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...upcomingEvents.map((e: any) => ({ ...e, _kind: "event", _date: e.startDate })),
+    ...recentContent,
+  ].slice(0, 6);
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -593,13 +600,22 @@ export default async function Home() {
                   Always something happening.
                 </h2>
               </div>
-              <Link
-                href="/archive"
-                className="inline-flex items-center gap-1 text-sm font-semibold text-white/40 transition-colors hover:text-white"
-              >
-                Full archive
-                <ArrowRight className="size-4" aria-hidden />
-              </Link>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                <Link
+                  href="/events#past-events"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-yellow-400 transition-colors hover:text-yellow-300"
+                >
+                  Past events &amp; recaps
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+                <Link
+                  href="/archive"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-white/40 transition-colors hover:text-white"
+                >
+                  Full archive
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </div>
             </Reveal>
 
             {/* Chronological content grid */}
@@ -690,7 +706,7 @@ export default async function Home() {
                         {isEvent && (
                           <>
                             <Calendar className="size-3 text-yellow-400" aria-hidden />
-                            <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Event</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-yellow-400">Upcoming event</span>
                           </>
                         )}
                       </div>
