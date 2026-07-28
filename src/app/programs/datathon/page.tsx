@@ -25,6 +25,8 @@ const PAST_EDITIONS: {
   theme: string;
   body: string;
   metrics: string;
+  /** When set, the card links to the per-year detail page. */
+  slug?: string;
 }[] = [
   {
     year: "Oct–Nov 2025",
@@ -32,6 +34,7 @@ const PAST_EDITIONS: {
     theme: "Empowering Patients Through AI",
     body: "Largest and most internationally represented Datathon to date. Gold sponsors: Doximity, Inflo Health. Event partners: AMSA, ConductScience.",
     metrics: "31 teams · ~300 participants",
+    slug: "2025",
   },
   {
     year: "Oct–Nov 2024",
@@ -39,6 +42,7 @@ const PAST_EDITIONS: {
     theme: "Multiple competition tracks",
     body: "First Datathon with multiple parallel tracks. Final pitch competition held November 18.",
     metrics: "Multi-track format introduced",
+    slug: "2024",
   },
   {
     year: "Oct–Nov 2023",
@@ -46,6 +50,7 @@ const PAST_EDITIONS: {
     theme: "Value-Based Care",
     body: "28 teams using the MIMIC-IV dataset (via Hugging Face). Solidified the Datathon as the org's signature annual event.",
     metrics: "28 teams · 71+ signups",
+    slug: "2023",
   },
   {
     year: "January 2022",
@@ -172,31 +177,52 @@ export default function DatathonPage() {
           </div>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {PAST_EDITIONS.map((edition) => (
-              <article
-                key={edition.year}
-                className="rounded-lg border border-neutral-200 bg-neutral-0 p-6"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 rounded-pill bg-yellow-50 px-2.5 py-0.5 text-xs font-semibold text-yellow-700">
-                    <Trophy className="size-3" aria-hidden />
-                    {edition.edition}
-                  </span>
-                  <span className="text-xs text-neutral-500">
-                    {edition.year}
-                  </span>
-                </div>
-                <h3 className="mt-4 font-display text-lg font-bold text-rhino-700">
-                  {edition.theme}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                  {edition.body}
-                </p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-denim-600">
-                  {edition.metrics}
-                </p>
-              </article>
-            ))}
+            {PAST_EDITIONS.map((edition) => {
+              const cardBody = (
+                <>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 rounded-pill bg-yellow-50 px-2.5 py-0.5 text-xs font-semibold text-yellow-700">
+                      <Trophy className="size-3" aria-hidden />
+                      {edition.edition}
+                    </span>
+                    <span className="text-xs text-neutral-500">
+                      {edition.year}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-bold text-rhino-700 group-hover:text-denim-700">
+                    {edition.theme}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                    {edition.body}
+                  </p>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-denim-600">
+                    {edition.metrics}
+                  </p>
+                  {edition.slug && (
+                    <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-denim-600 group-hover:text-denim-700">
+                      View the {edition.year.replace("Oct–Nov ", "")} recap
+                      <ArrowRight className="size-3.5" aria-hidden />
+                    </p>
+                  )}
+                </>
+              );
+              return edition.slug ? (
+                <Link
+                  key={edition.year}
+                  href={`/programs/datathon/${edition.slug}`}
+                  className="group block rounded-lg border border-neutral-200 bg-neutral-0 p-6 transition-all hover:border-denim-300 hover:shadow-sm"
+                >
+                  {cardBody}
+                </Link>
+              ) : (
+                <article
+                  key={edition.year}
+                  className="group rounded-lg border border-neutral-200 bg-neutral-0 p-6"
+                >
+                  {cardBody}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
