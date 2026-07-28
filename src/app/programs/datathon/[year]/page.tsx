@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -477,13 +478,32 @@ export default async function DatathonEditionPage({
                     <Handshake className="size-4" aria-hidden />
                     {group.tier}
                   </p>
-                  <ul className="mt-4 space-y-2">
+                  <ul className="mt-4 space-y-4">
                     {group.sponsors.map((s) => (
-                      <li
-                        key={s.label}
-                        className="font-display text-lg font-semibold text-rhino-700"
-                      >
-                        {s.href ? <ResourceAnchor link={s} className="font-display text-lg font-semibold text-denim-600 hover:text-denim-700" /> : s.label}
+                      <li key={s.label}>
+                        {s.logo ? (
+                          <div className="flex items-center gap-3">
+                            <div className="relative h-12 w-32 shrink-0">
+                              <Image
+                                src={s.logo}
+                                alt={`${s.label} logo`}
+                                fill
+                                className="object-contain object-left"
+                                sizes="128px"
+                              />
+                            </div>
+                            <span className="sr-only">{s.label}</span>
+                          </div>
+                        ) : s.href ? (
+                          <ResourceAnchor
+                            link={s}
+                            className="font-display text-lg font-semibold text-denim-600 hover:text-denim-700"
+                          />
+                        ) : (
+                          <span className="font-display text-lg font-semibold text-rhino-700">
+                            {s.label}
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ul>

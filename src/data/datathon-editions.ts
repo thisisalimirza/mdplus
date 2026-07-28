@@ -16,6 +16,8 @@ export type DatathonLink = {
   href?: string;
   /** Optional sub-note shown under the link. */
   note?: string;
+  /** Optional logo image path (used for sponsors), served from /public. */
+  logo?: string;
 };
 
 /** Hero meta pill, e.g. "Team size: 3–6". */
@@ -279,12 +281,24 @@ export const DATATHON_EDITIONS: DatathonEdition[] = [
     sponsors: [
       {
         tier: "Gold sponsors",
-        sponsors: [{ label: "Doximity" }, { label: "Inflo Health" }],
+        sponsors: [
+          { label: "Doximity", logo: "/datathon-sponsors/doximity.png" },
+          { label: "Inflo Health", logo: "/datathon-sponsors/inflo.jpg" },
+        ],
       },
-      { tier: "Bronze sponsors", sponsors: [{ label: "Offcall" }] },
+      {
+        tier: "Bronze sponsors",
+        sponsors: [{ label: "Offcall", logo: "/datathon-sponsors/offcall.jpeg" }],
+      },
       {
         tier: "Research collaborators",
-        sponsors: [{ label: "AMSA" }, { label: "ConductScience" }],
+        sponsors: [
+          { label: "AMSA", logo: "/datathon-sponsors/amsa.png" },
+          {
+            label: "ConductScience",
+            logo: "/datathon-sponsors/conductscience.png",
+          },
+        ],
       },
     ],
     faqs: [
