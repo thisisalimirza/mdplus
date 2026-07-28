@@ -383,6 +383,62 @@ export const COMMUNITIES: Community[] = [
           },
         ],
       },
+      // Datathon Python/R workshop references, ported from the retired DS&AI
+      // site. The full workshop materials live in the archived Datathon GitHub
+      // repos (linked from each /programs/datathon/[year] page); these are the
+      // external tools, docs, and cheat sheets the workshops pointed to.
+      {
+        title: "Workshops & cheat sheets",
+        note: "Full workshop materials live in the archived Datathon GitHub repos",
+        items: [
+          {
+            label: "Install Python",
+            href: "https://www.python.org/downloads/",
+            note: "python.org downloads",
+          },
+          {
+            label: "Install VS Code",
+            href: "https://code.visualstudio.com/download",
+          },
+          {
+            label: "Install R (CRAN — macOS)",
+            href: "https://cran.r-project.org/bin/macosx/",
+          },
+          {
+            label: "Install R (CRAN — Windows)",
+            href: "https://cran.r-project.org/bin/windows/base/",
+          },
+          {
+            label: "Install RStudio (Posit)",
+            href: "https://posit.co/download/rstudio-desktop/",
+          },
+          {
+            label: "pandas cheat sheet (PDF)",
+            href: "https://github.com/pandas-dev/pandas/blob/main/doc/cheatsheet/Pandas_Cheat_Sheet.pdf",
+          },
+          {
+            label: "NumPy cheat sheet",
+            href: "https://www.dataquest.io/blog/numpy-cheat-sheet/",
+          },
+          {
+            label: "RStudio data-wrangling cheat sheet",
+            href: "https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf",
+          },
+          {
+            label: "pandas user guide",
+            href: "https://pandas.pydata.org/docs/user_guide/index.html#user-guide",
+            note: "Includes read_csv / read_excel and more",
+          },
+          {
+            label: "NumPy user guide",
+            href: "https://numpy.org/doc/stable/user/index.html#user",
+          },
+          {
+            label: "matplotlib pyplot tutorial",
+            href: "https://matplotlib.org/stable/tutorials/pyplot.html#sphx-glr-tutorials-pyplot-py",
+          },
+        ],
+      },
       {
         title: "Mentorship & getting involved",
         items: [

@@ -653,6 +653,12 @@ export const ADVISORS: Advisor[] = [
     linkedIn: "https://www.linkedin.com/in/michael-s-yao",
   },
   {
+    name: "Eric Shan",
+    role: "AI/Data",
+    imageSrc: "/Advisors/eric-shan.jpg",
+    linkedIn: "https://www.linkedin.com/in/eric-z-shan",
+  },
+  {
     name: "Lawrence Huang",
     role: "AI/Data",
     funFact: "I biked a 10,000 ft volcano in Hawaii and started hallucinating at altitude while singing the Moulin Rouge theme to a group of confused tourists.",
