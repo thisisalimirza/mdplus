@@ -176,6 +176,233 @@ export const COMMUNITIES: Community[] = [
           },
         ],
       },
+      // Curated learning library, ported from the retired MDplus DS&AI site so
+      // these community-vetted external resources aren't lost.
+      {
+        title: "Learn Python",
+        items: [
+          {
+            label: "BE/Bi 103a (Caltech)",
+            href: "https://bebi103a.github.io/index.html",
+            note: "College-level intro assuming no background; work with biological data",
+          },
+          {
+            label: "MedML@Emory Workshop",
+            href: "https://colab.research.google.com/drive/1eij5s6YoSthXUAWMUJ0-ouydIFK0D_1d?usp=sharing",
+            note: "Quick Python + ML tutorial; build an ECG analyzer",
+          },
+          {
+            label: "Stanford Python Tutorial",
+            href: "https://cs231n.github.io/python-numpy-tutorial/",
+            note: "NumPy, SciPy, and matplotlib essentials",
+          },
+        ],
+      },
+      {
+        title: "Learn R",
+        items: [
+          {
+            label: "Intro to R (Posit/RStudio)",
+            href: "https://education.rstudio.com/learn/beginner/",
+            note: "Getting-started guides from the developers of R",
+          },
+          {
+            label: "R for Data Science",
+            href: "https://r4ds.hadley.nz/",
+            note: "Full textbook; no prior programming experience needed",
+          },
+        ],
+      },
+      {
+        title: "AI tutorials",
+        items: [
+          {
+            label: "MIT: ML for Healthcare",
+            href: "https://ocw.mit.edu/courses/6-s897-machine-learning-for-healthcare-spring-2019/video_galleries/lecture-videos/",
+            note: "Beginner · lecture series overview of ML for healthcare",
+          },
+          {
+            label: "AI for Everyone (Andrew Ng)",
+            href: "https://www.coursera.org/learn/ai-for-everyone",
+            note: "Beginner · non-technical, ~10 hours",
+          },
+          {
+            label: "Kaggle Diabetes Classification",
+            href: "https://www.kaggle.com/code/shrutimechlearn/step-by-step-diabetes-classification-knn-detailed",
+            note: "Beginner · hands-on baseline diagnosis models",
+          },
+          {
+            label: "NPJ: AI and Medicine perspective",
+            href: "https://www.nature.com/articles/s41746-020-00333-z",
+            note: "Beginner · non-technical overview article",
+          },
+          {
+            label: "An Introduction to Statistical Learning",
+            href: "https://www.statlearning.com/",
+            note: "Beginner · statistical learning with R",
+          },
+          {
+            label: "CS50: Intro to AI (Harvard)",
+            href: "https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python?delta=0",
+            note: "Advanced · build AI tools from scratch in Python",
+          },
+          {
+            label: "Hugging Face NLP Course",
+            href: "https://huggingface.co/course/chapter1/1",
+            note: "Advanced · NLP and LLMs from 0 to 100",
+          },
+          {
+            label: "Model evaluation metrics (aman.ai)",
+            href: "https://aman.ai/primers/ai/evaluation-metrics/",
+            note: "Advanced · more AI primers at aman.ai/primers/ai",
+          },
+          {
+            label: "AI primers (aman.ai)",
+            href: "https://aman.ai/primers/ai/",
+            note: "Advanced · guides on model design and engineering",
+          },
+          {
+            label: "Hugging Face Diffusers",
+            href: "https://huggingface.co/docs/diffusers/index",
+            note: "Advanced · build generative diffusion models",
+          },
+          {
+            label: "Lilian Weng: Diffusion Models",
+            href: "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/",
+            note: "Advanced · technical overview of diffusion models",
+          },
+          {
+            label: "Project MONAI Tutorials",
+            href: "https://github.com/Project-MONAI/tutorials",
+            note: "Advanced · ML for medical imaging (classify/segment)",
+          },
+          {
+            label: "The Elements of Statistical Learning",
+            href: "https://hastie.su.domains/ElemStatLearn/",
+            note: "Advanced · reference text for statistical methods",
+          },
+        ],
+      },
+      {
+        title: "Data science & SQL",
+        items: [
+          {
+            label: "Wrangle",
+            href: "http://www.wranglecode.com/",
+            note: "Built by MDplus members · 100+ SQL and R practice problems",
+          },
+          {
+            label: "W3Schools SQL",
+            href: "https://www.w3schools.com/sql/",
+            note: "Beginner · SQL fundamentals",
+          },
+          {
+            label: "SQLZoo",
+            href: "https://sqlzoo.net/wiki/SQL_Tutorial",
+            note: "Beginner · learn SQL by doing",
+          },
+          {
+            label: "LeetCode Database",
+            href: "https://leetcode.com/problemset/database/",
+            note: "Practice SQL problem-solving",
+          },
+          {
+            label: "Codecademy Data Science Foundations",
+            href: "https://www.codecademy.com/catalog/subject/data-science",
+            note: "Advanced · Python for data science, incl. medical-insurance project",
+          },
+        ],
+      },
+      {
+        title: "Podcasts",
+        items: [
+          {
+            label: "NEJM AI Grand Rounds",
+            href: "https://ai-podcast.nejm.org",
+            note: "Monthly conversations with experts in AI + medicine",
+          },
+          {
+            label: "For Your Informatics (AMIA)",
+            href: "https://amia.org/news-publications/podcasts/for-your-informatics",
+            note: "AI + medicine from clinical, research, and societal angles",
+          },
+        ],
+      },
+      {
+        title: "Newsletters & blogs",
+        items: [
+          {
+            label: "Glass Box",
+            href: "https://glassboxmedicine.com",
+            note: "ML + medicine blog by Dr. Rachel Draelos (Cydoc)",
+          },
+          {
+            label: "Decoding Bio",
+            href: "https://decodingbio.substack.com",
+            note: "Substack by Dr. Patrick Malone (KdT Ventures)",
+          },
+          {
+            label: "Doctor Penguin",
+            href: "https://doctorpenguin.com/index",
+            note: "Weekly newsletter on AI research across specialties",
+          },
+          {
+            label: "Import AI",
+            href: "https://jack-clark.net",
+            note: "Jack Clark's weekly AI research newsletter",
+          },
+        ],
+      },
+      {
+        title: "People to follow",
+        items: [
+          {
+            label: "Roxana Daneshjou",
+            href: "https://twitter.com/RoxanaDaneshjou",
+            note: "Stanford dermatologist working on AI + precision health",
+          },
+          {
+            label: "James Zou",
+            href: "https://twitter.com/james_y_zou",
+            note: "Stanford professor; AI for biotech and healthcare",
+          },
+          {
+            label: "Dereck Paul",
+            href: "https://twitter.com/dereckwpaul",
+            note: "Physician; CEO of Glass Health",
+          },
+          {
+            label: "Dan Hashimoto",
+            href: "https://twitter.com/Laparoscopes",
+            note: "Surgeon applying computer vision to surgical video",
+          },
+          {
+            label: "Suchi Saria",
+            href: "https://twitter.com/suchisaria",
+            note: "Johns Hopkins professor of AI; ML + medicine founder",
+          },
+        ],
+      },
+      {
+        title: "Mentorship & getting involved",
+        items: [
+          {
+            label: "Become a mentor",
+            href: "https://forms.gle/mfh8mp3Zn5QTu4RaA",
+            note: "Offer coffee chats to members exploring DS&AI",
+          },
+          {
+            label: "Coffee-chat feedback",
+            href: "https://forms.gle/wzg1TeAKXZHhjLNB7",
+            note: "Share feedback after a mentorship meeting",
+          },
+          {
+            label: "Suggest a resource",
+            href: "https://forms.gle/yU7FWYEATdkjSYWg7",
+            note: "Recommend a DS&AI resource for this list",
+          },
+        ],
+      },
     ],
   },
   {
