@@ -661,7 +661,7 @@ export const ADVISORS: Advisor[] = [
   {
     name: "Lawrence Huang",
     role: "AI/Data",
-    funFact: "I biked a 10,000 ft volcano in Hawaii and started hallucinating at altitude while singing the Moulin Rouge theme to a group of confused tourists.",
+    funFact: "I biked a 10,000 ft volcano in Hawaii and started hallucinating at altitude.",
     imageSrc: "/Advisors/laurence-huang.webp",
     linkedIn: "https://www.linkedin.com/in/lawrence-huang-1850",
   },
