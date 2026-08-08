@@ -1,6 +1,33 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────
+   Hover variant: pointer-aware, not media-query-gated
+
+   Tailwind v4 compiles every `hover:` / `group-hover:` /
+   `peer-hover:` utility inside `@media (hover: hover)`, so hover
+   styles only exist when the UA claims the *primary* input can
+   hover. Safari on iPadOS always reports `hover: none` and
+   `pointer: coarse` — even with a Magic Keyboard or mouse driving
+   a real cursor (WebKit never updates those media features when a
+   pointing device is attached). Result: every hover state on the
+   site is dead on iPad, while the cursor sits right there.
+
+   So we drop the media query and gate on the input device that is
+   actually in use instead: hover styles apply by default, and are
+   suppressed only while `data-pointer="coarse"` is set on <html>.
+   That attribute is toggled at runtime from real pointer events
+   (see PointerMode in src/components/site/PointerMode.tsx) —
+   touch sets it, a mouse/trackpad clears it. Touch devices keep
+   their protection from "sticky" hover after a tap, and anything
+   with a cursor gets hover states regardless of what the UA
+   advertises. With JS off, hover behaves as it did in Tailwind v3.
+
+   `:where()` keeps the guard at zero specificity, so utilities
+   still weigh exactly what they used to.
+   ───────────────────────────────────────────────────────────── */
+@custom-variant hover (:where(html:not([data-pointer="coarse"])) &:hover);
+
+/* ─────────────────────────────────────────────────────────────
    MDplus Design Tokens
 
    Brand: Lightning Yellow (#FFCB21), Denim (#1D7BBD), Rhino (#36366F).
