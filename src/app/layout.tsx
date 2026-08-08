@@ -3,6 +3,7 @@ import { Geist, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { PointerMode } from "@/components/site/PointerMode";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/lib/site";
 
@@ -89,6 +90,7 @@ export default function RootLayout({
       className={`${geist.variable} ${dancingScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-neutral-0 text-neutral-700">
+        <PointerMode />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
