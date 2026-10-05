@@ -82,7 +82,7 @@ export const HISTORY: HistoryEra[] = [
       {
         date: "June 2023",
         title: "MD+ Podcast launches",
-        body: "Hosted by Geoff Bocobo, MD. Three formats: Founder Stories, Fireside Chats, and Trainee Decision Points. Available on Spotify.",
+        body: "Hosted by Geoff Bocobo, MD. Multiple formats including Founder Stories, Fireside Chats, and Trainee Decision Points. Available on Spotify & Apple Podcasts.",
       },
       {
         date: "Oct–Nov 2023",
