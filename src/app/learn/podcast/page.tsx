@@ -13,12 +13,13 @@ import {
   getPodcastEpisodes,
   SPOTIFY_SHOW_URL,
   SPOTIFY_EMBED_URL,
+  APPLE_PODCASTS_URL,
 } from "@/lib/podcast";
 
 export const metadata: Metadata = {
   title: "Podcast",
   description:
-    "The MD+ Podcast: conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD.",
+    "The MD+ Podcast: audio-visual conversations with physician-founders, healthcare investors, and trainees navigating non-traditional paths. Hosted by Geoff Bocobo, MD. Available on Spotify & Apple Podcasts.",
 };
 
 const SERIES: { icon: LucideIcon; title: string; body: string }[] = [
@@ -64,13 +65,13 @@ export default async function PodcastPage() {
                 <span className="text-denim-600">physician-innovators.</span>
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-                The MD+ Podcast is an audio series featuring physician-founders,
+                The MD+ Podcast is an audio-visual series featuring physician-founders,
                 healthcare investors, and trainees navigating non-traditional
                 paths. Hosted by{" "}
                 <span className="font-semibold text-rhino-700">
                   Geoff Bocobo, MD
                 </span>
-                . Launched June 2023; available on Spotify.
+                . Launched June 2023; available on Spotify &amp; Apple Podcasts.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
@@ -80,6 +81,15 @@ export default async function PodcastPage() {
                   className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
                 >
                   Listen on Spotify
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+                <a
+                  href={APPLE_PODCASTS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-denim-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-denim-600"
+                >
+                  Apple Podcasts
                   <ArrowUpRight className="size-4" aria-hidden />
                 </a>
               </div>
@@ -102,18 +112,18 @@ export default async function PodcastPage() {
         </div>
       </section>
 
-      {/* ── Three series ───────────────────────────────────── */}
+      {/* ── Multiple series ─────────────────────────────────── */}
       <section className="bg-neutral-0 py-20 md:py-28">
         <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
-              Three series
+              Multiple Series Types
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
-              One podcast. Three formats.
+              One Podcast. Various Formats.
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              The show rotates between three formats so it stays useful at any
+              The show explores different formats so it stays useful at any
               career stage, whether you&apos;re curious, building, or already
               shipping.
             </p>
@@ -161,7 +171,7 @@ export default async function PodcastPage() {
             </div>
             {episodes.length > 0 && (
               <p className="text-sm text-neutral-400">
-                {episodes.length} episode{episodes.length === 1 ? "" : "s"}
+                Showing {Math.min(episodes.length, 10)} of {episodes.length} episode{episodes.length === 1 ? "" : "s"}
               </p>
             )}
           </div>
@@ -169,22 +179,33 @@ export default async function PodcastPage() {
           {episodes.length === 0 ? (
             <div className="mt-12 rounded-xl border border-neutral-200 bg-neutral-0 p-8 text-center">
               <p className="text-neutral-600">
-                Episodes couldn&apos;t be loaded right now. Listen on Spotify
-                instead.
+                Episodes couldn&apos;t be loaded right now. Listen on Spotify or
+                Apple Podcasts instead.
               </p>
-              <a
-                href={SPOTIFY_SHOW_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-denim-600 hover:text-denim-800"
-              >
-                Open Spotify
-                <ArrowUpRight className="size-4" aria-hidden />
-              </a>
+              <div className="mt-4 flex flex-wrap justify-center gap-3">
+                <a
+                  href={SPOTIFY_SHOW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-denim-600 hover:text-denim-800"
+                >
+                  Open Spotify
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+                <a
+                  href={APPLE_PODCASTS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-denim-600 hover:text-denim-800"
+                >
+                  Apple Podcasts
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+              </div>
             </div>
           ) : (
             <div className="mt-12 grid gap-5 md:grid-cols-2">
-              {episodes.map((ep) => (
+              {episodes.slice(0, 10).map((ep) => (
                 <Link
                   key={ep.id}
                   href={`/learn/podcast/${ep.slug}`}
@@ -247,6 +268,29 @@ export default async function PodcastPage() {
               ))}
             </div>
           )}
+
+          {episodes.length > 10 && (
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <a
+                href={SPOTIFY_SHOW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-md border border-denim-500 bg-neutral-0 px-5 py-2.5 text-sm font-semibold text-denim-600 transition-colors hover:bg-denim-50"
+              >
+                View all episodes on Spotify
+                <ArrowUpRight className="size-4" aria-hidden />
+              </a>
+              <a
+                href={APPLE_PODCASTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-md border border-denim-500 bg-neutral-0 px-5 py-2.5 text-sm font-semibold text-denim-600 transition-colors hover:bg-denim-50"
+              >
+                View all on Apple Podcasts
+                <ArrowUpRight className="size-4" aria-hidden />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -264,9 +308,12 @@ export default async function PodcastPage() {
               <p className="mt-4 text-base leading-relaxed text-neutral-700 md:text-lg">
                 Geoff has been the podcast&apos;s host since launch in June
                 2023. Previously Director of Medical Devices at MDplus during
-                the org&apos;s 2021–2023 era. That brings the long view on
-                what&apos;s changed in healthcare innovation, and a deep
-                network of physician-builders to draw on for guests.
+                the org&apos;s 2021–2023 era. He has diverse experiences from
+                biomedical research to co-founding a VC-backed startup, from
+                consulting at BCG to now advising and investing in healthcare
+                &amp; AI companies. That brings the long view on what&apos;s
+                changed in healthcare innovation, and a deep network of
+                physician-builders to draw on for guests.
               </p>
             </div>
             <div className="md:justify-self-end">
