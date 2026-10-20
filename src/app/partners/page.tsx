@@ -6,7 +6,6 @@ import {
   UserPlus,
   Handshake,
   ArrowRight,
-  ArrowUpRight,
   Check,
   X,
   type LucideIcon,
