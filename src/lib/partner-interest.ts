@@ -1,8 +1,7 @@
 /**
  * The year-round partner and sponsor interest form: its options, and the
  * validation shared by the page and POST /api/partner-interest.
- * Submissions are stored as `partnerInquiry` documents in Sanity, so the
- * exec team sees one running list in the Studio (/studio).
+ * Submissions are forwarded to Formspree, which emails partnerships@mdplus.community.
  */
 
 export const INTEREST_TYPES = [
