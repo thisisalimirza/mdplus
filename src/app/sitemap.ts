@@ -33,6 +33,7 @@ const STATIC_ROUTES: {
   { path: "/membership", changeFrequency: "monthly", priority: 0.7 },
   { path: "/skills", changeFrequency: "monthly", priority: 0.7 },
   { path: "/partners", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/partners/interest", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.5 },
   { path: "/guidelines", changeFrequency: "yearly", priority: 0.3 },
   { path: "/archive", changeFrequency: "weekly", priority: 0.5 },

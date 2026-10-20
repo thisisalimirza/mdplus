@@ -42,6 +42,7 @@ const FOOTER_GROUPS = [
       ...ABOUT_SECTIONS.map((s) => ({ href: s.href, label: s.title })),
       { href: "/archive", label: "Archive" },
       { href: "/partners", label: "For Partners" },
+      { href: "/partners/interest", label: "Partner with us" },
     ],
   },
 ] as const;
