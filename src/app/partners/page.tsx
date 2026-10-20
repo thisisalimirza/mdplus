@@ -79,12 +79,18 @@ export default function PartnersPage() {
         description="MDplus is a 501(c)(3) community of 5,000+ medical students, residents, and physicians at the cross-section of medicine and healthcare innovation. If your work touches that audience (for hiring, sponsorship, or co-built programs), this is the door."
       >
         <div className="flex flex-wrap gap-3">
-          <a
-            href={emailHref("Partner inquiry")}
+          <Link
+            href="/partners/interest"
             className="inline-flex items-center justify-center gap-1.5 rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
           >
-            Email the team
+            Express interest
             <ArrowRight className="size-4" aria-hidden />
+          </Link>
+          <a
+            href={emailHref("Partner inquiry")}
+            className="inline-flex items-center justify-center gap-1.5 rounded-md border border-white/30 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
+          >
+            Email the team
           </a>
           <BookCallButton link={PARTNER_CAL_LINK} variant="outline" size="lg">
             Or book a 15-min call
@@ -390,6 +396,13 @@ export default function PartnersPage() {
               short conversation.
             </p>
             <div className="mt-10 flex flex-wrap gap-3 md:justify-center">
+              <Link
+                href="/partners/interest"
+                className="inline-flex items-center justify-center gap-1.5 rounded-md bg-yellow-500 px-6 py-3.5 text-base font-semibold text-rhino-900 shadow-sm transition-colors hover:bg-yellow-400"
+              >
+                Express interest
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
               <a
                 href={emailHref("Partner inquiry")}
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-rhino-700 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-rhino-600"
