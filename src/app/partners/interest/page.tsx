@@ -60,7 +60,7 @@ export default function PartnerInterestPage() {
       />
 
       <section className="border-b border-neutral-100 bg-neutral-0 py-16 md:py-20">
-        <div className="container-page">
+        <div className="mx-auto max-w-(--container-max) px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-denim-600">
               Ways to get involved
@@ -89,7 +89,7 @@ export default function PartnerInterestPage() {
       </section>
 
       <section className="bg-neutral-50 py-16 md:py-24" id="form">
-        <div className="container-narrow">
+        <div className="mx-auto max-w-3xl px-6">
           <h2 className="font-display text-3xl font-bold leading-tight text-rhino-700 md:text-4xl">
             Tell us about your interest.
           </h2>
